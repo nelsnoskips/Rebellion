@@ -13,9 +13,6 @@ npm run build
 npm run lint
 ```
 
-This is a standalone app in the `rebellion/` folder of the repo — it has its
-own dependencies and does not share anything with The Pass app at the root.
-
 ## Routes
 
 | Route | Blueprint reference |
