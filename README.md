@@ -13,6 +13,28 @@ npm run build
 npm run lint
 ```
 
+## Deploying
+
+`netlify.toml` is the source of truth and overrides whatever is configured in
+the Netlify UI:
+
+| Setting | Value |
+| --- | --- |
+| Build command | `npm run build` |
+| Publish directory | `out` |
+
+The build is a **static export** (`output: "export"` in `next.config.ts`) —
+every route is prerendered, so `out/` holds plain HTML with a real
+`index.html` at the root and deploys on any static host.
+
+Publishing `.next` instead is what produces Netlify's "Page not found": that
+directory has no servable index at its root, so the deploy succeeds and every
+URL 404s.
+
+When server-rendered features arrive — CMS previews, reservation callbacks,
+commerce (blueprint §11) — drop `output: "export"` and `images.unoptimized`,
+add `@netlify/plugin-nextjs`, and publish `.next`.
+
 ## Routes
 
 | Route | Blueprint reference |

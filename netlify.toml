@@ -1,0 +1,23 @@
+# Netlify configuration for the Rebellion Beachside site.
+#
+# The Next build is a static export (see next.config.ts), so the publish
+# directory is `out` — plain HTML, CSS, JS and images with a real index.html at
+# the root. Publishing `.next` instead is what produces Netlify's "Page not
+# found": that directory has no servable index at its root.
+#
+# This file overrides whatever build settings are configured in the Netlify UI,
+# so the deploy stays correct no matter how the site was first connected.
+
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Long-cache the fingerprinted build assets; everything else stays revalidated
+# so content edits appear immediately.
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    cache-control = "public, max-age=31536000, immutable"
