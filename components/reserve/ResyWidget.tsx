@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { reservations, site, type BookingKey } from "@/lib/site";
 
 /**
@@ -42,16 +42,32 @@ const CAMPAIGN_PARAMS = [
   "fbclid",
 ];
 
-/** Forward campaign parameters from the current URL onto an outbound link. */
-function withCampaign(url: string): string {
-  if (typeof window === "undefined") return url;
-  const here = new URLSearchParams(window.location.search);
+/** Forward campaign parameters from `search` onto an outbound link. */
+function withCampaign(url: string, search: string): string {
+  if (!search) return url;
+  const here = new URLSearchParams(search);
   const out = new URL(url);
   for (const key of CAMPAIGN_PARAMS) {
     const value = here.get(key);
     if (value) out.searchParams.set(key, value);
   }
   return out.toString();
+}
+
+/**
+ * The current query string, read the hydration-safe way: the server snapshot is
+ * empty, so the prerendered HTML carries the plain link and the client upgrades
+ * it once mounted. The query string cannot change without a navigation, so the
+ * subscribe callback has nothing to listen to.
+ */
+const NO_OP_SUBSCRIBE = () => () => {};
+
+function useSearchString(): string {
+  return useSyncExternalStore(
+    NO_OP_SUBSCRIBE,
+    () => window.location.search,
+    () => "",
+  );
 }
 
 /**
@@ -72,8 +88,12 @@ export function ResyWidget({ booking }: { booking: BookingKey }) {
   const config = reservations.bookings[booking];
   const mountRef = useRef<HTMLDivElement>(null);
   const [failed, setFailed] = useState(false);
+  const search = useSearchString();
 
   const canEmbed = config.venueId !== null && config.apiKey !== null;
+  // Resolved during render rather than rewritten inside the click handler,
+  // which would race the navigation the click starts.
+  const href = config.deepLink ? withCampaign(config.deepLink, search) : null;
 
   useEffect(() => {
     if (!canEmbed) return;
@@ -135,20 +155,30 @@ export function ResyWidget({ booking }: { booking: BookingKey }) {
   }
 
   // 2. Deep link out to Resy.
-  if (config.deepLink) {
+  if (href) {
     return (
-      <a
-        href={config.deepLink}
-        target="_blank"
-        rel="noreferrer"
-        onClick={(e) => {
-          trackReservationStart(booking);
-          e.currentTarget.href = withCampaign(config.deepLink as string);
-        }}
-        className="micro inline-flex bg-oxblood px-8 py-4 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"
-      >
-        Book on Resy
-      </a>
+      <div className="flex min-h-[360px] flex-col items-center justify-center border border-ink/15 bg-paper p-10 text-center">
+        <p className="micro text-oxblood">Reservations</p>
+        <p className="mt-4 max-w-[36ch] text-[15px] leading-relaxed text-ink-mute">
+          Thursday through Saturday books up. Pick a date and a table on Resy —
+          or call and we&apos;ll write you into the book by hand.
+        </p>
+        <a
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => trackReservationStart(booking)}
+          className="micro mt-8 bg-oxblood px-9 py-4 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"
+        >
+          Book on Resy
+        </a>
+        <a
+          href={site.phoneHref}
+          className="micro mt-5 text-ink-mute underline underline-offset-4 hover:text-ink"
+        >
+          {site.phone}
+        </a>
+      </div>
     );
   }
 

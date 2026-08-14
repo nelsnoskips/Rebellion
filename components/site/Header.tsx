@@ -50,18 +50,37 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-[var(--dur-ui)] ease-[var(--ease-ui)]",
-        solid ? "bg-bone/95 backdrop-blur-sm" : "bg-gradient-to-b from-ink/70 to-transparent",
+        solid ? "bg-bone" : "bg-gradient-to-b from-ink/70 to-transparent",
       )}
     >
       <div className="flex h-20 items-center justify-between pl-4 pr-4 md:h-[88px] md:pl-6 md:pr-6">
-        {/* The logotype sits on its own bone plate so the 1C artwork keeps its
-            contrast over any hero frame. */}
+        {/* The logotype sits in the bar itself rather than on a raised plate.
+            Contrast over a hero frame comes from swapping to the knockout
+            artwork, cross-faded so it reads as part of the bar turning from
+            transparent to bone rather than as an image reloading. */}
         <Link
           href="/"
           aria-label={`${site.shortName} — home`}
-          className="relative z-10 -mt-0 block bg-bone px-4 py-3 shadow-[0_2px_24px_rgb(24_24_23/0.18)] transition-transform duration-[var(--dur-micro)] ease-[var(--ease-ui)] hover:-translate-y-px md:absolute md:top-0 md:left-6 md:px-5 md:py-6"
+          className="relative z-10 block shrink-0 transition-opacity duration-[var(--dur-micro)] ease-[var(--ease-ui)] hover:opacity-75"
         >
-          <Logotype priority className="w-[132px] md:w-[168px]" />
+          <span className="relative block w-[118px] md:w-[146px]">
+            <Logotype
+              priority
+              className={cn(
+                "transition-opacity duration-[var(--dur-ui)] ease-[var(--ease-ui)]",
+                solid ? "opacity-100" : "opacity-0",
+              )}
+            />
+            <Logotype
+              knockout
+              priority
+              alt=""
+              className={cn(
+                "absolute inset-0 transition-opacity duration-[var(--dur-ui)] ease-[var(--ease-ui)]",
+                solid ? "opacity-0" : "opacity-100",
+              )}
+            />
+          </span>
         </Link>
 
         <nav

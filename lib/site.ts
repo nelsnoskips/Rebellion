@@ -16,21 +16,24 @@ export const site = {
   tagline: "Rebel against the ordinary.",
   description:
     "A chef-driven beachside bistro, private gathering place, and bottle shop for people who would rather not do the expected.",
-  /* PLACEHOLDER — verify NAP against the client's Google Business Profile. */
+  /* Address and phone taken from rebellionrestaurants.com, which corrects the
+     values in the design comp (200 N Orlando Ave / 321.784.9463 — comp dummy
+     text). Still worth a final check against the Google Business Profile, since
+     NAP has to match everywhere for local search (blueprint §11). */
   address: {
-    street: "200 N Orlando Ave",
+    street: "26 N Orlando Ave",
     city: "Cocoa Beach",
     state: "FL",
     zip: "32931",
   },
-  phone: "321.784.9463",
-  phoneHref: "tel:+13217849463",
+  phone: "321.613.2210",
+  phoneHref: "tel:+13216132210",
   email: "hello@rebellionbeachside.com",
   /* Every Reserve CTA points here rather than straight out to the booking
      platform, so campaigns land on a page we control and can measure
      (blueprint §06 measurement layer). See `reservations` below. */
   reserveUrl: "/reserve",
-  mapUrl: "https://maps.google.com/?q=200+N+Orlando+Ave+Cocoa+Beach+FL+32931",
+  mapUrl: "https://maps.google.com/?q=26+N+Orlando+Ave+Cocoa+Beach+FL+32931",
   social: {
     instagram: "https://www.instagram.com/rebellionbeachside/",
     facebook: "https://www.facebook.com/",
@@ -59,21 +62,30 @@ export const reservations = {
   bookings: {
     diningRoom: {
       label: "Dining room",
-      /* PLACEHOLDER — Resy supplies both when the venue goes live. */
+      /* Both come from the restaurant's Resy dashboard (Widgets), or from the
+         Resy account team. Filling them in swaps the link below for the inline
+         booking widget — no other change needed. */
       venueId: null as number | null,
       apiKey: null as string | null,
-      /** Public Resy page, used as the fallback and the no-JS path. */
-      deepLink: null as string | null,
+      /** The venue's live Resy page. Used until the widget keys are in, and as
+          the path that still works if the embed script fails. */
+      deepLink:
+        "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro" as
+          | string
+          | null,
     },
   },
 } as const;
 
 export type BookingKey = keyof typeof reservations.bookings;
 
-/* PLACEHOLDER — confirm service hours, happy hour and kitchen close. */
+/* PLACEHOLDER — sourced from public listings, not yet confirmed with the
+   restaurant. Hours drift constantly, so verify these (and happy hour, kitchen
+   close and the brunch window) before launch. */
 export const hours = [
-  { days: "Mon – Thu", time: "4PM – 10PM" },
-  { days: "Fri – Sat", time: "11AM – 11PM" },
+  { days: "Mon – Thu", time: "3:30PM – 9PM" },
+  { days: "Fri", time: "3:30PM – 10PM" },
+  { days: "Sat", time: "3:30PM – 12AM" },
   { days: "Sun", time: "11AM – 9PM" },
 ];
 

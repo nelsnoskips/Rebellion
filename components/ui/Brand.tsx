@@ -9,10 +9,14 @@ export function Logotype({
   knockout = false,
   className,
   priority = false,
+  /** Pass "" where a second copy of the mark is stacked purely for a colour
+      swap, so the name is not announced twice. */
+  alt = "Rebellion Beachside Bar & Bistro",
 }: {
   knockout?: boolean;
   className?: string;
   priority?: boolean;
+  alt?: string;
 }) {
   return (
     <Image
@@ -21,7 +25,7 @@ export function Logotype({
           ? "/brand/rebellion-logotype-knockout.png"
           : "/brand/rebellion-logotype.png"
       }
-      alt="Rebellion Beachside Bar & Bistro"
+      alt={alt}
       width={1109}
       height={583}
       priority={priority}

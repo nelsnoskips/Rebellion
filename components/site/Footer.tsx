@@ -54,7 +54,7 @@ export function Footer() {
           <dl className="space-y-1.5 text-sm text-bone/75">
             {hours.map((h) => (
               <div key={h.days} className="flex gap-6">
-                <dt className="w-20 shrink-0">{h.days}</dt>
+                <dt className="w-24 shrink-0">{h.days}</dt>
                 <dd>{h.time}</dd>
               </div>
             ))}

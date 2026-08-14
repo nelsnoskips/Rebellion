@@ -39,7 +39,7 @@ export default function ReservePage() {
             <dl className="mt-4 space-y-2 border-b border-rule pb-8">
               {hours.map((h) => (
                 <div key={h.days} className="flex gap-5">
-                  <dt className="w-20 shrink-0 text-ink-mute">{h.days}</dt>
+                  <dt className="w-24 shrink-0 text-ink-mute">{h.days}</dt>
                   <dd>{h.time}</dd>
                 </div>
               ))}
