@@ -42,6 +42,20 @@ ROLES = {
 
 SUFFIXES = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff", ".heic"}
 
+# Which derivatives each photo actually needs, keyed by filename stem and
+# following the slot it fills in lib/images.ts. Generating every role for every
+# photo quadruples what ships for no benefit, so anything listed here gets only
+# the roles named; anything unlisted gets all of them, which is the right
+# default for a photo that has just arrived and has no slot yet.
+PLAN = {
+    "short-rib-booth": ["hero"],        # hero
+    "pappardelle-ragu": ["hero"],       # table — menus masthead
+    "burger-fries-neon": ["feature"],   # featuredFood
+    "squid-ink-pasta": ["card"],        # dine
+    "long-table-dinner": ["card"],      # gather
+    "bourgogne-radicchio": ["card"],    # takeItHome
+}
+
 
 def derive(img: Image.Image, name: str, role: str) -> None:
     width, quality = ROLES[role]
@@ -63,8 +77,8 @@ def main() -> None:
         sys.exit(f"No images found in {SOURCE.relative_to(ROOT)}/.")
 
     OUT.mkdir(parents=True, exist_ok=True)
-    roles = sys.argv[1:] or list(ROLES)
-    for role in roles:
+    override = sys.argv[1:]
+    for role in override:
         if role not in ROLES:
             sys.exit(f"Unknown role {role!r}. Choose from: {', '.join(ROLES)}")
 
@@ -73,6 +87,7 @@ def main() -> None:
         # come out rotated.
         img = ImageOps.exif_transpose(Image.open(path)).convert("RGB")
         name = path.stem.lower().replace(" ", "-").replace("_", "-")
+        roles = override or PLAN.get(name, list(ROLES))
         print(f"{path.name}  ({img.width}×{img.height})")
         for role in roles:
             derive(img, name, role)
