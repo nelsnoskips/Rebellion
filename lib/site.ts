@@ -26,8 +26,9 @@ export const site = {
   phone: "321.784.9463",
   phoneHref: "tel:+13217849463",
   email: "hello@rebellionbeachside.com",
-  /* Reservation platform deep link — swap for the live OpenTable/Resy URL and
-     preserve campaign parameters (blueprint §11). */
+  /* Every Reserve CTA points here rather than straight out to the booking
+     platform, so campaigns land on a page we control and can measure
+     (blueprint §06 measurement layer). See `reservations` below. */
   reserveUrl: "/reserve",
   mapUrl: "https://maps.google.com/?q=200+N+Orlando+Ave+Cocoa+Beach+FL+32931",
   social: {
@@ -35,6 +36,39 @@ export const site = {
     facebook: "https://www.facebook.com/",
   },
 } as const;
+
+/**
+ * Reservations (blueprint §11).
+ *
+ * Filling in `venueId` and `apiKey` for a booking target turns its inline Resy
+ * widget on. Until then that target falls back to the deep link if it has one,
+ * and to calling the restaurant if it doesn't — the reserve path never dead-ends
+ * on missing configuration.
+ *
+ * Both values are public by design: Resy's embed runs client-side and the key
+ * only identifies the venue to the widget. Nothing secret belongs here.
+ *
+ * `bookings` is a map because more than one thing can be bookable — the dining
+ * room and any separate space or ticketed series each get their own entry, and
+ * `<ResyWidget booking="…" />` picks one.
+ */
+export const reservations = {
+  platform: "resy" as const,
+  /** Resy's embed script. Loaded lazily, only on pages that mount a widget. */
+  embedScript: "https://widgets.resy.com/embed.js",
+  bookings: {
+    diningRoom: {
+      label: "Dining room",
+      /* PLACEHOLDER — Resy supplies both when the venue goes live. */
+      venueId: null as number | null,
+      apiKey: null as string | null,
+      /** Public Resy page, used as the fallback and the no-JS path. */
+      deepLink: null as string | null,
+    },
+  },
+} as const;
+
+export type BookingKey = keyof typeof reservations.bookings;
 
 /* PLACEHOLDER — confirm service hours, happy hour and kitchen close. */
 export const hours = [

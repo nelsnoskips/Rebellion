@@ -100,13 +100,45 @@ supplied — which is why the §08 signature moment is not built yet.
 ## Swapping the placeholder photography
 
 Stock images are served from Unsplash and allowlisted in `next.config.ts`.
-When the two shoot days land:
+Each slot in `lib/images.ts` carries a `brief` describing what the real frame
+should show. To replace them:
 
-1. Drop the files in `public/images/`.
-2. Point each slot in `lib/images.ts` at the local path and rewrite its `alt`.
-3. Delete the `remotePatterns` entry in `next.config.ts`.
+1. Put the originals — full resolution, any filename — in `photos/` at the
+   repo root.
+2. Run `python3 scripts/optimize-photos.py` (needs pillow). It writes sized,
+   compressed WebP into `public/images/`.
+3. Point each slot in `lib/images.ts` at the derivative whose role matches
+   where the slot is used, and rewrite its `alt`.
+4. Once no slot points at Unsplash, delete the `remotePatterns` entry in
+   `next.config.ts`.
 
-Each slot carries a `brief` describing what the real frame should show.
+The build is a static export, so there is no request-time image optimizer: the
+width in the file is the width the visitor downloads. That is why the script
+emits one derivative per role — `hero` 2400px, `feature` 1600px, `card` 900px,
+`thumb` 420px — instead of a single file for every use.
+
+## Reservations
+
+`reservations` in `lib/site.ts` is the single point of configuration. Filling in
+a booking's `venueId` and `apiKey` turns its inline Resy widget on; until then
+it falls back to a `deepLink` if one is set, and to calling the restaurant if
+not, so the reserve path never dead-ends on missing configuration.
+
+Both values are public by design — Resy's embed is client-side and the key only
+identifies the venue. Nothing secret belongs in this file.
+
+`bookings` is a map because more than one thing can be bookable: the dining
+room and any separate space or ticketed series each get an entry, and
+`<ResyWidget booking="…" />` selects one.
+
+Every Reserve CTA points at `/reserve` rather than straight out to Resy, so
+campaigns land on a page we control. `utm_*`, `gclid` and `fbclid` are carried
+onto the outbound link, and a `reservation_start` event is pushed to
+`dataLayer` — inert until an analytics container is installed (§06).
+
+Confirm the embed snippet against the one Resy issues for the account; if their
+entry point differs, `components/reserve/ResyWidget.tsx` is the only file that
+changes.
 
 ## Placeholders that must be confirmed before launch
 
@@ -128,8 +160,9 @@ Everything below is illustrative and marked `PLACEHOLDER` in the source:
 - **Forms** — the newsletter, event inquiry and delivery checker are
   client-side only. The §08 automation (CRM lead, owner notification,
   source/campaign capture, same-business-day SLA task) is not wired.
-- **Reservations** — `/reserve` is a landing page with a placeholder panel
-  where the booking widget embeds.
+- **Reservations** — the Resy integration is scaffolded but not configured:
+  `venueId` and `apiKey` are null, so `/reserve` still shows the call-us
+  panel.
 - **Social proof quotes** — written for layout, not attributed to real guests.
 
 ## Motion, and what is still to come
