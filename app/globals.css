@@ -167,6 +167,327 @@ body {
   mask-image: url("/artwork/bleed-portrait.png");
 }
 
+/* --- Collage direction ----------------------------------------------------
+   The second art direction (route /collage): every frame is a sheet torn out
+   and laid on paper, annotated by hand. Scoped to its own classes so the first
+   direction is untouched.
+   -------------------------------------------------------------------------- */
+
+.torn,
+.torn-portrait,
+.torn-square,
+.torn-banner {
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.torn {
+  -webkit-mask-image: url("/artwork/torn-landscape.png");
+  mask-image: url("/artwork/torn-landscape.png");
+}
+
+.torn-portrait {
+  -webkit-mask-image: url("/artwork/torn-portrait.png");
+  mask-image: url("/artwork/torn-portrait.png");
+}
+
+.torn-square {
+  -webkit-mask-image: url("/artwork/torn-square.png");
+  mask-image: url("/artwork/torn-square.png");
+}
+
+.torn-banner {
+  -webkit-mask-image: url("/artwork/torn-banner.png");
+  mask-image: url("/artwork/torn-banner.png");
+}
+
+/* Photographs printed as ink rather than in colour. The collage leans on the
+   contrast between treated frames and the few left in full colour. */
+.photo-ink {
+  filter: grayscale(1) contrast(1.14) brightness(0.98);
+}
+
+/* Marginalia. Set a step large — handwriting reads smaller than body copy at
+   the same nominal size. */
+.hand {
+  font-family: var(--font-hand), ui-rounded, cursive;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* --- Cinematic scroll hero (route /collage) --------------------------------
+   A pinned stage the visitor scrubs through in three acts: the wordmark over a
+   darkened room, the promise as the room comes to light, then the real hero.
+
+   Everything cinematic is gated on `.cine-on`, added to <html> before first
+   paint and only when reduced motion is off. Without it — no JS, reduced
+   motion, a crawler — Act III alone renders as a finished still hero, so the
+   film is never load-bearing.
+   -------------------------------------------------------------------------- */
+
+:root {
+  --stage-scrub: 300vh;
+}
+
+.cine-wrap {
+  position: relative;
+  height: 100svh;
+  min-height: 620px;
+}
+
+.cine-on .cine-wrap {
+  height: 400vh;
+  min-height: 0;
+}
+
+.cine-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 620px;
+  overflow: hidden;
+}
+
+.cine-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Legibility gradient for the still hero; the cinematic veil replaces it. */
+.cine-veil-static {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top right,
+    rgb(24 24 23 / 0.92),
+    rgb(24 24 23 / 0.55) 55%,
+    rgb(24 24 23 / 0.15)
+  );
+}
+
+.cine-on .cine-veil-static {
+  display: none;
+}
+
+.cine-veil {
+  display: none;
+}
+
+.cine-on .cine-veil {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--ink);
+  opacity: 0.82;
+}
+
+.cine-acts {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+}
+
+/* Acts I and II exist only in cinematic mode. */
+.cine-act-title,
+.cine-act-line {
+  display: none;
+}
+
+.cine-on .cine-act {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+  text-align: center;
+  pointer-events: none; /* the acts cover the viewport… */
+}
+
+.cine-on .cine-act a {
+  pointer-events: auto; /* …but their links stay clickable */
+}
+
+.cine-on .cine-act-title,
+.cine-on .cine-act-line {
+  display: flex;
+}
+
+/* Before either engine runs, only Act I shows — otherwise the acts stack
+   visibly for a frame. */
+.cine-on .cine-act-line,
+.cine-on .cine-act-final {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cine-act-final {
+  height: 100%;
+}
+
+.cine-on .cine-act-final {
+  text-align: left;
+  padding: 0;
+}
+
+.cine-final-shade {
+  display: none;
+}
+
+.cine-on .cine-final-shade {
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top right,
+    rgb(24 24 23 / 0.92),
+    rgb(24 24 23 / 0.5) 55%,
+    rgb(24 24 23 / 0.1)
+  );
+}
+
+.cine-hint {
+  display: none;
+}
+
+.cine-on .cine-hint {
+  position: absolute;
+  z-index: 6;
+  inset-inline: 0;
+  bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  opacity: 0.65;
+}
+
+/* Engine 1 — CSS scroll-driven animation. One animation per layer, with
+   enter/hold/exit as intermediate stops: two comma-separated animations would
+   let the later one's first keyframe win across the whole timeline. */
+@supports (animation-timeline: scroll()) {
+  @keyframes cine-photo {
+    from {
+      transform: scale(1.04) translateY(0);
+    }
+    to {
+      transform: scale(1.28) translateY(-3%);
+    }
+  }
+
+  @keyframes cine-veil {
+    0% {
+      opacity: 0.82;
+    }
+    45% {
+      opacity: 0.42;
+    }
+    100% {
+      opacity: 0.34;
+    }
+  }
+
+  @keyframes cine-title {
+    0% {
+      opacity: 1;
+      transform: none;
+      visibility: visible;
+    }
+    12% {
+      opacity: 1;
+      transform: scale(1.04);
+      visibility: visible;
+    }
+    37%,
+    100% {
+      opacity: 0;
+      transform: scale(1.34) translateY(-6%);
+      visibility: hidden;
+    }
+  }
+
+  @keyframes cine-line {
+    0%,
+    33% {
+      opacity: 0;
+      transform: translateY(64px);
+      visibility: hidden;
+    }
+    50%,
+    72% {
+      opacity: 1;
+      transform: none;
+      visibility: visible;
+    }
+    88%,
+    100% {
+      opacity: 0;
+      transform: translateY(-64px);
+      visibility: hidden;
+    }
+  }
+
+  @keyframes cine-final {
+    0%,
+    84% {
+      opacity: 0;
+      transform: translateY(48px);
+      visibility: hidden;
+    }
+    97%,
+    100% {
+      opacity: 1;
+      transform: none;
+      visibility: visible;
+    }
+  }
+
+  @keyframes cine-hint {
+    0% {
+      opacity: 0.65;
+    }
+    10%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .cine-on .cine-photo,
+  .cine-on .cine-veil,
+  .cine-on .cine-act-title,
+  .cine-on .cine-act-line,
+  .cine-on .cine-act-final,
+  .cine-on .cine-hint {
+    animation: linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 var(--stage-scrub);
+  }
+
+  .cine-on .cine-photo {
+    animation-name: cine-photo;
+  }
+  .cine-on .cine-veil {
+    animation-name: cine-veil;
+  }
+  .cine-on .cine-act-title {
+    animation-name: cine-title;
+  }
+  .cine-on .cine-act-line {
+    animation-name: cine-line;
+  }
+  .cine-on .cine-act-final {
+    animation-name: cine-final;
+  }
+  .cine-on .cine-hint {
+    animation-name: cine-hint;
+  }
+}
+
 /* --- Reveal on scroll ---------------------------------------------------- */
 
 [data-reveal] {
@@ -248,6 +569,39 @@ body {
 
   .marquee-track {
     animation: none;
+  }
+
+  /* The cinematic hero collapses to its final frame. `cine-on` is normally
+     never added under reduced motion, but a visitor can change the setting
+     after load, so the still hero is enforced here too. */
+  .cine-photo,
+  .cine-veil,
+  .cine-act-title,
+  .cine-act-line,
+  .cine-act-final,
+  .cine-hint {
+    animation: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  .cine-on .cine-wrap {
+    height: 100svh;
+  }
+
+  .cine-on .cine-act-title,
+  .cine-on .cine-act-line,
+  .cine-on .cine-hint {
+    display: none;
+  }
+
+  .cine-on .cine-veil {
+    display: none;
+  }
+
+  .cine-on .cine-veil-static {
+    display: block;
   }
 }
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter } from "next/font/google";
+import { Caveat, Instrument_Serif, Inter } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -13,6 +13,13 @@ const instrument = Instrument_Serif({
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+/** Marginalia for the collage direction (route /collage). */
+const caveat = Caveat({
+  variable: "--font-hand",
   subsets: ["latin"],
   display: "swap",
 });
@@ -58,7 +65,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${instrument.variable} ${inter.variable}`}>
+    <html lang="en" className={`${instrument.variable} ${inter.variable} ${caveat.variable}`}>
       <body className="min-h-screen antialiased">
         <a
           href="#main"

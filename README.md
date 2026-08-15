@@ -140,6 +140,44 @@ Confirm the embed snippet against the one Resy issues for the account; if their
 entry point differs, `components/reserve/ResyWidget.tsx` is the only file that
 changes.
 
+## Art directions
+
+Two homepage treatments run side by side on the same content, the same tokens
+and the same photography, so choosing between them is only ever about
+treatment. `/directions` compares them.
+
+| Route | Direction |
+| --- | --- |
+| `/` | **Editorial** — photograph-led. Full-bleed frames, dark bands as the spine of the page, paper tearing between them. |
+| `/collage` | **Collage** — paper-led. Every photograph is a sheet torn out and laid down, half printed as ink, handwriting in the margins. Opens on a cinematic scroll-scrubbed hero. |
+
+`/collage` and `/directions` are `noindex`. Once a direction is chosen, delete
+the loser along with `components/collage/` (or fold it into `app/page.tsx`) —
+nothing else depends on either.
+
+### The cinematic hero
+
+`/collage` opens on a pinned stage the visitor scrubs through in three acts:
+the wordmark over a darkened room, the promise as the room comes to light, then
+the real hero. It runs on two engines and degrades to a still frame:
+
+- **CSS scroll-driven animation** where `animation-timeline: scroll()` is
+  supported — no per-frame JavaScript.
+- **A damped rAF loop** (`components/collage/ScrollMotion.tsx`) everywhere
+  else, mirroring the same keyframe tables. Older Safari and Firefox ignore
+  the CSS silently, and a hero that simply never moves is the failure mode.
+- **The still frame** when `prefers-reduced-motion` is set, JavaScript is off,
+  or a crawler visits. Act III is a complete, conventional hero carrying the
+  page's only `h1` and the real links; Acts I and II are `aria-hidden` visual
+  duplicates gated behind a `cine-on` class added before first paint.
+
+All three were verified by probing computed opacity at 0/25/50/90% of the
+stage — including with the CSS engine neutralised, so the fallback is known to
+work on its own rather than being masked by the CSS path.
+
+If you edit the `@keyframes` in `app/globals.css`, edit the matching table in
+`ScrollMotion.tsx`. They are two expressions of one choreography.
+
 ## Placeholders that must be confirmed before launch
 
 Everything below is illustrative and marked `PLACEHOLDER` in the source:

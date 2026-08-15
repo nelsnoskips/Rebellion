@@ -10,15 +10,23 @@ import { cn } from "@/lib/utils";
  * compact floating Reserve control appears once the hero is behind you. On
  * mobile it becomes the sticky bottom bar the blueprint asks for.
  */
-export function FloatingReserve() {
+export function FloatingReserve({
+  /** Viewport heights of scroll before the control appears. A page with a
+      pinned stage passes the length of that stage, so the control never
+      surfaces over the film — the stage carries its own Reserve. */
+  after = 0.85,
+}: {
+  after?: number;
+}) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.85);
+    const onScroll = () =>
+      setVisible(window.scrollY > window.innerHeight * after);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [after]);
 
   return (
     <div

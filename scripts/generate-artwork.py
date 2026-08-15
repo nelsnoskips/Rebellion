@@ -213,6 +213,52 @@ def bleed_edge(w: int, h: int, seed: int, bite: float = 0.032) -> np.ndarray:
     return np.clip(mask * (0.9 + 0.1 * fine) + (mask > 0.985) * 1.0, 0, 1)
 
 
+def torn(w: int, h: int, seed: int, bite: float = 0.085) -> np.ndarray:
+    """
+    A sheet ripped out of a page — the collage direction's photo mask.
+
+    Rougher than `bleed_edge`: a low-frequency tear line sets the shape of each
+    rip, a high-frequency pass adds the fibre that catches along it, and the
+    result is thresholded hard, because torn paper has an edge rather than a
+    fade.
+    """
+    rng = np.random.default_rng(seed)
+    yy, xx = np.mgrid[0:h, 0:w]
+    xn, yn = xx / (w - 1), yy / (h - 1)
+
+    coarse = fractal_noise(h, w, rng, octaves=4, persistence=0.62, base=2)
+    fibre = fractal_noise(h, w, rng, octaves=7, persistence=0.74, base=12)
+    tear = (coarse - 0.5) * bite * 2.6 + (fibre - 0.5) * bite * 0.7
+
+    ar = w / h
+    mask = (
+        smoothstep(0.0, bite, xn + tear)
+        * smoothstep(1.0, 1.0 - bite, xn + tear)
+        * smoothstep(0.0, bite * ar, yn + tear)
+        * smoothstep(1.0, 1.0 - bite * ar, yn + tear)
+    )
+    return np.clip((mask - 0.42) * 6.0, 0, 1)
+
+
+def wine_ring(size: int, seed: int) -> np.ndarray:
+    """The stain a glass leaves on paper: a thin, uneven, broken annulus."""
+    rng = np.random.default_rng(seed)
+    yy, xx = np.mgrid[0:size, 0:size] / (size - 1)
+    r = np.sqrt((xx - 0.5) ** 2 + (yy - 0.5) ** 2) * 2.0
+
+    warp = fractal_noise(size, size, rng, octaves=5, persistence=0.6, base=3)
+    r_eff = r + (warp - 0.5) * 0.10
+
+    # The rim itself, plus a faint wash of what dried inside it.
+    rim = np.clip(1.0 - np.abs(r_eff - 0.74) / 0.075, 0, 1) ** 1.4
+    inner = smoothstep(0.78, 0.20, r_eff) * 0.16
+
+    # Break the ring where the glass lifted.
+    gaps = fractal_noise(size, size, np.random.default_rng(seed + 3),
+                         octaves=4, persistence=0.7, base=4)
+    return np.clip(rim * (0.35 + 0.9 * gaps) + inner, 0, 1)
+
+
 # --- generated SVG paths ----------------------------------------------------
 
 
@@ -271,6 +317,15 @@ def main() -> None:
     print("painted photo edges")
     save_mask(bleed_edge(1000, 750, 8802), "bleed-landscape.png")
     save_mask(bleed_edge(750, 1000, 3391), "bleed-portrait.png")
+
+    print("torn sheets")
+    save_mask(torn(1200, 800, 5150), "torn-landscape.png")
+    save_mask(torn(900, 1200, 6621), "torn-portrait.png")
+    save_mask(torn(1200, 1200, 7788), "torn-square.png")
+    save_mask(torn(1600, 620, 9002, bite=0.11), "torn-banner.png")
+
+    print("stains")
+    save_mask(wine_ring(700, 4404), "wine-ring.png")
 
     print("paper")
     # High frequencies only: paper wants tooth at the pixel scale, not blotches.
