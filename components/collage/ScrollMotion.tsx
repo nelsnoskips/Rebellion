@@ -19,63 +19,89 @@ import { useEffect } from "react";
 
 type Segment = {
   o?: [number, number];
+  x?: [number, number];
   y?: [number, number];
   s?: [number, number];
 };
 
 type Track = {
   sel: string;
-  yUnit?: "px" | "%";
+  /** Unit for both x and y. Percentages are of the element's own box. */
+  unit?: "px" | "%";
   kf: [number, Segment][];
 };
 
+/**
+ * The assembly, in the order a page gets laid out. Mirrors the `@keyframes`
+ * in app/globals.css — edit both or neither.
+ *
+ * Transform parts are always emitted translate-then-scale, matching the CSS.
+ */
 const CINE: Track[] = [
   {
+    sel: ".cine-wash",
+    kf: [
+      [0, { o: [0, 1], s: [1.2, 1] }],
+      [25, {}],
+    ],
+  },
+  {
+    // A settle, not an entrance — the mark is visible from the first frame.
+    sel: ".cine-mark",
+    unit: "px",
+    kf: [
+      [0, { y: [10, 0], s: [0.97, 1] }],
+      [18, {}],
+    ],
+  },
+  {
     sel: ".cine-photo",
-    yUnit: "%",
+    unit: "%",
     kf: [
-      [0, { s: [1.04, 1.28], y: [0, -3] }],
+      [0, { o: [0, 0], x: [14, 14], s: [1.18, 1.18] }],
+      [8, { o: [0, 1], x: [14, 0], s: [1.18, 1] }],
+      [45, { o: [1, 1], y: [0, -4] }],
       [100, {}],
     ],
   },
-  {
-    sel: ".cine-veil",
+  ...([
+    [".cine-l1", 22, 40],
+    [".cine-l2", 30, 48],
+    [".cine-l3", 38, 56],
+    [".cine-l4", 46, 64],
+  ] as const).map(([sel, from, to]) => ({
+    sel,
+    unit: "px" as const,
     kf: [
-      [0, { o: [0.82, 0.42] }],
-      [45, { o: [0.42, 0.34] }],
-      [100, {}],
+      [0, { o: [0, 0] as [number, number], y: [40, 40] as [number, number] }],
+      [from, { o: [0, 1] as [number, number], y: [40, 0] as [number, number] }],
+      [to, {}],
+    ] as [number, Segment][],
+  })),
+  {
+    sel: ".cine-splat",
+    kf: [
+      [0, { o: [0, 0], s: [0.5, 0.5] }],
+      [56, { o: [0, 1], s: [0.5, 1] }],
+      [68, {}],
     ],
   },
   {
-    sel: ".cine-act-title",
-    yUnit: "%",
+    sel: ".cine-note",
+    unit: "px",
     kf: [
-      [0, { o: [1, 1], s: [1, 1.04], y: [0, 0] }],
-      [12, { o: [1, 0], s: [1.04, 1.34], y: [0, -6] }],
-      [37, { o: [0, 0], s: [1.34, 1.34], y: [-6, -6] }],
-      [100, {}],
+      [0, { o: [0, 0], y: [16, 16] }],
+      [62, { o: [0, 1], y: [16, 0] }],
+      [76, {}],
     ],
   },
   {
-    sel: ".cine-act-line",
-    yUnit: "px",
+    sel: ".cine-cta",
+    unit: "px",
     kf: [
-      [0, { o: [0, 0], y: [64, 64] }],
-      [33, { o: [0, 1], y: [64, 0] }],
-      [50, { o: [1, 1], y: [0, 0] }],
-      [72, { o: [1, 0], y: [0, -64] }],
-      [88, { o: [0, 0], y: [-64, -64] }],
-      [100, {}],
-    ],
-  },
-  {
-    sel: ".cine-act-final",
-    yUnit: "px",
-    kf: [
-      [0, { o: [0, 0], y: [48, 48] }],
-      [84, { o: [0, 1], y: [48, 0] }],
-      [97, { o: [1, 1], y: [0, 0] }],
-      [100, {}],
+      [0, { o: [0, 0], y: [28, 28] }],
+      [72, { o: [0, 1], y: [28, 0] }],
+      [88, {}],
     ],
   },
   {
@@ -88,8 +114,13 @@ const CINE: Track[] = [
   },
 ];
 
-/** Backdrops fade but must never be hidden — they are the scene. */
-const BACKDROPS = new Set([".cine-photo", ".cine-veil"]);
+/**
+ * Only these are pulled out of the accessibility tree when clear. The rest of
+ * the composition is in normal flow and ends visible, so toggling visibility
+ * on it would fight the layout for no gain; the CTA is the one thing that must
+ * not be clickable before it arrives.
+ */
+const HIDE_WHEN_CLEAR = new Set([".cine-cta"]);
 
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 const mix = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -128,15 +159,18 @@ export function ScrollMotion() {
           if (seg.o) {
             const o = mix(seg.o[0], seg.o[1], t);
             el.style.opacity = String(o);
-            if (!BACKDROPS.has(track.sel)) {
+            if (HIDE_WHEN_CLEAR.has(track.sel)) {
               el.style.visibility = o <= 0.01 ? "hidden" : "visible";
             }
           }
+          const unit = track.unit ?? "px";
           const parts: string[] = [];
-          if (seg.s) parts.push(`scale(${mix(seg.s[0], seg.s[1], t)})`);
-          if (seg.y) {
-            parts.push(`translateY(${mix(seg.y[0], seg.y[1], t)}${track.yUnit ?? "px"})`);
+          if (seg.x || seg.y) {
+            const x = seg.x ? mix(seg.x[0], seg.x[1], t) : 0;
+            const y = seg.y ? mix(seg.y[0], seg.y[1], t) : 0;
+            parts.push(`translate3d(${x}${unit}, ${y}${unit}, 0)`);
           }
+          if (seg.s) parts.push(`scale(${mix(seg.s[0], seg.s[1], t)})`);
           if (parts.length) el.style.transform = parts.join(" ");
         }
       }

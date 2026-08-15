@@ -218,13 +218,19 @@ body {
 }
 
 /* --- Cinematic scroll hero (route /collage) --------------------------------
-   A pinned stage the visitor scrubs through in three acts: the wordmark over a
-   darkened room, the promise as the room comes to light, then the real hero.
+   The collage assembling itself. A pinned stage the visitor scrubs through
+   while the page is made: the washes bloom, the mark sets, the photograph
+   tears into the corner, the headline lands line by line, then the ink, the
+   handwriting and the buttons — arriving in the order someone would actually
+   lay a page out. The finished frame is the comp, exactly.
 
-   Everything cinematic is gated on `.cine-on`, added to <html> before first
-   paint and only when reduced motion is off. Without it — no JS, reduced
-   motion, a crawler — Act III alone renders as a finished still hero, so the
-   film is never load-bearing.
+   Unlike a dark-room hero, nothing here is a separate act layer: these are the
+   real elements of the composition, scrubbed into place. That makes the still
+   frame free — with no engine the elements simply sit where the CSS puts them,
+   which is where the film ends.
+
+   Gated on `.cine-on`, added to <html> before first paint and only when
+   reduced motion is off.
    -------------------------------------------------------------------------- */
 
 :root {
@@ -233,124 +239,17 @@ body {
 
 .cine-wrap {
   position: relative;
-  height: 100svh;
-  min-height: 620px;
 }
 
 .cine-on .cine-wrap {
   height: 400vh;
-  min-height: 0;
 }
 
-.cine-stage {
+.cine-on .cine-stage {
   position: sticky;
   top: 0;
-  height: 100svh;
-  min-height: 620px;
+  min-height: 100svh;
   overflow: hidden;
-}
-
-.cine-photo {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-/* Legibility gradient for the still hero; the cinematic veil replaces it. */
-.cine-veil-static {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    to top right,
-    rgb(24 24 23 / 0.92),
-    rgb(24 24 23 / 0.55) 55%,
-    rgb(24 24 23 / 0.15)
-  );
-}
-
-.cine-on .cine-veil-static {
-  display: none;
-}
-
-.cine-veil {
-  display: none;
-}
-
-.cine-on .cine-veil {
-  display: block;
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: var(--ink);
-  opacity: 0.82;
-}
-
-.cine-acts {
-  position: relative;
-  z-index: 5;
-  height: 100%;
-}
-
-/* Acts I and II exist only in cinematic mode. */
-.cine-act-title,
-.cine-act-line {
-  display: none;
-}
-
-.cine-on .cine-act {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 1.5rem;
-  text-align: center;
-  pointer-events: none; /* the acts cover the viewport… */
-}
-
-.cine-on .cine-act a {
-  pointer-events: auto; /* …but their links stay clickable */
-}
-
-.cine-on .cine-act-title,
-.cine-on .cine-act-line {
-  display: flex;
-}
-
-/* Before either engine runs, only Act I shows — otherwise the acts stack
-   visibly for a frame. */
-.cine-on .cine-act-line,
-.cine-on .cine-act-final {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.cine-act-final {
-  height: 100%;
-}
-
-.cine-on .cine-act-final {
-  text-align: left;
-  padding: 0;
-}
-
-.cine-final-shade {
-  display: none;
-}
-
-.cine-on .cine-final-shade {
-  display: block;
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top right,
-    rgb(24 24 23 / 0.92),
-    rgb(24 24 23 / 0.5) 55%,
-    rgb(24 24 23 / 0.1)
-  );
 }
 
 .cine-hint {
@@ -358,92 +257,161 @@ body {
 }
 
 .cine-on .cine-hint {
-  position: absolute;
-  z-index: 6;
-  inset-inline: 0;
-  bottom: 2rem;
   display: flex;
-  justify-content: center;
-  opacity: 0.65;
 }
 
+/* No pre-engine start state is declared: the base styles ARE the finished
+   composition, and only the keyframes describe the start.
+
+   That is deliberate. At the exact end of `animation-range` Chromium reports
+   the animation `finished` and stops filling, so anything that relies on
+   `fill: both` to hold its final frame snaps back to its base style. With the
+   start state as the base, the whole hero vanished for the last viewport of
+   the pin. Basing on the finished frame makes that failure mode harmless — and
+   it is the same reason the still frame needs no extra work.
+
+   The cost is one frame of the finished composition before the rAF fallback
+   takes over, which is imperceptible and strictly better than a blank stage.
+   The CSS engine has no such frame: animations apply during the same style
+   resolution as the base rules. */
+
 /* Engine 1 — CSS scroll-driven animation. One animation per layer, with
-   enter/hold/exit as intermediate stops: two comma-separated animations would
-   let the later one's first keyframe win across the whole timeline. */
+   enter/hold expressed as intermediate stops: two comma-separated animations
+   would let the later one's first keyframe win across the whole timeline. */
 @supports (animation-timeline: scroll()) {
-  @keyframes cine-photo {
-    from {
-      transform: scale(1.04) translateY(0);
+  @keyframes cine-wash {
+    0% {
+      opacity: 0;
+      transform: scale(1.2);
     }
-    to {
-      transform: scale(1.28) translateY(-3%);
+    25%,
+    100% {
+      opacity: 1;
+      transform: none;
     }
   }
 
-  @keyframes cine-veil {
+  /* The mark never fades in: the blueprint requires the logo and the utility
+     to be there immediately, so this is a settle, not an entrance. It keeps
+     the opening frame from being blank paper. */
+  @keyframes cine-mark {
     0% {
-      opacity: 0.82;
+      transform: translate3d(0, 10px, 0) scale(0.97);
+    }
+    18%,
+    100% {
+      transform: none;
+    }
+  }
+
+  /* The photograph tears in from the edge, settles, then drifts a little
+     against the rest of the page for the remainder of the scrub. */
+  @keyframes cine-photo {
+    0%,
+    8% {
+      opacity: 0;
+      transform: translate3d(14%, 0, 0) scale(1.18);
     }
     45% {
-      opacity: 0.42;
-    }
-    100% {
-      opacity: 0.34;
-    }
-  }
-
-  @keyframes cine-title {
-    0% {
       opacity: 1;
       transform: none;
-      visibility: visible;
     }
-    12% {
-      opacity: 1;
-      transform: scale(1.04);
-      visibility: visible;
-    }
-    37%,
     100% {
-      opacity: 0;
-      transform: scale(1.34) translateY(-6%);
-      visibility: hidden;
+      opacity: 1;
+      transform: translate3d(0, -4%, 0);
     }
   }
 
-  @keyframes cine-line {
+  @keyframes cine-l1 {
     0%,
-    33% {
+    22% {
       opacity: 0;
-      transform: translateY(64px);
-      visibility: hidden;
+      transform: translate3d(0, 40px, 0);
     }
-    50%,
-    72% {
+    40%,
+    100% {
       opacity: 1;
       transform: none;
-      visibility: visible;
+    }
+  }
+
+  @keyframes cine-l2 {
+    0%,
+    30% {
+      opacity: 0;
+      transform: translate3d(0, 40px, 0);
+    }
+    48%,
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes cine-l3 {
+    0%,
+    38% {
+      opacity: 0;
+      transform: translate3d(0, 40px, 0);
+    }
+    56%,
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes cine-l4 {
+    0%,
+    46% {
+      opacity: 0;
+      transform: translate3d(0, 40px, 0);
+    }
+    64%,
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes cine-splat {
+    0%,
+    56% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    68%,
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes cine-note {
+    0%,
+    62% {
+      opacity: 0;
+      transform: translate3d(0, 16px, 0);
+    }
+    76%,
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes cine-cta {
+    0%,
+    72% {
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 28px, 0);
     }
     88%,
     100% {
-      opacity: 0;
-      transform: translateY(-64px);
-      visibility: hidden;
-    }
-  }
-
-  @keyframes cine-final {
-    0%,
-    84% {
-      opacity: 0;
-      transform: translateY(48px);
-      visibility: hidden;
-    }
-    97%,
-    100% {
       opacity: 1;
-      transform: none;
       visibility: visible;
+      transform: none;
     }
   }
 
@@ -457,31 +425,51 @@ body {
     }
   }
 
+  .cine-on .cine-wash,
+  .cine-on .cine-mark,
   .cine-on .cine-photo,
-  .cine-on .cine-veil,
-  .cine-on .cine-act-title,
-  .cine-on .cine-act-line,
-  .cine-on .cine-act-final,
+  .cine-on .cine-l1,
+  .cine-on .cine-l2,
+  .cine-on .cine-l3,
+  .cine-on .cine-l4,
+  .cine-on .cine-splat,
+  .cine-on .cine-note,
+  .cine-on .cine-cta,
   .cine-on .cine-hint {
     animation: linear both;
     animation-timeline: scroll(root);
     animation-range: 0 var(--stage-scrub);
   }
 
+  .cine-on .cine-wash {
+    animation-name: cine-wash;
+  }
+  .cine-on .cine-mark {
+    animation-name: cine-mark;
+  }
   .cine-on .cine-photo {
     animation-name: cine-photo;
   }
-  .cine-on .cine-veil {
-    animation-name: cine-veil;
+  .cine-on .cine-l1 {
+    animation-name: cine-l1;
   }
-  .cine-on .cine-act-title {
-    animation-name: cine-title;
+  .cine-on .cine-l2 {
+    animation-name: cine-l2;
   }
-  .cine-on .cine-act-line {
-    animation-name: cine-line;
+  .cine-on .cine-l3 {
+    animation-name: cine-l3;
   }
-  .cine-on .cine-act-final {
-    animation-name: cine-final;
+  .cine-on .cine-l4 {
+    animation-name: cine-l4;
+  }
+  .cine-on .cine-splat {
+    animation-name: cine-splat;
+  }
+  .cine-on .cine-note {
+    animation-name: cine-note;
+  }
+  .cine-on .cine-cta {
+    animation-name: cine-cta;
   }
   .cine-on .cine-hint {
     animation-name: cine-hint;
@@ -571,15 +559,19 @@ body {
     animation: none;
   }
 
-  /* The cinematic hero collapses to its final frame. `cine-on` is normally
-     never added under reduced motion, but a visitor can change the setting
-     after load, so the still hero is enforced here too. */
+  /* The cinematic hero collapses to its finished frame — which is the comp.
+     `cine-on` is normally never added under reduced motion, but a visitor can
+     change the setting after load, so this is enforced rather than assumed. */
+  .cine-wash,
+  .cine-mark,
   .cine-photo,
-  .cine-veil,
-  .cine-act-title,
-  .cine-act-line,
-  .cine-act-final,
-  .cine-hint {
+  .cine-l1,
+  .cine-l2,
+  .cine-l3,
+  .cine-l4,
+  .cine-splat,
+  .cine-note,
+  .cine-cta {
     animation: none !important;
     opacity: 1 !important;
     visibility: visible !important;
@@ -587,21 +579,15 @@ body {
   }
 
   .cine-on .cine-wrap {
-    height: 100svh;
+    height: auto;
   }
 
-  .cine-on .cine-act-title,
-  .cine-on .cine-act-line,
+  .cine-on .cine-stage {
+    position: static;
+  }
+
   .cine-on .cine-hint {
     display: none;
-  }
-
-  .cine-on .cine-veil {
-    display: none;
-  }
-
-  .cine-on .cine-veil-static {
-    display: block;
   }
 }
 

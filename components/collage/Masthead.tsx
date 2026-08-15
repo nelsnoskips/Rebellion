@@ -1,65 +1,70 @@
-import Image from "next/image";
 import Link from "next/link";
-import { images, nav, site } from "@/lib/site";
+import { nav, site } from "@/lib/site";
 import { Logotype } from "@/components/ui/Brand";
-import { Deckle, InkSplatter } from "@/components/ui/Artwork";
-import { Note } from "@/components/collage/kit";
+import { Bloom, InkSplatter } from "@/components/ui/Artwork";
+import { Note, TornPhoto } from "@/components/collage/kit";
 
 /**
- * Cinematic masthead — a pinned stage the visitor scrubs through in three acts
- * (blueprint §07 module 01, §08 hero choreography).
+ * Collage masthead — the comp, assembled by scroll.
  *
- *   Act I    the wordmark, huge, over a darkened room
- *   Act II   the promise, as the veil lifts and the room comes to light
- *   Act III  the real hero — headline, note, reservation
+ * Paper leads: the mark sits top-left, the headline is ink on bone, and the
+ * photograph is a torn sheet laid into the right corner. Nothing about that
+ * changes when the film runs; the scroll only controls *when* each piece
+ * arrives, in the order someone would actually lay the page out — washes,
+ * mark, photograph, headline line by line, thrown ink, handwriting, buttons.
  *
- * Act III is the only act that exists without an engine, and it carries the
- * page's only `h1` and the real links. A visitor with reduced motion, no
- * JavaScript, or a browser without scroll-driven animation gets that finished
- * frame rather than a blank stage. Acts I and II are `aria-hidden` duplicates
- * of things said elsewhere.
+ * Because the choreography moves the real elements rather than separate act
+ * layers, the still frame is free: with no engine, reduced motion, or no
+ * JavaScript, everything renders where the CSS puts it, which is exactly where
+ * the film ends. See the keyframes in app/globals.css.
  *
- * Navigation and the reservation control live outside the acts so they are
- * available and clickable from the very first frame — the film never delays a
- * booking.
+ * Navigation and the Reserve control sit outside the choreography so they are
+ * available from the first frame — the film never delays a booking.
  */
 export function Masthead() {
   return (
-    <header className="cine-wrap bg-ink text-bone">
-      <div className="cine-stage">
-        <div className="cine-photo">
-          <Image
-            src={images.hero.src}
-            alt={images.hero.alt}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
+    <div className="cine-wrap paper-grain relative bg-bone">
+      <div className="cine-stage relative flex min-h-[100svh] flex-col overflow-hidden">
+        <div className="cine-wash">
+          <Bloom
+            variant="b"
+            opacity={55}
+            className="top-[6%] right-[16%] h-[520px] w-[560px] text-wash-sky"
+          />
+          <Bloom
+            variant="a"
+            opacity={50}
+            className="top-[40%] right-[3%] h-[460px] w-[500px] text-wash-blush"
+          />
+          <Bloom
+            variant="c"
+            opacity={38}
+            className="bottom-[4%] left-[26%] hidden h-[360px] w-[400px] text-wash-sage lg:block"
           />
         </div>
 
-        <div aria-hidden className="cine-veil-static" />
-        <div aria-hidden className="cine-veil" />
+        {/* The photograph, torn and bleeding off the right edge. */}
+        <div className="cine-photo pointer-events-none absolute inset-y-0 right-0 hidden w-[60%] lg:block">
+          <TornPhoto
+            name="hero"
+            tear="square"
+            priority
+            sizes="60vw"
+            className="absolute inset-y-[3%] right-[-8%] left-[6%]"
+          />
+        </div>
 
-        {/* Above every act, always interactive. */}
-        <nav
-          aria-label="Primary"
-          className="absolute inset-x-0 top-0 z-20 mx-auto flex max-w-[1500px] items-center justify-between gap-8 px-6 py-6 md:px-10"
-        >
-          <Link
-            href="/"
-            aria-label={`${site.shortName} — home`}
-            className="shrink-0"
+        <div className="relative mx-auto flex w-full max-w-[1500px] flex-1 flex-col px-6 md:px-10">
+          <nav
+            aria-label="Primary"
+            className="relative z-20 flex items-center justify-end gap-8 py-6"
           >
-            <Logotype knockout priority className="w-[118px] md:w-[142px]" />
-          </Link>
-          <div className="flex items-center gap-8">
             <ul className="hidden items-center gap-7 lg:flex">
               {nav.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="micro text-bone/85 transition-colors duration-[var(--dur-micro)] hover:text-bone"
+                    className="micro text-ink transition-colors duration-[var(--dur-micro)] hover:text-oxblood"
                   >
                     {item.label}
                   </Link>
@@ -72,85 +77,80 @@ export function Masthead() {
             >
               Reserve
             </Link>
-          </div>
-        </nav>
+          </nav>
 
-        <div className="cine-acts">
-          {/* Act I — the mark. */}
-          <div aria-hidden className="cine-act cine-act-title">
-            <Logotype knockout className="w-[min(74vw,760px)]" />
-            <Note tone="bone" tilt={-3} size="lg" className="mt-6 opacity-80">
-              Cocoa Beach, after dark
-            </Note>
-          </div>
+          <div className="relative z-10 flex flex-1 flex-col justify-center pb-16 lg:max-w-[52%]">
+            {/* PLACEHOLDER — the comp's lockup includes the skeleton
+                illustration, which has not been supplied. Only the 1C logotype
+                exists, so that stands in here. */}
+            <div className="cine-mark">
+              <Link href="/" aria-label={`${site.shortName} — home`}>
+                <Logotype priority className="w-[220px] md:w-[290px]" />
+              </Link>
+            </div>
 
-          {/* Act II — the promise. A visual duplicate of copy the page carries
-              in typeset form elsewhere, so it is not announced. */}
-          <div aria-hidden className="cine-act cine-act-line">
-            <p className="display-soft max-w-[16ch] text-[clamp(2.4rem,6vw,4.6rem)]">
-              Dinner without the usual script.
-            </p>
-            <p className="mt-6 max-w-[46ch] text-[15px] leading-relaxed text-bone/70">
-              {site.description}
-            </p>
-          </div>
-
-          {/* Act III — the hero itself, and the still frame. */}
-          <div className="cine-act cine-act-final">
-            <div aria-hidden className="cine-final-shade" />
-            <div className="relative mx-auto flex h-full w-full max-w-[1500px] flex-col justify-center px-6 pt-24 pb-24 md:px-10">
-              <h1 className="display text-[clamp(2.6rem,7.5vw,5.8rem)]">
-                {["Rebel", "Against", "The"].map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-                <span className="block">
-                  <span className="relative inline-block">
-                    Ordinary.
+            <h1 className="display mt-10 text-[clamp(2.6rem,6.6vw,5.2rem)] text-ink">
+              <span className="cine-l1 block">Rebel</span>
+              <span className="cine-l2 block">Against</span>
+              <span className="cine-l3 block">The</span>
+              <span className="cine-l4 block">
+                <span className="relative inline-block">
+                  Ordinary.
+                  <span className="cine-splat">
                     <InkSplatter
                       variant="b"
-                      opacity={95}
-                      className="-top-3 -right-10 h-14 w-14 text-signal md:-top-5 md:-right-16 md:h-24 md:w-24"
+                      opacity={90}
+                      className="-top-3 -right-9 h-12 w-12 text-oxblood md:-top-4 md:-right-14 md:h-20 md:w-20"
                     />
                   </span>
                 </span>
-              </h1>
+              </span>
+            </h1>
 
-              <Note
-                tone="bone"
-                tilt={-5}
-                size="lg"
-                className="mt-6 max-w-[22ch] opacity-90"
-              >
+            <div className="cine-note mt-6">
+              <Note tilt={-6} size="lg" className="max-w-[22ch]">
                 Cocoa Beach, after dark
               </Note>
+            </div>
 
-              <div className="mt-9 flex flex-wrap gap-3">
-                <Link
-                  href={site.reserveUrl}
-                  className="micro bg-oxblood px-9 py-5 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"
-                >
-                  Reserve a table
-                </Link>
-                <Link
-                  href="/menus"
-                  className="micro border border-bone/50 bg-ink/30 px-9 py-5 text-bone backdrop-blur-sm transition-colors duration-[var(--dur-micro)] hover:bg-bone hover:text-ink"
-                >
-                  View menus
-                </Link>
-              </div>
+            <div className="cine-cta mt-10 flex flex-wrap gap-3">
+              <Link
+                href={site.reserveUrl}
+                className="micro bg-oxblood px-9 py-5 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"
+              >
+                Reserve a table
+              </Link>
+              <Link
+                href="/menus"
+                className="micro border border-ink px-9 py-5 text-ink transition-colors duration-[var(--dur-micro)] hover:bg-ink hover:text-bone"
+              >
+                View menus
+              </Link>
             </div>
           </div>
         </div>
 
-        <div aria-hidden className="cine-hint">
-          <span className="micro text-bone/60">Scroll</span>
+        {/* Narrow screens get the photograph in flow rather than in the
+            corner, and the same choreography applies to it. */}
+        <div className="cine-photo relative z-0 px-6 pb-12 lg:hidden">
+          <TornPhoto
+            name="hero"
+            tear="landscape"
+            sizes="100vw"
+            className="aspect-[4/3] w-full"
+          />
         </div>
 
-        {/* The paper below tears up into the frame. */}
-        <Deckle edge="bottom" variant={1} className="z-10 text-bone" />
+        <div
+          aria-hidden
+          className="cine-hint absolute right-5 bottom-20 hidden flex-col items-center gap-3 lg:flex"
+        >
+          <span className="micro [writing-mode:vertical-rl] text-ink-mute">
+            Scroll
+          </span>
+          <span className="h-14 w-px bg-ink/30" />
+        </div>
       </div>
-    </header>
+    </div>
   );
 }

@@ -157,23 +157,38 @@ nothing else depends on either.
 
 ### The cinematic hero
 
-`/collage` opens on a pinned stage the visitor scrubs through in three acts:
-the wordmark over a darkened room, the promise as the room comes to light, then
-the real hero. It runs on two engines and degrades to a still frame:
+`/collage` opens on a pinned stage the visitor scrubs through while the page
+assembles itself — washes bloom, the photograph tears into the corner, the
+headline lands line by line, then the thrown ink, the handwriting and the
+buttons, in the order someone would actually lay a page out.
+
+The choreography moves the *real* elements of the composition rather than
+separate act layers, so the finished frame is the comp itself and the still
+frame costs nothing. The mark and the navigation are outside the timeline: the
+logo settles rather than fades, and Reserve is live from the first frame.
+
+Two engines and a still fallback:
 
 - **CSS scroll-driven animation** where `animation-timeline: scroll()` is
   supported — no per-frame JavaScript.
 - **A damped rAF loop** (`components/collage/ScrollMotion.tsx`) everywhere
   else, mirroring the same keyframe tables. Older Safari and Firefox ignore
-  the CSS silently, and a hero that simply never moves is the failure mode.
-- **The still frame** when `prefers-reduced-motion` is set, JavaScript is off,
-  or a crawler visits. Act III is a complete, conventional hero carrying the
-  page's only `h1` and the real links; Acts I and II are `aria-hidden` visual
-  duplicates gated behind a `cine-on` class added before first paint.
+  the CSS silently, and a hero that never moves is the failure mode.
+- **The finished composition** under `prefers-reduced-motion`, with JavaScript
+  off, or for a crawler. The stage unpins and everything renders in place.
 
-All three were verified by probing computed opacity at 0/25/50/90% of the
-stage — including with the CSS engine neutralised, so the fallback is known to
-work on its own rather than being masked by the CSS path.
+Two things worth knowing before editing it:
+
+- **Base styles are the finished frame; only the keyframes hold the start
+  state.** At the exact end of `animation-range` Chromium reports the
+  animation `finished` and stops filling, so anything depending on `fill:
+  both` snaps back to its base style. With the start state as the base, the
+  entire hero vanished for the last viewport of the pin.
+- **Verify the fallback with the CSS engine disabled, not just with
+  `CSS.supports` patched.** Patching only lies to the JavaScript check;
+  Chromium's `@supports` block keeps running and will mask a broken fallback.
+
+All three modes were checked by probing computed opacity across the scrub.
 
 If you edit the `@keyframes` in `app/globals.css`, edit the matching table in
 `ScrollMotion.tsx`. They are two expressions of one choreography.
