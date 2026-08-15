@@ -71,6 +71,28 @@ def sample_palette(img: Image.Image, swatches: int = 6) -> list[tuple[str, float
     ]
 
 
+def skeleton_mask(lockup: Image.Image) -> Image.Image:
+    """
+    The skeleton alone, as an alpha mask, for the rubber stamp.
+
+    Cropped off the top of the lockup, above the wordmark, then keyed on
+    darkness rather than on alpha: the watercolour carries alpha too, and a
+    stamp wants the ink linework only.
+    """
+    crop = lockup.crop((0, 0, lockup.width, int(lockup.height * 0.57)))
+    a = np.asarray(crop, dtype=np.float64)
+    rgb, alpha = a[..., :3] / 255.0, a[..., 3] / 255.0
+
+    luma = rgb @ np.array([0.2126, 0.7152, 0.0722])
+    ink = np.clip((0.55 - luma) / 0.55, 0, 1) ** 0.85 * alpha
+
+    out = (ink * 255).astype("uint8")
+    white = np.full(out.shape + (3,), 255, dtype="uint8")
+    mask = Image.fromarray(np.dstack([white, out]), mode="RGBA")
+    box = mask.getchannel("A").getbbox()
+    return mask.crop(box) if box else mask
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
 
@@ -89,6 +111,13 @@ def main() -> None:
         img.save(target, "WEBP", quality=90, method=6)
         print(f"  {target.name:32s} {img.width}×{img.height}  "
               f"{target.stat().st_size // 1024}KB")
+
+        skel = skeleton_mask(img)
+        skel.thumbnail((520, 520), Image.LANCZOS)
+        skel_path = OUT / "skeleton-mask.png"
+        skel.save(skel_path, optimize=True)
+        print(f"  {skel_path.name:32s} {skel.width}×{skel.height}  "
+              f"{skel_path.stat().st_size // 1024}KB")
 
         print("  watercolour sampled from the artwork:")
         for hexcode, share in sample_palette(img):

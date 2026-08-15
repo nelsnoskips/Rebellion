@@ -260,6 +260,37 @@ body {
   }
 }
 
+/* Sprocket perforations along a filmstrip. Two repeating gradients, one per
+   edge — cheap, and they tile at any width. */
+.filmstrip {
+  position: relative;
+}
+
+.filmstrip::before,
+.filmstrip::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  height: 15px;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0 9px,
+    rgb(244 239 230 / 0.82) 9px 20px,
+    transparent 20px 29px
+  );
+  -webkit-mask-image: linear-gradient(#000, #000);
+  mask-image: linear-gradient(#000, #000);
+}
+
+.filmstrip::before {
+  top: 9px;
+}
+
+.filmstrip::after {
+  bottom: 9px;
+}
+
 /* The comp's black is a surface with tooth, not a fill. */
 .grunge {
   position: relative;

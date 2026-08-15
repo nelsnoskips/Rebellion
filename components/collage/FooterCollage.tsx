@@ -45,6 +45,15 @@ export function FooterCollage() {
               {site.phone}
             </a>
           </address>
+          <a
+            href={site.mapUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="micro mt-4 inline-flex items-center gap-2 text-oxblood"
+          >
+            <span className="border-b border-oxblood/40 pb-1">Get directions</span>
+            <span aria-hidden>→</span>
+          </a>
         </div>
 
         <div>

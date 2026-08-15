@@ -1,11 +1,12 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ShoppingBag, UtensilsCrossed, Wine } from "lucide-react";
-import { experiences, happenings, site } from "@/lib/site";
+import { ChevronLeft, ChevronRight, ShoppingBag, UtensilsCrossed, Wine } from "lucide-react";
+import { experiences, happenings, images, site } from "@/lib/site";
 import { ArrowLink } from "@/components/ui/Button";
 import { Bloom, BrushRule, InkSplatter } from "@/components/ui/Artwork";
 import { Reveal } from "@/components/ui/Reveal";
 import { eventDate } from "@/lib/utils";
-import { Doodle, Note, Pin, Ringed, Splash, Stamp, Tape, TornEdge, TornPhoto } from "@/components/collage/kit";
+import { Doodle, GlassDoodle, Note, Pin, Ringed, Splash, Stamp, Tape, TornEdge, TornPhoto } from "@/components/collage/kit";
 
 /** The kitchen statement — torn ink portrait against paper. */
 export function Statement() {
@@ -149,9 +150,12 @@ export function DarkBand() {
           <h2 className="display-collage text-[clamp(1.7rem,2.6vw,2.2rem)]">
             Featured Food
           </h2>
-          <Note tone="bone" tilt={-4} className="mt-5 max-w-[14ch] opacity-80">
-            Seasonal ingredients. Big flavors. Zero shortcuts.
-          </Note>
+          <div className="mt-5">
+            <Note tone="bone" tilt={-4} className="max-w-[14ch] opacity-80">
+              Seasonal ingredients. Big flavors. Zero shortcuts.
+            </Note>
+            <BrushRule variant={2} className="mt-1 h-2 w-24 text-signal" />
+          </div>
           <div className="relative mt-7">
             <TornPhoto
               name="featuredFood"
@@ -240,7 +244,8 @@ export function BottleShopBand() {
             <Note tilt={-5} className="max-w-[16ch]">
               Curated. Interesting. Always changing.
             </Note>
-            <Doodle className="mt-4 h-7 w-11 shrink-0 text-oxblood" />
+            <GlassDoodle className="mt-1 h-12 w-9 shrink-0 text-ink/50" />
+            <Doodle className="mt-6 h-7 w-11 shrink-0 text-oxblood" />
           </div>
           <p className="mt-6 max-w-[38ch] text-sm leading-relaxed text-ink-mute">
             Two dozen bottles we actually drink, with notes written like
@@ -296,16 +301,15 @@ export function BottleShopBand() {
   );
 }
 
-/** Happenings as a strip of frames taped to a dark board. */
+/** Happenings as a strip of film — perforations, frames, and a date on each. */
 export function HappeningsStrip() {
   return (
     <section
       aria-labelledby="collage-happenings"
-      className="grunge relative overflow-hidden bg-ink text-bone"
+      className="paper-grain relative overflow-hidden bg-bone"
     >
-      <TornEdge edge="top" className="text-bone" />
       <TornEdge edge="bottom" className="text-bone" />
-      <div className="relative mx-auto max-w-[1500px] px-6 py-16 md:px-10">
+      <div className="relative mx-auto max-w-[1500px] px-6 py-14 md:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <h2 id="collage-happenings" className="display-collage text-3xl">
@@ -313,46 +317,66 @@ export function HappeningsStrip() {
             </h2>
             <BrushRule variant={1} className="mt-2 h-2.5 w-40 text-oxblood" />
           </div>
-          <ArrowLink href="/happenings" tone="light">
-            View calendar
-          </ArrowLink>
+          <ArrowLink href="/happenings">View calendar</ArrowLink>
         </div>
 
-        <ul className="no-scrollbar mt-8 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-3">
-          {happenings.map((event, i) => {
-            const date = eventDate(event.date);
-            return (
-              <Reveal
-                as="li"
-                key={event.slug}
-                index={i}
-                className="w-[260px] shrink-0 snap-start"
-              >
-                <Link href={`/happenings#${event.slug}`} className="group block">
-                  <TornPhoto
-                    name={event.image}
-                    tear="landscape"
-                    tilt={i % 2 ? 1 : -1}
-                    sizes="260px"
-                    className="aspect-[4/3] w-full"
-                  />
-                  <span className="mt-4 flex items-baseline gap-3">
-                    <time dateTime={date.iso} className="micro text-signal">
-                      {date.month} {date.day}
-                    </time>
-                    <span className="hand text-[19px] text-bone">
-                      {event.kind}
-                    </span>
-                  </span>
-                  <span className="mt-1 block text-sm text-bone/60">
-                    {event.title}
-                  </span>
-                </Link>
-              </Reveal>
-            );
-          })}
-        </ul>
+        <div className="relative mt-8 flex items-center gap-4">
+          <StripArrow direction="prev" />
+
+          {/* `grunge` is deliberately not on this element: it also styles
+              ::after, which would replace the lower row of perforations. */}
+          <div className="filmstrip min-w-0 flex-1 bg-ink py-8">
+            <ul className="no-scrollbar relative flex snap-x snap-mandatory gap-4 overflow-x-auto px-4">
+              {happenings.map((event, i) => {
+                const date = eventDate(event.date);
+                return (
+                  <Reveal
+                    as="li"
+                    key={event.slug}
+                    index={i}
+                    className="w-[210px] shrink-0 snap-start"
+                  >
+                    <Link href={`/happenings#${event.slug}`} className="group block">
+                      <span className="relative block aspect-[4/3] w-full overflow-hidden">
+                        <Image
+                          src={images[event.image].src}
+                          alt={images[event.image].alt}
+                          fill
+                          sizes="210px"
+                          className="object-cover transition-transform duration-[var(--dur-editorial)] ease-[var(--ease-expressive)] group-hover:scale-[1.04]"
+                        />
+                      </span>
+                      <span className="mt-3 flex items-baseline gap-2">
+                        <time dateTime={date.iso} className="micro text-signal">
+                          {date.month} {date.day}
+                        </time>
+                        <span className="hand text-[18px] text-bone/90">
+                          {event.kind}
+                        </span>
+                      </span>
+                    </Link>
+                  </Reveal>
+                );
+              })}
+            </ul>
+          </div>
+
+          <StripArrow direction="next" />
+        </div>
       </div>
     </section>
+  );
+}
+
+/** The circular controls at either end of the strip. */
+function StripArrow({ direction }: { direction: "prev" | "next" }) {
+  const Icon = direction === "prev" ? ChevronLeft : ChevronRight;
+  return (
+    <span
+      aria-hidden
+      className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-ink/30 text-ink lg:flex"
+    >
+      <Icon size={18} />
+    </span>
   );
 }

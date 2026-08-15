@@ -196,6 +196,25 @@ export function Ringed({
   );
 }
 
+/** A wine glass, drawn in one line, as the comp doodles it. */
+export function GlassDoodle({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 40 56"
+      className={cn("pointer-events-none", className)}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    >
+      <path d="M9,5 C9,20 13,27 20,27 C27,27 31,20 31,5 Z" />
+      <path d="M20,27 L20,46" />
+      <path d="M11,49 C14,46 26,46 29,49" />
+    </svg>
+  );
+}
+
 /** A hand-drawn arrow, pointing where the eye should go next. */
 export function Doodle({ className }: { className?: string }) {
   return (
@@ -255,10 +274,13 @@ export function Stamp({
   text,
   className,
   tilt = -8,
+  mark = true,
 }: {
   text: string;
   className?: string;
   tilt?: number;
+  /** The skeleton struck in the middle of the ring, as in the comp. */
+  mark?: boolean;
 }) {
   const id = `stamp-${text.replace(/\W+/g, "-").toLowerCase()}`;
   const repeated = `${text} · ${text} · `;
@@ -283,6 +305,17 @@ export function Stamp({
           {repeated}
         </textPath>
       </text>
+      {mark && (
+        <image
+          href="/brand/skeleton-mask.png"
+          x="46"
+          y="42"
+          width="108"
+          height="108"
+          preserveAspectRatio="xMidYMid meet"
+          opacity="0.9"
+        />
+      )}
     </svg>
   );
 }
