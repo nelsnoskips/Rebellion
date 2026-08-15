@@ -23,10 +23,17 @@
   --rule: #ddd4c5;
   --rule-dark: #35332f;
 
-  /* Watercolour wash tints lifted from the logotype artwork. */
-  --wash-blush: #e6b7bd;
-  --wash-sky: #b9cddb;
-  --wash-sage: #c6d3c0;
+  /* Watercolour wash tints, sampled from the supplied lockup artwork by
+     scripts/build-brand.py (blush #f0c0c0/#f0d8d8, sky #c0d8f0/#d8f0f0,
+     and the cooler grey-green between them). Held slightly stronger than the
+     samples because they are painted at 40–60% opacity over bone.
+
+     Note the artwork's script red is roughly #a81830 — brighter than the brand
+     book's oxblood #742a32. The book governs the interface; the crimson stays
+     inside the artwork, where it belongs. */
+  --wash-blush: #ecc2c6;
+  --wash-sky: #bdd2e4;
+  --wash-sage: #c6d3c8;
 
   /* Motion tokens (blueprint §08). Mirrored in lib/motion.ts for JS use. */
   --dur-micro: 160ms;

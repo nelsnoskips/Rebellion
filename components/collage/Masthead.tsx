@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { nav, site } from "@/lib/site";
-import { Logotype } from "@/components/ui/Brand";
+import { Lockup } from "@/components/ui/Brand";
 import { Bloom, InkSplatter } from "@/components/ui/Artwork";
 import { Note, Splash, TornPhoto } from "@/components/collage/kit";
 
@@ -96,16 +96,13 @@ export function Masthead() {
           </nav>
 
           <div className="relative z-10 flex flex-1 flex-col justify-center pb-16 lg:max-w-[52%]">
-            {/* PLACEHOLDER — the comp's lockup includes the skeleton
-                illustration, which has not been supplied. Only the 1C logotype
-                exists, so that stands in here. */}
             <div className="cine-mark">
               <Link href="/" aria-label={`${site.shortName} — home`}>
-                <Logotype priority className="w-[220px] md:w-[290px]" />
+                <Lockup priority className="w-[190px] md:w-[260px]" />
               </Link>
             </div>
 
-            <h1 className="display-collage mt-10 text-[clamp(2.8rem,6.8vw,5.4rem)] text-ink">
+            <h1 className="display-collage mt-8 text-[clamp(2.8rem,6.8vw,5.4rem)] text-ink">
               <span className="cine-l1 block">Rebel</span>
               <span className="cine-l2 block">Against</span>
               <span className="cine-l3 block">The</span>

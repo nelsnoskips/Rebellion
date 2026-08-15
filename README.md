@@ -94,8 +94,35 @@ is unsupported rather than degrading into coloured rectangles.
 
 When the illustrator delivers scanned washes and splatters, drop them into
 `/public/artwork` following the same mask convention and nothing else needs to
-change. The skeleton artwork is still outstanding — only the 1C logotype was
-supplied — which is why the §08 signature moment is not built yet.
+change.
+
+## Brand artwork
+
+Client-supplied artwork lives in `brand/`; `scripts/build-brand.py` derives the
+web assets into `public/brand/`, so a re-supplied file is a drop-in and nothing
+hand-edits the original.
+
+```bash
+python3 scripts/build-brand.py    # needs numpy + pillow
+```
+
+Two marks, and they are not interchangeable:
+
+- **`<Lockup>`** — the full artwork: skeleton, watercolour, crimson script.
+  Full colour, and therefore paper only.
+- **`<Logotype>`** — the 1C wordmark, with a knockout variant. This is what
+  goes on ink and oxblood grounds, and in anything nav-bar height.
+
+The script also samples the artwork's watercolour hues, which is where the
+`--wash-*` tokens come from. Worth knowing: the script red in the artwork is
+about `#a81830`, brighter than the brand book's oxblood `#742a32`. The book
+governs the interface; the crimson stays inside the artwork.
+
+`brand/rebellion-lockup.svg` is **not** vector — it wraps two embedded rasters
+at the same resolution as the PNG. If true vector turns up, point `SOURCES` at
+it and raise the width; the lockup would then be crisp at any size, and the §08
+signature moment (ink strokes tracing the skeleton on first entry) becomes
+buildable.
 
 ## Swapping the placeholder photography
 

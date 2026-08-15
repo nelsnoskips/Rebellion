@@ -35,6 +35,34 @@ export function Logotype({
 }
 
 /**
+ * The full lockup — skeleton, watercolour, wordmark — built from the supplied
+ * artwork by scripts/build-brand.py.
+ *
+ * Full colour only, and therefore paper only: the washes and the crimson script
+ * are the artwork's own and there is no knockout of them worth having. On ink
+ * and oxblood grounds use `Logotype`, which is the 1C mark drawn for exactly
+ * that purpose.
+ */
+export function Lockup({
+  className,
+  priority = false,
+}: {
+  className?: string;
+  priority?: boolean;
+}) {
+  return (
+    <Image
+      src="/brand/rebellion-lockup.webp"
+      alt="Rebellion Beachside Bar & Bistro"
+      width={1000}
+      height={1260}
+      priority={priority}
+      className={cn("h-auto w-full", className)}
+    />
+  );
+}
+
+/**
  * Bottle silhouette used where product photography will go. Deliberately a
  * drawing, not a fake photo — it reads as a placeholder to anyone reviewing
  * the build, and it costs nothing.
