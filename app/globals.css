@@ -224,6 +224,62 @@ body {
   filter: grayscale(1) contrast(1.14) brightness(0.98);
 }
 
+/* Every band in the collage is a torn sheet, not a block of colour. These sit
+   at a section's top or bottom edge, painted in the colour of the sheet that is
+   doing the tearing. */
+.torn-edge-top,
+.torn-edge-bottom {
+  position: absolute;
+  inset-inline: 0;
+  z-index: 10;
+  height: 22px;
+  pointer-events: none;
+  background-color: currentColor;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-size: 1600px 100%;
+  mask-size: 1600px 100%;
+}
+
+.torn-edge-top {
+  top: 0;
+  -webkit-mask-image: url("/artwork/edge-top.png");
+  mask-image: url("/artwork/edge-top.png");
+}
+
+.torn-edge-bottom {
+  bottom: 0;
+  -webkit-mask-image: url("/artwork/edge-bottom.png");
+  mask-image: url("/artwork/edge-bottom.png");
+}
+
+@media (min-width: 768px) {
+  .torn-edge-top,
+  .torn-edge-bottom {
+    height: 30px;
+  }
+}
+
+/* The comp's black is a surface with tooth, not a fill. */
+.grunge {
+  position: relative;
+}
+
+.grunge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  background-color: #ffffff;
+  -webkit-mask-image: url("/artwork/grunge.png");
+  mask-image: url("/artwork/grunge.png");
+  -webkit-mask-size: 360px 360px;
+  mask-size: 360px 360px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+
 /* Collage headlines: black and high-contrast, where the editorial direction
    is light. Same words, different voice. */
 .display-collage {

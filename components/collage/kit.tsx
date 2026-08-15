@@ -133,6 +133,87 @@ export function Splash({
   );
 }
 
+/**
+ * The torn edge of a band. Rendered inside the section it belongs to and
+ * painted in that section's own colour, so the sheet tears over whatever sits
+ * beyond it.
+ */
+export function TornEdge({
+  edge,
+  className,
+}: {
+  edge: "top" | "bottom";
+  className?: string;
+}) {
+  return (
+    <span
+      aria-hidden
+      className={cn(
+        edge === "top" ? "torn-edge-top" : "torn-edge-bottom",
+        className,
+      )}
+    />
+  );
+}
+
+/**
+ * A hand-drawn circle or box around an annotation — the comp rings things it
+ * wants read twice.
+ */
+export function Ringed({
+  children,
+  shape = "circle",
+  className,
+  tilt = -4,
+}: {
+  children: React.ReactNode;
+  shape?: "circle" | "box";
+  className?: string;
+  tilt?: number;
+}) {
+  return (
+    <span
+      className={cn("relative inline-block px-4 py-2", className)}
+      style={{ transform: `rotate(${tilt}deg)` }}
+    >
+      {children}
+      <svg
+        aria-hidden
+        viewBox="0 0 200 100"
+        preserveAspectRatio="none"
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      >
+        {shape === "circle" ? (
+          <path d="M100,6 C148,6 193,24 193,50 C193,77 147,95 99,95 C52,95 7,76 7,50 C7,23 53,6 100,6" />
+        ) : (
+          <path d="M5,7 L196,4 L194,95 L7,93 Z" />
+        )}
+      </svg>
+    </span>
+  );
+}
+
+/** A hand-drawn arrow, pointing where the eye should go next. */
+export function Doodle({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 60 40"
+      className={cn("pointer-events-none", className)}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+    >
+      <path d="M4,6 C16,20 30,28 52,31" />
+      <path d="M43,24 L53,31 L42,35" />
+    </svg>
+  );
+}
+
 /** A strip of tape holding a frame to the page. */
 export function Tape({
   className,

@@ -2,15 +2,16 @@ import Link from "next/link";
 import { ShoppingBag, UtensilsCrossed, Wine } from "lucide-react";
 import { experiences, happenings, site } from "@/lib/site";
 import { ArrowLink } from "@/components/ui/Button";
-import { Bloom, InkSplatter } from "@/components/ui/Artwork";
+import { Bloom, BrushRule, InkSplatter } from "@/components/ui/Artwork";
 import { Reveal } from "@/components/ui/Reveal";
 import { eventDate } from "@/lib/utils";
-import { Note, PencilRule, Pin, Splash, Stamp, Tape, TornPhoto } from "@/components/collage/kit";
+import { Doodle, Note, Pin, Ringed, Splash, Stamp, Tape, TornEdge, TornPhoto } from "@/components/collage/kit";
 
 /** The kitchen statement — torn ink portrait against paper. */
 export function Statement() {
   return (
     <section className="paper-grain relative overflow-hidden bg-bone">
+      <TornEdge edge="bottom" className="text-bone" />
       <Splash
         variant="b"
         opacity={55}
@@ -49,9 +50,6 @@ export function Statement() {
           </div>
         </Reveal>
       </div>
-      <div className="mx-auto max-w-[1500px] px-6 md:px-10">
-        <PencilRule className="text-ink/25" />
-      </div>
     </section>
   );
 }
@@ -72,6 +70,7 @@ const captions: Record<string, string> = {
 export function Trio() {
   return (
     <section className="paper-grain relative overflow-hidden bg-bone">
+      <TornEdge edge="bottom" className="text-bone" />
       <Splash
         variant="c"
         opacity={48}
@@ -142,7 +141,9 @@ export function Trio() {
 /** The dark chapter: food, cocktails, and the events card pinned over it. */
 export function DarkBand() {
   return (
-    <section className="relative overflow-hidden bg-ink text-bone">
+    <section className="grunge relative overflow-hidden bg-ink text-bone">
+      <TornEdge edge="top" className="text-bone" />
+      <TornEdge edge="bottom" className="text-bone" />
       <div className="relative mx-auto grid max-w-[1500px] gap-12 px-6 py-16 md:px-10 lg:grid-cols-3 lg:gap-10 lg:py-20">
         <Reveal>
           <h2 className="display-collage text-[clamp(1.7rem,2.6vw,2.2rem)]">
@@ -196,7 +197,7 @@ export function DarkBand() {
 
         {/* An oxblood card torn out and pinned to the page. */}
         <Reveal index={2} className="relative self-start lg:mt-10">
-          <div className="torn relative bg-oxblood p-9 pb-14">
+          <div className="torn relative bg-oxblood px-12 py-12 pb-16">
             <h2 className="display-collage text-[clamp(1.7rem,2.6vw,2.2rem)]">
               Private Events
             </h2>
@@ -229,14 +230,18 @@ export function DarkBand() {
 export function BottleShopBand() {
   return (
     <section className="paper-grain relative overflow-hidden bg-bone">
+      <TornEdge edge="bottom" className="text-bone" />
       <div className="relative mx-auto grid max-w-[1500px] items-center gap-10 px-6 py-16 md:px-10 lg:grid-cols-[0.85fr_1.15fr]">
         <Reveal>
           <h2 className="display-collage text-[clamp(1.9rem,3.2vw,2.8rem)]">
             Bottle Shop
           </h2>
-          <Note tilt={-5} className="mt-5 max-w-[16ch]">
-            Curated. Interesting. Always changing.
-          </Note>
+          <div className="mt-5 flex items-start gap-3">
+            <Note tilt={-5} className="max-w-[16ch]">
+              Curated. Interesting. Always changing.
+            </Note>
+            <Doodle className="mt-4 h-7 w-11 shrink-0 text-oxblood" />
+          </div>
           <p className="mt-6 max-w-[38ch] text-sm leading-relaxed text-ink-mute">
             Two dozen bottles we actually drink, with notes written like
             recommendations instead of distributor copy. Pickup at the bar, or
@@ -249,16 +254,11 @@ export function BottleShopBand() {
             >
               Shop the drop
             </Link>
-            <span className="relative inline-block">
-              <Note tilt={-7} size="sm" className="max-w-[12ch] px-3 py-2">
+            <Ringed className="text-oxblood" tilt={-5}>
+              <Note tilt={0} size="sm" className="max-w-[12ch]">
                 Local delivery available
               </Note>
-              <span
-                aria-hidden
-                className="absolute inset-0 rounded-[50%] border border-oxblood/50"
-                style={{ transform: "rotate(-4deg) scale(1.15)" }}
-              />
-            </span>
+            </Ringed>
           </div>
         </Reveal>
 
@@ -284,9 +284,11 @@ export function BottleShopBand() {
               sizes="(max-width: 1024px) 50vw, 28vw"
               className="aspect-[4/5] w-full"
             />
-            <Note tilt={5} size="sm" className="mt-4 max-w-[16ch]">
-              New arrivals weekly.
-            </Note>
+            <Ringed shape="box" className="mt-4 text-ink/60" tilt={4}>
+              <Note tilt={0} size="sm" className="max-w-[16ch]">
+                New arrivals weekly.
+              </Note>
+            </Ringed>
           </div>
         </Reveal>
       </div>
@@ -299,13 +301,18 @@ export function HappeningsStrip() {
   return (
     <section
       aria-labelledby="collage-happenings"
-      className="relative overflow-hidden bg-ink text-bone"
+      className="grunge relative overflow-hidden bg-ink text-bone"
     >
-      <div className="mx-auto max-w-[1500px] px-6 py-14 md:px-10">
+      <TornEdge edge="top" className="text-bone" />
+      <TornEdge edge="bottom" className="text-bone" />
+      <div className="relative mx-auto max-w-[1500px] px-6 py-16 md:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <h2 id="collage-happenings" className="display-collage text-3xl">
-            Happenings
-          </h2>
+          <div>
+            <h2 id="collage-happenings" className="display-collage text-3xl">
+              Happenings
+            </h2>
+            <BrushRule variant={1} className="mt-2 h-2.5 w-40 text-oxblood" />
+          </div>
           <ArrowLink href="/happenings" tone="light">
             View calendar
           </ArrowLink>

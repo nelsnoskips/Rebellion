@@ -312,6 +312,42 @@ def splash(size: int, seed: int, satellites: int = 7) -> np.ndarray:
     return np.clip(out * fade, 0, 1)
 
 
+def torn_edge(w: int, h: int, seed: int, flip: bool = False) -> np.ndarray:
+    """
+    A horizontal torn-paper edge, used to separate every band.
+
+    The comp's strongest structural signature: bands do not butt up against
+    each other, they are torn sheets stacked down the page. Opaque above a
+    ragged line, transparent below; `flip` mirrors it for a bottom edge.
+    """
+    rng = np.random.default_rng(seed)
+    yy, xx = np.mgrid[0:h, 0:w]
+    yn = yy / (h - 1)
+
+    # A column-wise boundary: coarse rips with fine fibre riding on them.
+    coarse = fractal_noise(1, w, rng, octaves=5, persistence=0.62, base=3)[0]
+    fibre = fractal_noise(1, w, np.random.default_rng(seed + 5), octaves=7,
+                          persistence=0.78, base=18)[0]
+    boundary = 0.42 + (coarse - 0.5) * 0.62 + (fibre - 0.5) * 0.16
+    boundary = np.clip(boundary, 0.06, 0.94)[None, :]
+
+    mask = smoothstep(0.0, 0.012, boundary - yn)
+    return np.flipud(mask) if flip else mask
+
+
+def grunge(size: int, seed: int) -> np.ndarray:
+    """
+    Mottled tooth for the dark band — the comp's black is a surface, not a
+    fill. Tileable, so it can repeat across a full-width section.
+    """
+    rng = np.random.default_rng(seed)
+    base = periodic_noise(size, rng, harmonics=300, kmin=3, kmax=40)
+    fine = periodic_noise(size, np.random.default_rng(seed + 9),
+                          harmonics=300, kmin=30, kmax=110)
+    out = np.clip((base - 0.46) * 1.9, 0, 1) ** 1.5 * 0.75 + fine * 0.25
+    return np.clip(out, 0, 1) * 0.85
+
+
 def wine_ring(size: int, seed: int) -> np.ndarray:
     """The stain a glass leaves on paper: a thin, uneven, broken annulus."""
     rng = np.random.default_rng(seed)
@@ -402,6 +438,13 @@ def main() -> None:
     print("watercolour splashes")
     for name, seed in (("splash-a", 8123), ("splash-b", 4477), ("splash-c", 9931)):
         save_mask(splash(520, seed), f"{name}.png")
+
+    print("torn band edges")
+    save_mask(torn_edge(1600, 70, 2201), "edge-top.png")
+    save_mask(torn_edge(1600, 70, 7742, flip=True), "edge-bottom.png")
+
+    print("dark band tooth")
+    save_mask(grunge(360, 5580), "grunge.png")
 
     print("stains")
     save_mask(wine_ring(700, 4404), "wine-ring.png")

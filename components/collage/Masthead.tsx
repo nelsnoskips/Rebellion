@@ -2,7 +2,7 @@ import Link from "next/link";
 import { nav, site } from "@/lib/site";
 import { Lockup } from "@/components/ui/Brand";
 import { Bloom, InkSplatter } from "@/components/ui/Artwork";
-import { Note, Splash, TornPhoto } from "@/components/collage/kit";
+import { Note, Splash, TornEdge, TornPhoto } from "@/components/collage/kit";
 
 /**
  * Collage masthead — the comp, assembled by scroll.
@@ -71,37 +71,41 @@ export function Masthead() {
         </div>
 
         <div className="relative mx-auto flex w-full max-w-[1500px] flex-1 flex-col px-6 md:px-10">
-          <nav
-            aria-label="Primary"
-            className="relative z-20 flex items-center justify-end gap-8 py-6"
-          >
-            <ul className="hidden items-center gap-7 lg:flex">
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="micro text-ink transition-colors duration-[var(--dur-micro)] hover:text-oxblood"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <div className="flex items-start justify-between gap-8 pt-6">
             <Link
-              href={site.reserveUrl}
-              className="micro bg-oxblood px-8 py-4 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"
+              href="/"
+              aria-label={`${site.shortName} — home`}
+              className="cine-mark relative z-20 shrink-0"
             >
-              Reserve
+              <Lockup priority className="w-[150px] md:w-[215px] lg:w-[250px]" />
             </Link>
-          </nav>
 
-          <div className="relative z-10 flex flex-1 flex-col justify-center pb-16 lg:max-w-[52%]">
-            <div className="cine-mark">
-              <Link href="/" aria-label={`${site.shortName} — home`}>
-                <Lockup priority className="w-[190px] md:w-[260px]" />
+            <nav
+              aria-label="Primary"
+              className="relative z-20 flex items-center gap-8 pt-2"
+            >
+              <ul className="hidden items-center gap-7 lg:flex">
+                {nav.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="micro text-ink transition-colors duration-[var(--dur-micro)] hover:text-oxblood"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={site.reserveUrl}
+                className="micro bg-oxblood px-8 py-4 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"
+              >
+                Reserve
               </Link>
-            </div>
+            </nav>
+          </div>
 
+          <div className="relative z-10 flex flex-1 flex-col justify-center pb-16 lg:max-w-[54%]">
             <h1 className="display-collage mt-8 text-[clamp(2.8rem,6.8vw,5.4rem)] text-ink">
               <span className="cine-l1 block">Rebel</span>
               <span className="cine-l2 block">Against</span>
@@ -120,9 +124,16 @@ export function Masthead() {
               </span>
             </h1>
 
-            <div className="cine-note mt-6">
-              <Note tilt={-6} size="lg" className="max-w-[22ch]">
-                Cocoa Beach, after dark
+            {/* Set beside the headline rather than under it, in caps — the
+                comp writes this in the margin, not as a subtitle. */}
+            <div className="cine-note pointer-events-none absolute top-[42%] right-0 hidden lg:block">
+              <Note tilt={-8} size="lg" className="max-w-[12ch] uppercase">
+                Cocoa Beach / after dark
+              </Note>
+            </div>
+            <div className="cine-note mt-6 lg:hidden">
+              <Note tilt={-6} size="lg" className="max-w-[22ch] uppercase">
+                Cocoa Beach / after dark
               </Note>
             </div>
 
@@ -153,6 +164,8 @@ export function Masthead() {
             className="aspect-[4/3] w-full"
           />
         </div>
+
+        <TornEdge edge="bottom" className="text-bone" />
 
         <div
           aria-hidden

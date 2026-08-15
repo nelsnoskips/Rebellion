@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Facebook, Instagram, MapPin, Plus } from "lucide-react";
 import { hours, site } from "@/lib/site";
 import { NewsletterForm } from "@/components/site/NewsletterForm";
-import { Note } from "@/components/collage/kit";
+import { Note, TornEdge } from "@/components/collage/kit";
 import { cn } from "@/lib/utils";
 
 /** The wine ring a glass left on the page. */
@@ -25,7 +25,8 @@ function WineRing({ className }: { className?: string }) {
  */
 export function FooterCollage() {
   return (
-    <footer className="paper-grain relative overflow-hidden border-t border-ink/12 bg-bone text-ink">
+    <footer className="paper-grain relative overflow-hidden bg-bone text-ink">
+      <TornEdge edge="top" className="text-bone" />
       <WineRing className="right-[6%] -bottom-16 h-64 w-64" />
 
       <div className="relative mx-auto grid max-w-[1500px] gap-10 px-6 py-14 md:px-10 lg:grid-cols-[1.1fr_1fr_0.8fr_1.3fr_auto] lg:gap-12">
