@@ -17,6 +17,7 @@ const TEARS = {
   portrait: "torn-portrait",
   square: "torn-square",
   banner: "torn-banner",
+  sweep: "torn-sweep",
 } as const;
 
 export type Tear = keyof typeof TEARS;
@@ -99,6 +100,36 @@ export function Note({
     >
       {children}
     </span>
+  );
+}
+
+/**
+ * A watercolour splash. Smaller and more defined than a `Bloom` — the comp
+ * scatters these across the paper, and a few large soft washes do not read the
+ * same way. Tint with a `text-*` class.
+ */
+export function Splash({
+  className,
+  variant = "a",
+  opacity = 60,
+  tilt = 0,
+}: {
+  className?: string;
+  variant?: "a" | "b" | "c";
+  opacity?: number;
+  tilt?: number;
+}) {
+  return (
+    <span
+      aria-hidden
+      className={cn("art-mask absolute", className)}
+      style={{
+        WebkitMaskImage: `url(/artwork/splash-${variant}.png)`,
+        maskImage: `url(/artwork/splash-${variant}.png)`,
+        opacity: opacity / 100,
+        ...(tilt ? { transform: `rotate(${tilt}deg)` } : {}),
+      }}
+    />
   );
 }
 

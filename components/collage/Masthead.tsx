@@ -2,7 +2,7 @@ import Link from "next/link";
 import { nav, site } from "@/lib/site";
 import { Logotype } from "@/components/ui/Brand";
 import { Bloom, InkSplatter } from "@/components/ui/Artwork";
-import { Note, TornPhoto } from "@/components/collage/kit";
+import { Note, Splash, TornPhoto } from "@/components/collage/kit";
 
 /**
  * Collage masthead — the comp, assembled by scroll.
@@ -28,18 +28,32 @@ export function Masthead() {
         <div className="cine-wash">
           <Bloom
             variant="b"
-            opacity={55}
-            className="top-[6%] right-[16%] h-[520px] w-[560px] text-wash-sky"
+            opacity={40}
+            className="top-[4%] right-[22%] h-[460px] w-[500px] text-wash-sky"
           />
-          <Bloom
+          <Splash
             variant="a"
-            opacity={50}
-            className="top-[40%] right-[3%] h-[460px] w-[500px] text-wash-blush"
+            opacity={62}
+            tilt={-12}
+            className="top-[8%] right-[6%] h-[300px] w-[300px] text-wash-blush"
           />
-          <Bloom
+          <Splash
+            variant="b"
+            opacity={55}
+            tilt={20}
+            className="top-[30%] right-[30%] h-[220px] w-[220px] text-wash-sky"
+          />
+          <Splash
             variant="c"
-            opacity={38}
-            className="bottom-[4%] left-[26%] hidden h-[360px] w-[400px] text-wash-sage lg:block"
+            opacity={45}
+            tilt={-6}
+            className="bottom-[6%] right-[14%] hidden h-[260px] w-[260px] text-wash-sage lg:block"
+          />
+          <Splash
+            variant="b"
+            opacity={40}
+            tilt={8}
+            className="bottom-[14%] left-[30%] hidden h-[180px] w-[180px] text-wash-blush lg:block"
           />
         </div>
 
@@ -49,10 +63,10 @@ export function Masthead() {
         <div className="cine-photo pointer-events-none absolute top-[88px] right-0 bottom-0 hidden w-[60%] lg:block">
           <TornPhoto
             name="hero"
-            tear="square"
+            tear="sweep"
             priority
             sizes="60vw"
-            className="absolute inset-y-0 right-[-8%] left-[6%]"
+            className="absolute inset-y-0 right-[-6%] left-0"
           />
         </div>
 
@@ -91,7 +105,7 @@ export function Masthead() {
               </Link>
             </div>
 
-            <h1 className="display mt-10 text-[clamp(2.6rem,6.6vw,5.2rem)] text-ink">
+            <h1 className="display-collage mt-10 text-[clamp(2.8rem,6.8vw,5.4rem)] text-ink">
               <span className="cine-l1 block">Rebel</span>
               <span className="cine-l2 block">Against</span>
               <span className="cine-l3 block">The</span>

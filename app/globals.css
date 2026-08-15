@@ -176,7 +176,8 @@ body {
 .torn,
 .torn-portrait,
 .torn-square,
-.torn-banner {
+.torn-banner,
+.torn-sweep {
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
@@ -203,10 +204,27 @@ body {
   mask-image: url("/artwork/torn-banner.png");
 }
 
+/* The comp's hero shape: paper torn away on a long sweeping curve, so the
+   photograph reads as one sheet laid over another. */
+.torn-sweep {
+  -webkit-mask-image: url("/artwork/sweep-tear.png");
+  mask-image: url("/artwork/sweep-tear.png");
+}
+
 /* Photographs printed as ink rather than in colour. The collage leans on the
    contrast between treated frames and the few left in full colour. */
 .photo-ink {
   filter: grayscale(1) contrast(1.14) brightness(0.98);
+}
+
+/* Collage headlines: black and high-contrast, where the editorial direction
+   is light. Same words, different voice. */
+.display-collage {
+  font-family: var(--font-collage), Georgia, serif;
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
 }
 
 /* Marginalia. Set a step large — handwriting reads smaller than body copy at

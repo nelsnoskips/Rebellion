@@ -5,16 +5,23 @@ import { ArrowLink } from "@/components/ui/Button";
 import { Bloom, InkSplatter } from "@/components/ui/Artwork";
 import { Reveal } from "@/components/ui/Reveal";
 import { eventDate } from "@/lib/utils";
-import { Note, PencilRule, Pin, Stamp, Tape, TornPhoto } from "@/components/collage/kit";
+import { Note, PencilRule, Pin, Splash, Stamp, Tape, TornPhoto } from "@/components/collage/kit";
 
 /** The kitchen statement — torn ink portrait against paper. */
 export function Statement() {
   return (
     <section className="paper-grain relative overflow-hidden bg-bone">
-      <Bloom
-        variant="c"
+      <Splash
+        variant="b"
+        opacity={55}
+        tilt={14}
+        className="-top-16 right-[8%] h-[280px] w-[280px] text-wash-sky"
+      />
+      <Splash
+        variant="a"
         opacity={45}
-        className="-top-20 right-[6%] h-[380px] w-[420px] text-wash-sky"
+        tilt={-9}
+        className="right-[26%] -bottom-10 hidden h-[200px] w-[200px] text-wash-blush lg:block"
       />
       <div className="relative mx-auto grid max-w-[1500px] items-center gap-10 px-6 py-14 md:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <Reveal className="relative">
@@ -30,7 +37,7 @@ export function Statement() {
         </Reveal>
 
         <Reveal index={1}>
-          <h2 className="display max-w-[20ch] text-[clamp(1.7rem,3vw,2.6rem)]">
+          <h2 className="display-collage max-w-[20ch] text-[clamp(1.6rem,2.7vw,2.3rem)]">
             A chef-driven bistro, wine destination, and gathering place in Cocoa
             Beach.
           </h2>
@@ -65,10 +72,17 @@ const captions: Record<string, string> = {
 export function Trio() {
   return (
     <section className="paper-grain relative overflow-hidden bg-bone">
-      <InkSplatter
-        variant="b"
-        opacity={12}
-        className="top-4 left-[42%] hidden h-40 w-40 text-wash-blush lg:block"
+      <Splash
+        variant="c"
+        opacity={48}
+        tilt={-15}
+        className="top-2 left-[40%] hidden h-[240px] w-[240px] text-wash-sage lg:block"
+      />
+      <Splash
+        variant="a"
+        opacity={42}
+        tilt={22}
+        className="right-[4%] bottom-2 hidden h-[220px] w-[220px] text-wash-blush lg:block"
       />
       <ul className="relative mx-auto grid max-w-[1500px] gap-x-10 gap-y-12 px-6 py-14 md:px-10 lg:grid-cols-3">
         {experiences.map((exp, i) => {
@@ -83,7 +97,7 @@ export function Trio() {
               <Link href={exp.href} className="block">
                 <span className="flex items-center gap-3">
                   <Icon size={20} aria-hidden className="shrink-0 text-oxblood" />
-                  <span className="display text-3xl">{exp.title}</span>
+                  <span className="display-collage text-3xl">{exp.title}</span>
                 </span>
 
                 <span className="relative mt-6 block">
@@ -131,7 +145,7 @@ export function DarkBand() {
     <section className="relative overflow-hidden bg-ink text-bone">
       <div className="relative mx-auto grid max-w-[1500px] gap-12 px-6 py-16 md:px-10 lg:grid-cols-3 lg:gap-10 lg:py-20">
         <Reveal>
-          <h2 className="display text-[clamp(1.7rem,2.6vw,2.2rem)]">
+          <h2 className="display-collage text-[clamp(1.7rem,2.6vw,2.2rem)]">
             Featured Food
           </h2>
           <Note tone="bone" tilt={-4} className="mt-5 max-w-[14ch] opacity-80">
@@ -158,7 +172,7 @@ export function DarkBand() {
         </Reveal>
 
         <Reveal index={1}>
-          <h2 className="display text-[clamp(1.7rem,2.6vw,2.2rem)]">Cocktails</h2>
+          <h2 className="display-collage text-[clamp(1.7rem,2.6vw,2.2rem)]">Cocktails</h2>
           <Note tone="bone" tilt={-3} className="mt-5 max-w-[13ch] opacity-80">
             Original pours. Fresh ingredients. Rebel spirit.
           </Note>
@@ -183,7 +197,7 @@ export function DarkBand() {
         {/* An oxblood card torn out and pinned to the page. */}
         <Reveal index={2} className="relative self-start lg:mt-10">
           <div className="torn relative bg-oxblood p-9 pb-14">
-            <h2 className="display text-[clamp(1.7rem,2.6vw,2.2rem)]">
+            <h2 className="display-collage text-[clamp(1.7rem,2.6vw,2.2rem)]">
               Private Events
             </h2>
             <Note tone="bone" tilt={-3} className="mt-5 max-w-[18ch]">
@@ -217,7 +231,7 @@ export function BottleShopBand() {
     <section className="paper-grain relative overflow-hidden bg-bone">
       <div className="relative mx-auto grid max-w-[1500px] items-center gap-10 px-6 py-16 md:px-10 lg:grid-cols-[0.85fr_1.15fr]">
         <Reveal>
-          <h2 className="display text-[clamp(1.9rem,3.2vw,2.8rem)]">
+          <h2 className="display-collage text-[clamp(1.9rem,3.2vw,2.8rem)]">
             Bottle Shop
           </h2>
           <Note tilt={-5} className="mt-5 max-w-[16ch]">
@@ -289,7 +303,7 @@ export function HappeningsStrip() {
     >
       <div className="mx-auto max-w-[1500px] px-6 py-14 md:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <h2 id="collage-happenings" className="display text-3xl">
+          <h2 id="collage-happenings" className="display-collage text-3xl">
             Happenings
           </h2>
           <ArrowLink href="/happenings" tone="light">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Caveat, Instrument_Serif, Inter } from "next/font/google";
+import { Caveat, Instrument_Serif, Inter, Playfair_Display } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -14,6 +14,18 @@ const instrument = Instrument_Serif({
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+/**
+ * The collage direction sets its headlines in a heavier, higher-contrast face
+ * than the editorial direction — the comp's display type is black, not the
+ * light Instrument Serif used at `/`.
+ */
+const playfair = Playfair_Display({
+  variable: "--font-collage",
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
   display: "swap",
 });
 
@@ -65,7 +77,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${instrument.variable} ${inter.variable} ${caveat.variable}`}>
+    <html lang="en" className={`${instrument.variable} ${inter.variable} ${caveat.variable} ${playfair.variable}`}>
       <body className="min-h-screen antialiased">
         <a
           href="#main"

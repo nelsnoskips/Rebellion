@@ -240,6 +240,78 @@ def torn(w: int, h: int, seed: int, bite: float = 0.085) -> np.ndarray:
     return np.clip((mask - 0.42) * 6.0, 0, 1)
 
 
+def sweep_tear(w: int, h: int, seed: int) -> np.ndarray:
+    """
+    The comp's hero shape: paper torn away on a long sweeping curve.
+
+    The photograph keeps the right side of the frame; the left boundary is an
+    arc that bulges into the picture rather than a straight ragged edge, which
+    is what makes the composition read as one sheet laid over another instead
+    of a rectangle with texture.
+    """
+    rng = np.random.default_rng(seed)
+    yy, xx = np.mgrid[0:h, 0:w]
+    xn, yn = xx / (w - 1), yy / (h - 1)
+
+    # Concave sweep: shallow at the top, deepest around three-quarters down.
+    arc = 0.06 + 0.40 * np.sin(np.pi * np.clip(yn * 0.92 + 0.04, 0, 1)) ** 1.25
+
+    # The arc itself wanders. Without this the tear reads as a drawn curve
+    # rather than as paper that gave way unevenly. One noise column, broadcast
+    # across the row, keeps the wander a function of height only.
+    wander = fractal_noise(h, 1, np.random.default_rng(seed + 61), octaves=5,
+                           persistence=0.62, base=2)
+    boundary = arc + (wander - 0.5) * 0.16
+
+    coarse = fractal_noise(h, w, rng, octaves=4, persistence=0.6, base=2)
+    fibre = fractal_noise(h, w, rng, octaves=7, persistence=0.75, base=14)
+    ragged = (coarse - 0.5) * 0.055 + (fibre - 0.5) * 0.018
+
+    left = smoothstep(0.0, 0.012, xn - boundary - ragged)
+    # The other three sides tear too, just far less.
+    right = smoothstep(1.0, 0.988, xn + ragged * 0.6)
+    top = smoothstep(0.0, 0.02, yn + ragged * 0.6)
+    bottom = smoothstep(1.0, 0.975, yn + ragged * 0.6)
+
+    return np.clip(left * right * top * bottom, 0, 1)
+
+
+def splash(size: int, seed: int, satellites: int = 7) -> np.ndarray:
+    """
+    A watercolour splash — smaller and more defined than `bloom`, with
+    satellites. The comp scatters these across the paper; a few big soft washes
+    do not read the same way.
+    """
+    rng = np.random.default_rng(seed)
+    yy, xx = np.mgrid[0:size, 0:size] / (size - 1)
+
+    def blot(cx, cy, radius, warp_base=5):
+        r = np.sqrt((xx - cx) ** 2 + (yy - cy) ** 2) / max(radius, 1e-6)
+        warp = fractal_noise(size, size, rng, octaves=6, persistence=0.62,
+                             base=warp_base)
+        r_eff = r + (warp - 0.5) * 1.15
+        body = smoothstep(1.15, 0.35, r_eff)
+        rim = np.clip(body * (1.0 - body) * 4.0, 0, 1) ** 1.1
+        return np.clip(body * 0.6 + rim * 0.75, 0, 1)
+
+    out = blot(0.5, 0.5, 0.3, warp_base=4)
+    for _ in range(satellites):
+        a = rng.random() * 2 * math.pi
+        d = 0.24 + rng.random() * 0.2
+        cx, cy = 0.5 + math.cos(a) * d, 0.5 + math.sin(a) * d
+        if not (0.05 < cx < 0.95 and 0.05 < cy < 0.95):
+            continue
+        out = np.maximum(out, blot(cx, cy, 0.03 + rng.random() * 0.07, warp_base=7))
+
+    grain = fractal_noise(size, size, np.random.default_rng(seed + 17),
+                          octaves=7, persistence=0.72, base=8)
+    out *= 0.7 + 0.3 * grain
+
+    fade = (smoothstep(0.0, 0.05, xx) * smoothstep(1.0, 0.95, xx)
+            * smoothstep(0.0, 0.05, yy) * smoothstep(1.0, 0.95, yy))
+    return np.clip(out * fade, 0, 1)
+
+
 def wine_ring(size: int, seed: int) -> np.ndarray:
     """The stain a glass leaves on paper: a thin, uneven, broken annulus."""
     rng = np.random.default_rng(seed)
@@ -323,6 +395,13 @@ def main() -> None:
     save_mask(torn(900, 1200, 6621), "torn-portrait.png")
     save_mask(torn(1200, 1200, 7788), "torn-square.png")
     save_mask(torn(1600, 620, 9002, bite=0.11), "torn-banner.png")
+
+    print("sweeping hero tear")
+    save_mask(sweep_tear(1400, 1100, 3311), "sweep-tear.png")
+
+    print("watercolour splashes")
+    for name, seed in (("splash-a", 8123), ("splash-b", 4477), ("splash-c", 9931)):
+        save_mask(splash(520, seed), f"{name}.png")
 
     print("stains")
     save_mask(wine_ring(700, 4404), "wine-ring.png")
