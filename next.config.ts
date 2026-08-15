@@ -1,6 +1,19 @@
 import type { NextConfig } from "next";
 
+/**
+ * GitHub Pages serves a project repository under `/<repo>/`, so the build needs
+ * to know it is not at a domain root. Netlify serves at the root and sets
+ * nothing, so this stays empty there and the two deploys share one config.
+ *
+ * Note this only rewrites what Next controls — routes, `next/image` sources,
+ * the asset manifest. Absolute `url()` references inside CSS are not touched,
+ * which is why the Pages workflow rewrites them after the build.
+ */
+const basePath = process.env.PAGES_BASE_PATH ?? "";
+
 const nextConfig: NextConfig = {
+  ...(basePath ? { basePath, assetPrefix: basePath } : {}),
+
   /**
    * Static export.
    *

@@ -43,14 +43,16 @@ export function Masthead() {
           />
         </div>
 
-        {/* The photograph, torn and bleeding off the right edge. */}
-        <div className="cine-photo pointer-events-none absolute inset-y-0 right-0 hidden w-[60%] lg:block">
+        {/* The photograph, torn and bleeding off the right edge. It starts
+            below the nav band rather than at the very top: the links are ink,
+            and over a dark frame they were unreadable. */}
+        <div className="cine-photo pointer-events-none absolute top-[88px] right-0 bottom-0 hidden w-[60%] lg:block">
           <TornPhoto
             name="hero"
             tear="square"
             priority
             sizes="60vw"
-            className="absolute inset-y-[3%] right-[-8%] left-[6%]"
+            className="absolute inset-y-0 right-[-8%] left-[6%]"
           />
         </div>
 

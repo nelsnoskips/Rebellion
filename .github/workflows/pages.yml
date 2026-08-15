@@ -1,0 +1,72 @@
+# Publish the site to GitHub Pages.
+#
+# This is a review link that costs nothing to keep alive — it does not replace
+# the Netlify deploy, and neither knows about the other. Netlify serves at a
+# domain root; Pages serves a project repo under /<repo>/, which is what
+# PAGES_BASE_PATH and the rebase step are for.
+#
+# One-time setup: Settings → Pages → Build and deployment → Source:
+# "GitHub Actions". Until that is set, this workflow's deploy step fails.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        env:
+          # Serves the project under https://<owner>.github.io/<repo>/
+          PAGES_BASE_PATH: /${{ github.event.repository.name }}
+        run: npm run build
+
+      - name: Rebase absolute asset URLs
+        # Next's basePath does not rewrite url() in CSS, or next/image sources
+        # under images.unoptimized, or asset paths built at runtime in client
+        # components. Without this the artwork and photography 404 under the
+        # sub-path.
+        run: node scripts/rebase-assets.mjs out /${{ github.event.repository.name }}
+
+      - name: Disable Jekyll
+        # Pages would otherwise skip the _next directory, since it starts with
+        # an underscore.
+        run: touch out/.nojekyll
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
