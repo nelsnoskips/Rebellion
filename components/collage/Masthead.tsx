@@ -167,14 +167,20 @@ export function Masthead() {
 
         <TornEdge edge="bottom" className="text-bone" />
 
+        {/* Right edge, as in the comp: the word turned on its side, a rule
+            dropping from it, and the dots it ends on. Set in bone — at this
+            height it always sits over the photograph, and ink disappeared
+            into it. */}
         <div
           aria-hidden
-          className="cine-hint absolute right-5 bottom-20 hidden flex-col items-center gap-3 lg:flex"
+          className="cine-hint absolute top-1/2 right-4 z-20 hidden -translate-y-1/2 flex-col items-center gap-4 lg:flex"
         >
-          <span className="micro [writing-mode:vertical-rl] text-ink-mute">
+          <span className="micro [writing-mode:vertical-rl] text-bone/85 drop-shadow-[0_1px_3px_rgb(24_24_23/0.6)]">
             Scroll
           </span>
-          <span className="h-14 w-px bg-ink/30" />
+          <span className="h-16 w-px bg-bone/60" />
+          <span className="h-1.5 w-1.5 rounded-full bg-bone/70" />
+          <span className="h-1 w-1 rounded-full bg-bone/40" />
         </div>
       </div>
     </div>

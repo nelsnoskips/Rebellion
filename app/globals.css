@@ -333,11 +333,10 @@ body {
   overflow: hidden;
 }
 
+/* The scroll indicator is an affordance, not part of the film: it belongs on
+   the page whether or not an engine is running. Under `cine-on` the timeline
+   only fades it out as the scrub begins. */
 .cine-hint {
-  display: none;
-}
-
-.cine-on .cine-hint {
   display: flex;
 }
 
@@ -667,9 +666,6 @@ body {
     position: static;
   }
 
-  .cine-on .cine-hint {
-    display: none;
-  }
 }
 
 /* --- Utilities ----------------------------------------------------------- */
