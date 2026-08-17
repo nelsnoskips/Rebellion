@@ -169,20 +169,39 @@ changes.
 
 ## Art directions
 
-Two homepage treatments run side by side on the same content, the same tokens
-and the same photography, so choosing between them is only ever about
-treatment. `/directions` compares them.
+Two homepage treatments run on the same content, the same tokens and the same
+photography, so choosing between them is only ever about treatment.
 
-| Route | Direction |
+| Direction | Treatment |
 | --- | --- |
-| `/` | **Editorial** — photograph-led. Full-bleed frames, dark bands as the spine of the page, paper tearing between them. |
-| `/collage` | **Collage** — paper-led. Every photograph is a sheet torn out and laid down, half printed as ink, handwriting in the margins. Opens on a cinematic scroll-scrubbed hero. |
+| **Editorial** | Photograph-led. Full-bleed frames, dark bands as the spine of the page, paper tearing between them. |
+| **Collage** | Paper-led. Every photograph is a sheet torn out and laid down, half printed as ink, handwriting in the margins. Opens on a cinematic scroll-scrubbed hero. |
 
-`/collage` and `/directions` are `noindex`. Once a direction is chosen, delete
-the loser along with `components/collage/` (or fold it into `app/page.tsx`) —
-nothing else depends on either.
+### Two client sites from one codebase
 
-### The cinematic hero
+`NEXT_PUBLIC_DIRECTION` chooses which direction a deploy puts at `/`. The two
+client review sites are the *same commit* with one environment variable
+different, so content fixes land in both with nothing to keep in sync.
+
+| `NEXT_PUBLIC_DIRECTION` | `/` | Also served |
+| --- | --- | --- |
+| `editorial` | Editorial | — |
+| `collage` | Collage | — |
+| _unset_ | Editorial | `/collage`, `/directions` — the internal review build |
+
+The "Compare directions" chip and `/directions` only appear on the internal
+build; a client link shows one site and no way to wander into the other.
+
+Every build is `noindex` while the site is a preview of something unlaunched
+carrying placeholder content. Remove that from `app/page.tsx` at launch.
+
+To set one up on Netlify: **Add new site → Import an existing project →** this
+repo, branch `main`. Leave build command and publish directory blank —
+`netlify.toml` supplies them. Then **Site configuration → Environment
+variables → Add** `NEXT_PUBLIC_DIRECTION`. Repeat for the second site with the
+other value.
+
+### The cinematic hero### The cinematic hero
 
 `/collage` opens on a pinned stage the visitor scrubs through while the page
 assembles itself — washes bloom, the photograph tears into the corner, the
