@@ -27,7 +27,12 @@ if (!dir || !rawBase) {
   process.exit(1);
 }
 
-const base = rawBase.replace(/\/$/, "");
+const base = rawBase.replace(/\/+$/, "");
+if (!base) {
+  // Mounted at a domain root: nothing to rebase.
+  console.log("no base path — asset URLs left as they are");
+  process.exit(0);
+}
 // `.js` is included because client components build mask and image URLs at
 // runtime from string literals in the bundle, which no build step rewrites.
 const PUBLIC_DIRS = ["images", "brand", "artwork"];

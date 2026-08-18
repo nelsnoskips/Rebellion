@@ -177,31 +177,41 @@ photography, so choosing between them is only ever about treatment.
 | **Editorial** | Photograph-led. Full-bleed frames, dark bands as the spine of the page, paper tearing between them. |
 | **Collage** | Paper-led. Every photograph is a sheet torn out and laid down, half printed as ink, handwriting in the margins. Opens on a cinematic scroll-scrubbed hero. |
 
-### Two client sites from one codebase
+### Showing them to a client
 
-`NEXT_PUBLIC_DIRECTION` chooses which direction a deploy puts at `/`. The two
-client review sites are the *same commit* with one environment variable
-different, so content fixes land in both with nothing to keep in sync.
+Both directions ship in one build, as two paths — one site, one repo, one DNS
+record, however many clients you take on:
 
-| `NEXT_PUBLIC_DIRECTION` | `/` | Also served |
-| --- | --- | --- |
-| `editorial` | Editorial | — |
-| `collage` | Collage | — |
-| _unset_ | Editorial | `/collage`, `/directions` — the internal review build |
+| Path | |
+| --- | --- |
+| `/rebellion-a` | Direction A — editorial |
+| `/rebellion-b` | Direction B — collage |
+| `/` | Direction A, so the project root lands on work rather than a chooser |
 
-The "Compare directions" chip and `/directions` only appear on the internal
-build; a client link shows one site and no way to wander into the other.
+A small A/B control sits bottom-left on those three pages, so one link opens
+the door to both. Interior pages (`/menus`, `/happenings`, …) are shared.
 
-Every build is `noindex` while the site is a preview of something unlaunched
-carrying placeholder content. Remove that from `app/page.tsx` at launch.
+`SITE_BASE_PATH` mounts the whole project under a path, so a single previews
+site can carry several projects side by side:
 
-To set one up on Netlify: **Add new site → Import an existing project →** this
-repo, branch `main`. Leave build command and publish directory blank —
-`netlify.toml` supplies them. Then **Site configuration → Environment
-variables → Add** `NEXT_PUBLIC_DIRECTION`. Repeat for the second site with the
-other value.
+```
+SITE_BASE_PATH=/production   →   previews.<studio>/production/rebellion-a
+                                 previews.<studio>/production/rebellion-b
+```
 
-### The cinematic hero### The cinematic hero
+`netlify.toml` runs `scripts/rebase-assets.mjs` after the build to fix the
+asset URLs Next's `basePath` does not reach — `url()` in CSS, `next/image`
+sources under `unoptimized`, and paths built at runtime in client components.
+With `SITE_BASE_PATH` unset both are no-ops and the site serves from the root.
+
+Everything is `noindex`: these are mocks of an unlaunched site carrying
+placeholder content. The client hosts the real thing themselves once they have
+chosen, so this deploy is disposable — the handoff is the repository.
+
+Routes are labelled A and B rather than by treatment, so the client reacts to
+what they see instead of to what we called it.
+
+### The cinematic hero### The cinematic hero### The cinematic hero
 
 `/collage` opens on a pinned stage the visitor scrubs through while the page
 assembles itself — washes bloom, the photograph tears into the corner, the

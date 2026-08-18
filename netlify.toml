@@ -9,7 +9,12 @@
 # so the deploy stays correct no matter how the site was first connected.
 
 [build]
-  command = "npm run build"
+  # SITE_BASE_PATH mounts the whole project under a path, so one previews site
+  # can carry several projects side by side:
+  #   previews.<studio>/production/rebellion-a
+  # The rebase step fixes the asset URLs Next's basePath does not reach. With
+  # SITE_BASE_PATH unset both are no-ops and the site serves from the root.
+  command = "npm run build && node scripts/rebase-assets.mjs out \"${SITE_BASE_PATH:-/}\""
   publish = "out"
 
 [build.environment]
