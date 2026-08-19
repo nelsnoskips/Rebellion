@@ -48,12 +48,34 @@ SUFFIXES = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff", ".heic"}
 # the roles named; anything unlisted gets all of them, which is the right
 # default for a photo that has just arrived and has no slot yet.
 PLAN = {
+    # --- Nelson's originals ---------------------------------------------
     "short-rib-booth": ["hero"],        # hero
     "pappardelle-ragu": ["hero"],       # table — menus masthead
     "burger-fries-neon": ["feature"],   # featuredFood
     "squid-ink-pasta": ["card"],        # dine
     "long-table-dinner": ["card"],      # gather
     "bourgogne-radicchio": ["card"],    # takeItHome
+    # --- The client's commissioned shoot ---------------------------------
+    # Lookbook, OpenTable and bar sets, 6000x4000 originals in their Drive.
+    "espresso-martini-neon": ["feature"],   # featuredCocktail
+    "bartender-flame": ["feature"],         # chefPass
+    "bartender-back-bar": ["feature"],      # bar
+    "bartender-pour": ["card"],             # eventLiveMusic
+    "cocktail-quartet": ["card"],           # eventCocktailClass
+    "skillet-cornbread": ["card"],          # eventBrunch
+    "shared-board": ["feature"],            # board
+    "dining-room-full": ["feature"],        # diningRoom
+    "mural-wall-room": ["feature"],         # beachside
+    "mirror-diners": ["feature"],           # annexRoom
+    "table-brick-candle": ["feature"],      # privateEvents
+    "bar-pour-guests": ["feature"],         # bottleShop
+    "bar-crowd": ["card"],                  # eventBuyout
+    "table-candle-detail": ["card"],        # eventWineDinner
+    # Held for later: extra plates from the same shoot, not yet placed.
+    "roast-barley-plate": ["card"],
+    "steak-frites": ["card"],
+    "pasta-arugula-plate": ["card"],
+    "old-fashioned": ["card"],
 }
 
 

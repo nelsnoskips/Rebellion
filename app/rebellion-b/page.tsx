@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
 import { CollageHome } from "@/components/collage/CollageHome";
-import { DirectionSwitch } from "@/components/site/DirectionSwitch";
 
 export const metadata: Metadata = {
-  title: "Direction B",
+  title: "Collage direction",
   robots: { index: false, follow: false },
 };
 
-/** Direction B — collage. */
-export default function RebellionBPage() {
-  return (
-    <>
-      <CollageHome />
-      <DirectionSwitch current="b" />
-    </>
-  );
+/**
+ * The collage direction, kept as an archive.
+ *
+ * The client chose the editorial direction, so nothing links here any more and
+ * this is no longer maintained against the brand book or the photography. It
+ * stays because the masthead's scroll choreography is the most involved thing
+ * in the project and is worth having to hand — not because it is still on the
+ * table.
+ */
+export default function CollageArchivePage() {
+  return <CollageHome />;
 }

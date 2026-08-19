@@ -1,27 +1,24 @@
 /**
- * Placeholder photography.
+ * The site's photography.
  *
- * Every image on the site is addressed by a *slot name*, never by URL. The
- * slots follow the blueprint §12 shot list, so when the two production shoot
- * days land, swapping a slot's `src` to a local `/images/...` file replaces the
- * photograph everywhere it appears — no component edits.
+ * Every image is addressed by a *slot name*, never by URL, so re-shooting a
+ * subject is a one-line change here rather than an edit in every component
+ * that happens to show it. Slots follow the blueprint §12 shot list.
  *
- * Real photography lives in /public/images, sized by
- * scripts/optimize-photos.py from the originals in /photos. Slots still on
- * Unsplash stock are the ones the client has not shot yet; `next.config.ts`
- * allowlists that host, and the remotePattern comes out once the last one is
- * replaced.
+ * All of it is the client's own. The originals are 6000×4000 frames from their
+ * commissioned lookbook, OpenTable and bar shoots, archived at 3000px in
+ * /photos and sized for the web by scripts/optimize-photos.py. Nothing here is
+ * stock and nothing is generated — where a subject has not been photographed
+ * yet the `brief` says so and the slot borrows the closest true frame rather
+ * than inventing the shot.
  */
 
 export type ImageSlot = {
-  /** Blueprint shot-list note — what the real photograph should show. */
+  /** What the real photograph should show — the shot-list note. */
   brief: string;
   src: string;
   alt: string;
 };
-
-const unsplash = (id: string, w = 2000) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
 export const images = {
   /* --- Hero + brand ----------------------------------------------------- */
@@ -31,9 +28,9 @@ export const images = {
     alt: "A braised short rib on gnocchi in a candlelit booth, with red wine and a charcuterie board alongside",
   },
   chefPass: {
-    brief: "Shoot day 01 — chef at the pass finishing a plate, hands and concentration.",
-    src: unsplash("photo-1541557435984-1c79685a082b"),
-    alt: "A chef plating a dish at the kitchen pass",
+    brief: "Shoot day 01 — the craft moment, hands and concentration. Currently the bar rather than the pass; a kitchen frame would be better.",
+    src: "/images/bartender-flame-feature.webp",
+    alt: "A bartender flaming the surface of a layered cocktail behind the bar",
   },
 
   /* --- Choose your Rebellion (blueprint §07 module 02) ------------------- */
@@ -60,41 +57,41 @@ export const images = {
     alt: "A burger with arugula and hand-cut fries under the neon of the bar",
   },
   featuredCocktail: {
-    brief: "Shoot day 01 — cocktail being finished at the bar, backlit.",
-    src: unsplash("photo-1470337458703-46ad1756a187", 1600),
-    alt: "A cocktail being strained over ice at the bar",
+    brief: "Shoot day 01 — cocktail finished at the bar, backlit.",
+    src: "/images/espresso-martini-neon-feature.webp",
+    alt: "A coupe of espresso martini on the bar, the red Rebel neon burning behind it",
   },
   privateEvents: {
-    brief: "Shoot day 02 — the Annex set for a long-table dinner, candles lit.",
-    src: unsplash("photo-1522336572468-97b06e8ef143", 1600),
-    alt: "A long table set for a private dinner in a dark room",
+    brief: "Shoot day 02 — the Annex set for a long-table dinner, candles lit. This is a two-top rather than the long table; a set-room frame is still to come.",
+    src: "/images/table-brick-candle-feature.webp",
+    alt: "A candlelit table laid against exposed brick",
   },
 
   /* --- Rooms + retail ---------------------------------------------------- */
   diningRoom: {
     brief: "Shoot day 01 — wide room, warm, occupied.",
-    src: unsplash("photo-1485686531765-ba63b07845a7", 1800),
-    alt: "The warm, art-hung dining room in daylight",
+    src: "/images/dining-room-full-feature.webp",
+    alt: "The dining room full of guests, art hung frame to frame on the walls",
   },
   bar: {
     brief: "Shoot day 01 — back bar, bottles, working bartender.",
-    src: unsplash("photo-1514933651103-005eec06c04b", 1800),
-    alt: "The back bar, lit and stocked",
+    src: "/images/bartender-back-bar-feature.webp",
+    alt: "A bartender at the back bar, bottles stacked to the ceiling behind him",
   },
   bottleShop: {
-    brief: "Shoot day 02 — shelves, labels, hands pulling a bottle.",
-    src: unsplash("photo-1516594915697-87eb3b1c14ea", 1800),
-    alt: "A shelf of wine bottles lined up label-out",
+    brief: "Shoot day 02 — shelves, labels, hands pulling a bottle. Not photographed yet; this is the bar rather than the retail shelf.",
+    src: "/images/bar-pour-guests-feature.webp",
+    alt: "Guests at the bar while a bartender pours",
   },
   beachside: {
-    brief: "Shoot day 01 — exterior and terrace at golden hour, Cocoa Beach.",
-    src: unsplash("photo-1470158499416-75be9aa0c4db", 1800),
-    alt: "Two glasses of wine on a rail at golden hour above the water",
+    brief: "Shoot day 01 — exterior and terrace at golden hour. No exterior frame exists yet; the painted wall does the work of saying where you are.",
+    src: "/images/mural-wall-room-feature.webp",
+    alt: "The dining room with the Rebellion mural painted across the back wall",
   },
   annexRoom: {
     brief: "Shoot day 02 — the Annex, second configuration, guests present.",
-    src: unsplash("photo-1543007630-9710e4a00a20", 1800),
-    alt: "A private dining room under warm pendant lights",
+    src: "/images/mirror-diners-feature.webp",
+    alt: "Guests at dinner, caught in the reflection of a wall mirror",
   },
   table: {
     brief: "Shoot day 01 — shared table, several dishes, hands reaching.",
@@ -102,36 +99,36 @@ export const images = {
     alt: "Pappardelle in ragù under a blanket of shaved cheese and thyme",
   },
   board: {
-    brief: "Shoot day 01 — charcuterie and cheese board, dark ground.",
-    src: unsplash("photo-1478145046317-39f10e56b5e9", 1400),
-    alt: "A charcuterie board with figs, olives and cured meat",
+    brief: "Shoot day 01 — the board, dark ground, built for the middle of the table.",
+    src: "/images/shared-board-feature.webp",
+    alt: "A shared board of dips, fries, cured meat and pickles spread across the table",
   },
 
   /* --- Happenings (blueprint §07 module 03) ------------------------------ */
   eventLiveMusic: {
-    brief: "Shoot day 01 — the trio playing in the corner of the room.",
-    src: unsplash("photo-1493225457124-a3eb161ffa5f", 1200),
-    alt: "A musician performing under stage light",
+    brief: "Shoot day 01 — the trio playing in the corner of the room. Not photographed yet; this is the bar in service.",
+    src: "/images/bartender-pour-card.webp",
+    alt: "A bartender building a drink at the bar",
   },
   eventWineDinner: {
     brief: "Shoot day 01 — pour at a seated wine dinner, glasses lined up.",
-    src: unsplash("photo-1519671482749-fd09be7ccebf", 1200),
-    alt: "Guests tasting wine around a table",
+    src: "/images/table-candle-detail-card.webp",
+    alt: "A candle burning on a laid table, glasses waiting",
   },
   eventBrunch: {
-    brief: "Shoot day 01 — brunch spread in daylight, mimosas in frame.",
-    src: unsplash("photo-1533777324565-a040eb52facd", 1200),
-    alt: "A brunch spread photographed from above",
+    brief: "Shoot day 01 — brunch spread in daylight.",
+    src: "/images/skillet-cornbread-card.webp",
+    alt: "Cornbread baked and served in a cast-iron skillet",
   },
   eventCocktailClass: {
-    brief: "Shoot day 01 — three finished cocktails on the bar rail.",
-    src: unsplash("photo-1551024709-8f23befc6f87", 1200),
-    alt: "Three cocktails lined up on a lit bar",
+    brief: "Shoot day 01 — finished cocktails on the bar rail.",
+    src: "/images/cocktail-quartet-card.webp",
+    alt: "Four cocktails arranged together, garnished and lit from above",
   },
   eventBuyout: {
     brief: "Shoot day 02 — full-room celebration, people occupying the space.",
-    src: unsplash("photo-1550966871-3ed3cdb5ed0c", 1200),
-    alt: "A banquet room set for a celebration",
+    src: "/images/bar-crowd-card.webp",
+    alt: "A full bar of guests talking over drinks",
   },
 } satisfies Record<string, ImageSlot>;
 

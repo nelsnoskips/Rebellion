@@ -1,24 +1,21 @@
 import type { Metadata } from "next";
 import { EditorialHome } from "@/components/home/EditorialHome";
-import { DirectionSwitch } from "@/components/site/DirectionSwitch";
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
 /**
- * The project root shows Direction A rather than a menu of directions — a
- * client arriving here should land on work, not on a chooser.
+ * The homepage. The client picked the editorial direction, so this is now the
+ * site rather than one of two options — the A/B switch is gone and `/` is the
+ * front door.
  *
  * Rendered, not redirected: `redirect()` has no runtime to execute in a static
  * export and prerenders an error page instead, which builds green and ships
  * broken.
+ *
+ * Still noindex until the client is ready to launch.
  */
 export default function IndexPage() {
-  return (
-    <>
-      <EditorialHome />
-      <DirectionSwitch current="a" />
-    </>
-  );
+  return <EditorialHome />;
 }

@@ -37,15 +37,12 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    // A static export has no image optimizer. Placeholder photography is
-    // already sized by Unsplash through its own `w`/`q` parameters, so nothing
-    // is lost today — but when real files land in /public/images they need to
-    // be exported at sensible sizes, or this project needs the Next runtime.
+    // A static export has no image optimizer, so every file is served exactly
+    // as it sits in /public/images. That is fine because nothing goes in there
+    // by hand: scripts/optimize-photos.py sizes each photograph to the widths
+    // its slot actually renders at. No remote hosts are allowed — all of the
+    // photography is the client's own and is served from this origin.
     unoptimized: true,
-    // Placeholder photography while the brand shoot (blueprint §12, days
-    // 01–02) is produced. Swap the entries in lib/images.ts for local files
-    // and this can go.
-    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
   },
 };
 
