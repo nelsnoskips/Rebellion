@@ -52,10 +52,12 @@ export function HappeningsRail() {
       aria-labelledby="happenings-heading"
       className="paper-grain relative overflow-hidden bg-bone"
     >
-      {/* The logotype sits in the paper like a printer's watermark. */}
+      {/* The logotype sits in the paper like a printer's watermark. Offsets
+          account for the clear space the artwork now carries: the ink sits 14%
+          in from the left of its box and 33% up from the bottom. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-14 -left-24 w-[380px] opacity-[0.035] select-none"
+        className="pointer-events-none absolute -bottom-[166px] -left-[164px] w-[486px] opacity-[0.035] select-none"
       >
         <Logotype />
       </div>

@@ -53,17 +53,24 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
         solid ? "bg-bone" : "bg-gradient-to-b from-ink/70 to-transparent",
       )}
     >
-      <div className="flex h-20 items-center justify-between pl-4 pr-4 md:h-[88px] md:pl-6 md:pr-6">
+      <div className="flex h-20 items-center justify-between pl-4 pr-4 md:h-24 md:pl-6 md:pr-6">
         {/* The logotype sits in the bar itself rather than on a raised plate.
             Contrast over a hero frame comes from swapping to the knockout
             artwork, cross-faded so it reads as part of the bar turning from
-            transparent to bone rather than as an image reloading. */}
+            transparent to bone rather than as an image reloading.
+
+            Sized so the artwork's baked-in clear space fills the bar: the box
+            is the bar's full height, which puts the ink at about two thirds of
+            it with the guide's margin above and below. Sizing by width instead
+            is what left the mark jammed against both edges — and the bar is
+            96px rather than 88 because that is what the mark needs to hold its
+            old size once its clear space is honoured. */}
         <Link
           href="/"
           aria-label={`${site.shortName} — home`}
           className="relative z-10 block shrink-0 transition-opacity duration-[var(--dur-micro)] ease-[var(--ease-ui)] hover:opacity-75"
         >
-          <span className="relative block w-[118px] md:w-[146px]">
+          <span className="relative block w-[117px] md:w-[141px]">
             <Logotype
               priority
               className={cn(

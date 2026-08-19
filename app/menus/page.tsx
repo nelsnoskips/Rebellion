@@ -25,7 +25,7 @@ export default function MenusPage() {
     >
       <nav
         aria-label="Menu sections"
-        className="sticky top-20 z-30 border-b border-rule bg-bone/95 backdrop-blur-sm md:top-[88px]"
+        className="sticky top-20 z-30 border-b border-rule bg-bone/95 backdrop-blur-sm md:top-24"
       >
         <ul className="no-scrollbar flex gap-6 overflow-x-auto px-6 py-4 md:px-10">
           {menuSections.map((s) => (

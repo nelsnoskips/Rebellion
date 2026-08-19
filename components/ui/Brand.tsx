@@ -2,8 +2,16 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /**
- * The logotype, converted from the supplied 1C vector artwork. `knockout`
- * renders the white version for ink and oxblood grounds.
+ * The logotype, rendered from the supplied 1C vector by
+ * scripts/build-logotype.py. `knockout` is the bone copy for ink and oxblood
+ * grounds; both are the same geometry to the pixel, so cross-fading one into
+ * the other does not move the mark.
+ *
+ * The art carries the style guide's clear space inside the file — the height
+ * and width of the N in Rébellion on every side — so a placement only has to
+ * put the box somewhere and the margin comes with it. That also means the box
+ * is larger than the ink: the mark reads about two thirds the height of the
+ * space it occupies, which is the point.
  */
 export function Logotype({
   knockout = false,
@@ -26,8 +34,8 @@ export function Logotype({
           : "/brand/rebellion-logotype.png"
       }
       alt={alt}
-      width={1109}
-      height={583}
+      width={1970}
+      height={1343}
       priority={priority}
       className={cn("h-auto w-full", className)}
     />

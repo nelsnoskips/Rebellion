@@ -15,10 +15,11 @@ export function Footer() {
         className="top-6 left-[38%] hidden h-36 w-36 text-bone lg:block"
       />
 
-      {/* Oversized seal watermark — secondary texture, blueprint §05. */}
+      {/* Oversized seal watermark — secondary texture, blueprint §05. Offsets
+          account for the clear space baked into the artwork. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-16 -bottom-20 w-[380px] opacity-[0.07] select-none"
+        className="pointer-events-none absolute -right-[132px] -bottom-[190px] w-[486px] opacity-[0.07] select-none"
       >
         <Logotype knockout />
       </div>
