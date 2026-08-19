@@ -15,7 +15,7 @@ export function VisitBand() {
       <Bloom
         variant="b"
         opacity={40}
-        className="-right-24 -bottom-32 h-[420px] w-[460px] text-wash-sky"
+        className="-right-24 -bottom-32 h-[420px] w-[460px] text-wash-violet"
       />
       <Reveal className="art-frame relative min-h-[300px] lg:min-h-[440px]">
         <Image

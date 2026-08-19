@@ -15,7 +15,7 @@ export function BottleShopFeature() {
       <Bloom
         variant="c"
         opacity={14}
-        className="-top-32 right-[6%] h-[520px] w-[560px] text-wash-sky"
+        className="-top-32 right-[6%] h-[520px] w-[560px] text-wash-violet"
       />
 
       <div className="relative grid lg:grid-cols-[1fr_1.05fr]">
@@ -73,7 +73,7 @@ export function BottleShopFeature() {
                       {b.producer} · {b.region} · {b.vintage}
                     </span>
                   </span>
-                  <span className="micro figure shrink-0 text-brass">${b.price}</span>
+                  <span className="micro figure shrink-0 text-brass-ink">${b.price}</span>
                 </li>
               ))}
             </ul>

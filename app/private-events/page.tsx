@@ -32,7 +32,7 @@ export default function PrivateEventsPage() {
       image="privateEvents"
     >
       <section className="paper-grain relative overflow-hidden bg-bone">
-        <Bloom variant="a" opacity={50} className="-top-36 -left-28 h-[500px] w-[540px] text-wash-blush" />
+        <Bloom variant="a" opacity={50} className="-top-36 -left-28 h-[500px] w-[540px] text-wash-coral" />
         <div className="relative mx-auto max-w-[1200px] px-6 py-16 md:px-10 lg:py-20">
           <Reveal>
             <dl className="grid grid-cols-2 gap-x-8 gap-y-8 border-b border-rule pb-12 sm:grid-cols-4">
@@ -110,7 +110,7 @@ export default function PrivateEventsPage() {
       </section>
 
       <section className="paper-grain relative overflow-hidden bg-paper">
-        <Bloom variant="c" opacity={45} className="-right-32 -bottom-32 h-[460px] w-[500px] text-wash-sage" />
+        <Bloom variant="c" opacity={45} className="-right-32 -bottom-32 h-[460px] w-[500px] text-wash-tan" />
         <div className="relative mx-auto grid max-w-[1200px] gap-12 px-6 py-16 md:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-24">
           <Reveal>
             <h2 className="display text-[clamp(2rem,3.6vw,3rem)]">

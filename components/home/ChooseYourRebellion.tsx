@@ -23,12 +23,12 @@ export function ChooseYourRebellion() {
       <Bloom
         variant="a"
         opacity={45}
-        className="-top-24 -left-24 h-[380px] w-[420px] text-wash-blush"
+        className="-top-24 -left-24 h-[380px] w-[420px] text-wash-coral"
       />
       <Bloom
         variant="b"
         opacity={38}
-        className="-bottom-24 left-[6%] h-[320px] w-[360px] text-wash-sky"
+        className="-bottom-24 left-[6%] h-[320px] w-[360px] text-wash-violet"
       />
       <InkSplatter
         variant="spray"

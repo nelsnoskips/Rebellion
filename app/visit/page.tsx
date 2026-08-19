@@ -50,7 +50,7 @@ export default function VisitPage() {
       image="beachside"
     >
       <section className="paper-grain relative overflow-hidden bg-bone">
-        <Bloom variant="c" opacity={50} className="-top-32 right-[6%] h-[440px] w-[480px] text-wash-sage" />
+        <Bloom variant="c" opacity={50} className="-top-32 right-[6%] h-[440px] w-[480px] text-wash-tan" />
         <InkSplatter variant="spray" opacity={9} className="-bottom-8 left-[8%] hidden h-40 w-40 text-ink lg:block" />
         <div className="relative mx-auto max-w-[1100px] px-6 py-16 md:px-10 lg:py-24">
           <div className="grid gap-10 border-b border-rule pb-14 sm:grid-cols-3">

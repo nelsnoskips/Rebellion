@@ -190,14 +190,15 @@ export default function BrandReferencePage() {
         {/* --- Open questions --------------------------------------------- */}
         <Section
           title="Still open"
-          lede="Four things the guide cannot settle on its own."
+          lede="Five things the guide cannot settle on its own."
         >
           <ol className="sg-open">
             <li>
               <strong>Archer needs a web licence.</strong> The guide specifies it
               for all body copy. It was not in the hand-off, and a desktop
-              licence would not cover the web in any case. Body copy runs on the
-              interface sans until Hoefler&amp;Co is sorted.
+              licence would not cover the web in any case. Body copy runs on
+              Bitter — a slab of the same construction, drawn for screen text —
+              until Hoefler&amp;Co is sorted, and swaps back on one token.
             </li>
             <li>
               <strong>The three supplied faces are desktop licences.</strong>{" "}
@@ -208,7 +209,15 @@ export default function BrandReferencePage() {
             <li>
               <strong>PMS 5503 C prints two ways.</strong> #34657F is written on
               page 4; the chip beside it, and the reversed panel on page 2, are
-              a much paler #91B6BC. The site carries both.
+              a much paler #91B6BC. The site runs on the written value and
+              carries the printed one alongside it.
+            </li>
+            <li>
+              <strong>Two colours cannot carry text.</strong> PMS 142 sits at
+              1.5:1 against the paper ground and Cool Gray 7 at 2.5:1, both far
+              under the 4.5:1 that body copy needs. Each keeps its exact value
+              for fills, rules and artwork, and hands type to a darkened
+              companion at the same hue.
             </li>
             <li>
               <strong>This is the Wine Bar&rsquo;s guide.</strong> The site is

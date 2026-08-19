@@ -8,17 +8,37 @@
    ========================================================================== */
 
 :root {
-  /* Core palette (blueprint §05) */
-  --ink: #181817;
+  /* --- Core palette --------------------------------------------------------
+     The interface runs on the client's house palette (their style guide, p4;
+     the six colours are also listed below as `--brand-*` under their own
+     names). Each role here points at the approved colour that fits it, so a
+     component still asks for `text-signal` or `bg-oxblood` and gets a brand
+     colour rather than an approximation of one.
+
+     Contrast was checked against the paper ground for every value that carries
+     text. Where an approved colour cannot carry text — PMS 142 sits at 1.5:1
+     on paper — the pure colour is kept for fills and a darkened companion at
+     the same hue carries the type. Nothing here is eyeballed. */
+  --ink: #000000;         /* Process Black — STYLISH */
   --bone: #f4efe6;
-  /* The blueprint's oxblood, not the style guide's PMS 1945 C. Point this
-     at var(--brand-red) to move both directions onto the house red — one
-     line, and every accent, rule and hover follows. Held here so the
-     previews stay identical to what the client has already reviewed. */
-  --oxblood: #742a32;
-  --brass: #b6955b;
-  --atlantic: #284c54;
-  --signal: #d25a43;
+  --oxblood: #a60a3d;     /* PMS 1945 C — BOLD */
+  --brass: #f1be48;       /* PMS 142 C — VERSATILE */
+  --atlantic: #34657f;    /* PMS 5503 C — ACCESSIBLE */
+  --signal: #693c5e;      /* PMS 5125 C — COMFORTABLE */
+
+  /* The paper ground is the one thing not taken from the guide. The guide
+     specifies white as the preferred background *for the logo*, and says
+     nothing about a page ground; the warm paper is the substrate both art
+     directions are built on, and the watercolour and torn-paper artwork only
+     reads against it. Set --bone and --paper to #fff to go white. */
+  --paper: #fbf8f2;
+
+  /* Derived surfaces — kept few on purpose. */
+  --ink-soft: #221f1f;    /* the rich black the guide actually prints */
+  --ink-mute: #68696c;    /* Cool Gray 7, darkened to 4.8:1 on paper */
+  --brass-ink: #85600a;   /* PMS 142's hue at reading weight, 5.0:1 */
+  --rule: #d8d5d0;        /* Cool Gray 7 at 30% over paper */
+  --rule-dark: #2a2b2c;
 
   /* --- Rébellion house palette ------------------------------------------
      The six approved colours from the client's style guide, p4
@@ -46,24 +66,14 @@
   --brand-gray: #97999b;
   --brand-gold: #f1be48;
 
-  /* Derived surfaces — kept few on purpose. */
-  --paper: #fbf8f2;
-  --ink-soft: #262523;
-  --ink-mute: #6d6a64;
-  --rule: #ddd4c5;
-  --rule-dark: #35332f;
-
-  /* Watercolour wash tints, sampled from the supplied lockup artwork by
-     scripts/build-brand.py (blush #f0c0c0/#f0d8d8, sky #c0d8f0/#d8f0f0,
-     and the cooler grey-green between them). Held slightly stronger than the
-     samples because they are painted at 40–60% opacity over bone.
-
-     Note the artwork's script red is roughly #a81830 — brighter than the brand
-     book's oxblood #742a32. The book governs the interface; the crimson stays
-     inside the artwork, where it belongs. */
-  --wash-blush: #ecc2c6;
-  --wash-sky: #bdd2e4;
-  --wash-sage: #c6d3c8;
+  /* Watercolour wash tints, sampled from the guide's own approved watercolour
+     texture (public/brand/watercolor.webp) by the median pigment value in each
+     hue family: coral #f7b2af, violet #a08dbf, tan #f5d4b8. Held a shade
+     stronger than the samples because they are painted at 40–60% opacity over
+     paper, which is how the texture reads on the page it came from. */
+  --wash-coral: #f2aaa5;
+  --wash-violet: #a58fc4;
+  --wash-tan: #eed0ae;
 
   /* Motion tokens (blueprint §08). Mirrored in lib/motion.ts for JS use. */
   --dur-micro: 160ms;
@@ -85,13 +95,14 @@
   --color-paper: var(--paper);
   --color-oxblood: var(--oxblood);
   --color-brass: var(--brass);
+  --color-brass-ink: var(--brass-ink);
   --color-atlantic: var(--atlantic);
   --color-signal: var(--signal);
   --color-rule: var(--rule);
   --color-rule-dark: var(--rule-dark);
-  --color-wash-blush: var(--wash-blush);
-  --color-wash-sky: var(--wash-sky);
-  --color-wash-sage: var(--wash-sage);
+  --color-wash-coral: var(--wash-coral);
+  --color-wash-violet: var(--wash-violet);
+  --color-wash-tan: var(--wash-tan);
   --color-brand-red: var(--brand-red);
   --color-brand-plum: var(--brand-plum);
   --color-brand-black: var(--brand-black);
@@ -100,7 +111,7 @@
   --color-brand-gray: var(--brand-gray);
   --color-brand-gold: var(--brand-gold);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body), Georgia, "Times New Roman", serif;
   --font-display: var(--font-festivo), Georgia, serif;
   --font-subhead: var(--font-trade), ui-sans-serif, system-ui, sans-serif;
   --font-editorial: var(--font-minion), Georgia, serif;
@@ -113,7 +124,7 @@ html {
 body {
   background: var(--bone);
   color: var(--ink);
-  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body), Georgia, "Times New Roman", serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

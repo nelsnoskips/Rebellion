@@ -46,7 +46,7 @@ export default function HappeningsPage() {
       image="eventLiveMusic"
     >
       <div className="paper-grain relative overflow-hidden bg-bone">
-        <Bloom variant="b" opacity={50} className="-top-36 -right-28 h-[500px] w-[540px] text-wash-sky" />
+        <Bloom variant="b" opacity={50} className="-top-36 -right-28 h-[500px] w-[540px] text-wash-violet" />
         <div className="relative mx-auto max-w-[1100px] px-6 py-16 md:px-10 lg:py-24">
           <ul className="divide-y divide-rule border-y border-rule">
             {happenings.map((event, i) => {

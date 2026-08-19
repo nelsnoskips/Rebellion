@@ -17,13 +17,13 @@ export function Statement() {
         variant="b"
         opacity={55}
         tilt={14}
-        className="-top-16 right-[8%] h-[280px] w-[280px] text-wash-sky"
+        className="-top-16 right-[8%] h-[280px] w-[280px] text-wash-violet"
       />
       <Splash
         variant="a"
         opacity={45}
         tilt={-9}
-        className="right-[26%] -bottom-10 hidden h-[200px] w-[200px] text-wash-blush lg:block"
+        className="right-[26%] -bottom-10 hidden h-[200px] w-[200px] text-wash-coral lg:block"
       />
       <div className="relative mx-auto grid max-w-[1500px] items-center gap-10 px-6 py-14 md:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <Reveal className="relative">
@@ -76,13 +76,13 @@ export function Trio() {
         variant="c"
         opacity={48}
         tilt={-15}
-        className="top-2 left-[40%] hidden h-[240px] w-[240px] text-wash-sage lg:block"
+        className="top-2 left-[40%] hidden h-[240px] w-[240px] text-wash-tan lg:block"
       />
       <Splash
         variant="a"
         opacity={42}
         tilt={22}
-        className="right-[4%] bottom-2 hidden h-[220px] w-[220px] text-wash-blush lg:block"
+        className="right-[4%] bottom-2 hidden h-[220px] w-[220px] text-wash-coral lg:block"
       />
       <ul className="relative mx-auto grid max-w-[1500px] gap-x-10 gap-y-12 px-6 py-14 md:px-10 lg:grid-cols-3">
         {experiences.map((exp, i) => {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Caveat, Inter } from "next/font/google";
+import { Bitter, Caveat } from "next/font/google";
 import localFont from "next/font/local";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -15,8 +15,7 @@ import "./globals.css";
  *   Archer                  body — a Hoefler&Co licence, not supplied
  *
  * Minion Pro came with the same hand-off and appears throughout the client's
- * InDesign menu files, so it carries the editorial serif voice until an Archer
- * web licence exists. Body and UI copy stay on Inter for the same reason.
+ * InDesign menu files, so it carries the editorial serif voice.
  *
  * `adjustFontFallback` is off on all three: these are display faces with
  * metrics far from any system font, and Next's synthetic fallback distorts
@@ -52,9 +51,18 @@ const minion = localFont({
 
 /* --- Supporting faces ---------------------------------------------------- */
 
-/** Body and interface copy — the stand-in for the guide's Archer. */
-const inter = Inter({
-  variable: "--font-inter",
+/**
+ * Body and interface copy.
+ *
+ * The guide sets all of it in Archer, a Hoefler&Co slab that did not come with
+ * the hand-off and needs a licence in any case. Bitter stands in: the same
+ * geometric slab construction and softened terminals, drawn for screen text at
+ * the sizes body copy actually runs at. It is a stand-in and reads as one —
+ * point `--font-body` at the real Archer the day there is a licence and every
+ * paragraph on the site follows.
+ */
+const bitter = Bitter({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
@@ -109,7 +117,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${festivo.variable} ${trade.variable} ${minion.variable} ${inter.variable} ${caveat.variable}`}
+      className={`${festivo.variable} ${trade.variable} ${minion.variable} ${bitter.variable} ${caveat.variable}`}
     >
       <body className="min-h-screen antialiased">
         <a

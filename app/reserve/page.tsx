@@ -28,7 +28,7 @@ export default function ReservePage() {
       image="gather"
     >
       <section className="paper-grain relative overflow-hidden bg-bone">
-        <Bloom variant="a" opacity={50} className="-top-32 -right-24 h-[460px] w-[500px] text-wash-blush" />
+        <Bloom variant="a" opacity={50} className="-top-32 -right-24 h-[460px] w-[500px] text-wash-coral" />
         <div className="relative mx-auto grid max-w-[1100px] gap-12 px-6 py-16 md:px-10 lg:grid-cols-[1.2fr_0.8fr] lg:py-24">
           <Reveal>
             <ResyWidget booking="diningRoom" />

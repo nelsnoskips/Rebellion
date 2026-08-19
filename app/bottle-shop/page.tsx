@@ -35,7 +35,7 @@ export default function BottleShopPage() {
       </div>
 
       <section className="paper-grain relative overflow-hidden bg-bone">
-        <Bloom variant="c" opacity={50} className="-top-32 -right-24 h-[460px] w-[500px] text-wash-sage" />
+        <Bloom variant="c" opacity={50} className="-top-32 -right-24 h-[460px] w-[500px] text-wash-tan" />
         <div className="relative mx-auto max-w-[1200px] px-6 py-16 md:px-10 lg:py-20">
           <Reveal>
             <DeliveryChecker />
@@ -121,7 +121,7 @@ export default function BottleShopPage() {
                 "Get a receipt, reorder in a tap, and skip the line next time.",
               ].map((step, i) => (
                 <li key={i} className="flex gap-4">
-                  <span className="display w-8 shrink-0 text-xl text-brass">
+                  <span className="display w-8 shrink-0 text-xl text-brass-ink">
                     0{i + 1}
                   </span>
                   <span>{step}</span>

@@ -120,8 +120,10 @@ export const BRAND_TYPE: BrandFace[] = [
     status: "not supplied",
     detail:
       "A Hoefler&Co family; the guide shows Light through Bold with italics. " +
-      "It did not come with the hand-off and needs a web licence, so body " +
-      "copy runs on the interface sans until one exists.",
+      "It did not come with the hand-off and needs a web licence. Body copy " +
+      "runs on Bitter until one exists — the same geometric slab " +
+      "construction, drawn for screen text, and one token away from the real " +
+      "thing.",
   },
   {
     name: "Minion Pro",

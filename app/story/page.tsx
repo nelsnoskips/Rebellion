@@ -43,8 +43,8 @@ export default function StoryPage() {
       image="diningRoom"
     >
       <section className="paper-grain relative overflow-hidden bg-bone">
-        <Bloom variant="a" opacity={55} className="-top-40 -left-32 h-[520px] w-[560px] text-wash-blush" />
-        <Bloom variant="b" opacity={45} className="right-[4%] -bottom-40 h-[460px] w-[500px] text-wash-sky" />
+        <Bloom variant="a" opacity={55} className="-top-40 -left-32 h-[520px] w-[560px] text-wash-coral" />
+        <Bloom variant="b" opacity={45} className="right-[4%] -bottom-40 h-[460px] w-[500px] text-wash-violet" />
         <div className="relative mx-auto max-w-[1100px] px-6 py-16 md:px-10 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <Reveal>

@@ -12,9 +12,11 @@ vector artwork turns up, point SOURCES at it and raise the width.
 
     python3 scripts/build-brand.py
 
-Also prints the dominant watercolour hues sampled from the artwork, so the
-palette tokens in app/globals.css can be checked against the real thing rather
-than approximated.
+Also prints the dominant watercolour hues sampled from this lockup. Note that
+the `--wash-*` tokens in app/globals.css no longer come from here: they are
+sampled from the guide's own approved watercolour texture instead, which runs
+violet, coral and tan. What this prints is the bistro lockup's palette, useful
+for checking how far the two have drifted.
 """
 
 from __future__ import annotations

@@ -62,7 +62,7 @@ export function HappeningsRail() {
       <Bloom
         variant="c"
         opacity={50}
-        className="-top-24 right-[6%] h-[340px] w-[380px] text-wash-sage"
+        className="-top-24 right-[6%] h-[340px] w-[380px] text-wash-tan"
       />
 
       <div className="relative flex flex-col gap-6 px-6 py-14 md:px-10 lg:flex-row lg:items-center lg:gap-10">
@@ -128,7 +128,7 @@ export function HappeningsRail() {
                       {event.time}
                     </span>
                     {event.ticketed && (
-                      <span className="micro mt-2 self-start border border-brass/60 px-2 py-1 text-brass">
+                      <span className="micro mt-2 self-start border border-brass/70 px-2 py-1 text-brass-ink">
                         Ticketed
                       </span>
                     )}

@@ -40,21 +40,40 @@ one. Both are carried: `--brand-blue` holds the written value,
 `--brand-blue-tint` holds the printed one. Ask which is canonical before any
 print work goes out.
 
-### What the two directions still use
+### How the interface uses them
 
-Directions A and B were signed off on the blueprint's palette, which predates
-this guide. Their surfaces are untouched, so what the client has already seen
-is what they will see again. The one value worth a decision:
+Both directions now run on these colours. The blueprint's palette is gone: each
+role in `app/globals.css` points at the approved colour that fits it, so a
+component still asks for `text-signal` or `bg-oxblood` and gets a house colour.
 
-- `--oxblood` is `#742a32`, a deeper and browner red than the house
-  `#A60A3D`. Pointing `--oxblood` at `var(--brand-red)` is a one-line change in
-  `app/globals.css` and every accent, rule, button and hover state follows it.
-  Left as it is for now, deliberately.
+| Role         | Was       | Now       | Approved colour |
+| ------------ | --------- | --------- | --------------- |
+| `--ink`      | `#181817` | `#000000` | Process Black   |
+| `--oxblood`  | `#742a32` | `#A60A3D` | PMS 1945 C      |
+| `--signal`   | `#d25a43` | `#693C5E` | PMS 5125 C      |
+| `--atlantic` | `#284c54` | `#34657F` | PMS 5503 C      |
+| `--brass`    | `#b6955b` | `#F1BE48` | PMS 142 C       |
+| `--ink-mute` | `#6d6a64` | `#68696C` | Cool Gray 7, darkened |
+| `--rule`     | `#ddd4c5` | `#D8D5D0` | Cool Gray 7 at 30% over paper |
 
-The watercolour washes are a second, smaller gap. The guide's watercolour runs
-violet, coral and tan; the site's washes are blush, sky and sage, sampled from
-the bistro's own lockup artwork. Both are defensible — the bistro lockup is the
-bistro's — but they are not the same palette.
+**Two of the six cannot carry text.** Against the paper ground PMS 142 lands at
+1.5:1 and Cool Gray 7 at 2.5:1 — both far under the 4.5:1 that body copy needs,
+and using them as written would have made prices and captions unreadable. Each
+keeps its exact value for fills, borders and artwork; type moves to a darkened
+companion at the same hue (`--brass-ink` `#85600A` at 5.0:1, `--ink-mute`
+`#68696C` at 4.8:1). Every other role was checked and clears AA on paper:
+`--oxblood` 6.7:1, `--signal` 7.6:1, `--atlantic` 5.5:1.
+
+**The washes are the guide's watercolour now.** `--wash-coral`, `--wash-violet`
+and `--wash-tan` are the median pigment value in each hue family of
+`public/brand/watercolor.webp`, held a shade stronger because they paint at
+40–60% opacity. They replace the blush/sky/sage sampled from the bistro lockup.
+
+**The paper ground is the one deliberate hold.** The guide names white as the
+preferred background *for the logo* and says nothing about a page ground. The
+warm paper is the substrate both directions are built on, and the watercolour
+and torn-paper artwork only reads against it. Setting `--bone` and `--paper` to
+`#fff` goes white if the client wants that.
 
 ## Type
 
@@ -62,7 +81,7 @@ bistro's — but they are not the same palette.
 | --------------- | ---------------------- | ------------ | ----------------------------------------- |
 | Headline type   | Festivo Letters No. 18 | supplied     | `.display` — every headline in direction A |
 | Subhead style   | Trade Supply Textured  | supplied     | `.micro`, `.micro-wide`, `.display-collage` |
-| Body copy       | Archer                 | **missing**  | — |
+| Body copy       | Archer                 | **missing**  | stood in by Bitter — `--font-body` |
 | (not in guide)  | Minion Pro             | supplied     | `.display-soft` — pull quotes, statements |
 
 The three supplied faces are converted from the desktop OTFs in `brand/fonts/`
@@ -81,9 +100,15 @@ Notes on the mapping:
   smears the distressed edges that are the whole point of the face, so every
   rule that sets it pins the weight.
 - **Archer needs a licence.** Hoefler&Co, not in the hand-off. Body and
-  interface copy run on Inter until there is one. The `AdobeFnt*.lst` files
+  interface copy run on **Bitter** — the same geometric slab construction and
+  softened terminals, drawn for screen text at the sizes body copy actually
+  runs at. It is a stand-in and reads as one; point `--font-body` at the real
+  Archer and every paragraph on the site follows. The `AdobeFnt*.lst` files
   from the client's InDesign folder also reference Avenir throughout, which was
   likewise not supplied — it is a macOS system font and has the same problem.
+- **Figures stay on the body face.** Trade Supply's numerals are condensed and
+  distressed, which is right on a label and wrong down a column of prices, so
+  anything scanned rather than read takes `.figure` and keeps tabular spacing.
 
 ### Licensing
 
@@ -128,8 +153,12 @@ recalculating per breakpoint.
 
 ## Open, in order of what blocks what
 
-1. **Archer web licence.** Blocks body copy matching the guide.
+1. **Archer web licence.** Blocks body copy being the real thing rather than a
+   stand-in.
 2. **Web licences for Festivo, Trade Supply and Minion Pro.** Blocks public
    launch, not the preview.
-3. **PMS 5503 C — `#34657F` or `#91B6BC`?** Blocks print consistency.
-4. **Move the interface onto the house red?** One line. Client's call.
+3. **PMS 5503 C — `#34657F` or `#91B6BC`?** Blocks print consistency. The site
+   runs on the written value.
+4. **White page ground, or keep the paper?** Two tokens. Client's call, and it
+   changes the character of both directions more than anything else on this
+   list.

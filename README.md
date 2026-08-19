@@ -144,11 +144,12 @@ python3 scripts/extract-brand-kit.py  # splats, watercolour, pattern, lockup; ne
 | Headline type | Festivo Letters No. 18 | `--font-display`    |
 | Subhead style | Trade Supply Textured  | `--font-subhead`    |
 | Editorial     | Minion Pro             | `--font-editorial`  |
+| Body copy     | Archer — *not supplied*, stood in by Bitter | `--font-body` |
 
-Archer, the guide's body face, was not supplied and needs a Hoefler&Co web
-licence, so body copy stays on Inter. **All three supplied faces are desktop
-licences** — self-hosting them is a separate grant, fine for the unindexed
-previews and worth settling before launch.
+Archer needs a Hoefler&Co web licence; `--font-body` is the one token to
+repoint the day there is one. **All three supplied faces are desktop licences**
+— self-hosting them is a separate grant, fine for the unindexed previews and
+worth settling before launch.
 
 `scripts/extract-brand-kit.py` pulls page 6's sanctioned graphic elements —
 five ink splats, the watercolour texture, the signature pattern — plus the
@@ -157,10 +158,18 @@ pattern come out as alpha masks and drop into the same `.art-mask` system as
 the procedural artwork, so a `text-*` class recolours them.
 
 The six approved colours are tokens (`--brand-red`, `--brand-plum`,
-`--brand-black`, `--brand-blue`, `--brand-gray`, `--brand-gold`) and Tailwind
-utilities. `docs/brand-compliance.md` records where the site follows the guide,
-where it does not, and the four things still open — including the guide's own
-contradiction about PMS 5503 C.
+`--brand-black`, `--brand-blue`, `--brand-gray`, `--brand-gold`), and the
+interface runs on them: `--oxblood`, `--signal`, `--atlantic`, `--brass`,
+`--ink` and `--ink-mute` each point at the approved colour that fits the role,
+so a component still asks for `text-signal` and gets a house colour. The
+watercolour washes are sampled from the guide's own approved texture.
+
+Two of the six cannot carry text — PMS 142 sits at 1.5:1 on the paper ground
+and Cool Gray 7 at 2.5:1 — so each keeps its exact value for fills and artwork
+and hands type to a darkened companion at the same hue (`--brass-ink`,
+`--ink-mute`). Every contrast ratio is recorded in `docs/brand-compliance.md`,
+along with what still follows the guide, what does not, and the four things
+open — including the guide's own contradiction about PMS 5503 C.
 
 ## Swapping the placeholder photography
 

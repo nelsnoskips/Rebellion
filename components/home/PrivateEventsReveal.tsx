@@ -16,7 +16,7 @@ export function PrivateEventsReveal() {
       <Bloom
         variant="a"
         opacity={16}
-        className="-top-24 left-[18%] h-[520px] w-[560px] text-wash-blush"
+        className="-top-24 left-[18%] h-[520px] w-[560px] text-wash-coral"
       />
       <InkSplatter
         variant="spray"

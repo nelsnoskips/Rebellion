@@ -15,12 +15,12 @@ export function EditorialSplit() {
       <Bloom
         variant="b"
         opacity={50}
-        className="-right-40 -bottom-40 h-[560px] w-[620px] text-wash-sky"
+        className="-right-40 -bottom-40 h-[560px] w-[620px] text-wash-violet"
       />
       <Bloom
         variant="c"
         opacity={45}
-        className="-top-32 -left-24 h-[400px] w-[440px] text-wash-blush"
+        className="-top-32 -left-24 h-[400px] w-[440px] text-wash-coral"
       />
       <ChapterMark n="04" className="absolute bottom-6 left-6 hidden lg:block" />
 

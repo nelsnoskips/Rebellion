@@ -29,31 +29,31 @@ export function Masthead() {
           <Bloom
             variant="b"
             opacity={40}
-            className="top-[4%] right-[22%] h-[460px] w-[500px] text-wash-sky"
+            className="top-[4%] right-[22%] h-[460px] w-[500px] text-wash-violet"
           />
           <Splash
             variant="a"
             opacity={62}
             tilt={-12}
-            className="top-[8%] right-[6%] h-[300px] w-[300px] text-wash-blush"
+            className="top-[8%] right-[6%] h-[300px] w-[300px] text-wash-coral"
           />
           <Splash
             variant="b"
             opacity={55}
             tilt={20}
-            className="top-[30%] right-[30%] h-[220px] w-[220px] text-wash-sky"
+            className="top-[30%] right-[30%] h-[220px] w-[220px] text-wash-violet"
           />
           <Splash
             variant="c"
             opacity={45}
             tilt={-6}
-            className="bottom-[6%] right-[14%] hidden h-[260px] w-[260px] text-wash-sage lg:block"
+            className="bottom-[6%] right-[14%] hidden h-[260px] w-[260px] text-wash-tan lg:block"
           />
           <Splash
             variant="b"
             opacity={40}
             tilt={8}
-            className="bottom-[14%] left-[30%] hidden h-[180px] w-[180px] text-wash-blush lg:block"
+            className="bottom-[14%] left-[30%] hidden h-[180px] w-[180px] text-wash-coral lg:block"
           />
         </div>
 

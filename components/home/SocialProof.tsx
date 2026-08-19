@@ -27,7 +27,7 @@ export function SocialProof() {
       <Bloom
         variant="a"
         opacity={45}
-        className="-top-40 right-[4%] h-[440px] w-[480px] text-wash-blush"
+        className="-top-40 right-[4%] h-[440px] w-[480px] text-wash-coral"
       />
       <InkSplatter
         variant="b"
