@@ -11,10 +11,40 @@
   /* Core palette (blueprint §05) */
   --ink: #181817;
   --bone: #f4efe6;
+  /* The blueprint's oxblood, not the style guide's PMS 1945 C. Point this
+     at var(--brand-red) to move both directions onto the house red — one
+     line, and every accent, rule and hover follows. Held here so the
+     previews stay identical to what the client has already reviewed. */
   --oxblood: #742a32;
   --brass: #b6955b;
   --atlantic: #284c54;
   --signal: #d25a43;
+
+  /* --- Rébellion house palette ------------------------------------------
+     The six approved colours from the client's style guide, p4
+     (brand/Rebellion_Wine_Bar_Style_Guide.pdf). The guide is explicit that
+     the HEX/RGB values govern digital work and the PMS/CMYK values govern
+     print, so these are the stated hexes, not the printed swatch chips.
+
+     One caveat worth knowing: the swatch chip printed for PMS 5503 C reads
+     #91B6BC on the page — a pale teal — while the value written beside it is
+     the far deeper #34657F. Both are kept. The stated hex is the token; the
+     printed tint is available for the washes and reversed panels that page 2
+     actually uses it for.
+
+       BOLD        PMS 1945 C       #A60A3D
+       COMFORTABLE PMS 5125 C       #693C5E
+       STYLISH     Process Black    #000000
+       ACCESSIBLE  PMS 5503 C       #34657F
+       DEPENDABLE  PMS Cool Gray 7  #97999B
+       VERSATILE   PMS 142 C        #F1BE48                                */
+  --brand-red: #a60a3d;
+  --brand-plum: #693c5e;
+  --brand-black: #000000;
+  --brand-blue: #34657f;
+  --brand-blue-tint: #91b6bc;
+  --brand-gray: #97999b;
+  --brand-gold: #f1be48;
 
   /* Derived surfaces — kept few on purpose. */
   --paper: #fbf8f2;
@@ -62,9 +92,18 @@
   --color-wash-blush: var(--wash-blush);
   --color-wash-sky: var(--wash-sky);
   --color-wash-sage: var(--wash-sage);
+  --color-brand-red: var(--brand-red);
+  --color-brand-plum: var(--brand-plum);
+  --color-brand-black: var(--brand-black);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-tint: var(--brand-blue-tint);
+  --color-brand-gray: var(--brand-gray);
+  --color-brand-gold: var(--brand-gold);
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-instrument), "Instrument Serif", Georgia, serif;
+  --font-display: var(--font-festivo), Georgia, serif;
+  --font-subhead: var(--font-trade), ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: var(--font-minion), Georgia, serif;
 }
 
 html {
@@ -86,36 +125,54 @@ body {
 
 /* --- Typography ---------------------------------------------------------- */
 
-/* Editorial display face. Set tight; the blueprint asks for scale and space
-   rather than decoration. */
+/* The guide's HEADLINE TYPE: Festivo Letters No. 18. A light monoline face
+   drawn caps-only, so it wants air rather than the negative tracking a serif
+   display face takes. Cap-height-only means the tight leading still holds. */
 .display {
-  font-family: var(--font-instrument), Georgia, serif;
+  font-family: var(--font-display);
   font-weight: 400;
-  line-height: 0.94;
-  letter-spacing: -0.005em;
+  line-height: 0.98;
+  letter-spacing: 0.012em;
   text-transform: uppercase;
 }
 
-/* Same face, sentence case — used for editorial statements and pull quotes. */
+/* Sentence case — editorial statements and pull quotes. Festivo has no true
+   lowercase, so this role goes to Minion Pro: the serif that runs through the
+   client's own menus, standing in for the guide's Archer. */
 .display-soft {
-  font-family: var(--font-instrument), Georgia, serif;
+  font-family: var(--font-editorial);
   font-weight: 400;
-  line-height: 1.06;
-  letter-spacing: -0.01em;
+  line-height: 1.1;
+  letter-spacing: 0;
 }
 
-/* Uppercase micro-labels: nav, eyebrows, buttons, table headers. */
+/* Uppercase micro-labels: nav, eyebrows, buttons, table headers. This is the
+   guide's SUBHEAD STYLE — Trade Supply Textured, which is already heavy and
+   condensed, so the synthetic 600 comes off and the tracking opens up to keep
+   the distressed edges from closing on each other at label sizes. */
 .micro {
+  font-family: var(--font-subhead);
   font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-weight: 400;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+}
+
+/* Figures that get scanned rather than read — prices, chiefly. Trade Supply's
+   numerals are condensed and distressed, which is exactly right on a label and
+   exactly wrong down a column of prices, so figures keep the interface sans
+   and tabular spacing while the label around them stays on the brand face. */
+.figure {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
 }
 
 .micro-wide {
+  font-family: var(--font-subhead);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.24em;
+  font-weight: 400;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
 }
 
@@ -313,11 +370,16 @@ body {
 
 /* Collage headlines: black and high-contrast, where the editorial direction
    is light. Same words, different voice. */
+/* Direction B's masthead. Trade Supply Textured rather than Festivo: the
+   collage wants the weight the comp was drawn with, and Trade Supply is the
+   face the lockup's own "BEACHSIDE BAR & BISTRO" line is set in. It ships one
+   weight, so the numeric weight stays at 400 — anything heavier synthesises a
+   bold and smears the texture that is the whole point of the face. */
 .display-collage {
-  font-family: var(--font-collage), Georgia, serif;
-  font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.015em;
+  font-family: var(--font-subhead);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -729,4 +791,316 @@ body {
   mask-size: 280px 280px;
   -webkit-mask-repeat: repeat;
   mask-repeat: repeat;
+}
+
+/* ==========================================================================
+   Brand reference sheet (/rebellion-brand)
+   A transcription of the client's house style guide, laid out the way the
+   guide itself is. Every rule here is namespaced `sg-` and reachable only
+   from that route, so directions A and B cannot pick any of it up.
+   ========================================================================== */
+
+.sg {
+  background: #fff;
+  color: #1b1b1b;
+  padding: clamp(1.25rem, 3vw, 3rem);
+  min-height: 100vh;
+}
+
+/* The guide's drawn double rule. Two hairlines in the house red, the outer one
+   turned a fraction of a degree off square so the pair reads as struck by hand
+   rather than set by a grid. */
+.sg-frame {
+  position: relative;
+  max-width: 78rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+}
+
+.sg-frame::before,
+.sg-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--brand-red);
+  pointer-events: none;
+}
+
+.sg-frame::before {
+  transform: rotate(-0.12deg);
+}
+
+.sg-frame::after {
+  inset: 7px;
+  opacity: 0.65;
+  transform: rotate(0.1deg);
+}
+
+/* --- Cover ---------------------------------------------------------------- */
+
+.sg-cover {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  padding-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.sg-cover-mark {
+  width: clamp(11rem, 22vw, 17rem);
+  height: auto;
+}
+
+.sg-cover-title {
+  margin-top: clamp(1.5rem, 4vw, 3rem);
+  font-size: clamp(1.75rem, 5vw, 3.25rem);
+  letter-spacing: 0.06em;
+  color: #1b1b1b;
+}
+
+.sg-cover-em {
+  color: var(--brand-red);
+}
+
+.sg-cover-note {
+  margin-top: 1rem;
+  max-width: 34rem;
+  font-family: var(--font-editorial);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #55524d;
+}
+
+/* --- Sections ------------------------------------------------------------- */
+
+.sg-section {
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+  border-top: 1px solid #e7e2da;
+}
+
+.sg-h2 {
+  font-size: clamp(1.5rem, 3.6vw, 2.5rem);
+  letter-spacing: 0.07em;
+  color: var(--brand-red);
+}
+
+.sg-lede,
+.sg-body {
+  margin-top: 1.25rem;
+  max-width: 44rem;
+  font-family: var(--font-editorial);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: #33312e;
+}
+
+.sg-note {
+  margin-top: 0.5rem;
+  font-family: var(--font-editorial);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #6b6862;
+}
+
+/* --- The mark ------------------------------------------------------------- */
+
+.sg-marks {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  background: #e7e2da;
+  border: 1px solid #e7e2da;
+}
+
+.sg-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 1.25rem;
+  padding: 2rem 1.25rem 1rem;
+  min-height: 15rem;
+}
+
+.sg-mark img {
+  width: 7.5rem;
+  height: auto;
+}
+
+.sg-mark-white {
+  background: #fff;
+}
+
+.sg-mark figcaption {
+  color: #fff;
+  opacity: 0.85;
+  font-size: 0.5625rem;
+}
+
+.sg-mark-white figcaption {
+  color: #8d8981;
+  opacity: 1;
+}
+
+.sg-mark-reversed {
+  position: static;
+  display: block;
+  width: 8.5rem;
+  height: 4.35rem;
+  color: #fff;
+}
+
+/* --- Palette -------------------------------------------------------------- */
+
+.sg-swatches {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 2.5rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.sg-chip {
+  display: grid;
+  place-items: center;
+  height: 6rem;
+}
+
+.sg-spec {
+  margin-top: 0.875rem;
+  display: grid;
+  gap: 0.125rem;
+  font-family: var(--font-editorial);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: #33312e;
+}
+
+.sg-spec-hex {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Type ----------------------------------------------------------------- */
+
+.sg-type {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+
+.sg-face-role {
+  color: var(--brand-plum);
+}
+
+.sg-face-specimen {
+  margin-top: 0.75rem;
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  line-height: 1.1;
+  color: var(--brand-red);
+}
+
+/* Archer is not loaded, so its specimen falls back — say so rather than let a
+   substituted face pass itself off as the real one. */
+.sg-face-specimen:not([style]) {
+  color: #b8b4ac;
+  font-family: var(--font-editorial);
+}
+
+.sg-face-name {
+  margin-top: 0.5rem;
+  font-family: var(--font-editorial);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1b1b1b;
+}
+
+/* --- Graphic elements ----------------------------------------------------- */
+
+.sg-splats {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+}
+
+.sg-splat {
+  position: relative;
+  display: block;
+  aspect-ratio: 1.1;
+}
+
+.sg-elements {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.sg-element {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1.05;
+  background: #fff;
+  border: 1px solid #e7e2da;
+}
+
+.sg-element img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sg-element-pattern {
+  color: #1b1b1b;
+}
+
+.sg-elements-key {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.sg-elements-key dt {
+  color: var(--brand-plum);
+}
+
+/* --- Open questions ------------------------------------------------------- */
+
+.sg-open {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.25rem;
+  max-width: 46rem;
+  counter-reset: sg-open;
+  list-style: none;
+}
+
+.sg-open li {
+  position: relative;
+  padding-left: 2.25rem;
+  font-family: var(--font-editorial);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #33312e;
+  counter-increment: sg-open;
+}
+
+.sg-open li::before {
+  content: counter(sg-open, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  font-family: var(--font-subhead);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--brand-red);
+}
+
+.sg-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+  border-top: 1px solid #e7e2da;
+  color: var(--brand-plum);
 }

@@ -157,3 +157,54 @@ export function ChapterMark({
     </span>
   );
 }
+
+/* --- The client's own graphic elements ------------------------------------
+ *
+ * Everything above is drawn by scripts/generate-artwork.py. What follows is
+ * lifted straight from the house style guide's GRAPHIC ELEMENTS page by
+ * scripts/extract-brand-kit.py, so it is the approved artwork rather than an
+ * approximation of it. Same mask convention: `currentColor` through an alpha
+ * mask, tinted by a `text-*` class.
+ */
+
+/** One of the five approved ink splats. */
+export function Splat({
+  className,
+  variant = 1,
+  opacity = 100,
+}: Placement & { variant?: 1 | 2 | 3 | 4 | 5; opacity?: number }) {
+  return (
+    <span
+      aria-hidden
+      className={cn("art-mask absolute", className)}
+      style={{ ...maskStyle(`/brand/splat-${variant}.png`), opacity: opacity / 100 }}
+    />
+  );
+}
+
+/**
+ * The signature pattern — a field of drawn bottles and glasses.
+ *
+ * The block is a single drawing and is not seamless, so it covers its
+ * container rather than tiling: repeating it rules a visible grid across the
+ * artwork. That matches the guide, which only ever bleeds the pattern off an
+ * edge as one panel.
+ */
+export function SignaturePattern({
+  className,
+  opacity = 100,
+}: Placement & { opacity?: number }) {
+  return (
+    <span
+      aria-hidden
+      className={cn("art-mask absolute", className)}
+      style={{
+        WebkitMaskImage: "url(/brand/signature-pattern.png)",
+        maskImage: "url(/brand/signature-pattern.png)",
+        WebkitMaskSize: "cover",
+        maskSize: "cover",
+        opacity: opacity / 100,
+      }}
+    />
+  );
+}

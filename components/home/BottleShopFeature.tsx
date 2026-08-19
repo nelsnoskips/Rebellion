@@ -73,7 +73,7 @@ export function BottleShopFeature() {
                       {b.producer} · {b.region} · {b.vintage}
                     </span>
                   </span>
-                  <span className="micro shrink-0 text-brass">${b.price}</span>
+                  <span className="micro figure shrink-0 text-brass">${b.price}</span>
                 </li>
               ))}
             </ul>

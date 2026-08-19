@@ -66,7 +66,7 @@ export default function MenusPage() {
                       <h3 className="font-semibold">{item.name}</h3>
                       <p className="mt-1 text-sm text-ink-mute">{item.desc}</p>
                     </div>
-                    <span className="micro shrink-0 text-oxblood">
+                    <span className="micro figure shrink-0 text-oxblood">
                       {item.price === "MP" || item.price === "—"
                         ? item.price
                         : `$${item.price}`}

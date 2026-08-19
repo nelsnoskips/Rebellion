@@ -1,35 +1,65 @@
 import type { Metadata } from "next";
-import { Caveat, Instrument_Serif, Inter, Playfair_Display } from "next/font/google";
+import { Caveat, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const instrument = Instrument_Serif({
-  variable: "--font-instrument",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
+/* --- The client's brand faces -------------------------------------------
+ *
+ * Supplied as desktop OTFs and converted to subset WOFF2 by
+ * scripts/build-fonts.py. Roles follow the house style guide's TYPOGRAPHY
+ * page (brand/Rebellion_Wine_Bar_Style_Guide.pdf, p5):
+ *
+ *   Festivo Letters No. 18  HEADLINE TYPE
+ *   Trade Supply Textured   SUBHEAD STYLE
+ *   Archer                  body — a Hoefler&Co licence, not supplied
+ *
+ * Minion Pro came with the same hand-off and appears throughout the client's
+ * InDesign menu files, so it carries the editorial serif voice until an Archer
+ * web licence exists. Body and UI copy stay on Inter for the same reason.
+ *
+ * `adjustFontFallback` is off on all three: these are display faces with
+ * metrics far from any system font, and Next's synthetic fallback distorts
+ * them more than the swap it prevents.
+ */
+
+const festivo = localFont({
+  src: "./fonts/FestivoLettersNo18.woff2",
+  variable: "--font-festivo",
   display: "swap",
+  weight: "400",
+  adjustFontFallback: false,
+  fallback: ["Georgia", "serif"],
 });
 
+const trade = localFont({
+  src: "./fonts/TradeSupplyTextured.woff2",
+  variable: "--font-trade",
+  display: "swap",
+  weight: "400",
+  adjustFontFallback: false,
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
+});
+
+const minion = localFont({
+  src: "./fonts/MinionProRegular.woff2",
+  variable: "--font-minion",
+  display: "swap",
+  weight: "400",
+  adjustFontFallback: false,
+  fallback: ["Georgia", "serif"],
+});
+
+/* --- Supporting faces ---------------------------------------------------- */
+
+/** Body and interface copy — the stand-in for the guide's Archer. */
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-/**
- * The collage direction sets its headlines in a heavier, higher-contrast face
- * than the editorial direction — the comp's display type is black, not the
- * light Instrument Serif used at `/`.
- */
-const playfair = Playfair_Display({
-  variable: "--font-collage",
-  subsets: ["latin"],
-  weight: ["700", "800", "900"],
-  display: "swap",
-});
-
-/** Marginalia for the collage direction (route /collage). */
+/** Marginalia for the collage direction. Not a brand face; it is handwriting. */
 const caveat = Caveat({
   variable: "--font-hand",
   subsets: ["latin"],
@@ -77,7 +107,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${instrument.variable} ${inter.variable} ${caveat.variable} ${playfair.variable}`}>
+    <html
+      lang="en"
+      className={`${festivo.variable} ${trade.variable} ${minion.variable} ${inter.variable} ${caveat.variable}`}
+    >
       <body className="min-h-screen antialiased">
         <a
           href="#main"

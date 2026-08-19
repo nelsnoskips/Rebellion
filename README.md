@@ -47,6 +47,8 @@ add `@netlify/plugin-nextjs`, and publish `.next`.
 | `/story` | §03 brand foundation |
 | `/visit` | §07 module 08 — NAP, hours, access, FAQs |
 | `/reserve` | Landing path for the reservation platform embed |
+| `/rebellion-a`, `/rebellion-b` | The two art directions, for the client to choose between |
+| `/rebellion-brand` | The house style guide translated to the web — a reference sheet, not a direction |
 
 ## Where things live
 
@@ -123,6 +125,42 @@ at the same resolution as the PNG. If true vector turns up, point `SOURCES` at
 it and raise the width; the lockup would then be crisp at any size, and the §08
 signature moment (ink strokes tracing the skeleton on first entry) becomes
 buildable.
+
+## The house style guide
+
+The client's style guide is `brand/Rebellion_Wine_Bar_Style_Guide.pdf`. Two
+scripts read it and the fonts that came with it:
+
+```bash
+python3 scripts/build-fonts.py        # OTF -> subset WOFF2, needs fonttools + brotli
+python3 scripts/extract-brand-kit.py  # splats, watercolour, pattern, lockup; needs pymupdf
+```
+
+`scripts/build-fonts.py` converts the three supplied faces into
+`app/fonts/*.woff2`, which `app/layout.tsx` loads through `next/font/local`:
+
+| Guide role    | Face                   | CSS token           |
+| ------------- | ---------------------- | ------------------- |
+| Headline type | Festivo Letters No. 18 | `--font-display`    |
+| Subhead style | Trade Supply Textured  | `--font-subhead`    |
+| Editorial     | Minion Pro             | `--font-editorial`  |
+
+Archer, the guide's body face, was not supplied and needs a Hoefler&Co web
+licence, so body copy stays on Inter. **All three supplied faces are desktop
+licences** — self-hosting them is a separate grant, fine for the unindexed
+previews and worth settling before launch.
+
+`scripts/extract-brand-kit.py` pulls page 6's sanctioned graphic elements —
+five ink splats, the watercolour texture, the signature pattern — plus the
+house lockup, straight out of the PDF into `public/brand/`. The splats and the
+pattern come out as alpha masks and drop into the same `.art-mask` system as
+the procedural artwork, so a `text-*` class recolours them.
+
+The six approved colours are tokens (`--brand-red`, `--brand-plum`,
+`--brand-black`, `--brand-blue`, `--brand-gray`, `--brand-gold`) and Tailwind
+utilities. `docs/brand-compliance.md` records where the site follows the guide,
+where it does not, and the four things still open — including the guide's own
+contradiction about PMS 5503 C.
 
 ## Swapping the placeholder photography
 
@@ -211,7 +249,7 @@ chosen, so this deploy is disposable — the handoff is the repository.
 Routes are labelled A and B rather than by treatment, so the client reacts to
 what they see instead of to what we called it.
 
-### The cinematic hero### The cinematic hero### The cinematic hero
+### The cinematic hero
 
 `/collage` opens on a pinned stage the visitor scrubs through while the page
 assembles itself — washes bloom, the photograph tears into the corner, the
