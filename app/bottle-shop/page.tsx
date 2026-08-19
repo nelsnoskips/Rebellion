@@ -70,7 +70,7 @@ export default function BottleShopPage() {
                 <div className="mb-6 flex aspect-[3/4] items-center justify-center bg-bone">
                   <BottleGlyph className="h-[74%] transition-transform duration-[var(--dur-ui)] ease-[var(--ease-ui)] group-hover:-translate-y-1" />
                 </div>
-                <p className="micro text-oxblood">{b.style}</p>
+                <p className="micro accent text-oxblood">{b.style}</p>
                 <h3 className="display-soft mt-2 text-xl">{b.name}</h3>
                 <p className="mt-1 text-sm text-ink-mute">
                   {b.producer} · {b.region} · {b.vintage}

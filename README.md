@@ -137,19 +137,23 @@ python3 scripts/extract-brand-kit.py  # splats, watercolour, pattern, lockup; ne
 ```
 
 `scripts/build-fonts.py` converts the three supplied faces into
-`app/fonts/*.woff2`, which `app/layout.tsx` loads through `next/font/local`:
+`app/fonts/*.woff2`, which `app/layout.tsx` loads through `next/font/local`.
+The approved type system is deliberately *not* all four brand faces in equal
+service — the 2021 guide is a source of character, not a web spec:
 
-| Guide role    | Face                   | CSS token           |
-| ------------- | ---------------------- | ------------------- |
-| Headline type | Festivo Letters No. 18 | `--font-display`    |
-| Subhead style | Trade Supply Textured  | `--font-subhead`    |
-| Editorial     | Minion Pro             | `--font-editorial`  |
-| Body copy     | Archer — *not supplied*, stood in by Bitter | `--font-body` |
+| Role      | Face                  | CSS token        |
+| --------- | --------------------- | ---------------- |
+| Display   | Cormorant Garamond    | `--font-display` |
+| Editorial | Bitter (Archer stand-in) | `--font-body` |
+| Interface | Archivo Narrow        | `--font-ui`      |
+| Texture   | Trade Supply Textured | `--font-accent`  |
 
-Archer needs a Hoefler&Co web licence; `--font-body` is the one token to
-repoint the day there is one. **All three supplied faces are desktop licences**
-— self-hosting them is a separate grant, fine for the unindexed previews and
-worth settling before launch.
+Archer needs a Hoefler&Co web licence and Festivo *Basic* was never supplied,
+so those two roles run on open-licence substitutes; `docs/brand-compliance.md`
+records why, and each is one token to repoint. Trade Supply is the only
+supplied face in service, and it is rationed to five named accents. Festivo
+Letters No. 18 and Minion Pro are loaded unpreloaded purely as specimens on
+`/rebellion-brand`.
 
 `scripts/extract-brand-kit.py` pulls page 6's sanctioned graphic elements —
 five ink splats, the watercolour texture, the signature pattern — plus the

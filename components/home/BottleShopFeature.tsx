@@ -35,7 +35,7 @@ export function BottleShopFeature() {
 
         <div className="px-6 py-16 pb-20 md:px-10 lg:py-24">
           <Reveal>
-            <p className="micro text-signal">Bottle Shop</p>
+            <p className="micro accent text-signal">Bottle Shop</p>
             <BrushRule className="mt-3 w-16 text-signal" variant={0} />
             <h2 className="display mt-5 text-[clamp(2.2rem,4.4vw,3.8rem)]">
               Take the rebellion home

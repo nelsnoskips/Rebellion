@@ -122,7 +122,7 @@ export function HappeningsRail() {
                   </span>
 
                   <span className="flex min-w-0 flex-col justify-center">
-                    <span className="micro text-oxblood">{event.kind}</span>
+                    <span className="micro accent text-oxblood">{event.kind}</span>
                     <span className="mt-1 block font-semibold">
                       {event.title}
                     </span>
@@ -130,7 +130,7 @@ export function HappeningsRail() {
                       {event.time}
                     </span>
                     {event.ticketed && (
-                      <span className="micro mt-2 self-start border border-brass/70 px-2 py-1 text-brass-ink">
+                      <span className="micro accent mt-2 self-start border border-brass/70 px-2 py-1 text-brass-ink">
                         Ticketed
                       </span>
                     )}

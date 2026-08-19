@@ -85,7 +85,7 @@ export default function HappeningsPage() {
                     </div>
 
                     <div>
-                      <p className="micro text-oxblood">{event.kind}</p>
+                      <p className="micro accent text-oxblood">{event.kind}</p>
                       <h2 className="display-soft mt-2 text-2xl">
                         {event.title}
                       </h2>

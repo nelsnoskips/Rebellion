@@ -99,7 +99,7 @@ export const BRAND_TYPE: BrandFace[] = [
   {
     name: "Festivo Letters No. 18",
     role: "Headline type",
-    token: "var(--font-display)",
+    token: "var(--font-festivo)",
     status: "supplied",
     detail:
       "A light monoline face drawn caps-only. It sets every section head in " +
@@ -108,7 +108,7 @@ export const BRAND_TYPE: BrandFace[] = [
   {
     name: "Trade Supply Textured",
     role: "Subhead style",
-    token: "var(--font-subhead)",
+    token: "var(--font-trade)",
     status: "supplied",
     detail:
       "Heavy, condensed and distressed — the same lettering as the WINE BAR " +
@@ -128,7 +128,7 @@ export const BRAND_TYPE: BrandFace[] = [
   {
     name: "Minion Pro",
     role: "Editorial serif",
-    token: "var(--font-editorial)",
+    token: "var(--font-minion)",
     status: "supplied",
     detail:
       "Not in the guide, but supplied alongside it and used throughout the " +

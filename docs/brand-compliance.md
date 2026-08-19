@@ -77,47 +77,73 @@ and torn-paper artwork only reads against it. Setting `--bone` and `--paper` to
 
 ## Type
 
-| Guide role      | Face                   | Status       | Where it lands                            |
-| --------------- | ---------------------- | ------------ | ----------------------------------------- |
-| Headline type   | Festivo Letters No. 18 | supplied     | `.display` — every headline in direction A |
-| Subhead style   | Trade Supply Textured  | supplied     | `.micro`, `.micro-wide`, `.display-collage` |
-| Body copy       | Archer                 | **missing**  | stood in by Bitter — `--font-body` |
-| (not in guide)  | Minion Pro             | supplied     | `.display-soft` — pull quotes, statements |
+The 2021 guide is the source of the brand's *character*, not a web typography
+spec. Forcing all four of its faces into equal service is what makes a website
+look like a brand manual instead of a restaurant, so the display voice is a
+modern editorial serif the guide never had, and the guide's own faces do the
+work they are actually good at.
 
-The three supplied faces are converted from the desktop OTFs in `brand/fonts/`
-to subset WOFF2 by `scripts/build-fonts.py` and loaded through
-`next/font/local` in `app/layout.tsx`.
+| Role      | Face                | Where |
+| --------- | ------------------- | ----- |
+| Display   | Cormorant Garamond  | headlines only — `.display`, `.display-soft` |
+| Editorial | Bitter              | paragraphs and descriptions — the body default |
+| Interface | Archivo Narrow      | navigation, buttons, labels — `.micro`, `.micro-wide` |
+| Texture   | Trade Supply Textured | accents only — `.accent` |
 
-Notes on the mapping:
+**Display — Cormorant Garamond, Medium and Semibold.** A high-contrast
+editorial serif. It is not in the guide, and it is the right call anyway: it
+reads premium in a way the 2021 system does not, which is what a chef-driven
+bistro and wine room needs in 2026. Headlines only. At paragraph or label sizes
+the hairlines disappear. Canela and Editorial New are the premium options if
+the client wants to license one — both are one token away (`--font-display`).
 
-- **Festivo is caps-only.** It has no true lowercase, so it can only take roles
-  that are already uppercase. Sentence-case editorial voice goes to Minion Pro.
-- **Direction B's masthead is Trade Supply, not Festivo.** The collage comp was
-  drawn with heavy display type, and Festivo is a light monoline face. Trade
-  Supply keeps the weight the composition needs and is the same lettering as
-  the "BEACHSIDE BAR & BISTRO" line of the bistro's own lockup.
-- **Trade Supply ships one weight.** Anything above 400 synthesises a bold and
-  smears the distressed edges that are the whole point of the face, so every
-  rule that sets it pins the weight.
-- **Archer needs a licence.** Hoefler&Co, not in the hand-off. Body and
-  interface copy run on **Bitter** — the same geometric slab construction and
-  softened terminals, drawn for screen text at the sizes body copy actually
-  runs at. It is a stand-in and reads as one; point `--font-body` at the real
-  Archer and every paragraph on the site follows. The `AdobeFnt*.lst` files
-  from the client's InDesign folder also reference Avenir throughout, which was
-  likewise not supplied — it is a macOS system font and has the same problem.
-- **Figures stay on the body face.** Trade Supply's numerals are condensed and
-  distressed, which is right on a label and wrong down a column of prices, so
-  anything scanned rather than read takes `.figure` and keeps tabular spacing.
+**Editorial — Bitter, standing in for Archer.** Archer is the most useful face
+in the original system: warm, conversational, slightly unconventional, far more
+Rebellion than a neutral sans. It is a Hoefler&Co licence and was not in the
+hand-off. Bitter is the closest free relative — the same geometric slab
+construction and softened terminals, drawn for screen text. Archer
+Book/Medium/Semibold map onto weights 400/500/600. **Archer Light is
+deliberately unused**: it vanishes on photographs and at mobile sizes.
+
+Getting more of the page onto this face is the single change that connects the
+site back to the brand book, so it is the body default — everything unstyled
+inherits it.
+
+**Interface — Archivo Narrow 600.** Uppercase, condensed, `letter-spacing:
+0.09em`. The spec asks for Festivo Basic first, which was not supplied.
+Festivo Letters No. 18 *was* supplied, but it is a decorative display cut and
+an 11px navigation bar set in it is an unreadable navigation bar. Archivo
+Narrow is the clean condensed substitute the spec names as the alternative.
+
+**Texture — Trade Supply Textured, rationed.** It is ink applied to the page,
+never the page's default; at small sizes its distress turns to noise. It is
+used in exactly five places and nowhere else:
+
+- the Happenings event categories (`LIVE MUSIC`, `WINE DINNER`, `BRUNCH`)
+- the same categories on `/happenings`
+- the `TICKETED` stamped callout
+- the Bottle Shop section mark
+- the bottle style labels (`CHILLABLE RED`, `SPARKLING`)
+
+**Handwriting — removed.** The marginalia was set in a stock script face. A
+recognisable Canva-style handwriting cheapens artwork this considered, so
+`.hand` is now the body serif's italic: restrained, and unmistakably the same
+voice. The better answer is still outstanding — six to eight phrases
+("Seasonal. Intentional. Uncompromising.") drawn from the logo's own brush
+character and shipped as SVG, which would make them proprietary rather than
+merely tasteful.
+
+**Festivo Letters No. 18 and Minion Pro** are loaded but unused on the site.
+They are set as specimens on `/rebellion-brand` so the client can see their own
+faces rendered; `preload` is off, so no other page pays for them.
 
 ### Licensing
 
-The three OTFs are **desktop licences**. Serving a font from a web server is a
-separate grant in the terms of every foundry involved, including Adobe's for
-Minion Pro. This is fine for a private, unindexed preview — which is what
-`/rebellion-a`, `/rebellion-b` and `/rebellion-brand` are, all three marked
-`noindex` — and needs settling before a public launch. Minion Pro in particular
-is normally served through Adobe Fonts rather than self-hosted.
+The three supplied OTFs are **desktop licences**. Serving a font from a web
+server is a separate grant in every foundry's terms, Adobe's included. Only
+Trade Supply is actually in service on the site, so that is the one to settle
+before launch. Cormorant Garamond, Bitter and Archivo Narrow are all open
+licence and carry no restriction.
 
 ## Graphic elements
 
@@ -154,11 +180,13 @@ recalculating per breakpoint.
 ## Open, in order of what blocks what
 
 1. **Archer web licence.** Blocks body copy being the real thing rather than a
-   stand-in.
-2. **Web licences for Festivo, Trade Supply and Minion Pro.** Blocks public
-   launch, not the preview.
-3. **PMS 5503 C — `#34657F` or `#91B6BC`?** Blocks print consistency. The site
+   stand-in. Repoint `--font-bitter` and every paragraph follows.
+2. **A web licence for Trade Supply**, the one supplied face actually in
+   service. Blocks public launch, not the preview.
+3. **Custom handwritten SVG marks**, to replace the removed script face with
+   something proprietary.
+4. **PMS 5503 C — `#34657F` or `#91B6BC`?** Blocks print consistency. The site
    runs on the written value.
-4. **White page ground, or keep the paper?** Two tokens. Client's call, and it
+5. **White page ground, or keep the paper?** Two tokens. Client's call, and it
    changes the character of both directions more than anything else on this
    list.

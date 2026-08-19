@@ -111,10 +111,14 @@
   --color-brand-gray: var(--brand-gray);
   --color-brand-gold: var(--brand-gold);
 
-  --font-sans: var(--font-body), Georgia, "Times New Roman", serif;
-  --font-display: var(--font-festivo), Georgia, serif;
-  --font-subhead: var(--font-trade), ui-sans-serif, system-ui, sans-serif;
-  --font-editorial: var(--font-minion), Georgia, serif;
+  /* Display, editorial, interface, texture — app/layout.tsx explains why each
+     face holds the role it does. `--font-sans` stays mapped so anything
+     unstyled inherits the editorial body rather than a system UI font. */
+  --font-sans: var(--font-bitter), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-body: var(--font-bitter), Georgia, "Times New Roman", serif;
+  --font-ui: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-accent: var(--font-trade), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -124,7 +128,7 @@ html {
 body {
   background: var(--bone);
   color: var(--ink);
-  font-family: var(--font-body), Georgia, "Times New Roman", serif;
+  font-family: var(--font-bitter), Georgia, "Times New Roman", serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -136,54 +140,67 @@ body {
 
 /* --- Typography ---------------------------------------------------------- */
 
-/* The guide's HEADLINE TYPE: Festivo Letters No. 18. A light monoline face
-   drawn caps-only, so it wants air rather than the negative tracking a serif
-   display face takes. Cap-height-only means the tight leading still holds. */
+/* Headlines, and only headlines. A high-contrast editorial serif set at
+   Semibold, which is where Cormorant's thick-thin contrast reads as drama
+   rather than as a weight that failed to load. Never paragraphs, navigation
+   or labels — at those sizes the hairlines simply vanish. */
 .display {
   font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 0.98;
-  letter-spacing: 0.012em;
+  font-weight: 600;
+  line-height: 0.96;
+  letter-spacing: 0.004em;
   text-transform: uppercase;
 }
 
-/* Sentence case — editorial statements and pull quotes. Festivo has no true
-   lowercase, so this role goes to Minion Pro: the serif that runs through the
-   client's own menus, standing in for the guide's Archer. */
+/* The same serif in sentence case — statements and pull quotes. Held at
+   Medium: the lowercase carries more ink than the caps do, so Semibold here
+   would out-weigh the headline above it. */
 .display-soft {
-  font-family: var(--font-editorial);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.004em;
 }
 
-/* Uppercase micro-labels: nav, eyebrows, buttons, table headers. This is the
-   guide's SUBHEAD STYLE — Trade Supply Textured, which is already heavy and
-   condensed, so the synthetic 600 comes off and the tracking opens up to keep
-   the distressed edges from closing on each other at label sizes. */
+/* The interface voice: navigation, buttons, labels, table headers. Condensed,
+   uppercase, tracked out — and legible at 11px, which is the entire reason it
+   is not one of the brand's display faces. */
 .micro {
-  font-family: var(--font-subhead);
+  font-family: var(--font-ui);
   font-size: 0.6875rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
+  font-weight: 600;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
-/* Figures that get scanned rather than read — prices, chiefly. Trade Supply's
-   numerals are condensed and distressed, which is exactly right on a label and
-   exactly wrong down a column of prices, so figures keep the interface sans
-   and tabular spacing while the label around them stays on the brand face. */
+/* Figures that get scanned rather than read — prices, chiefly. Tabular so a
+   column of them lines up, and on the interface face so they stay countable
+   even where the label beside them is textured. */
 .figure {
-  font-family: var(--font-sans);
+  font-family: var(--font-ui);
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
 }
 
+/* Eyebrows and section labels, where there is room for more air. */
 .micro-wide {
-  font-family: var(--font-subhead);
+  font-family: var(--font-ui);
   font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Ink applied to the page — section marks, event categories, bottle-shop
+   labels, stamped callouts, the occasional hover. Trade Supply Textured is
+   the brand's distressed lettering and it is deliberately rationed: used as
+   an interface font its texture turns to noise at small sizes and stops
+   meaning anything. Compose it with `.micro` for sizing. Single weight, so
+   anything above 400 synthesises a bold and smears the distress. */
+.accent {
+  font-family: var(--font-accent);
   font-weight: 400;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -387,7 +404,7 @@ body {
    weight, so the numeric weight stays at 400 — anything heavier synthesises a
    bold and smears the texture that is the whole point of the face. */
 .display-collage {
-  font-family: var(--font-subhead);
+  font-family: var(--font-accent);
   font-weight: 400;
   line-height: 0.94;
   letter-spacing: 0;
@@ -396,10 +413,16 @@ body {
 
 /* Marginalia. Set a step large — handwriting reads smaller than body copy at
    the same nominal size. */
+/* Editorial marginalia. This was a script face; a recognisable stock
+   handwriting cheapens artwork this considered, so the notes are set in the
+   body serif's italic — restrained, and unmistakably the same voice. The
+   better answer is a handful of phrases drawn from the logo's own brush
+   character and shipped as SVG; noted in docs/brand-compliance.md. */
 .hand {
-  font-family: var(--font-hand), ui-rounded, cursive;
-  font-weight: 500;
-  line-height: 1.3;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.35;
 }
 
 /* --- Cinematic scroll hero (route /collage) --------------------------------
@@ -875,7 +898,7 @@ body {
 .sg-cover-note {
   margin-top: 1rem;
   max-width: 34rem;
-  font-family: var(--font-editorial);
+  font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.6;
   color: #55524d;
@@ -898,7 +921,7 @@ body {
 .sg-body {
   margin-top: 1.25rem;
   max-width: 44rem;
-  font-family: var(--font-editorial);
+  font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.65;
   color: #33312e;
@@ -906,7 +929,7 @@ body {
 
 .sg-note {
   margin-top: 0.5rem;
-  font-family: var(--font-editorial);
+  font-family: var(--font-body);
   font-size: 0.9375rem;
   line-height: 1.55;
   color: #6b6862;
@@ -979,7 +1002,7 @@ body {
   margin-top: 0.875rem;
   display: grid;
   gap: 0.125rem;
-  font-family: var(--font-editorial);
+  font-family: var(--font-body);
   font-size: 0.875rem;
   line-height: 1.45;
   color: #33312e;
@@ -1013,12 +1036,12 @@ body {
    substituted face pass itself off as the real one. */
 .sg-face-specimen:not([style]) {
   color: #b8b4ac;
-  font-family: var(--font-editorial);
+  font-family: var(--font-body);
 }
 
 .sg-face-name {
   margin-top: 0.5rem;
-  font-family: var(--font-editorial);
+  font-family: var(--font-body);
   font-size: 0.9375rem;
   font-weight: 600;
   color: #1b1b1b;
@@ -1089,7 +1112,7 @@ body {
 .sg-open li {
   position: relative;
   padding-left: 2.25rem;
-  font-family: var(--font-editorial);
+  font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.6;
   color: #33312e;
@@ -1101,7 +1124,7 @@ body {
   position: absolute;
   left: 0;
   top: 0.15em;
-  font-family: var(--font-subhead);
+  font-family: var(--font-accent);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   color: var(--brand-red);
