@@ -148,6 +148,12 @@ service — the 2021 guide is a source of character, not a web spec:
 | Interface | Archivo Narrow        | `--font-ui`      |
 | Texture   | Trade Supply Textured | `--font-accent`  |
 
+The display role has a drop-in slot for the licensed face the client wants:
+put Canela or Editorial New into `brand/fonts/display/`, run
+`python3 scripts/build-display-font.py`, and every headline switches over
+without another line changing. Empty until then, and Cormorant Garamond covers
+it with no failed request.
+
 Archer needs a Hoefler&Co web licence and Festivo *Basic* was never supplied,
 so those two roles run on open-licence substitutes; `docs/brand-compliance.md`
 records why, and each is one token to repoint. Trade Supply is the only

@@ -1,0 +1,7 @@
+# Licensed font binaries never go in the repository — the licence covers the
+# client, not everyone who can clone this. Only this folder's README and the
+# generated WOFF2 in public/fonts are tracked.
+*.otf
+*.ttf
+*.woff
+*.woff2

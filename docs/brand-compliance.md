@@ -94,8 +94,28 @@ work they are actually good at.
 editorial serif. It is not in the guide, and it is the right call anyway: it
 reads premium in a way the 2021 system does not, which is what a chef-driven
 bistro and wine room needs in 2026. Headlines only. At paragraph or label sizes
-the hairlines disappear. Canela and Editorial New are the premium options if
-the client wants to license one — both are one token away (`--font-display`).
+the hairlines disappear. Canela and Editorial New are the premium options and the
+client wants one of them. Neither is in their Drive — I searched — and neither
+can be fetched from anywhere legitimate, so the site ships on Cormorant and
+there is a door built for the licensed face to walk through:
+
+```bash
+# 1. drop the licensed files in
+cp Canela-Medium.otf Canela-Semibold.otf brand/fonts/display/
+# 2. install
+python3 scripts/build-display-font.py
+```
+
+Every headline switches over and nothing else changes — the site asks for one
+family name, `Rebellion Display`, and only that folder decides what answers to
+it. While the folder is empty the generated stylesheet is empty too, the name
+resolves to nothing, and `--font-display` falls through to Cormorant with no
+failed request. See `brand/fonts/display/README.md`.
+
+**The licence is a real purchase, not a formality.** Canela is Commercial Type,
+Editorial New is Pangram Pangram, and a *web font* licence is separate from a
+desktop one — usually priced on monthly pageviews. A `noindex` preview is not
+the same as shipping, so this needs settling before launch.
 
 **Editorial — Bitter, standing in for Archer.** Archer is the most useful face
 in the original system: warm, conversational, slightly unconventional, far more
@@ -183,10 +203,12 @@ recalculating per breakpoint.
    stand-in. Repoint `--font-bitter` and every paragraph follows.
 2. **A web licence for Trade Supply**, the one supplied face actually in
    service. Blocks public launch, not the preview.
-3. **Custom handwritten SVG marks**, to replace the removed script face with
+3. **A Canela or Editorial New web licence.** The slot is built; the font is
+   not. Until then headlines run on Cormorant Garamond.
+4. **Custom handwritten SVG marks**, to replace the removed script face with
    something proprietary.
-4. **PMS 5503 C — `#34657F` or `#91B6BC`?** Blocks print consistency. The site
+5. **PMS 5503 C — `#34657F` or `#91B6BC`?** Blocks print consistency. The site
    runs on the written value.
-5. **White page ground, or keep the paper?** Two tokens. Client's call, and it
+6. **White page ground, or keep the paper?** Two tokens. Client's call, and it
    changes the character of both directions more than anything else on this
    list.
