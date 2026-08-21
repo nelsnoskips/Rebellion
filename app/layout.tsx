@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo_Narrow, Bitter, Cormorant_Garamond } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 import localFont from "next/font/local";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -12,25 +12,21 @@ import "./globals.css";
  * display voice is a modern editorial serif the guide never had, and the
  * guide's own faces do the work they are actually good at.
  *
- *   Display     Cormorant Garamond   headlines only — never paragraphs,
- *                                    navigation or small labels
- *   Editorial   Bitter               paragraphs and descriptions
- *   Interface   Archivo Narrow       navigation, buttons, labels
- *   Texture     Trade Supply         accents only, applied like ink
+ *   Display     Cormorant Garamond    headlines only — never paragraphs,
+ *                                     navigation or small labels
+ *   Editorial   Archer Book/Medium    paragraphs and descriptions
+ *   Interface   Festivo Letters No.1  navigation, buttons, labels
+ *   Texture     Trade Supply          accents only, applied like ink
  *
- * Two substitutions, both flagged rather than hidden:
+ * Three of the four are now the brand's own faces. Archer and Festivo No. 1
+ * were never in the hand-off and were running on open-licence substitutes
+ * until it turned out the client publishes both from their own domain — see
+ * brand/fonts/web/README.md, which also covers the licence question that
+ * raises and does not answer.
  *
- * Bitter stands in for Archer, the guide's body face — a Hoefler&Co licence
- * that was not in the hand-off. Same geometric slab construction and softened
- * terminals, drawn for screen text. Archer Book/Medium/Semibold map onto 400,
- * 500 and 600 here, and Archer Light is deliberately unused: it disappears on
- * photographs and at mobile sizes.
- *
- * Archivo Narrow stands in for Festivo Basic, which was also not supplied.
- * Festivo Letters No. 18 *was* supplied but it is a decorative display cut,
- * and putting it in an 11px navigation bar is how you get an unreadable menu.
- * Archivo Narrow is the condensed, uppercase, tracked-out interface voice the
- * spec asks for and holds together at label sizes.
+ * The display serif is the one deliberate outsider: the book has no headline
+ * face that reads premium in 2026, and Cormorant holds the role until a Canela
+ * or Editorial New licence lands (scripts/build-display-font.py).
  */
 
 /** Headlines. Medium and Semibold — the weights that carry the drama. */
@@ -42,22 +38,48 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-/** Paragraphs and descriptions. The Archer stand-in; italic carries the
-    editorial notes that used to be set in a script face. */
-const bitter = Bitter({
-  variable: "--font-bitter",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+/**
+ * Paragraphs and descriptions — Archer, the real one.
+ *
+ * The brand book specifies Archer for all body copy and it was never in the
+ * hand-off, so this ran on a stand-in until it turned out the client has been
+ * serving the genuine files from their own domain the whole time (see
+ * brand/fonts/web/README.md, and the licence question it raises).
+ *
+ * Book is 400 and Medium is 500. Medium is declared again at 600 so that
+ * anything asking for Semibold — which was never deployed — lands on a real
+ * weight instead of a synthesised one.
+ */
+const archer = localFont({
+  variable: "--font-archer",
   display: "swap",
+  adjustFontFallback: false,
+  fallback: ["Georgia", "Times New Roman", "serif"],
+  src: [
+    { path: "./fonts/ArcherBook.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/ArcherMedium.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/ArcherMedium.woff2", weight: "600", style: "normal" },
+  ],
 });
 
-/** Navigation, buttons and labels. */
-const archivo = Archivo_Narrow({
-  variable: "--font-archivo",
-  subsets: ["latin"],
-  weight: ["500", "600"],
+/**
+ * Navigation, buttons and labels — Festivo Letters No. 1.
+ *
+ * The heavy condensed uppercase cut. This is the "Festivo Basic" the type
+ * spec asked for in the interface, and it is what the client's own site
+ * already sets its navigation in. One drawn weight, declared across the range
+ * so nothing synthesises a bold on top of a face that is already heavy.
+ */
+const festivoOne = localFont({
+  variable: "--font-festivo-one",
   display: "swap",
+  adjustFontFallback: false,
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
+  src: [
+    { path: "./fonts/FestivoLettersNo1.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/FestivoLettersNo1.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/FestivoLettersNo1.woff2", weight: "600", style: "normal" },
+  ],
 });
 
 /* --- The client's own faces ---------------------------------------------
@@ -145,7 +167,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${bitter.variable} ${archivo.variable} ${trade.variable} ${festivo.variable} ${minion.variable}`}
+      className={`${cormorant.variable} ${archer.variable} ${festivoOne.variable} ${trade.variable} ${festivo.variable} ${minion.variable}`}
     >
       <body className="min-h-screen antialiased">
         <a

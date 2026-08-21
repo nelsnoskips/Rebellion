@@ -83,12 +83,20 @@ look like a brand manual instead of a restaurant, so the display voice is a
 modern editorial serif the guide never had, and the guide's own faces do the
 work they are actually good at.
 
-| Role      | Face                | Where |
-| --------- | ------------------- | ----- |
-| Display   | Cormorant Garamond  | headlines only — `.display`, `.display-soft` |
-| Editorial | Bitter              | paragraphs and descriptions — the body default |
-| Interface | Archivo Narrow      | navigation, buttons, labels — `.micro`, `.micro-wide` |
-| Texture   | Trade Supply Textured | accents only — `.accent` |
+| Role      | Face                   | Where |
+| --------- | ---------------------- | ----- |
+| Display   | Cormorant Garamond     | headlines only — `.display`, `.display-soft` |
+| Editorial | Archer Book / Medium   | paragraphs and descriptions — the body default |
+| Interface | Festivo Letters No. 1  | navigation, buttons, labels — `.micro`, `.micro-wide` |
+| Texture   | Trade Supply Textured  | accents only — `.accent` |
+
+Three of the four are the brand's own faces. Archer and Festivo No. 1 were
+never in the hand-off and ran on open-licence substitutes until it turned out
+**the client publishes both from their own domain** — the *Use Any Font*
+WordPress plugin serves them at
+`rebellionrestaurants.com/wp-content/uploads/useanyfont/`, and their live site
+sets its body copy and navigation in exactly these two. See
+`brand/fonts/web/README.md`.
 
 **Display — Cormorant Garamond, Medium and Semibold.** A high-contrast
 editorial serif. It is not in the guide, and it is the right call anyway: it
@@ -117,23 +125,36 @@ Editorial New is Pangram Pangram, and a *web font* licence is separate from a
 desktop one — usually priced on monthly pageviews. A `noindex` preview is not
 the same as shipping, so this needs settling before launch.
 
-**Editorial — Bitter, standing in for Archer.** Archer is the most useful face
-in the original system: warm, conversational, slightly unconventional, far more
-Rebellion than a neutral sans. It is a Hoefler&Co licence and was not in the
-hand-off. Bitter is the closest free relative — the same geometric slab
-construction and softened terminals, drawn for screen text. Archer
-Book/Medium/Semibold map onto weights 400/500/600. **Archer Light is
-deliberately unused**: it vanishes on photographs and at mobile sizes.
+**Editorial — Archer, actually Archer.** The most useful face in the original
+system: warm, conversational, slightly unconventional, far more Rebellion than
+a neutral sans. Book is 400 and Medium is 500; Medium is declared again at 600
+so anything asking for Semibold — which the client never deployed — lands on a
+real weight rather than a synthesised one. **Archer Light is deliberately
+unused**: it vanishes on photographs and at mobile sizes.
+
+The licence question is real and is *not* settled by the files existing. `Use
+Any Font` is a self-hosting plugin — it uploads what you give it and serves it
+publicly; it neither checks nor grants anything. A Hoefler&Co **web** licence
+is a separate purchase from a desktop one, so those files are evidence of a
+deployment, not of a licence. Reusing the client's own file for the same
+client's own site does not change their exposure either way, but it does not
+fix it. Confirm with Hoefler&Co before launch; if there is no licence, repoint
+`--font-body` and every paragraph follows.
 
 Getting more of the page onto this face is the single change that connects the
 site back to the brand book, so it is the body default — everything unstyled
 inherits it.
 
-**Interface — Archivo Narrow 600.** Uppercase, condensed, `letter-spacing:
-0.09em`. The spec asks for Festivo Basic first, which was not supplied.
-Festivo Letters No. 18 *was* supplied, but it is a decorative display cut and
-an 11px navigation bar set in it is an unreadable navigation bar. Archivo
-Narrow is the clean condensed substitute the spec names as the alternative.
+**Interface — Festivo Letters No. 1.** The heavy condensed uppercase cut, and
+the "Festivo Basic" the spec asked for in navigation and buttons. It was not
+in the hand-off either; it came off the client's own server, where their live
+site already uses it for exactly this. One drawn weight, declared across the
+range so nothing synthesises a bold on a face that is already heavy. Uppercase,
+`letter-spacing: 0.09em`, per the spec.
+
+Festivo Letters No. 18 — the light monoline cut that *was* supplied — stays out
+of the interface. It is a decorative display face and an 11px navigation bar
+set in it is an unreadable navigation bar.
 
 **Texture — Trade Supply Textured, rationed.** It is ink applied to the page,
 never the page's default; at small sizes its distress turns to noise. It is
@@ -145,13 +166,24 @@ used in exactly five places and nowhere else:
 - the Bottle Shop section mark
 - the bottle style labels (`CHILLABLE RED`, `SPARKLING`)
 
-**Handwriting — removed.** The marginalia was set in a stock script face. A
-recognisable Canva-style handwriting cheapens artwork this considered, so
-`.hand` is now the body serif's italic: restrained, and unmistakably the same
-voice. The better answer is still outstanding — six to eight phrases
-("Seasonal. Intentional. Uncompromising.") drawn from the logo's own brush
-character and shipped as SVG, which would make them proprietary rather than
-merely tasteful.
+**Handwriting — removed, and worth knowing why it is not coming back cheaply.**
+The marginalia was set in a stock script face, and a recognisable Canva-style
+handwriting cheapens artwork this considered.
+
+Two facts settle the question. First, `.hand` was only ever used in the
+**collage** direction — `components/collage/*`. The editorial direction the
+client chose never had handwritten annotation at all, so nothing was lost from
+the live design. Second, the client's own site has **no script or handwritten
+face anywhere in its stack**: it loads Archer Book, Archer Medium, Festivo
+No. 1, Festivo No. 18 and Trade Supply, and that is the entire list.
+
+So there is no handwriting to restore — there is handwriting to *commission*.
+The proper answer remains six to eight phrases ("Seasonal. Intentional.
+Uncompromising.") drawn from the logo's own brush character and shipped as
+SVG. That is a lettering job, not a font swap: the logo's script only contains
+R, E, B, L, I, O and N, so the phrases cannot be assembled from it, and any
+font picked to stand in for the brush would be exactly the recognisable
+handwriting the spec rules out.
 
 **Festivo Letters No. 18 and Minion Pro** are loaded but unused on the site.
 They are set as specimens on `/rebellion-brand` so the client can see their own
@@ -162,8 +194,8 @@ faces rendered; `preload` is off, so no other page pays for them.
 The three supplied OTFs are **desktop licences**. Serving a font from a web
 server is a separate grant in every foundry's terms, Adobe's included. Only
 Trade Supply is actually in service on the site, so that is the one to settle
-before launch. Cormorant Garamond, Bitter and Archivo Narrow are all open
-licence and carry no restriction.
+before launch. Cormorant Garamond is open licence and carries no
+restriction. Archer is the one to settle — see above.
 
 ## Graphic elements
 
@@ -199,8 +231,8 @@ recalculating per breakpoint.
 
 ## Open, in order of what blocks what
 
-1. **Archer web licence.** Blocks body copy being the real thing rather than a
-   stand-in. Repoint `--font-bitter` and every paragraph follows.
+1. **Confirm the Archer web licence with Hoefler&Co.** The font is installed
+   and running; what is missing is proof that serving it is covered.
 2. **A web licence for Trade Supply**, the one supplied face actually in
    service. Blocks public launch, not the preview.
 3. **A Canela or Editorial New web licence.** The slot is built; the font is

@@ -141,12 +141,12 @@ python3 scripts/extract-brand-kit.py  # splats, watercolour, pattern, lockup; ne
 The approved type system is deliberately *not* all four brand faces in equal
 service — the 2021 guide is a source of character, not a web spec:
 
-| Role      | Face                  | CSS token        |
-| --------- | --------------------- | ---------------- |
-| Display   | Cormorant Garamond    | `--font-display` |
-| Editorial | Bitter (Archer stand-in) | `--font-body` |
-| Interface | Archivo Narrow        | `--font-ui`      |
-| Texture   | Trade Supply Textured | `--font-accent`  |
+| Role      | Face                   | CSS token        |
+| --------- | ---------------------- | ---------------- |
+| Display   | Cormorant Garamond     | `--font-display` |
+| Editorial | Archer Book / Medium   | `--font-body`    |
+| Interface | Festivo Letters No. 1  | `--font-ui`      |
+| Texture   | Trade Supply Textured  | `--font-accent`  |
 
 The display role has a drop-in slot for the licensed face the client wants:
 put Canela or Editorial New into `brand/fonts/display/`, run
@@ -154,12 +154,11 @@ put Canela or Editorial New into `brand/fonts/display/`, run
 without another line changing. Empty until then, and Cormorant Garamond covers
 it with no failed request.
 
-Archer needs a Hoefler&Co web licence and Festivo *Basic* was never supplied,
-so those two roles run on open-licence substitutes; `docs/brand-compliance.md`
-records why, and each is one token to repoint. Trade Supply is the only
-supplied face in service, and it is rationed to five named accents. Festivo
-Letters No. 18 and Minion Pro are loaded unpreloaded purely as specimens on
-`/rebellion-brand`.
+Archer and Festivo No. 1 were not in the hand-off; they come from the client's
+own live site, which publishes both (`brand/fonts/web/README.md` — including
+the Hoefler&Co licence question that raises and does not answer). Trade Supply
+is rationed to five named accents. Festivo Letters No. 18 and Minion Pro are
+loaded unpreloaded purely as specimens on `/rebellion-brand`.
 
 `scripts/extract-brand-kit.py` pulls page 6's sanctioned graphic elements —
 five ink splats, the watercolour texture, the signature pattern — plus the
