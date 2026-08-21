@@ -21,7 +21,7 @@ export function Footer() {
         aria-hidden
         className="pointer-events-none absolute -right-[132px] -bottom-[190px] w-[486px] opacity-[0.07] select-none"
       >
-        <Logotype knockout />
+        <Logotype knockout alt="" />
       </div>
 
       <div className="relative mx-auto grid max-w-[1400px] gap-10 px-6 py-16 md:px-10 lg:grid-cols-[1.1fr_1fr_0.8fr_1.4fr_auto] lg:items-start lg:gap-12">

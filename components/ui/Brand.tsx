@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /**
@@ -24,7 +25,7 @@ export function Logotype({
   priority = false,
   /** Pass "" where a second copy of the mark is stacked purely for a colour
       swap, so the name is not announced twice. */
-  alt = "Rebellion Beachside Bar & Bistro",
+  alt = site.markName,
 }: {
   knockout?: boolean;
   className?: string;

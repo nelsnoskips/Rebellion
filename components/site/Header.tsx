@@ -69,7 +69,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
             lockup used to. */}
         <Link
           href="/"
-          aria-label={`${site.shortName} — home`}
+          aria-label={`${site.markName} — home`}
           className="relative z-10 block shrink-0 transition-opacity duration-[var(--dur-micro)] ease-[var(--ease-ui)] hover:opacity-75"
         >
           <span className="relative block w-[131px] md:w-[157px]">

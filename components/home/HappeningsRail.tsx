@@ -59,7 +59,7 @@ export function HappeningsRail() {
         aria-hidden
         className="pointer-events-none absolute -bottom-[166px] -left-[164px] w-[486px] opacity-[0.035] select-none"
       >
-        <Logotype />
+        <Logotype alt="" />
       </div>
       <Bloom
         variant="c"

@@ -12,6 +12,12 @@ import { images, type ImageName } from "./images";
 export const site = {
   name: "Rebellion Beachside Bar & Bistro",
   shortName: "Rebellion Beachside",
+  /* What the mark on the page actually reads. The header carries the script
+     alone, so this — not the full trading name — is the accessible name for
+     it: alt text on a logo should say what a sighted visitor sees, and the
+     full name would announce two lines that are not there. `name` still
+     governs the metadata, the title and the structured data. */
+  markName: "Rebellion",
   parent: "Rebellion Restaurants",
   tagline: "Rebel against the ordinary.",
   description:
