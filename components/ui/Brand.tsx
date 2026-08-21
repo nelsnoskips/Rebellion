@@ -2,10 +2,15 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /**
- * The logotype, rendered from the supplied 1C vector by
+ * The Rébellion script, rendered from the supplied 1C vector by
  * scripts/build-logotype.py. `knockout` is the bone copy for ink and oxblood
  * grounds; both are the same geometry to the pixel, so cross-fading one into
  * the other does not move the mark.
+ *
+ * The script alone — no BEACHSIDE line, no BAR & BISTRO. It is the half of
+ * the mark anyone actually recognises, and at nav height the two small stacked
+ * lines under it were illegible anyway. The full lockup is still built into
+ * /public/brand for print and for anywhere the whole thing is wanted.
  *
  * The art carries the style guide's clear space inside the file — the height
  * and width of the N in Rébellion on every side — so a placement only has to
@@ -30,12 +35,12 @@ export function Logotype({
     <Image
       src={
         knockout
-          ? "/brand/rebellion-logotype-knockout.png"
-          : "/brand/rebellion-logotype.png"
+          ? "/brand/rebellion-script-knockout.png"
+          : "/brand/rebellion-script.png"
       }
       alt={alt}
-      width={1970}
-      height={1343}
+      width={2038}
+      height={1246}
       priority={priority}
       className={cn("h-auto w-full", className)}
     />

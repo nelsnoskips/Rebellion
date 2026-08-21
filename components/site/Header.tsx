@@ -64,13 +64,15 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
             it with the guide's margin above and below. Sizing by width instead
             is what left the mark jammed against both edges — and the bar is
             96px rather than 88 because that is what the mark needs to hold its
-            old size once its clear space is honoured. */}
+            old size once its clear space is honoured. The width tracks the
+            script's own aspect, so the ink lands at the same height the full
+            lockup used to. */}
         <Link
           href="/"
           aria-label={`${site.shortName} — home`}
           className="relative z-10 block shrink-0 transition-opacity duration-[var(--dur-micro)] ease-[var(--ease-ui)] hover:opacity-75"
         >
-          <span className="relative block w-[117px] md:w-[141px]">
+          <span className="relative block w-[131px] md:w-[157px]">
             <Logotype
               priority
               className={cn(
