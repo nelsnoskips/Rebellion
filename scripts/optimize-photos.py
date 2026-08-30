@@ -60,11 +60,12 @@ SUFFIXES = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff", ".heic"}
 # the decision is legible.
 CROP = {
     # The owners stand right of centre with the painted wall filling the left
-    # of the frame; they sit at 68% across. Taking a fifth off the left brings
-    # them to 61% and leaves the mural clearly reading. It also lands the
-    # source at 0.60, which is exactly the homepage frame's aspect, so that
-    # render crops nothing at all.
-    "owners-mural": (0.20, 0.0, 1.0, 1.0),
+    # of the frame, and there is a band of ceiling above them. Taking 28% off
+    # the left and 10% off the top does three things at once: brings them from
+    # 68% across to 56%, drops the ceiling, and scales them about 10% larger in
+    # every frame. The result is 1506x2509 — an aspect of exactly 0.600, which
+    # is what the homepage frame measures, so that render crops nothing.
+    "owners-mural": (0.28, 0.10, 1.0, 1.0),
 }
 
 PLAN = {
