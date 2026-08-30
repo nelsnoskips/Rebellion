@@ -368,6 +368,7 @@ export const occasions = [
   },
   { title: "Milestone Celebrations", line: "Birthdays and anniversaries that earn a room." },
   { title: "Corporate Gatherings", line: "Off-sites, client dinners, and quiet deals." },
+  { title: "Holiday Parties", line: "Company nights out and seasonal celebrations." },
   { title: "Wine Dinners", line: "Producer-led, paired, and properly poured." },
   { title: "Launches & Press", line: "Standing service, passed plates, full bar." },
   { title: "Full Buyouts", line: "The whole building, exactly your way." },

@@ -43,11 +43,12 @@ export const images = {
    */
   hosts: {
     brief:
-      "The owners, in front of the painted wall. A 3:4 photograph, and every " +
-      "frame it renders in is proportioned so both of them survive the crop: " +
-      "0.60 on the homepage, 4:5 on Story, and full width on mobile.",
-    src: "/images/owners-mural-feature.webp",
-    alt: "The owners in front of the Rebellion mural, each holding a bottle from the list",
+      "The owners in the dining room. Only 678x452, so it is upscaled in the " +
+      "portrait frames it renders in — but it holds far more real detail than " +
+      "the larger mural frame it replaced, which was itself an upscale. Ask " +
+      "for the camera original: it would fix the one soft image on the site.",
+    src: "/images/owners-dining-room-feature.webp",
+    alt: "The owners in the dining room, each holding a bottle from the list",
   },
 
   /* --- Choose your Rebellion (blueprint §07 module 02) ------------------- */

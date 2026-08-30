@@ -59,13 +59,10 @@ SUFFIXES = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff", ".heic"}
 # Kept as data rather than done to the file, so the original stays whole and
 # the decision is legible.
 CROP = {
-    # The owners stand right of centre with the painted wall filling the left
-    # of the frame, and there is a band of ceiling above them. Taking 28% off
-    # the left and 10% off the top does three things at once: brings them from
-    # 68% across to 56%, drops the ceiling, and scales them about 10% larger in
-    # every frame. The result is 1506x2509 — an aspect of exactly 0.600, which
-    # is what the homepage frame measures, so that render crops nothing.
-    "owners-mural": (0.28, 0.10, 1.0, 1.0),
+    # The pair sit at 60% across a landscape frame. This crop is a 0.60 column
+    # centred on them — the same aspect the homepage frame measures — so both
+    # are in and neither edge is clipped.
+    "owners-dining-room": (0.406, 0.0, 0.804, 1.0),
 }
 
 PLAN = {
@@ -79,11 +76,13 @@ PLAN = {
     # --- The client's commissioned shoot ---------------------------------
     # Lookbook, OpenTable and bar sets, 6000x4000 originals in their Drive.
     "espresso-martini-neon": ["feature"],   # featuredCocktail
-    "owners-mural": ["feature"],            # hosts
+    "owners-dining-room": ["feature"],      # hosts
     "bartender-flame": ["feature"],         # chefPass
-    # Kept as a source but not placed: the web-resolution copy of the hosts
-    # that owners-mural replaced.
-    "owners-dining-room": [],
+    # Kept as a source but not placed. Its pixel dimensions are far larger but
+    # it is a heavy upscale of something small — 0.018 bytes/px and a Laplacian
+    # variance of 3 against this one's 471 — so it carries almost no real
+    # detail and reads soft at any size.
+    "owners-mural": [],
     "bartender-back-bar": ["feature"],      # bar
     "bartender-pour": ["card"],             # eventLiveMusic
     "cocktail-quartet": ["card"],           # eventCocktailClass
