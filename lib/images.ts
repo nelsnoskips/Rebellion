@@ -37,16 +37,17 @@ export const images = {
   },
 
   /**
-   * The people behind it. Separate from `chefPass` on purpose: this is a
-   * two-person photograph and it needs a frame wide enough to hold both, which
-   * the homepage's narrow column is not.
+   * The owners. Kept separate from `chefPass` because it is a two-person
+   * photograph and needs a frame wide enough to hold both — which is why the
+   * homepage section it appears in had its grid rebalanced to suit it.
    */
   hosts: {
     brief:
-      "The hosts, in front of the painted wall. Shot 3:4 into a 4:5 frame, so " +
-      "the crop only takes a sliver off the height and both of them stay in.",
+      "The owners, in front of the painted wall. A 3:4 photograph, and every " +
+      "frame it renders in is proportioned so both of them survive the crop: " +
+      "0.60 on the homepage, 4:5 on Story, and full width on mobile.",
     src: "/images/owners-mural-feature.webp",
-    alt: "Two hosts in front of the Rebellion mural, each holding a bottle from the list",
+    alt: "The owners in front of the Rebellion mural, each holding a bottle from the list",
   },
 
   /* --- Choose your Rebellion (blueprint §07 module 02) ------------------- */

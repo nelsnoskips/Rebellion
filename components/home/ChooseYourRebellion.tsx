@@ -37,9 +37,15 @@ export function ChooseYourRebellion() {
       />
       <ChapterMark n="02" className="absolute top-4 right-6 hidden lg:block" />
 
-      <div className="relative grid lg:grid-cols-[0.92fr_1.08fr]">
-        {/* Statement + chef */}
-        <div className="grid items-stretch sm:grid-cols-[1.05fr_0.95fr]">
+      {/* The column split is set by the photograph, not the other way round.
+          The owners stand side by side and take up a bit over half the frame's
+          width, so anything narrower than about 0.45 crops one of them out —
+          the earlier 0.92/1.08 split gave the photo a 241x700 sliver and left
+          him as an arm holding a bottle. At 1.15/0.85 the frame comes out
+          around 0.60 and keeps 80% of the width. */}
+      <div className="relative grid lg:grid-cols-[1.15fr_0.85fr]">
+        {/* Statement + the owners */}
+        <div className="grid items-stretch sm:grid-cols-[0.85fr_1.15fr]">
           <Reveal className="flex flex-col justify-center px-6 py-12 md:px-10 lg:py-16">
             <h2 className="display max-w-[16ch] text-[clamp(1.9rem,3.4vw,3rem)]">
               A chef-driven bistro, wine destination, and gathering place in Cocoa
@@ -58,10 +64,10 @@ export function ChooseYourRebellion() {
             className="art-frame-portrait relative min-h-[300px] lg:min-h-full"
           >
             <Image
-              src={images.chefPass.src}
-              alt={images.chefPass.alt}
+              src={images.hosts.src}
+              alt={images.hosts.alt}
               fill
-              sizes="(max-width: 640px) 100vw, 25vw"
+              sizes="(max-width: 640px) 100vw, 30vw"
               className="object-cover"
             />
           </Reveal>
