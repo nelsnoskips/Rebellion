@@ -28,9 +28,13 @@ export const images = {
     alt: "A braised short rib on gnocchi in a candlelit booth, with red wine and a charcuterie board alongside",
   },
   chefPass: {
-    brief: "Shoot day 01 — the craft moment, hands and concentration. Currently the bar rather than the pass; a kitchen frame would be better.",
-    src: "/images/bartender-flame-feature.webp",
-    alt: "A bartender flaming the surface of a layered cocktail behind the bar",
+    brief:
+      "The people behind it. This is a 678x452 web copy rather than a camera " +
+      "original, and it renders in two 4:5 portrait frames that crop away " +
+      "half of a landscape photograph — so it is soft next to everything " +
+      "around it. Swap it for the original the moment that turns up.",
+    src: "/images/owners-dining-room-feature.webp",
+    alt: "Two hosts standing in the dining room, each holding a bottle from the list",
   },
 
   /* --- Choose your Rebellion (blueprint §07 module 02) ------------------- */
