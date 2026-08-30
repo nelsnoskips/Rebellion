@@ -59,9 +59,14 @@ export function ChooseYourRebellion() {
             </div>
           </Reveal>
 
+          {/* Landscape, and sized to the file rather than to the column. The
+              photograph is 678x452; a full-height portrait column here wanted
+              838x1400 device pixels from it and the upscale showed. At 3:2 and
+              the column's width it asks for 838x558, which the source very
+              nearly covers. */}
           <Reveal
             index={1}
-            className="art-frame-portrait relative min-h-[300px] lg:min-h-full"
+            className="art-frame relative aspect-[3/2] self-center"
           >
             <Image
               src={images.hosts.src}

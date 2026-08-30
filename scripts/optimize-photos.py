@@ -59,10 +59,9 @@ SUFFIXES = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff", ".heic"}
 # Kept as data rather than done to the file, so the original stays whole and
 # the decision is legible.
 CROP = {
-    # The pair sit at 60% across a landscape frame. This crop is a 0.60 column
-    # centred on them — the same aspect the homepage frame measures — so both
-    # are in and neither edge is clipped.
-    "owners-dining-room": (0.406, 0.0, 0.804, 1.0),
+    # Only a hair off each edge to centre the pair. Nothing more: at 678x452
+    # every pixel cropped here is one the frame has to invent back.
+    "owners-dining-room": (0.06, 0.0, 1.0, 1.0),
 }
 
 PLAN = {

@@ -72,7 +72,7 @@ export default function StoryPage() {
               </div>
             </Reveal>
 
-            <Reveal index={1} className="art-frame-portrait relative aspect-[4/5]">
+            <Reveal index={1} className="art-frame relative aspect-[3/2] self-center">
               <Image
                 src={images.hosts.src}
                 alt={images.hosts.alt}
