@@ -29,12 +29,24 @@ export const images = {
   },
   chefPass: {
     brief:
-      "The people behind it. This is a 678x452 web copy rather than a camera " +
-      "original, and it renders in two 4:5 portrait frames that crop away " +
-      "half of a landscape photograph — so it is soft next to everything " +
-      "around it. Swap it for the original the moment that turns up.",
-    src: "/images/owners-dining-room-feature.webp",
-    alt: "Two hosts standing in the dining room, each holding a bottle from the list",
+      "The craft moment, hands and concentration. This one renders in a very " +
+      "tall, narrow column, so it needs a single upright subject — a wide " +
+      "photograph loses most of itself to the crop there.",
+    src: "/images/bartender-flame-feature.webp",
+    alt: "A bartender flaming the surface of a layered cocktail behind the bar",
+  },
+
+  /**
+   * The people behind it. Separate from `chefPass` on purpose: this is a
+   * two-person photograph and it needs a frame wide enough to hold both, which
+   * the homepage's narrow column is not.
+   */
+  hosts: {
+    brief:
+      "The hosts, in front of the painted wall. Shot 3:4 into a 4:5 frame, so " +
+      "the crop only takes a sliver off the height and both of them stay in.",
+    src: "/images/owners-mural-feature.webp",
+    alt: "Two hosts in front of the Rebellion mural, each holding a bottle from the list",
   },
 
   /* --- Choose your Rebellion (blueprint §07 module 02) ------------------- */

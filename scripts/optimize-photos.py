@@ -58,13 +58,11 @@ PLAN = {
     # --- The client's commissioned shoot ---------------------------------
     # Lookbook, OpenTable and bar sets, 6000x4000 originals in their Drive.
     "espresso-martini-neon": ["feature"],   # featuredCocktail
-    # A web-resolution copy at 678x452, not a camera original. `derive` clamps
-    # to the source so it comes out at native size instead of being upscaled
-    # into a slot it cannot fill; both places it renders are 4:5 portrait
-    # frames, so barely half of it survives the crop. Replace it the moment
-    # the original turns up.
-    "owners-dining-room": ["feature"],      # chefPass
-    "bartender-flame": ["feature"],         # unplaced — was chefPass
+    "owners-mural": ["feature"],            # hosts
+    "bartender-flame": ["feature"],         # chefPass
+    # Kept as a source but not placed: the web-resolution copy of the hosts
+    # that owners-mural replaced.
+    "owners-dining-room": [],
     "bartender-back-bar": ["feature"],      # bar
     "bartender-pour": ["card"],             # eventLiveMusic
     "cocktail-quartet": ["card"],           # eventCocktailClass

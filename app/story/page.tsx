@@ -74,8 +74,8 @@ export default function StoryPage() {
 
             <Reveal index={1} className="art-frame-portrait relative aspect-[4/5]">
               <Image
-                src={images.chefPass.src}
-                alt={images.chefPass.alt}
+                src={images.hosts.src}
+                alt={images.hosts.alt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
