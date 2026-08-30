@@ -47,6 +47,26 @@ SUFFIXES = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff", ".heic"}
 # photo quadruples what ships for no benefit, so anything listed here gets only
 # the roles named; anything unlisted gets all of them, which is the right
 # default for a photo that has just arrived and has no slot yet.
+# Framing, applied to the original before anything is sized from it. Fractions
+# of the source: (left, top, right, bottom).
+#
+# This is for photographs whose subject is off-centre in a way no CSS crop can
+# fix — `object-position` can only slide the visible window inside whatever the
+# frame's aspect leaves over, and when the frame and the source are nearly the
+# same shape that is almost nothing. Cutting the dead ground here moves the
+# subject in every frame at once, desktop, tablet and mobile.
+#
+# Kept as data rather than done to the file, so the original stays whole and
+# the decision is legible.
+CROP = {
+    # The owners stand right of centre with the painted wall filling the left
+    # of the frame; they sit at 68% across. Taking a fifth off the left brings
+    # them to 61% and leaves the mural clearly reading. It also lands the
+    # source at 0.60, which is exactly the homepage frame's aspect, so that
+    # render crops nothing at all.
+    "owners-mural": (0.20, 0.0, 1.0, 1.0),
+}
+
 PLAN = {
     # --- Nelson's originals ---------------------------------------------
     "short-rib-booth": ["hero"],        # hero
@@ -113,6 +133,12 @@ def main() -> None:
         # come out rotated.
         img = ImageOps.exif_transpose(Image.open(path)).convert("RGB")
         name = path.stem.lower().replace(" ", "-").replace("_", "-")
+        if name in CROP:
+            l, t, r, b = CROP[name]
+            before = img.size
+            img = img.crop((round(l * img.width), round(t * img.height),
+                            round(r * img.width), round(b * img.height)))
+            print(f"  framed {before[0]}×{before[1]} -> {img.width}×{img.height}")
         roles = override or PLAN.get(name, list(ROLES))
         print(f"{path.name}  ({img.width}×{img.height})")
         for role in roles:
