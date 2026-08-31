@@ -229,6 +229,35 @@ The bistro header holds clear space with fixed padding on the lockup, which
 comes to the same distance at every size the mark is used, rather than
 recalculating per breakpoint.
 
+## Generated imagery
+
+One image on the site is not wholly photographic, and it is recorded here
+rather than left for someone to notice.
+
+**`hosts` — the owners in the dining room.** The original is 678×452, a web
+copy with no EXIF. It is the sharpest picture of the two of them that exists in
+any source we have, but far too small for the frames it needs to fill. It was
+rebuilt in three steps:
+
+1. sides taken in to centre the pair, and the compression damage cleaned up
+   locally (`RESTORE` in `scripts/optimize-photos.py`);
+2. upscaled to 2K through Higgsfield;
+3. extended top and bottom through Higgsfield's outpaint, to 1696×2528, so it
+   stands as a portrait instead of a letterbox.
+
+**The ceiling above them and the floor below roughly their knees are
+generated.** Everything from about knee height to the ceiling line — the two of
+them, the bottles, the brick, the mirrors, the banquettes, the laid tables — is
+the photograph. The invented parquet is plausible but has not been checked
+against the real floor, which is worth doing before launch.
+
+This is the line the project has held elsewhere: no generated food, no
+generated room, no generated people. Extending the ceiling and floor of a real
+photograph of real owners in their own dining room is a different thing from
+inventing a dish or a space that nobody has eaten in or sat in. The camera
+original would still be better than all of it, and `photos/owners-dining-room.jpg`
+is kept unplaced so the rebuild can be redone from scratch if one appears.
+
 ## Open, in order of what blocks what
 
 1. **Confirm the Archer web licence with Hoefler&Co.** The font is installed

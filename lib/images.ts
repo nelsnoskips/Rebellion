@@ -43,11 +43,12 @@ export const images = {
    */
   hosts: {
     brief:
-      "The owners in the dining room. Only 678x452, so it is upscaled in the " +
-      "portrait frames it renders in — but it holds far more real detail than " +
-      "the larger mural frame it replaced, which was itself an upscale. Ask " +
-      "for the camera original: it would fix the one soft image on the site.",
-    src: "/images/owners-dining-room-feature.webp",
+      "The owners in the dining room. Built from a 678x452 original: sides " +
+      "taken in, upscaled to 2K, then extended top and bottom so it stands " +
+      "as a portrait. The ceiling and the floor below their knees are " +
+      "generated — see docs/brand-compliance.md. Replace the whole thing if " +
+      "the camera original turns up.",
+    src: "/images/owners-extended-feature.webp",
     alt: "The owners in the dining room, each holding a bottle from the list",
   },
 

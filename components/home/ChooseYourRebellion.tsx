@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ShoppingBag, UtensilsCrossed, Wine } from "lucide-react";
 import { experiences, images, site } from "@/lib/site";
+import { cn } from "@/lib/utils";
 import { ArrowLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Bloom, ChapterMark, InkSplatter } from "@/components/ui/Artwork";
@@ -59,14 +60,12 @@ export function ChooseYourRebellion() {
             </div>
           </Reveal>
 
-          {/* Landscape, and sized to the file rather than to the column. The
-              photograph is 678x452; a full-height portrait column here wanted
-              838x1400 device pixels from it and the upscale showed. At 3:2 and
-              the column's width it asks for 838x558, which the source very
-              nearly covers. */}
+          {/* Full height again. The photograph was landscape and 678px wide,
+              which is why this had to shrink to a 3:2 block; it has since been
+              rebuilt taller and larger, so the column can be a column. */}
           <Reveal
             index={1}
-            className="art-frame relative aspect-[3/2] self-center"
+            className="art-frame-portrait relative min-h-[300px] lg:min-h-full"
           >
             <Image
               src={images.hosts.src}
@@ -78,8 +77,16 @@ export function ChooseYourRebellion() {
           </Reveal>
         </div>
 
-        {/* Three ways in */}
-        <ul className="grid gap-px bg-rule sm:grid-cols-3">
+        {/* The ways in — three of them, or two while the bottle shop is
+            hidden. The column count follows the list rather than being fixed
+            at three, so switching the shop off closes the row up instead of
+            leaving an empty cell where "Take it home" used to sit. */}
+        <ul
+          className={cn(
+            "grid gap-px bg-rule",
+            experiences.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2",
+          )}
+        >
           {experiences.map((exp, i) => {
             const Icon = icons[exp.key as keyof typeof icons];
             const img = images[exp.image];

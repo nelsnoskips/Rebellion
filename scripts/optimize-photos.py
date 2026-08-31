@@ -95,13 +95,14 @@ PLAN = {
     # --- The client's commissioned shoot ---------------------------------
     # Lookbook, OpenTable and bar sets, 6000x4000 originals in their Drive.
     "espresso-martini-neon": ["feature"],   # featuredCocktail
-    "owners-dining-room": ["feature"],      # hosts
+    "owners-extended": ["feature"],         # hosts
     "bartender-flame": ["feature"],         # chefPass
-    # Kept as a source but not placed. Its pixel dimensions are far larger but
-    # it is a heavy upscale of something small — 0.018 bytes/px and a Laplacian
-    # variance of 3 against this one's 471 — so it carries almost no real
-    # detail and reads soft at any size.
+    # Sources kept but not placed: the mural frame, whose pixel dimensions are
+    # far larger but which is a heavy upscale of something small (0.018
+    # bytes/px, Laplacian variance 3), and the untouched dining-room original
+    # that owners-extended was built from.
     "owners-mural": [],
+    "owners-dining-room": [],
     "bartender-back-bar": ["feature"],      # bar
     "bartender-pour": ["card"],             # eventLiveMusic
     "cocktail-quartet": ["card"],           # eventCocktailClass
