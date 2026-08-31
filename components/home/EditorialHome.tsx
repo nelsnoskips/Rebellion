@@ -1,3 +1,4 @@
+import { flags } from "@/lib/site";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { FloatingReserve } from "@/components/site/FloatingReserve";
@@ -32,7 +33,7 @@ export function EditorialHome() {
         <Marquee />
         <EditorialSplit />
         <PrivateEventsReveal />
-        <BottleShopFeature />
+        {flags.bottleShop ? <BottleShopFeature /> : null}
         <SocialProof />
         <VisitBand />
       </main>

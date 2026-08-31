@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Facebook, Instagram, MapPin, Plus } from "lucide-react";
-import { hours, site } from "@/lib/site";
+import { hours, site, flags } from "@/lib/site";
 import { Logotype } from "@/components/ui/Brand";
 import { Deckle, InkSplatter } from "@/components/ui/Artwork";
 import { NewsletterForm } from "@/components/site/NewsletterForm";
@@ -118,9 +118,11 @@ export function Footer() {
             <Link href="/visit" className="hover:text-bone">
               Privacy
             </Link>
-            <Link href="/bottle-shop" className="hover:text-bone">
+{flags.bottleShop ? (
+              <Link href="/bottle-shop" className="hover:text-bone">
               Delivery policy
             </Link>
+            ) : null}
           </nav>
         </div>
       </div>

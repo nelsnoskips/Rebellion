@@ -35,6 +35,10 @@ export const site = {
   phone: "321.613.2210",
   phoneHref: "tel:+13216132210",
   email: "hello@rebellionbeachside.com",
+  /* Where private-event inquiries land, confirmed by the client. Separate from
+     the general address on purpose: the events inbox is watched to a
+     same-business-day promise and the general one is not. */
+  eventsEmail: "michelle@rebellionwinebar.com",
   /* Every Reserve CTA points here rather than straight out to the booking
      platform, so campaigns land on a page we control and can measure
      (blueprint §06 measurement layer). See `reservations` below. */
@@ -95,12 +99,24 @@ export const hours = [
   { days: "Sun", time: "11AM – 9PM" },
 ];
 
+/**
+ * What is switched on.
+ *
+ * `bottleShop` is off while the site is merged into the client's hosting. The
+ * code stays whole — the route, the section, the card, the footer link — and
+ * flipping this back to true restores all of it at once. Hiding it by deleting
+ * pages would mean rebuilding them later from memory.
+ */
+export const flags = {
+  bottleShop: false,
+} as const;
+
 /** Primary navigation — blueprint §06, ordered by intent, not department. */
 export const nav = [
   { label: "Menus", href: "/menus" },
   { label: "Happenings", href: "/happenings" },
   { label: "Private Events", href: "/private-events" },
-  { label: "Bottle Shop", href: "/bottle-shop" },
+  ...(flags.bottleShop ? [{ label: "Bottle Shop", href: "/bottle-shop" }] : []),
   { label: "Story", href: "/story" },
   { label: "Visit", href: "/visit" },
 ];
@@ -130,14 +146,18 @@ export const experiences: {
     href: "/private-events",
     image: "gather",
   },
-  {
-    key: "take-it-home",
-    title: "Take It Home",
-    line: "Curated wines, cocktails & provisions to enjoy anywhere.",
-    cta: "Shop bottle shop",
-    href: "/bottle-shop",
-    image: "takeItHome",
-  },
+  ...(flags.bottleShop
+    ? [
+        {
+          key: "take-it-home",
+          title: "Take It Home",
+          line: "Curated wines, cocktails & provisions to enjoy anywhere.",
+          cta: "Shop bottle shop",
+          href: "/bottle-shop",
+          image: "takeItHome" as const,
+        },
+      ]
+    : []),
 ];
 
 /** Module 04–06 — the three feature panels beneath the experience cards. */

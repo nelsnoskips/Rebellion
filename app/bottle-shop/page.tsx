@@ -4,7 +4,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { DeliveryChecker } from "@/components/shop/DeliveryChecker";
 import { BottleGlyph } from "@/components/ui/Brand";
 import { Bloom, Deckle } from "@/components/ui/Artwork";
-import { bottles, collections, site } from "@/lib/site";
+import { notFound } from "next/navigation";
+import { bottles, collections, flags, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Bottle Shop",
@@ -18,6 +19,10 @@ export const metadata: Metadata = {
    before this page can take an order (blueprint §10). */
 
 export default function BottleShopPage() {
+  // Hidden while the site is merged into the client's hosting. Everything
+  // below stays intact; flags.bottleShop brings the route back.
+  if (!flags.bottleShop) notFound();
+
   return (
     <PageShell
       eyebrow="Bottle Shop"

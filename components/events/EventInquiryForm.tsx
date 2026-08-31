@@ -1,15 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /**
  * Private-event inquiry (blueprint §08 field list).
  *
  * Required fields first, qualification second, so a phone submit is short and
- * the sales team still gets date, headcount, occasion and budget. Nothing is
- * posted yet — the CRM pipeline, owner notification, source/campaign capture
- * and same-business-day SLA task are the §08 automation to wire next.
+ * the sales team still gets date, headcount, occasion and budget.
+ *
+ * The form still posts nowhere — the CRM pipeline, owner notification,
+ * source/campaign capture and same-business-day SLA task are the §08
+ * automation to wire next. Until then the email fallback below is the only
+ * route an inquiry actually travels, so it is shown rather than buried: a
+ * submit that silently goes nowhere is worse than no form at all.
  */
 
 const field =
@@ -175,6 +180,16 @@ export function EventInquiryForm() {
         </button>
         <p className="mt-4 text-xs text-ink-mute">
           We reply by the end of the next business day. * required.
+        </p>
+        <p className="mt-2 text-xs text-ink-mute">
+          Prefer email? Write to{" "}
+          <a
+            href={`mailto:${site.eventsEmail}?subject=Private%20event%20inquiry`}
+            className="underline decoration-oxblood/50 underline-offset-4 hover:decoration-oxblood"
+          >
+            {site.eventsEmail}
+          </a>
+          .
         </p>
       </div>
     </form>
