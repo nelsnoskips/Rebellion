@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/ui/Reveal";
 import { Bloom, InkSplatter } from "@/components/ui/Artwork";
-import { hours, site } from "@/lib/site";
+import { faqs, hours, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Visit",
@@ -14,64 +14,6 @@ export const metadata: Metadata = {
 /* PLACEHOLDER — every fact on this page needs client confirmation before
    launch (blueprint §15 source caution). */
 
-/* `a` is a node rather than a string so an answer can carry a link — the gift
-   card lives on Toast, and telling someone it exists without telling them
-   where is half an answer. */
-const faqs: { q: string; a: React.ReactNode }[] = [
-  {
-    q: "Do you take reservations?",
-    a: "Yes, and we recommend them Thursday through Saturday. Walk-ins are always welcome at the bar.",
-  },
-  {
-    q: "Where do I park?",
-    a: "There is an on-site lot, plus street parking on the surrounding blocks. Ride-share drop-off is at the front entrance.",
-  },
-  {
-    q: "Is the restaurant accessible?",
-    a: "Step-free entry, accessible restrooms, and space between tables for wheelchair access. Tell us what you need when you book and we will set the room accordingly.",
-  },
-  {
-    q: "Are children welcome?",
-    a: "Yes, before 8pm. We have a short menu for younger guests.",
-  },
-  {
-    q: "Can I bring my own wine?",
-    a: "Corkage is available for bottles we do not carry. Ask when you book.",
-  },
-  {
-    q: "Do you sell gift cards?",
-    a: (
-      <>
-        Yes —{" "}
-        <a
-          href={site.giftCardUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="font-medium text-oxblood underline decoration-oxblood/40 underline-offset-4 hover:decoration-oxblood"
-        >
-          buy an e-gift card
-        </a>
-        . It arrives by email and can be used on anything, any day.
-      </>
-    ),
-  },
-  {
-    q: "Do you host private events?",
-    a: (
-      <>
-        The Annex at Rebellion handles groups from a dozen to a full buyout.
-        Email{" "}
-        <a
-          href={`mailto:${site.eventsEmail}?subject=Private%20event%20enquiry`}
-          className="font-medium text-oxblood underline decoration-oxblood/40 underline-offset-4 hover:decoration-oxblood"
-        >
-          {site.eventsEmail}
-        </a>{" "}
-        and we will reply by the end of the next business day.
-      </>
-    ),
-  },
-];
 
 export default function VisitPage() {
   return (
@@ -148,6 +90,20 @@ export default function VisitPage() {
                   <dt className="font-semibold">{f.q}</dt>
                   <dd className="text-sm leading-relaxed text-ink-mute">
                     {f.a}
+                    {f.link ? (
+                      <>
+                        <a
+                          href={f.link.href}
+                          {...(f.link.href.startsWith("http")
+                            ? { target: "_blank", rel: "noreferrer" }
+                            : {})}
+                          className="font-medium text-oxblood underline decoration-oxblood/40 underline-offset-4 hover:decoration-oxblood"
+                        >
+                          {f.link.text}
+                        </a>
+                        {f.link.after}
+                      </>
+                    ) : null}
                   </dd>
                 </div>
               ))}

@@ -42,6 +42,35 @@ When server-rendered features arrive — CMS previews, reservation callbacks,
 commerce (blueprint §11) — drop `output: "export"` and `images.unoptimized`,
 add `@netlify/plugin-nextjs`, and publish `.next`.
 
+## Editing the site
+
+**Every word is in `lib/site.ts`.** Menus, hours, happenings, FAQs, the
+private-events copy, the story pillars, the marquee, the NAP, the feature
+flags. Nothing that a person would want to change lives in a component, and
+that is deliberate — an edit should never mean opening JSX and hoping.
+
+The fast loop, from anywhere including a phone:
+
+1. Open `lib/site.ts` on github.com and press the pencil.
+2. Change the words. Commit to `main`.
+3. The host builds and publishes. Roughly ninety seconds.
+
+TypeScript is the safety net that makes that comfortable. A missing comma, a
+misspelled image slot or a broken shape fails the build, which means the
+mistake never reaches the site — the deploy just does not happen and the
+previous version stays up. Editing raw JSON or HTML would not give you that.
+
+Two conventions worth knowing before editing:
+
+- **Images are slots, not paths.** `image: "diningRoom"` resolves through
+  `lib/images.ts`. Swapping a photograph everywhere it appears is one line
+  there; a typo in a slot name is a build error rather than a broken image.
+- **FAQ answers take an optional `link`**, so the gift card and the events
+  address stay data instead of turning that array into JSX.
+
+For anything structural — a new page, a new section — that is a code change,
+not an edit.
+
 ## Routes
 
 | Route | Blueprint reference |

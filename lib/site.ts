@@ -494,3 +494,80 @@ export const marqueeWords = [
 ];
 
 export { images };
+
+/** Private-events proof points — the table beside the enquiry copy. */
+export const eventProof = [
+  { label: "Layouts", value: "Long table, rounds, standing, or split" },
+  { label: "AV", value: "Screen, house sound, microphone on request" },
+  { label: "Access", value: "Step-free entry and accessible restrooms" },
+  { label: "Parking", value: "On-site lot plus street parking" },
+];
+
+/** The three things the Story page stands on (blueprint §03). */
+export const storyPillars = [
+  {
+    title: "Defiance with taste",
+    line: "We challenge convention through choices that are intelligent and edited — not loud for the sake of it.",
+  },
+  {
+    title: "Hospitality with character",
+    line: "Warm, observant service without scripts, stiffness, or performance.",
+  },
+  {
+    title: "Curiosity, poured",
+    line: "Wine, cocktails, food and classes exist to make discovery accessible.",
+  },
+];
+
+/**
+ * Visit-page FAQs.
+ *
+ * `link` is optional and appends a link to the answer, which is how the gift
+ * card and the events address get in here without any of this becoming JSX.
+ * Keeping it as data is the point: every word on the site should be editable
+ * without opening a component.
+ */
+export const faqs: {
+  q: string;
+  a: string;
+  link?: { href: string; text: string; after?: string };
+}[] = [
+  {
+    q: "Do you take reservations?",
+    a: "Yes, and we recommend them Thursday through Saturday. Walk-ins are always welcome at the bar.",
+  },
+  {
+    q: "Where do I park?",
+    a: "There is an on-site lot, plus street parking on the surrounding blocks. Ride-share drop-off is at the front entrance.",
+  },
+  {
+    q: "Is the restaurant accessible?",
+    a: "Step-free entry, accessible restrooms, and space between tables for wheelchair access. Tell us what you need when you book and we will set the room accordingly.",
+  },
+  {
+    q: "Are children welcome?",
+    a: "Yes, before 8pm. We have a short menu for younger guests.",
+  },
+  {
+    q: "Can I bring my own wine?",
+    a: "Corkage is available for bottles we do not carry. Ask when you book.",
+  },
+  {
+    q: "Do you sell gift cards?",
+    a: "Yes — ",
+    link: {
+      href: "https://order.toasttab.com/egiftcards/rebellion-beachside-bar-and-bistro-26-north-orlando-avenue",
+      text: "buy an e-gift card",
+      after: ". It arrives by email and can be used on anything, any day.",
+    },
+  },
+  {
+    q: "Do you host private events?",
+    a: "The Annex at Rebellion handles groups from a dozen to a full buyout. Email ",
+    link: {
+      href: "mailto:michelle@rebellionwinebar.com?subject=Private%20event%20enquiry",
+      text: "michelle@rebellionwinebar.com",
+      after: " and we will reply by the end of the next business day.",
+    },
+  },
+];

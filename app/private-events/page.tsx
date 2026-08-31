@@ -4,7 +4,7 @@ import { EventsContactLink } from "@/components/events/EventsContactLink";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/ui/Reveal";
 import { Bloom } from "@/components/ui/Artwork";
-import { images, occasions, site, venueFacts } from "@/lib/site";
+import { eventProof, images, occasions, site, venueFacts } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Private Events",
@@ -16,12 +16,6 @@ export const metadata: Metadata = {
    (blueprint §08). Domain, corporate, social and trademark clearance must be
    completed before public use. */
 
-const proof = [
-  { label: "Layouts", value: "Long table, rounds, standing, or split" },
-  { label: "AV", value: "Screen, house sound, microphone on request" },
-  { label: "Access", value: "Step-free entry and accessible restrooms" },
-  { label: "Parking", value: "On-site lot plus street parking" },
-];
 
 export default function PrivateEventsPage() {
   return (
@@ -67,7 +61,7 @@ export default function PrivateEventsPage() {
                 The room
               </h2>
               <dl className="mt-8 divide-y divide-rule border-y border-rule">
-                {proof.map((p) => (
+                {eventProof.map((p) => (
                   <div key={p.label} className="flex gap-6 py-4">
                     <dt className="micro w-24 shrink-0 pt-1 text-ink-mute">
                       {p.label}

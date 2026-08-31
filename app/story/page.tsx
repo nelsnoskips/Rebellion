@@ -4,7 +4,7 @@ import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/ui/Reveal";
 import { Bloom, BrushRule } from "@/components/ui/Artwork";
 import { ArrowLink } from "@/components/ui/Button";
-import { images } from "@/lib/site";
+import { storyPillars, images } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Story",
@@ -15,24 +15,6 @@ export const metadata: Metadata = {
 /* PLACEHOLDER copy — the real story, names and photography come out of the
    owner workshop and shoot day 01 (blueprint §12/§14). */
 
-const pillars = [
-  {
-    title: "Defiance with taste",
-    line: "We challenge convention through choices that are intelligent and edited — not loud for the sake of it.",
-  },
-  {
-    title: "Hospitality with character",
-    line: "Warm, observant service without scripts, stiffness, or performance.",
-  },
-  {
-    title: "Curiosity, poured",
-    line: "Wine, cocktails, food and classes exist to make discovery accessible.",
-  },
-  {
-    title: "Local, never predictable",
-    line: "We own the beachside setting without becoming a themed beach restaurant.",
-  },
-];
 
 export default function StoryPage() {
   return (
@@ -87,7 +69,7 @@ export default function StoryPage() {
             <h2 className="micro text-oxblood">What we stand on</h2>
             <BrushRule className="mt-3 w-16 text-oxblood" variant={0} />
             <ul className="mt-8 grid gap-px bg-rule sm:grid-cols-2">
-              {pillars.map((p) => (
+              {storyPillars.map((p) => (
                 <li key={p.title} className="bg-bone p-8">
                   <h3 className="display text-xl">{p.title}</h3>
                   <p className="mt-3 max-w-[38ch] text-sm leading-relaxed text-ink-mute">
