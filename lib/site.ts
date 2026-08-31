@@ -35,6 +35,9 @@ export const site = {
   phone: "321.613.2210",
   phoneHref: "tel:+13216132210",
   email: "hello@rebellionbeachside.com",
+  /* Toast e-gift cards. Off-site, so every link to it opens in a new tab. */
+  giftCardUrl:
+    "https://order.toasttab.com/egiftcards/rebellion-beachside-bar-and-bistro-26-north-orlando-avenue",
   /* Where private-event inquiries land, confirmed by the client. Separate from
      the general address on purpose: the events inbox is watched to a
      same-business-day promise and the general one is not. */
@@ -72,11 +75,12 @@ export const reservations = {
   bookings: {
     diningRoom: {
       label: "Dining room",
-      /* Both come from the restaurant's Resy dashboard (Widgets), or from the
-         Resy account team. Filling them in swaps the link below for the inline
-         booking widget — no other change needed. */
-      venueId: null as number | null,
-      apiKey: null as string | null,
+      /* From the restaurant's Resy widget embed. Both are public by design —
+         Resy's own snippet ships them in client-side HTML on every site that
+         books through it — so they are not a secret and belong in the repo.
+         With these present the inline widget replaces the deep link. */
+      venueId: 97439 as number | null,
+      apiKey: "6EsxlDIKjqnHkjK5HnWk9H5y51sJcjAO" as string | null,
       /** The venue's live Resy page. Used until the widget keys are in, and as
           the path that still works if the embed script fails. */
       deepLink:
@@ -89,14 +93,32 @@ export const reservations = {
 
 export type BookingKey = keyof typeof reservations.bookings;
 
-/* PLACEHOLDER — sourced from public listings, not yet confirmed with the
-   restaurant. Hours drift constantly, so verify these (and happy hour, kitchen
-   close and the brunch window) before launch. */
+/**
+ * Confirmed by the client, August 2026.
+ *
+ * Happy hour, kitchen close and any brunch window are still unconfirmed and
+ * are not claimed anywhere on the site.
+ */
 export const hours = [
   { days: "Mon – Thu", time: "3:30PM – 9PM" },
   { days: "Fri", time: "3:30PM – 10PM" },
   { days: "Sat", time: "3:30PM – 12AM" },
-  { days: "Sun", time: "11AM – 9PM" },
+  { days: "Sun", time: "3:30PM – 9PM" },
+];
+
+/**
+ * The same hours in the shape schema.org wants, for the Restaurant structured
+ * data. Kept beside the display version rather than derived from it: parsing
+ * "3:30PM – 12AM" back into 24-hour times is more ways to be wrong than
+ * writing it twice, and this is the copy Google reads.
+ *
+ * Saturday closes at midnight, which is 00:00 — the specification's way of
+ * saying the day ends rather than that it never opens.
+ */
+export const openingHours = [
+  { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"], opens: "15:30", closes: "21:00" },
+  { days: ["Friday"], opens: "15:30", closes: "22:00" },
+  { days: ["Saturday"], opens: "15:30", closes: "00:00" },
 ];
 
 /**

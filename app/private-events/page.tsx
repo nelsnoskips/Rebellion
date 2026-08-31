@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { EventsContactLink } from "@/components/events/EventsContactLink";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/ui/Reveal";
 import { Bloom } from "@/components/ui/Artwork";
-import { EventInquiryForm } from "@/components/events/EventInquiryForm";
 import { images, occasions, site, venueFacts } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -121,19 +121,33 @@ export default function PrivateEventsPage() {
               back with availability, formats and pricing — from one person, not
               a form letter.
             </p>
-            <p className="mt-8 text-sm">
-              Prefer to talk?{" "}
-              <a
-                href={site.phoneHref}
-                className="font-semibold text-oxblood underline underline-offset-4"
-              >
-                {site.phone}
-              </a>
-            </p>
           </Reveal>
 
+          {/* An email address rather than a form, deliberately. The form had no
+              backend: it showed a confirmation and dropped what you typed. A
+              mailto reaches a person, and the prompts below do the same job the
+              form's fields did — they tell you what to say so the first reply
+              can be useful. */}
           <Reveal index={1}>
-            <EventInquiryForm />
+            <div className="border border-ink/15 bg-paper p-8 md:p-10">
+              <p className="micro text-oxblood">Events enquiries</p>
+              <EventsContactLink className="display-soft mt-4 block text-[clamp(1.35rem,2.6vw,1.9rem)] break-words text-oxblood underline decoration-oxblood/30 underline-offset-[6px] transition-colors hover:decoration-oxblood" />
+              <p className="mt-6 text-[15px] leading-relaxed text-ink-soft">
+                Include your date, how many people, and roughly what kind of
+                evening you have in mind. If the date is tight, say so — it
+                changes what we can offer.
+              </p>
+              <p className="mt-6 border-t border-ink/10 pt-6 text-sm text-ink-mute">
+                Or call{" "}
+                <a
+                  href={site.phoneHref}
+                  className="font-semibold text-oxblood underline underline-offset-4"
+                >
+                  {site.phone}
+                </a>
+                . We reply by the end of the next business day.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>

@@ -96,13 +96,22 @@ export function Footer() {
           <NewsletterForm />
         </div>
 
-        <div className="lg:pt-8">
+        <div className="flex flex-col gap-3 lg:pt-8">
           <Link
             href={site.reserveUrl}
             className="micro inline-flex w-full items-center justify-center border border-bone/50 px-10 py-5 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-bone hover:text-ink lg:w-auto"
           >
             Reserve a table
           </Link>
+          {/* Toast, so it leaves the site. */}
+          <a
+            href={site.giftCardUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="micro inline-flex w-full items-center justify-center px-10 py-3 text-bone/70 underline decoration-bone/30 underline-offset-4 transition-colors duration-[var(--dur-micro)] hover:text-bone hover:decoration-bone lg:w-auto"
+          >
+            Gift cards
+          </a>
         </div>
       </div>
 

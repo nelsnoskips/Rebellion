@@ -77,23 +77,22 @@ export default function PrivacyPage() {
         <Reveal>
           <Section title="What you give us on purpose">
             <p>
-              The private-events inquiry form asks for your name, email, phone,
-              and the details of the event you are planning — date, guest count,
-              format, occasion, budget range and any notes. That goes to{" "}
+              There is no contact form on this site. Planning a private event
+              means emailing{" "}
               <a href={`mailto:${site.eventsEmail}`} className={link}>
                 {site.eventsEmail}
               </a>{" "}
-              so someone can reply to you about your event. We use it for that.
-              We do not add you to a mailing list from it, and we do not sell
-              it.
-            </p>
-            <p>
-              If you would rather not use the form, email that address directly
-              or call{" "}
+              or calling{" "}
               <a href={site.phoneHref} className={link}>
                 {site.phone}
               </a>
-              . You will get the same answer from the same people.
+              , so whatever you choose to put in that email is what we have. We
+              use it to answer you about your event. We do not add you to a
+              mailing list from it, and we do not sell it.
+            </p>
+            <p>
+              The newsletter sign-up in the footer is separate, and only ever
+              gets what you type into it.
             </p>
           </Section>
         </Reveal>
@@ -107,8 +106,10 @@ export default function PrivacyPage() {
               cookies and reports to Meta which pages you viewed here, together
               with your IP address, browser and device. Three things are
               reported: that a page was viewed, that someone started a
-              reservation, and that someone sent an events inquiry. The contents
-              of the form are not sent to Meta.
+              reservation, and that someone opened the events email link. The
+              contents
+              of your email are not sent to Meta — clicking the address is what
+              is reported, never what you write.
             </p>
             <p>
               We use it to see whether the advertising we pay for brings anyone

@@ -8,6 +8,12 @@ import { cn } from "@/lib/utils";
 /**
  * Private-event inquiry (blueprint §08 field list).
  *
+ * NOT CURRENTLY RENDERED. /private-events shows an email address instead,
+ * because this form had no backend: it showed a confirmation and dropped what
+ * the visitor typed, which is worse than no form. Kept whole so it can go back
+ * the day there is somewhere to post to — the field list is the useful part
+ * and re-deriving it later from the blueprint would be wasted work.
+ *
  * Required fields first, qualification second, so a phone submit is short and
  * the sales team still gets date, headcount, occasion and budget.
  *

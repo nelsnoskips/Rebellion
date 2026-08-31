@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond } from "next/font/google";
 import localFont from "next/font/local";
 import { MetaPixel } from "@/components/site/MetaPixel";
-import { site } from "@/lib/site";
+import { openingHours, site } from "@/lib/site";
 import "./globals.css";
 
 /* --- The approved type system -------------------------------------------
@@ -162,6 +162,12 @@ const restaurantSchema = {
   description: site.description,
   telephone: site.phone,
   servesCuisine: "American",
+  openingHoursSpecification: openingHours.map((h) => ({
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: h.days,
+    opens: h.opens,
+    closes: h.closes,
+  })),
   address: {
     "@type": "PostalAddress",
     streetAddress: site.address.street,
