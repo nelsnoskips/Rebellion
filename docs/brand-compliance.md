@@ -258,12 +258,39 @@ inventing a dish or a space that nobody has eaten in or sat in. The camera
 original would still be better than all of it, and `photos/owners-dining-room.jpg`
 is kept unplaced so the rebuild can be redone from scratch if one appears.
 
+## Decisions taken
+
+**Shipping with Archer, licence to be confirmed afterwards** — the studio's
+call, August 2026, made knowingly.
+
+The reasoning is worth keeping, because "we did not realise" stops being
+available once it is written down. The client's own live site already serves
+Archer from their own server through a self-hosting plugin that neither checks
+nor grants anything, so this build does not create the exposure — it inherits
+it. Launching does not make it worse, and holding a launch over paperwork that
+can be settled in parallel would have been the wrong trade.
+
+What that leaves: someone should establish what the client actually owns. The
+files reached that server somehow, so the 2021 brand designer and whoever built
+the current WordPress site are the two people who would know. Desktop and web
+are separate purchases at typography.com and a web licence is scoped to
+domains and to a pageview tier, so a desktop licence from the branding project
+— the most likely thing to exist — would not cover this.
+
+If it turns out there is no licence, the fix is small: repoint `--font-body` at
+an open-licence slab and lose some warmth. It is not a rebuild.
+
+**The generated floor in the owners photograph is accepted** as it stands
+(same date), so the note under *Generated imagery* is a record rather than an
+outstanding question.
+
 ## Open, in order of what blocks what
 
-1. **Confirm the Archer web licence with Hoefler&Co.** The font is installed
-   and running; what is missing is proof that serving it is covered.
+1. **Confirm what the client owns for Archer**, per the decision above. Not a
+   blocker; a loose end with a known fix.
 2. **A web licence for Trade Supply**, the one supplied face actually in
-   service. Blocks public launch, not the preview.
+   service. Same position as Archer, smaller surface — it is used for five
+   accents rather than every paragraph.
 3. **A Canela or Editorial New web licence.** The slot is built; the font is
    not. Until then headlines run on Cormorant Garamond.
 4. **Custom handwritten SVG marks**, to replace the removed script face with
