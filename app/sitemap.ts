@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/reserve", priority: 0.7, changeFrequency: "monthly" },
     { path: "/visit", priority: 0.7, changeFrequency: "monthly" },
     { path: "/story", priority: 0.5, changeFrequency: "monthly" },
+    { path: "/privacy", priority: 0.2, changeFrequency: "monthly" },
     ...(flags.bottleShop
       ? [{ path: "/bottle-shop", priority: 0.6, changeFrequency: "weekly" as const }]
       : []),

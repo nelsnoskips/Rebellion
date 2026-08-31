@@ -115,13 +115,13 @@ export function Footer() {
             <Link href="/visit" className="hover:text-bone">
               Accessibility
             </Link>
-            <Link href="/visit" className="hover:text-bone">
+            <Link href="/privacy" className="hover:text-bone">
               Privacy
             </Link>
-{flags.bottleShop ? (
+            {flags.bottleShop ? (
               <Link href="/bottle-shop" className="hover:text-bone">
-              Delivery policy
-            </Link>
+                Delivery policy
+              </Link>
             ) : null}
           </nav>
         </div>
