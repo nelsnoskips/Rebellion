@@ -42,15 +42,30 @@ The script also prunes routes listed in `deploy/hidden-routes.json` — currentl
 the bottle shop — so they return a real 404 instead of a 200 with a not-found
 body.
 
+## Which panel this host actually uses
+
+Checked against the live site rather than assumed:
+
+| | |
+| --- | --- |
+| IP | `50.62.180.234` — GoDaddy |
+| Panel | **Plesk**, not cPanel (`x-powered-by: PleskLin`) |
+| Front end | nginx, proxying to Apache |
+
+That matters in three places. The panel is reached through the GoDaddy account
+rather than at `/cpanel`. The document root is **`httpdocs`**, not
+`public_html`. And because nginx sits in front, the `.htaccess` may never be
+read for this directory — see the nginx fallback at the end.
+
 ## Put it on the server
 
 1. **Back up first.** Whatever is at `/rebellionbistro/` today, take a copy.
    This is the rollback.
-2. Upload the **contents** of the zip into `/rebellionbistro/` on the server —
-   via cPanel File Manager or SFTP.
-3. **Check the two `.htaccess` files arrived.** Most FTP clients hide dotfiles
-   by default and this is the failure people lose an afternoon to. In cPanel
-   File Manager: Settings → Show Hidden Files.
+2. Upload the **contents** of the zip into `httpdocs/rebellionbistro/` — in
+   Plesk that is Websites & Domains → the domain → **Files**. SFTP works too.
+3. **Check the two `.htaccess` files arrived.** File managers hide dotfiles by
+   default and this is the failure people lose an afternoon to. Plesk's File
+   Manager shows them once **Settings → Show hidden files** is ticked.
 4. **Do not touch the WordPress root `.htaccess`.** Nothing here needs it
    changed, and editing it is how the whole site goes down.
 5. In WordPress, **unpublish or delete the existing page at that slug**. A real
@@ -72,9 +87,12 @@ body.
 What failure looks like, so it is recognisable:
 
 - **Unstyled text, no images** — built for the wrong base path. Rebuild.
-- **WordPress's own 404 theme** on `/rebellionbistro/menus` — the `.htaccess`
-  did not upload, or `mod_rewrite` is unavailable in that directory
-  (`AllowOverride` may be `None`; that is a host setting).
+- **WordPress's own 404 theme** on `/rebellionbistro/menus`, while
+  `/rebellionbistro/menus.html` loads fine — Apache never read the `.htaccess`.
+  On this host the likely cause is nginx serving the directory itself. Paste
+  `deploy/nginx-directives.conf` into Plesk → Apache & nginx Settings →
+  Additional nginx directives. The other possibility is `AllowOverride None`,
+  which is a host setting support can change.
 - **Fonts missing, everything else fine** — `mod_mime` did not pick up
   `.woff2`. The `.htaccess` declares it; check it arrived.
 
