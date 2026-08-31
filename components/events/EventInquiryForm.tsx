@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@/lib/analytics";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -43,6 +44,11 @@ export function EventInquiryForm() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
+        // Reported as Meta's `Lead` — the standard event for an enquiry, and
+        // the one campaigns can actually optimise towards. Fired before the
+        // state change so a slow tracker cannot delay the confirmation, and
+        // wrapped in lib/analytics so it cannot throw into the submit path.
+        track("Lead", "private_event_inquiry", { form: "private_events" });
         setSent(true);
       }}
       className="grid gap-5 sm:grid-cols-2"

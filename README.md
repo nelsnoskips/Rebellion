@@ -207,6 +207,34 @@ width in the file is the width the visitor downloads. That is why the script
 emits one derivative per role — `hero` 2400px, `feature` 1600px, `card` 900px,
 `thumb` 420px — instead of a single file for every use.
 
+## Measurement
+
+Meta pixel `634504209468076`, mounted in `app/layout.tsx`. Everything worth
+measuring goes through `lib/analytics.ts`, which fans out to both the pixel and
+the `dataLayer` the site already pushed reservation starts into — one call per
+conversion, destinations are a detail of that file, and nothing it does can
+throw into a booking or a form submit.
+
+| Where | Meta event | dataLayer |
+| --- | --- | --- |
+| Every page, including client-side navigation | `PageView` | — |
+| Reserve a table | `Schedule` | `reservation_start` |
+| Private-event inquiry sent | `Lead` | `private_event_inquiry` |
+
+Standard event names on purpose: only these can be optimised against or used to
+build conversion audiences in Ads Manager, and a custom name is a metric you can
+read but not bid on.
+
+Two things to know. Meta's snippet fires one `PageView` on document load and
+never again — this site navigates on the client, so `MetaPixel` fires the rest,
+without which the homepage would look like the only page anyone visits. And
+`Schedule` is a reservation *start*: the visitor leaves for Resy at that point
+and the site never learns whether they finished.
+
+The pixel fires on preview builds too, which is the only way to verify it with
+Meta's Pixel Helper before launch. Set `NEXT_PUBLIC_META_PIXEL_ID=""` on any
+build that should stay out of the dataset.
+
 ## Reservations
 
 `reservations` in `lib/site.ts` is the single point of configuration. Filling in

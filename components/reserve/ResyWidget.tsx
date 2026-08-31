@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { track } from "@/lib/analytics";
 import { reservations, site, type BookingKey } from "@/lib/site";
 
 /**
@@ -28,7 +29,6 @@ declare global {
         opts: { venueId: number; apiKey: string; replace?: boolean },
       ) => void;
     };
-    dataLayer?: unknown[];
   }
 }
 
@@ -71,14 +71,18 @@ function useSearchString(): string {
 }
 
 /**
- * Reservation-start event for the measurement layer (blueprint §06).
- * A no-op until an analytics container is installed — it never throws and
- * never blocks the booking.
+ * Reservation-start event (blueprint §06).
+ *
+ * Reported as Meta's `Schedule`, which is the standard event for starting a
+ * booking — a custom name here would be readable in reporting but could not be
+ * optimised against or used to build a conversion audience.
+ *
+ * This is a *start*, not a completed booking: the visitor leaves for Resy at
+ * this point and the site never learns whether they finished. Worth
+ * remembering before anyone reads it as covers booked.
  */
 function trackReservationStart(booking: BookingKey) {
-  if (typeof window === "undefined") return;
-  window.dataLayer?.push({
-    event: "reservation_start",
+  track("Schedule", "reservation_start", {
     platform: reservations.platform,
     booking,
   });
