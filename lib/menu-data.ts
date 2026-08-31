@@ -21,48 +21,165 @@ export type MenuCategory = {
 
 export const menuCategories: MenuCategory[] = [
   {
-    "id": "brunch",
-    "name": "Brunch",
+    "id": "main-menu",
+    "name": "Main Menu",
     "subsections": [
+      {
+        "name": "Hors D’Oeuvres",
+        "items": [
+          {
+            "name": "Cornbread",
+            "desc": "Freshly Baked and served along Whipped N’duja Butter and Jalapeño Honey",
+            "price": "13"
+          },
+          {
+            "name": "BBQ Shrimp",
+            "desc": "Head on Shrimp Blackened and Smothered in Cajun BBQ",
+            "price": "24"
+          },
+          {
+            "name": "Crudo",
+            "desc": "Seasonal Raw Fish Dish",
+            "price": "MP"
+          },
+          {
+            "name": "Beef Tartare",
+            "desc": "Finely Chopped Filet of Beef with Whole Grain Mustard, Shallots and Chives. Available as a sandwich with a hamburger bun for an additional $3.75",
+            "price": "24"
+          },
+          {
+            "name": "Heirloom Tomato Salad",
+            "desc": "Burratta, Pickled Green Tomatoes, Strawberries, Black Garlic Consomme",
+            "price": "18"
+          },
+          {
+            "name": "Caesar Salad",
+            "desc": "Classic Caesar Salad with White Anchovies and Parmesan Reggiano",
+            "price": "15"
+          },
+          {
+            "name": "Oyster Stew",
+            "desc": "Poached Oysters in a Creamy Parmesan Broth with Dill",
+            "price": "22"
+          }
+        ]
+      },
+      {
+        "name": "Mains",
+        "items": [
+          {
+            "name": "Spinach Fettuccine",
+            "desc": "Basil Pesto, Sundried Tomatoes, Pine Nuts and Smoked Ricotta Salata",
+            "price": "34"
+          },
+          {
+            "name": "Rainbow Trout",
+            "desc": "Baked in a Papillote with Miso Mustard Butter and a Briny Summer Salad",
+            "price": "39"
+          },
+          {
+            "name": "Roasted Chicken",
+            "desc": "Half or Whole Roasted Chicken served with Pureed Mushrooms and Truffled Chicken Jus",
+            "price": "36"
+          },
+          {
+            "name": "Charred Pork Chop",
+            "desc": "Duroc Heritage Pork with Pearl Barley, Farro, and Charred Agrodolce Onions",
+            "price": "47"
+          },
+          {
+            "name": "Shrimp And Grits",
+            "desc": "Leek Confit, Roasted Tomatoes and a Bloody Mary Shrimp Broth",
+            "price": "41"
+          }
+        ]
+      },
+      {
+        "name": "Mains with Frites",
+        "items": [
+          {
+            "name": "Steak frites",
+            "desc": "Steak Served with Sauce Au Poive or Truffle Butter (ask your server for todays cuts)",
+            "price": "MP"
+          },
+          {
+            "name": "Le Classic Cheeseburger",
+            "desc": "Roasted Tomato, Bibb Lettuce, Mustard, Red Onion and Pickles",
+            "price": "25"
+          },
+          {
+            "name": "Rebellion Burger",
+            "desc": "Allan Bentons Bacon, Onion Jam, Sauerkraut, Truffle Aioli And Brillat Savarin Triple Creme Cheese",
+            "price": "29"
+          },
+          {
+            "name": "Moules Frites",
+            "desc": "Steamed Mussels a La Pernod, with Leeks and Allan Bentons Bacon",
+            "price": "35"
+          }
+        ]
+      },
       {
         "name": "Sides",
         "items": [
-          {
-            "name": "Grits",
-            "desc": "Marsh Hen Hill Stone Grits with Cheese & Butter",
-            "price": "10"
-          },
           {
             "name": "Cauliflower Gratin",
             "desc": "Cauliflower and Black Truffle Puree covered in Gruyere and Garlic Breadcrumbs",
             "price": "18"
           },
           {
-            "name": "Two Eggs",
-            "desc": "Cooked any style",
-            "price": "6"
-          },
-          {
-            "name": "Bacon",
+            "name": "Broccolini",
+            "desc": "Sautéed in Olive Oil with Dried Currants and Sliced Almonds",
             "price": "10"
           },
           {
-            "name": "Pomme Frites",
-            "desc": "Handcut Housemade French Fries",
+            "name": "Charred Leeks",
+            "desc": "Garlic Breadcrumbs and Anchovy Vinaigrette",
+            "price": "14"
+          },
+          {
+            "name": "Roasted Brussels",
+            "desc": "Tossed with Hazelnuts, Pickled Onions and Drizzled with a Bacon Vinaigrette",
             "price": "12"
-          },
-          {
-            "name": "Cornbread",
-            "desc": "Freshly Baked and served along with Whipped N’duja Butter and Jalapeño Honey",
-            "price": "10"
-          },
-          {
-            "name": "Yogurt Parfait",
-            "desc": "Honey Infused Yogurt with Fresh Fruit",
-            "price": "11"
           }
         ]
       },
+      {
+        "name": "Desserts",
+        "items": [
+          {
+            "name": "Palm Sugar Ice Cream",
+            "desc": "Heritage Coconut Palm Sugar Ice Cream",
+            "price": "8"
+          },
+          {
+            "name": "Coconut Panna Cotta",
+            "desc": "Served with Pineapple Chutney and a Maraschino Cherry",
+            "price": "13"
+          },
+          {
+            "name": "Key Lime Pie",
+            "desc": "Key Lime Semi-Freddo with Toasted Graham Cracker and Ginger",
+            "price": "13"
+          },
+          {
+            "name": "Creme Brulee",
+            "desc": "Caramelized Sugar atop a Lavender infused Cream Custard",
+            "price": "13"
+          },
+          {
+            "name": "Pot de Creme",
+            "desc": "Cayenne spiced chocolate mousse with whipped cream and chocolate granola",
+            "price": "13"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "brunch",
+    "name": "Brunch",
+    "subsections": [
       {
         "name": "Brunch",
         "items": [
@@ -127,160 +244,556 @@ export const menuCategories: MenuCategory[] = [
             "price": "29"
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": "main-menu",
-    "name": "Main Menu",
-    "subsections": [
-      {
-        "name": "Desserts",
-        "items": [
-          {
-            "name": "Palm Sugar Ice Cream",
-            "desc": "Heritage Coconut Palm Sugar Ice Cream",
-            "price": "8"
-          },
-          {
-            "name": "Coconut Panna Cotta",
-            "desc": "Served with Pineapple Chutney and a Maraschino Cherry",
-            "price": "13"
-          },
-          {
-            "name": "Key Lime Pie",
-            "desc": "Key Lime Semi-Freddo with Toasted Graham Cracker and Ginger",
-            "price": "13"
-          },
-          {
-            "name": "Creme Brulee",
-            "desc": "Caramelized Sugar atop a Lavender infused Cream Custard",
-            "price": "13"
-          },
-          {
-            "name": "Pot de Creme",
-            "desc": "Cayenne spiced chocolate mousse with whipped cream and chocolate granola",
-            "price": "13"
-          }
-        ]
       },
       {
         "name": "Sides",
         "items": [
+          {
+            "name": "Grits",
+            "desc": "Marsh Hen Hill Stone Grits with Cheese & Butter",
+            "price": "10"
+          },
           {
             "name": "Cauliflower Gratin",
             "desc": "Cauliflower and Black Truffle Puree covered in Gruyere and Garlic Breadcrumbs",
             "price": "18"
           },
           {
-            "name": "Broccolini",
-            "desc": "Sautéed in Olive Oil with Dried Currants and Sliced Almonds",
+            "name": "Two Eggs",
+            "desc": "Cooked any style",
+            "price": "6"
+          },
+          {
+            "name": "Bacon",
             "price": "10"
           },
           {
-            "name": "Charred Leeks",
-            "desc": "Garlic Breadcrumbs and Anchovy Vinaigrette",
-            "price": "14"
-          },
-          {
-            "name": "Roasted Brussels",
-            "desc": "Tossed with Hazelnuts, Pickled Onions and Drizzled with a Bacon Vinaigrette",
+            "name": "Pomme Frites",
+            "desc": "Handcut Housemade French Fries",
             "price": "12"
-          }
-        ]
-      },
-      {
-        "name": "Mains",
-        "items": [
-          {
-            "name": "Spinach Fettuccine",
-            "desc": "Basil Pesto, Sundried Tomatoes, Pine Nuts and Smoked Ricotta Salata",
-            "price": "34"
           },
-          {
-            "name": "Rainbow Trout",
-            "desc": "Baked in a Papillote with Miso Mustard Butter and a Briny Summer Salad",
-            "price": "39"
-          },
-          {
-            "name": "Roasted Chicken",
-            "desc": "Half or Whole Roasted Chicken served with Pureed Mushrooms and Truffled Chicken Jus",
-            "price": "36"
-          },
-          {
-            "name": "Charred Pork Chop",
-            "desc": "Duroc Heritage Pork with Pearl Barley, Farro, and Charred Agrodolce Onions",
-            "price": "47"
-          },
-          {
-            "name": "Shrimp And Grits",
-            "desc": "Leek Confit, Roasted Tomatoes and a Bloody Mary Shrimp Broth",
-            "price": "41"
-          }
-        ]
-      },
-      {
-        "name": "Hors D’Oeuvres",
-        "items": [
           {
             "name": "Cornbread",
-            "desc": "Freshly Baked and served along Whipped N’duja Butter and Jalapeño Honey",
-            "price": "13"
+            "desc": "Freshly Baked and served along with Whipped N’duja Butter and Jalapeño Honey",
+            "price": "10"
           },
           {
-            "name": "BBQ Shrimp",
-            "desc": "Head on Shrimp Blackened and Smothered in Cajun BBQ",
-            "price": "24"
+            "name": "Yogurt Parfait",
+            "desc": "Honey Infused Yogurt with Fresh Fruit",
+            "price": "11"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cocktails-menu",
+    "name": "Cocktails Menu",
+    "subsections": [
+      {
+        "name": "Signature Cocktails",
+        "items": [
+          {
+            "name": "The Guillotine",
+            "desc": "The Lost Explorer 8yr Mezcal, Artonic Melon Liqueur, Cointreau, Agave, Black Lava Salt and Pepper Rim",
+            "price": "17"
           },
           {
-            "name": "Crudo",
-            "desc": "Seasonal Raw Fish Dish",
-            "price": "MP"
-          },
-          {
-            "name": "Beef Tartare",
-            "desc": "Finely Chopped Filet of Beef with Whole Grain Mustard, Shallots and Chives. Available as a sandwich with a hamburger bun for an additional $3.75",
-            "price": "24"
-          },
-          {
-            "name": "Heirloom Tomato Salad",
-            "desc": "Burratta, Pickled Green Tomatoes, Strawberries, Black Garlic Consomme",
+            "name": "Marie Antoinette",
+            "desc": "Lairds 7.5 year Apple Brandy, Siesta Key Toasted Coconut Rum, Roasted Pineapple Syrup, Vanilla Demerara, Cream, Nutmeg, Pie Crust Dust",
             "price": "18"
           },
           {
-            "name": "Caesar Salad",
-            "desc": "Classic Caesar Salad with White Anchovies and Parmesan Reggiano",
-            "price": "15"
+            "name": "Tennis Court Oath",
+            "desc": "Sesame Oil Washed Planteray 3 Star Rum, Montenegro, Coconut Creme, Chilli Oil, Toasted Coconut Latik",
+            "price": "17"
           },
           {
-            "name": "Oyster Stew",
-            "desc": "Poached Oysters in a Creamy Parmesan Broth with Dill",
-            "price": "22"
+            "name": "King Louis",
+            "desc": "Brown Butter and Pecan infused Bache Tre Kors Cognac, Benedictine, Vanilla Demerara, House Bitters",
+            "price": "18"
+          },
+          {
+            "name": "Bastille Blanc",
+            "desc": "Darroze Blanche Armagnac, Sheringham Seaside Gin, Luxardo Bitter Bianco, Salers Aperitif, Yuzu Spritz",
+            "price": "16"
+          },
+          {
+            "name": "Versailles Garden",
+            "desc": "Citadelle Viva La Cornichon Gin, Massenez Creme de Cassis, Lavender Sage Honey, Coconut Water, Fruit Caviar",
+            "price": "17"
           }
         ]
       },
       {
-        "name": "Mains with Frites",
+        "name": "Seasonal Cocktails",
         "items": [
           {
-            "name": "Steak frites",
-            "desc": "Steak Served with Sauce Au Poive or Truffle Butter (ask your server for todays cuts)",
-            "price": "MP"
+            "name": "Clarified Bloody",
+            "desc": "Martin Millers 9 Moons Aged Gin, Clarified Bloody Mary Mix, Charred Pearl Onion",
+            "price": "19"
           },
           {
-            "name": "Le Classic Cheeseburger",
-            "desc": "Roasted Tomato, Bibb Lettuce, Mustard, Red Onion and Pickles",
-            "price": "25"
+            "name": "Strawberry Embers",
+            "desc": "Empirical Aayuk, Rouge Spritz, Hibiscus Tea, Black Garlic Syrup",
+            "price": "16"
           },
           {
-            "name": "Rebellion Burger",
-            "desc": "Allan Bentons Bacon, Onion Jam, Sauerkraut, Truffle Aioli And Brillat Savarin Triple Creme Cheese",
-            "price": "29"
+            "name": "Cut & Dry Painkiller",
+            "desc": "Cut & Dry Planteray Rum, Hazelnut Orgeat, Kota Pandan, Orange Juice, Coconut Cream & Orange Blossom Spritz",
+            "price": "16"
           },
           {
-            "name": "Moules Frites",
-            "desc": "Steamed Mussels a La Pernod, with Leeks and Allan Bentons Bacon",
-            "price": "35"
+            "name": "Cilantro Aviation",
+            "desc": "Empirical Cilantro, Crop Cucumber, Lemon, Luxardo Marascino, Giffard Violette",
+            "price": "16"
+          },
+          {
+            "name": "Miso Honey",
+            "desc": "Sol Charanda Mushroom Rum, Nori Liqueur, Roasted Beet Syrup, Miso Honey, Lemon & Egg White",
+            "price": "16"
+          }
+        ]
+      },
+      {
+        "name": "Bold and Boozy",
+        "items": [
+          {
+            "name": "The Last Word",
+            "desc": "The Lost Explorer 8yr Mezcal, Luxardo Maraschino, Lime, Green Chartreuse",
+            "price": "19"
+          },
+          {
+            "name": "French Manhattan",
+            "desc": "Pierre Ferrand 1840 Champagne Cognac, Dolin Sweet Vermouth, Cointreau, Bitters",
+            "price": "17"
+          },
+          {
+            "name": "Old Fashioned",
+            "desc": "Elijah Craig Small Batch Bourbon, House Bitters Blend, Vanilla Demerara",
+            "price": "15"
+          },
+          {
+            "name": "Carnivore Sazerac",
+            "desc": "Allen Benton’s Bacon Fat-Washed Doc Swinsons 5yr, Naud 3 Kors Cognac, Peychaud’s Bitters, Absinthe",
+            "price": "16"
+          },
+          {
+            "name": "Espresso Martini",
+            "desc": "Prairie Organic Vodka, Giffard Vanilla, Mr. Black Coffee Liqueur, Tempus Fugit Creme De Cacao, Espresso",
+            "price": "16"
+          }
+        ]
+      },
+      {
+        "name": "Bitter and Botanical",
+        "items": [
+          {
+            "name": "Black Bird",
+            "desc": "Hamiltons Demerara Rum, Campari, Pineapple, Lime, Vanilla Demerara, Mr. Black Coffee Liqueur",
+            "price": "16"
+          },
+          {
+            "name": "Paper Plane",
+            "desc": "Doc Swinsons 5yr Whiskey, Aperol, Amaro Nonino, Lemon",
+            "price": "15"
+          },
+          {
+            "name": "Trinidad Sour",
+            "desc": "Angostura Amaro, Michter’s Rye Whiskey, Giffard Orgeat, Lemon",
+            "price": "16"
+          },
+          {
+            "name": "Gran Cru Spritz",
+            "desc": "Tempus Fugit Gran Cru, Aperol, Bubbles, Q Club Soda",
+            "price": "15"
+          },
+          {
+            "name": "Candied Malort Negroni",
+            "desc": "Fords Gin, Jeppson’s Malort, Berry infused Sweet Vermouth, St. Elders Elderflower liqueur",
+            "price": "15"
+          }
+        ]
+      },
+      {
+        "name": "Fresh and Sour",
+        "items": [
+          {
+            "name": "Whiskey Sour",
+            "desc": "Elijah Craig Bourbon, Giffard Apricot, Lemon, Egg White, Bitters",
+            "price": "16"
+          },
+          {
+            "name": "Bees Knees",
+            "desc": "Barr Hill Gin, Lemon, Honey Syrup",
+            "price": "14"
+          },
+          {
+            "name": "Banana Daquiri",
+            "desc": "Hamilton’s Demerara Rum, Vanilla Demerara Syrup, Lime, Tempus Fugit Creme de Banane",
+            "price": "15"
+          },
+          {
+            "name": "French 75",
+            "desc": "Sipsmith Sloe Gin, Giffards Creme de Violette, Lemon, Bubbles",
+            "price": "16"
+          },
+          {
+            "name": "Tom Collins",
+            "desc": "Gin Lane Summer Garden Gin, Lemon, Q Club Soda, Hella Co.",
+            "price": "13"
+          }
+        ]
+      },
+      {
+        "name": "Mocktails",
+        "items": [
+          {
+            "name": "Limoncello",
+            "desc": "Sweetened Condensed Milk, Lemon Super Juice",
+            "price": "9"
+          },
+          {
+            "name": "Tamarindo",
+            "desc": "Coriander & Tamarind Syrup, Pineapple, Q Club Soda",
+            "price": "13"
+          },
+          {
+            "name": "The Spicy Coconut",
+            "desc": "Coconut Water, Coconut Cream, Ginger & Lemon",
+            "price": "12"
+          },
+          {
+            "name": "Bubblegum Tea",
+            "desc": "Hibiscus Tea, Lemon, Bubblegum Stock & Fee Foam",
+            "price": "13"
+          },
+          {
+            "name": "Blueberry Shrubb",
+            "desc": "Macerated Lemon & Blueberries, Champagne Vinegar, Q Club Soda",
+            "price": "12"
+          },
+          {
+            "name": "Americola",
+            "desc": "Coca Cola Reduction, Iced Espresso, Vanilla Demerarra",
+            "price": "12"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "drinks-menu",
+    "name": "Drinks Menu",
+    "subsections": [
+      {
+        "name": "Sparkling",
+        "items": [
+          {
+            "name": "N.v. Jo Landron Atmospheres",
+            "desc": "Folle Blanche/Pinot Noir/Chardonnay| 13/49",
+            "price": "49"
+          }
+        ]
+      },
+      {
+        "name": "White",
+        "items": [
+          {
+            "name": "2021 Domaine De Rochebin",
+            "desc": "Bourgogne Blanc Chardonnay",
+            "price": "14 / 50"
+          },
+          {
+            "name": "2023 Pascal Biotteau",
+            "desc": "Anjou Blanc Chenin Blanc",
+            "price": "13 / 49"
+          },
+          {
+            "name": "2023 Jean Marc Barthez",
+            "desc": "Bordeaux Blanc Sauvignon Blanc, Semillon",
+            "price": "12 / 63"
+          }
+        ]
+      },
+      {
+        "name": "Rosé",
+        "items": [
+          {
+            "name": "2023 Domaine Rimbert",
+            "desc": "Le Petit Cochon Bronze Rosé Cinsault, Syrah",
+            "price": "16 / 60"
+          }
+        ]
+      },
+      {
+        "name": "Orange",
+        "items": [
+          {
+            "name": "2024 Jouves & Croisille",
+            "desc": "Blanc De Maceration",
+            "price": "16 / 60"
+          }
+        ]
+      },
+      {
+        "name": "Red",
+        "items": [
+          {
+            "name": "2022 Traverses Fontanes",
+            "desc": "Languedoc-Roussillon Cabernet Sauvignon",
+            "price": "13 / 38"
+          },
+          {
+            "name": "2022 Gaignes",
+            "desc": "Loire Valley Cabernet Franc",
+            "price": "16 / 60"
+          },
+          {
+            "name": "2022 Gaspard",
+            "desc": "Touraine Gamay",
+            "price": "17 / 63"
+          }
+        ]
+      },
+      {
+        "name": "Beers",
+        "items": [
+          {
+            "name": "Siesta beach light lager (can)",
+            "desc": "Light lager (can)",
+            "price": "5"
+          },
+          {
+            "name": "Kronenbourg 1664 (can)",
+            "desc": "Canned Kronenbourg 1664",
+            "price": "7"
+          },
+          {
+            "name": "Beach hippie ipa (draft)",
+            "desc": "India Pale Ale on draft",
+            "price": "9"
+          },
+          {
+            "name": "Babycakes oatmeal stout (draft)",
+            "desc": "Oatmeal stout on draft",
+            "price": "8"
+          },
+          {
+            "name": "My boy blue wheat ale (draft)",
+            "desc": "Wheat ale on draft",
+            "price": "7"
+          }
+        ]
+      },
+      {
+        "name": "Seltzer",
+        "items": [
+          {
+            "name": "Sunny d tangy orange vodka seltzer",
+            "desc": "Tangy orange vodka seltzer",
+            "price": "5"
+          },
+          {
+            "name": "Charcoal mellowed vodka seltzer",
+            "desc": "Charcoal mellowed vodka seltzer, various flavors",
+            "price": "6"
+          },
+          {
+            "name": "196 vodka seltzer",
+            "desc": "Vodka seltzer, various flavors",
+            "price": "8"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wine-menu",
+    "name": "Wine Menu",
+    "subsections": [
+      {
+        "name": "Burgundy, Champagne & Beaujolais",
+        "items": [
+          {
+            "name": "2022 Domaine Deux Roches",
+            "desc": "‘Les Crays’ Pouilly Fuisse 1er Cru Chardonnay",
+            "price": "125"
+          },
+          {
+            "name": "2023 Le Domaine Fichet",
+            "desc": "Tradition Bourgogne Pinot Noir",
+            "price": "75"
+          },
+          {
+            "name": "2023 Guy Breton",
+            "desc": "“Vielles Vignes” Morgon Gamay",
+            "price": "112"
+          },
+          {
+            "name": "2021 Yuka & Clotaire Michal",
+            "desc": "Songe d’Une Nuit d’Automne Gamay",
+            "price": "121"
+          },
+          {
+            "name": "2022 La Maison Romane",
+            "desc": "Bourgogne Rouge Pinot Noir",
+            "price": "158"
+          },
+          {
+            "name": "N.v. Champagne Lelarge Pugeot",
+            "desc": "Tradition Pinot Meunier, Pinot Noir and Chardonnay",
+            "price": "178"
+          },
+          {
+            "name": "2021 Domaine De Bellene",
+            "desc": "Savigny-les-Beaune Blanc Chardonnay",
+            "price": "174"
+          }
+        ]
+      },
+      {
+        "name": "Bordeaux & Southwest France",
+        "items": [
+          {
+            "name": "2018 Chateau Trottevielle",
+            "desc": "Saint-Emilion Cabernet Franc, Merlot, Cabernet Sauvignon",
+            "price": "300"
+          },
+          {
+            "name": "2017 Chateau De Chambert",
+            "desc": "Cahors Grand Vin Malbec",
+            "price": "148"
+          },
+          {
+            "name": "2019 Clos Siguier",
+            "desc": "Cahors Malbec, Tannat",
+            "price": "59"
+          },
+          {
+            "name": "2023 Chateau Lestignac",
+            "desc": "'Michel-Michel- Orange VDF Sauvignon Gris, Sauvignon Blanc, Muscadelle",
+            "price": "85"
+          },
+          {
+            "name": "2021 Closerie Des Moussis",
+            "desc": "Moineaux Cabernet Sauvignon, Merlot, Cabernet Franc",
+            "price": "221"
+          }
+        ]
+      },
+      {
+        "name": "Rhone Valley, Provence & Languedoc",
+        "items": [
+          {
+            "name": "2020 Domaine Francois Villard",
+            "desc": "Le Grand Vallon Condrieu Viognier",
+            "price": "162"
+          },
+          {
+            "name": "2022 Les Hautes Terres",
+            "desc": "Autres Terres Blanc Chardonnay, Mauzac, Chenin Blanc",
+            "price": "60"
+          },
+          {
+            "name": "2022 Domaine Gramenon",
+            "desc": "Cotes du Rhone, Poignee de Raisins Grenache, Cinsault",
+            "price": "78"
+          },
+          {
+            "name": "2023 Matthieu Barret",
+            "desc": "‘Petit Ours’ Cotes du Rhone Syrah",
+            "price": "80"
+          },
+          {
+            "name": "2021 Clos De L’oratoire",
+            "desc": "2021 Clos De L’oratoire Des Papes Chateauneuf-du-Pape Cinsault, Syrah, Mouverdre",
+            "price": "203"
+          }
+        ]
+      },
+      {
+        "name": "Loire Valley",
+        "items": [
+          {
+            "name": "2023 Pascal Biotteau",
+            "desc": "Anjou Blanc Chenin Blanc",
+            "price": "49"
+          },
+          {
+            "name": "2022 Pierre-Olivier Bonhomme",
+            "desc": "Mid-Loire Sauvignon Blanc",
+            "price": "63"
+          },
+          {
+            "name": "2022 Gaspard",
+            "desc": "Central France Pinot Noir",
+            "price": "64"
+          },
+          {
+            "name": "2022 Domaine Huet",
+            "desc": "Vouvray Le Haut Lieu Sec Chenin Blanc",
+            "price": "119"
+          }
+        ]
+      },
+      {
+        "name": "Alsace, Savoy & The Jura",
+        "items": [
+          {
+            "name": "2021 Valentin Zusslin",
+            "desc": "Riesling Le Schild Riesling",
+            "price": "112"
+          },
+          {
+            "name": "2021 Pierre Arnold",
+            "desc": "Pinot Gris Tricentenaire Pinot Gris",
+            "price": "65"
+          },
+          {
+            "name": "2020 Domaine De La Loue",
+            "desc": "La Brute Pinot Noir",
+            "price": "125"
+          },
+          {
+            "name": "2022 Domaine Partagé",
+            "desc": "Les Christine Roussanne",
+            "price": "286"
+          }
+        ]
+      },
+      {
+        "name": "New World Wines",
+        "items": [
+          {
+            "name": "2021 Extradimensional Wine Co.",
+            "desc": "2021 Extradimensional Wine Co. Yeah! Dude Ranch Red Reserve Santa Rosa, California",
+            "price": "112"
+          },
+          {
+            "name": "2023 Brea",
+            "desc": "Chardonnay Central Coast, California",
+            "price": "63"
+          },
+          {
+            "name": "2017 Domaine Serene",
+            "desc": "Yamhill Cuvee Pinot Noir Willamette Valley, Oregon",
+            "price": "119"
+          },
+          {
+            "name": "2022 The Hilt Estate",
+            "desc": "Chardonnay Central Coast, California",
+            "price": "112"
+          },
+          {
+            "name": "2023 Brea",
+            "desc": "Cabernet Sauvignon Paso Robles, California",
+            "price": "75"
+          },
+          {
+            "name": "2022 In Sheep’s Clothing",
+            "desc": "Cabernet Sauvignon Columbia Valley, Oregon",
+            "price": "56"
           }
         ]
       }
@@ -291,98 +804,35 @@ export const menuCategories: MenuCategory[] = [
     "name": "Spirits Menu",
     "subsections": [
       {
-        "name": "Cordials",
+        "name": "Vodka",
         "items": [
           {
-            "name": "Finocetto"
+            "name": "44 North Potato Vodk",
+            "desc": "(Idaho)"
           },
           {
-            "name": "Grand Marnier Cuvee",
-            "desc": "Grand Marnier Cuvee Louis-Alexandre (France)"
+            "name": "Crop Cucumber Vodka",
+            "desc": "(New York)"
           },
           {
-            "name": "Jeppsons Malort (Chicago)"
+            "name": "Ketel One"
           },
           {
-            "name": "Campari"
+            "name": "Hansons Mandarin",
+            "desc": "(Sonoma)"
           },
           {
-            "name": "Aperol"
+            "name": "Prairie Organic Vodka",
+            "desc": "(Minnesota)"
           },
           {
-            "name": "St. George Absinthe",
-            "desc": "(California)"
+            "name": "Belvedere Single Estate"
           },
           {
-            "name": "Yellow Chartreuse"
+            "name": "Grey Goose"
           },
           {
-            "name": "Green Chartreuse"
-          },
-          {
-            "name": "Montenegro Amaro",
-            "price": "MP"
-          },
-          {
-            "name": "Braulio"
-          },
-          {
-            "name": "Amaro Nonino"
-          },
-          {
-            "name": "Benedictine"
-          },
-          {
-            "name": "Averna Amaro"
-          },
-          {
-            "name": "Angostura Amaro"
-          },
-          {
-            "name": "Pernod"
-          },
-          {
-            "name": "Fraretti Biscotti"
-          },
-          {
-            "name": "Lazzaroni Amaretto"
-          }
-        ]
-      },
-      {
-        "name": "Scotch",
-        "items": [
-          {
-            "name": "The Balvenie 12 Doublewood",
-            "desc": "(Scotland)"
-          },
-          {
-            "name": "Monkey Shoulder (Scotland)"
-          },
-          {
-            "name": "Compass Box Nectarsotiy",
-            "desc": "(Scotland)"
-          },
-          {
-            "name": "Laphroaig (Scotland)",
-            "price": "MP"
-          },
-          {
-            "name": "Lagavulin 16yr (Scotland)",
-            "price": "MP"
-          },
-          {
-            "name": "Oban 14yr (Scotland)"
-          },
-          {
-            "name": "Johnnie Walker Black",
-            "desc": "Scotland"
-          },
-          {
-            "name": "Suntory Toki"
-          },
-          {
-            "name": "Dewars (Scotland)"
+            "name": "Titos (Texas)"
           }
         ]
       },
@@ -421,39 +871,6 @@ export const menuCategories: MenuCategory[] = [
           },
           {
             "name": "Komasa Gin"
-          }
-        ]
-      },
-      {
-        "name": "Vodka",
-        "items": [
-          {
-            "name": "44 North Potato Vodk",
-            "desc": "(Idaho)"
-          },
-          {
-            "name": "Crop Cucumber Vodka",
-            "desc": "(New York)"
-          },
-          {
-            "name": "Ketel One"
-          },
-          {
-            "name": "Hansons Mandarin",
-            "desc": "(Sonoma)"
-          },
-          {
-            "name": "Prairie Organic Vodka",
-            "desc": "(Minnesota)"
-          },
-          {
-            "name": "Belvedere Single Estate"
-          },
-          {
-            "name": "Grey Goose"
-          },
-          {
-            "name": "Titos (Texas)"
           }
         ]
       },
@@ -562,53 +979,6 @@ export const menuCategories: MenuCategory[] = [
         ]
       },
       {
-        "name": "Cognac/Armagnac",
-        "items": [
-          {
-            "name": "Bache Gabrielsen Tre Kors"
-          },
-          {
-            "name": "Darroze Blanche Armagnac"
-          },
-          {
-            "name": "Naud V.S Fine Cognac (France)"
-          },
-          {
-            "name": "Pierre Ferrand 1940 Champagne",
-            "desc": "Pierre Ferrand 1940 Champagne Cognac (France)"
-          },
-          {
-            "name": "Meukow V.S.O.P. (France)"
-          }
-        ]
-      },
-      {
-        "name": "Rye",
-        "items": [
-          {
-            "name": "Michter’s Rye (Kentucky)"
-          },
-          {
-            "name": "Angel’s Envy Rye (Kentucky)"
-          },
-          {
-            "name": "Rittenhouse Rye (Pennsylvania)"
-          },
-          {
-            "name": "Whistlepig 15yr (Vermont)"
-          },
-          {
-            "name": "Whistlepig 12yr (Vermont)"
-          },
-          {
-            "name": "Whistlepig 10yr (Vermont)"
-          },
-          {
-            "name": "Willett Rye (Kentucky)"
-          }
-        ]
-      },
-      {
         "name": "Bourbon/Whiskey",
         "items": [
           {
@@ -662,517 +1032,147 @@ export const menuCategories: MenuCategory[] = [
             "name": "Doc Swinsons 5yr (Washington)"
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": "cocktails-menu",
-    "name": "Cocktails Menu",
-    "subsections": [
+      },
       {
-        "name": "Bitter and Botanical",
+        "name": "Rye",
         "items": [
           {
-            "name": "Black Bird",
-            "desc": "Hamiltons Demerara Rum, Campari, Pineapple, Lime, Vanilla Demerara, Mr. Black Coffee Liqueur",
-            "price": "16"
+            "name": "Michter’s Rye (Kentucky)"
           },
           {
-            "name": "Paper Plane",
-            "desc": "Doc Swinsons 5yr Whiskey, Aperol, Amaro Nonino, Lemon",
-            "price": "15"
+            "name": "Angel’s Envy Rye (Kentucky)"
           },
           {
-            "name": "Trinidad Sour",
-            "desc": "Angostura Amaro, Michter’s Rye Whiskey, Giffard Orgeat, Lemon",
-            "price": "16"
+            "name": "Rittenhouse Rye (Pennsylvania)"
           },
           {
-            "name": "Gran Cru Spritz",
-            "desc": "Tempus Fugit Gran Cru, Aperol, Bubbles, Q Club Soda",
-            "price": "15"
+            "name": "Whistlepig 15yr (Vermont)"
           },
           {
-            "name": "Candied Malort Negroni",
-            "desc": "Fords Gin, Jeppson’s Malort, Berry infused Sweet Vermouth, St. Elders Elderflower liqueur",
-            "price": "15"
+            "name": "Whistlepig 12yr (Vermont)"
+          },
+          {
+            "name": "Whistlepig 10yr (Vermont)"
+          },
+          {
+            "name": "Willett Rye (Kentucky)"
           }
         ]
       },
       {
-        "name": "Mocktails",
+        "name": "Scotch",
         "items": [
           {
-            "name": "Limoncello",
-            "desc": "Sweetened Condensed Milk, Lemon Super Juice",
-            "price": "9"
+            "name": "The Balvenie 12 Doublewood",
+            "desc": "(Scotland)"
           },
           {
-            "name": "Tamarindo",
-            "desc": "Coriander & Tamarind Syrup, Pineapple, Q Club Soda",
-            "price": "13"
+            "name": "Monkey Shoulder (Scotland)"
           },
           {
-            "name": "The Spicy Coconut",
-            "desc": "Coconut Water, Coconut Cream, Ginger & Lemon",
-            "price": "12"
+            "name": "Compass Box Nectarsotiy",
+            "desc": "(Scotland)"
           },
           {
-            "name": "Bubblegum Tea",
-            "desc": "Hibiscus Tea, Lemon, Bubblegum Stock & Fee Foam",
-            "price": "13"
+            "name": "Laphroaig (Scotland)",
+            "price": "MP"
           },
           {
-            "name": "Blueberry Shrubb",
-            "desc": "Macerated Lemon & Blueberries, Champagne Vinegar, Q Club Soda",
-            "price": "12"
+            "name": "Lagavulin 16yr (Scotland)",
+            "price": "MP"
           },
           {
-            "name": "Americola",
-            "desc": "Coca Cola Reduction, Iced Espresso, Vanilla Demerarra",
-            "price": "12"
+            "name": "Oban 14yr (Scotland)"
+          },
+          {
+            "name": "Johnnie Walker Black",
+            "desc": "Scotland"
+          },
+          {
+            "name": "Suntory Toki"
+          },
+          {
+            "name": "Dewars (Scotland)"
           }
         ]
       },
       {
-        "name": "Bold and Boozy",
+        "name": "Cognac/Armagnac",
         "items": [
           {
-            "name": "The Last Word",
-            "desc": "The Lost Explorer 8yr Mezcal, Luxardo Maraschino, Lime, Green Chartreuse",
-            "price": "19"
+            "name": "Bache Gabrielsen Tre Kors"
           },
           {
-            "name": "French Manhattan",
-            "desc": "Pierre Ferrand 1840 Champagne Cognac, Dolin Sweet Vermouth, Cointreau, Bitters",
-            "price": "17"
+            "name": "Darroze Blanche Armagnac"
           },
           {
-            "name": "Old Fashioned",
-            "desc": "Elijah Craig Small Batch Bourbon, House Bitters Blend, Vanilla Demerara",
-            "price": "15"
+            "name": "Naud V.S Fine Cognac (France)"
           },
           {
-            "name": "Carnivore Sazerac",
-            "desc": "Allen Benton’s Bacon Fat-Washed Doc Swinsons 5yr, Naud 3 Kors Cognac, Peychaud’s Bitters, Absinthe",
-            "price": "16"
+            "name": "Pierre Ferrand 1940 Champagne",
+            "desc": "Pierre Ferrand 1940 Champagne Cognac (France)"
           },
           {
-            "name": "Espresso Martini",
-            "desc": "Prairie Organic Vodka, Giffard Vanilla, Mr. Black Coffee Liqueur, Tempus Fugit Creme De Cacao, Espresso",
-            "price": "16"
+            "name": "Meukow V.S.O.P. (France)"
           }
         ]
       },
       {
-        "name": "Seasonal Cocktails",
+        "name": "Cordials",
         "items": [
           {
-            "name": "Clarified Bloody",
-            "desc": "Martin Millers 9 Moons Aged Gin, Clarified Bloody Mary Mix, Charred Pearl Onion",
-            "price": "19"
+            "name": "Finocetto"
           },
           {
-            "name": "Strawberry Embers",
-            "desc": "Empirical Aayuk, Rouge Spritz, Hibiscus Tea, Black Garlic Syrup",
-            "price": "16"
+            "name": "Grand Marnier Cuvee",
+            "desc": "Grand Marnier Cuvee Louis-Alexandre (France)"
           },
           {
-            "name": "Cut & Dry Painkiller",
-            "desc": "Cut & Dry Planteray Rum, Hazelnut Orgeat, Kota Pandan, Orange Juice, Coconut Cream & Orange Blossom Spritz",
-            "price": "16"
+            "name": "Jeppsons Malort (Chicago)"
           },
           {
-            "name": "Cilantro Aviation",
-            "desc": "Empirical Cilantro, Crop Cucumber, Lemon, Luxardo Marascino, Giffard Violette",
-            "price": "16"
+            "name": "Campari"
           },
           {
-            "name": "Miso Honey",
-            "desc": "Sol Charanda Mushroom Rum, Nori Liqueur, Roasted Beet Syrup, Miso Honey, Lemon & Egg White",
-            "price": "16"
-          }
-        ]
-      },
-      {
-        "name": "Fresh and Sour",
-        "items": [
-          {
-            "name": "Whiskey Sour",
-            "desc": "Elijah Craig Bourbon, Giffard Apricot, Lemon, Egg White, Bitters",
-            "price": "16"
+            "name": "Aperol"
           },
           {
-            "name": "Bees Knees",
-            "desc": "Barr Hill Gin, Lemon, Honey Syrup",
-            "price": "14"
+            "name": "St. George Absinthe",
+            "desc": "(California)"
           },
           {
-            "name": "Banana Daquiri",
-            "desc": "Hamilton’s Demerara Rum, Vanilla Demerara Syrup, Lime, Tempus Fugit Creme de Banane",
-            "price": "15"
+            "name": "Yellow Chartreuse"
           },
           {
-            "name": "French 75",
-            "desc": "Sipsmith Sloe Gin, Giffards Creme de Violette, Lemon, Bubbles",
-            "price": "16"
+            "name": "Green Chartreuse"
           },
           {
-            "name": "Tom Collins",
-            "desc": "Gin Lane Summer Garden Gin, Lemon, Q Club Soda, Hella Co.",
-            "price": "13"
-          }
-        ]
-      },
-      {
-        "name": "Signature Cocktails",
-        "items": [
-          {
-            "name": "The Guillotine",
-            "desc": "The Lost Explorer 8yr Mezcal, Artonic Melon Liqueur, Cointreau, Agave, Black Lava Salt and Pepper Rim",
-            "price": "17"
+            "name": "Montenegro Amaro",
+            "price": "MP"
           },
           {
-            "name": "Marie Antoinette",
-            "desc": "Lairds 7.5 year Apple Brandy, Siesta Key Toasted Coconut Rum, Roasted Pineapple Syrup, Vanilla Demerara, Cream, Nutmeg, Pie Crust Dust",
-            "price": "18"
+            "name": "Braulio"
           },
           {
-            "name": "Tennis Court Oath",
-            "desc": "Sesame Oil Washed Planteray 3 Star Rum, Montenegro, Coconut Creme, Chilli Oil, Toasted Coconut Latik",
-            "price": "17"
+            "name": "Amaro Nonino"
           },
           {
-            "name": "King Louis",
-            "desc": "Brown Butter and Pecan infused Bache Tre Kors Cognac, Benedictine, Vanilla Demerara, House Bitters",
-            "price": "18"
+            "name": "Benedictine"
           },
           {
-            "name": "Bastille Blanc",
-            "desc": "Darroze Blanche Armagnac, Sheringham Seaside Gin, Luxardo Bitter Bianco, Salers Aperitif, Yuzu Spritz",
-            "price": "16"
+            "name": "Averna Amaro"
           },
           {
-            "name": "Versailles Garden",
-            "desc": "Citadelle Viva La Cornichon Gin, Massenez Creme de Cassis, Lavender Sage Honey, Coconut Water, Fruit Caviar",
-            "price": "17"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "drinks-menu",
-    "name": "Drinks Menu",
-    "subsections": [
-      {
-        "name": "Orange",
-        "items": [
-          {
-            "name": "2024 Jouves & Croisille",
-            "desc": "Blanc De Maceration",
-            "price": "16 / 60"
-          }
-        ]
-      },
-      {
-        "name": "Red",
-        "items": [
-          {
-            "name": "2022 Traverses Fontanes",
-            "desc": "Languedoc-Roussillon Cabernet Sauvignon",
-            "price": "13 / 38"
+            "name": "Angostura Amaro"
           },
           {
-            "name": "2022 Gaignes",
-            "desc": "Loire Valley Cabernet Franc",
-            "price": "16 / 60"
+            "name": "Pernod"
           },
           {
-            "name": "2022 Gaspard",
-            "desc": "Touraine Gamay",
-            "price": "17 / 63"
-          }
-        ]
-      },
-      {
-        "name": "Rosé",
-        "items": [
-          {
-            "name": "2023 Domaine Rimbert",
-            "desc": "Le Petit Cochon Bronze Rosé Cinsault, Syrah",
-            "price": "16 / 60"
-          }
-        ]
-      },
-      {
-        "name": "White",
-        "items": [
-          {
-            "name": "2021 Domaine De Rochebin",
-            "desc": "Bourgogne Blanc Chardonnay",
-            "price": "14 / 50"
+            "name": "Fraretti Biscotti"
           },
           {
-            "name": "2023 Pascal Biotteau",
-            "desc": "Anjou Blanc Chenin Blanc",
-            "price": "13 / 49"
-          },
-          {
-            "name": "2023 Jean Marc Barthez",
-            "desc": "Bordeaux Blanc Sauvignon Blanc, Semillon",
-            "price": "12 / 63"
-          }
-        ]
-      },
-      {
-        "name": "Sparkling",
-        "items": [
-          {
-            "name": "N.v. Jo Landron Atmospheres",
-            "desc": "Folle Blanche/Pinot Noir/Chardonnay| 13/49",
-            "price": "49"
-          }
-        ]
-      },
-      {
-        "name": "Beers",
-        "items": [
-          {
-            "name": "Siesta beach light lager (can)",
-            "desc": "Light lager (can)",
-            "price": "5"
-          },
-          {
-            "name": "Kronenbourg 1664 (can)",
-            "desc": "Canned Kronenbourg 1664",
-            "price": "7"
-          },
-          {
-            "name": "Beach hippie ipa (draft)",
-            "desc": "India Pale Ale on draft",
-            "price": "9"
-          },
-          {
-            "name": "Babycakes oatmeal stout (draft)",
-            "desc": "Oatmeal stout on draft",
-            "price": "8"
-          },
-          {
-            "name": "My boy blue wheat ale (draft)",
-            "desc": "Wheat ale on draft",
-            "price": "7"
-          }
-        ]
-      },
-      {
-        "name": "Seltzer",
-        "items": [
-          {
-            "name": "Sunny d tangy orange vodka seltzer",
-            "desc": "Tangy orange vodka seltzer",
-            "price": "5"
-          },
-          {
-            "name": "Charcoal mellowed vodka seltzer",
-            "desc": "Charcoal mellowed vodka seltzer, various flavors",
-            "price": "6"
-          },
-          {
-            "name": "196 vodka seltzer",
-            "desc": "Vodka seltzer, various flavors",
-            "price": "8"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "wine-menu",
-    "name": "Wine Menu",
-    "subsections": [
-      {
-        "name": "New World Wines",
-        "items": [
-          {
-            "name": "2021 Extradimensional Wine Co.",
-            "desc": "2021 Extradimensional Wine Co. Yeah! Dude Ranch Red Reserve Santa Rosa, California",
-            "price": "112"
-          },
-          {
-            "name": "2023 Brea",
-            "desc": "Chardonnay Central Coast, California",
-            "price": "63"
-          },
-          {
-            "name": "2017 Domaine Serene",
-            "desc": "Yamhill Cuvee Pinot Noir Willamette Valley, Oregon",
-            "price": "119"
-          },
-          {
-            "name": "2022 The Hilt Estate",
-            "desc": "Chardonnay Central Coast, California",
-            "price": "112"
-          },
-          {
-            "name": "2023 Brea",
-            "desc": "Cabernet Sauvignon Paso Robles, California",
-            "price": "75"
-          },
-          {
-            "name": "2022 In Sheep’s Clothing",
-            "desc": "Cabernet Sauvignon Columbia Valley, Oregon",
-            "price": "56"
-          }
-        ]
-      },
-      {
-        "name": "Bordeaux & Southwest France",
-        "items": [
-          {
-            "name": "2018 Chateau Trottevielle",
-            "desc": "Saint-Emilion Cabernet Franc, Merlot, Cabernet Sauvignon",
-            "price": "300"
-          },
-          {
-            "name": "2017 Chateau De Chambert",
-            "desc": "Cahors Grand Vin Malbec",
-            "price": "148"
-          },
-          {
-            "name": "2019 Clos Siguier",
-            "desc": "Cahors Malbec, Tannat",
-            "price": "59"
-          },
-          {
-            "name": "2023 Chateau Lestignac",
-            "desc": "'Michel-Michel- Orange VDF Sauvignon Gris, Sauvignon Blanc, Muscadelle",
-            "price": "85"
-          },
-          {
-            "name": "2021 Closerie Des Moussis",
-            "desc": "Moineaux Cabernet Sauvignon, Merlot, Cabernet Franc",
-            "price": "221"
-          }
-        ]
-      },
-      {
-        "name": "Rhone Valley, Provence & Langu",
-        "items": [
-          {
-            "name": "2020 Domaine Francois Villard",
-            "desc": "Le Grand Vallon Condrieu Viognier",
-            "price": "162"
-          },
-          {
-            "name": "2022 Les Hautes Terres",
-            "desc": "Autres Terres Blanc Chardonnay, Mauzac, Chenin Blanc",
-            "price": "60"
-          },
-          {
-            "name": "2022 Domaine Gramenon",
-            "desc": "Cotes du Rhone, Poignee de Raisins Grenache, Cinsault",
-            "price": "78"
-          },
-          {
-            "name": "2023 Matthieu Barret",
-            "desc": "‘Petit Ours’ Cotes du Rhone Syrah",
-            "price": "80"
-          },
-          {
-            "name": "2021 Clos De L’oratoire",
-            "desc": "2021 Clos De L’oratoire Des Papes Chateauneuf-du-Pape Cinsault, Syrah, Mouverdre",
-            "price": "203"
-          }
-        ]
-      },
-      {
-        "name": "Alsace, Savoy & The Jura",
-        "items": [
-          {
-            "name": "2021 Valentin Zusslin",
-            "desc": "Riesling Le Schild Riesling",
-            "price": "112"
-          },
-          {
-            "name": "2021 Pierre Arnold",
-            "desc": "Pinot Gris Tricentenaire Pinot Gris",
-            "price": "65"
-          },
-          {
-            "name": "2020 Domaine De La Loue",
-            "desc": "La Brute Pinot Noir",
-            "price": "125"
-          },
-          {
-            "name": "2022 Domaine Partagé",
-            "desc": "Les Christine Roussanne",
-            "price": "286"
-          }
-        ]
-      },
-      {
-        "name": "Burgundy, Champagne & Beaujola",
-        "items": [
-          {
-            "name": "2022 Domaine Deux Roches",
-            "desc": "‘Les Crays’ Pouilly Fuisse 1er Cru Chardonnay",
-            "price": "125"
-          },
-          {
-            "name": "2023 Le Domaine Fichet",
-            "desc": "Tradition Bourgogne Pinot Noir",
-            "price": "75"
-          },
-          {
-            "name": "2023 Guy Breton",
-            "desc": "“Vielles Vignes” Morgon Gamay",
-            "price": "112"
-          },
-          {
-            "name": "2021 Yuka & Clotaire Michal",
-            "desc": "Songe d’Une Nuit d’Automne Gamay",
-            "price": "121"
-          },
-          {
-            "name": "2022 La Maison Romane",
-            "desc": "Bourgogne Rouge Pinot Noir",
-            "price": "158"
-          },
-          {
-            "name": "N.v. Champagne Lelarge Pugeot",
-            "desc": "Tradition Pinot Meunier, Pinot Noir and Chardonnay",
-            "price": "178"
-          },
-          {
-            "name": "2021 Domaine De Bellene",
-            "desc": "Savigny-les-Beaune Blanc Chardonnay",
-            "price": "174"
-          }
-        ]
-      },
-      {
-        "name": "Loire Valley",
-        "items": [
-          {
-            "name": "2023 Pascal Biotteau",
-            "desc": "Anjou Blanc Chenin Blanc",
-            "price": "49"
-          },
-          {
-            "name": "2022 Pierre-Olivier Bonhomme",
-            "desc": "Mid-Loire Sauvignon Blanc",
-            "price": "63"
-          },
-          {
-            "name": "2022 Gaspard",
-            "desc": "Central France Pinot Noir",
-            "price": "64"
-          },
-          {
-            "name": "2022 Domaine Huet",
-            "desc": "Vouvray Le Haut Lieu Sec Chenin Blanc",
-            "price": "119"
+            "name": "Lazzaroni Amaretto"
           }
         ]
       }

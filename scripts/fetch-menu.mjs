@@ -53,6 +53,86 @@ const slug = (s) =>
 /** Dishio's copy arrives with smart quotes and stray trailing whitespace. */
 const clean = (s) => (s ?? "").replace(/\s+/g, " ").trim();
 
+/**
+ * Dishio's own ordering is whatever the kitchen last dragged things into, which
+ * is not how a menu reads. These are the running orders a restaurant would
+ * print: food before drinks, a course order within each meal, desserts last,
+ * and the back-bar reference list at the very end.
+ *
+ * Anything Dishio grows that is not named here keeps its own position and
+ * sorts to the end, so a new section appears on the site rather than vanishing.
+ */
+const CATEGORY_ORDER = [
+  "Main Menu",
+  "Brunch",
+  "Cocktails Menu",
+  "Drinks Menu",
+  "Wine Menu",
+  "Spirits Menu",
+];
+
+const SUBSECTION_ORDER = {
+  // Courses, in the order they arrive at the table.
+  "Main Menu": ["Hors D\u2019Oeuvres", "Mains", "Mains with Frites", "Sides", "Desserts"],
+  Brunch: ["Brunch", "Sides"],
+  // House drinks first, zero-proof last.
+  "Cocktails Menu": [
+    "Signature Cocktails",
+    "Seasonal Cocktails",
+    "Bold and Boozy",
+    "Bitter and Botanical",
+    "Fresh and Sour",
+    "Mocktails",
+  ],
+  // By the glass, poured lightest to heaviest, then beer.
+  "Drinks Menu": ["Sparkling", "White", "Ros\u00e9", "Orange", "Red", "Beers", "Seltzer"],
+  // France by region as a wine list runs it, then the new world.
+  // Two of these names are truncated in Dishio; they have to match exactly.
+  "Wine Menu": [
+    "Burgundy, Champagne & Beaujola",
+    "Bordeaux & Southwest France",
+    "Rhone Valley, Provence & Langu",
+    "Loire Valley",
+    "Alsace, Savoy & The Jura",
+    "New World Wines",
+  ],
+  // Back bar, in the order a bartender would walk it.
+  "Spirits Menu": [
+    "Vodka",
+    "Gin",
+    "Rum",
+    "Tequila",
+    "Bourbon/Whiskey",
+    "Rye",
+    "Scotch",
+    "Cognac/Armagnac",
+    "Cordials",
+  ],
+};
+
+/**
+ * Dishio truncates a subsection name at 30 characters, which is fine in their
+ * admin and looks like a bug on a printed-feeling menu ("Burgundy, Champagne &
+ * Beaujola"). Only the wine list runs long enough to hit it. These restore the
+ * region names in full; the keys are the truncated strings Dishio returns.
+ */
+const DISPLAY_NAME = {
+  "Burgundy, Champagne & Beaujola": "Burgundy, Champagne & Beaujolais",
+  "Rhone Valley, Provence & Langu": "Rhone Valley, Provence & Languedoc",
+};
+
+/** Known names sort by the lists above; everything else keeps Dishio's order, after them. */
+function byNamedOrder(names, getName) {
+  return (a, b) => {
+    const ia = names.indexOf(getName(a));
+    const ib = names.indexOf(getName(b));
+    if (ia === -1 && ib === -1) return (a.sortingIndex ?? 0) - (b.sortingIndex ?? 0);
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+    return ia - ib;
+  };
+}
+
 async function main() {
   const input = encodeURIComponent(
     JSON.stringify({ 0: { json: { menuId: MENU_ID } } }),
@@ -66,15 +146,21 @@ async function main() {
 
   const categories = menu.categories
     .filter(live)
-    .sort(bySortIndex)
+    .sort(byNamedOrder(CATEGORY_ORDER, (c) => clean(c.sectionName)))
     .map((category) => ({
       id: slug(category.sectionName),
       name: clean(category.sectionName),
       subsections: category.subcategories
         .filter(live)
-        .sort(bySortIndex)
+        .sort(
+          byNamedOrder(
+            SUBSECTION_ORDER[clean(category.sectionName)] ?? [],
+            (sub) => clean(sub.subsectionName),
+          ),
+        )
         .map((sub) => ({
-          name: clean(sub.subsectionName),
+          name:
+            DISPLAY_NAME[clean(sub.subsectionName)] ?? clean(sub.subsectionName),
           items: sub.products
             .filter(live)
             .sort(bySortIndex)
