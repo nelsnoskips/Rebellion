@@ -24,6 +24,22 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# Set these in the Netlify UI (Site configuration -> Environment variables)
+# BEFORE the first deploy, not after:
+#
+#   NEXT_PUBLIC_SITE_URL   https://rebellionbistro.com
+#   NEXT_PUBLIC_INDEXABLE  true
+#
+# They are read at build time and baked into the output. Without the first,
+# every canonical, Open Graph URL and sitemap entry points at the wrong host.
+# Without the second, robots.txt says Disallow: / and every page carries a
+# noindex tag — the site works perfectly and is invisible to search, which is
+# the kind of thing nobody notices for a month.
+#
+# SITE_BASE_PATH stays unset here. It only applies to the subdirectory deploy
+# on the client's own server; at a domain root both it and the rebase step are
+# no-ops.
+
 # Long-cache the fingerprinted build assets; everything else stays revalidated
 # so content edits appear immediately.
 [[headers]]
