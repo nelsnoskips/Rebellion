@@ -48,21 +48,8 @@ run("npx", ["next", "build"]);
 // paths built at runtime in client bundles. This fixes those.
 if (base) run("node", ["scripts/rebase-assets.mjs", out, base]);
 
-// Routes that are switched off do not belong in the bundle at all — see
-// deploy/hidden-routes.json for why a file left in place is worse than none.
-const hidden = JSON.parse(readFileSync("deploy/hidden-routes.json", "utf8")).hidden ?? [];
-for (const route of hidden) {
-  const stem = route.replace(/^\//, "");
-  let removed = 0;
-  for (const target of [`${stem}.html`, `${stem}.txt`, stem]) {
-    const path = join(out, target);
-    if (existsSync(path)) {
-      rmSync(path, { recursive: true, force: true });
-      removed += 1;
-    }
-  }
-  console.log(`pruned ${route} (${removed} path${removed === 1 ? "" : "s"})`);
-}
+// Switched-off routes do not belong in the bundle at all.
+run("node", ["scripts/prune-hidden.mjs", out]);
 
 // Apache config, with the base path substituted in.
 const htaccess = readFileSync("deploy/htaccess", "utf8").replaceAll("__BASE__", base);

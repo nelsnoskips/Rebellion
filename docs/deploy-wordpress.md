@@ -13,13 +13,32 @@ decided before the build, not after. Building for the wrong path produces a
 page that loads blank and 404s every asset, which is the most common way this
 particular deploy fails.
 
-Two alternatives, both cheap if the client prefers them:
+### The better option, found late
 
-- **A subdomain** (`bistro.rebellionrestaurants.com`). Cleanest option: build
-  with no base path at all, no interaction with WordPress's rewrites, and
-  `robots.txt` works properly. Needs a DNS record and a vhost.
-- **Replacing the site.** Out of scope here; WordPress would be serving the
-  other two venues.
+**The client already owns `rebellionbistro.com`**, and it currently does
+nothing but 301 to `rebellionrestaurants.com/rebellionbistro/` through
+GoDaddy's domain forwarding. Pointing it at the site directly is strictly
+simpler than the subdirectory deploy:
+
+- No base path, so nothing is baked into the build and the rebase step is a
+  no-op.
+- No contact with WordPress's rewrites, Apache's `.htaccess`, or the nginx
+  layer in front of it — the three things most likely to go wrong here.
+- `robots.txt` works, because the site is at a domain root.
+- **It cannot break the live site.** Nothing is uploaded to their server at
+  all, so the wine bar and cantina pages are untouched and the rollback is a
+  DNS change.
+- The bistro gets its own domain, which is what the domain was bought for.
+
+Hosting it does not have to be their server. A static host — Netlify is already
+configured in `netlify.toml` — serves this build directly from the repository,
+which also means every future change deploys on a push instead of a re-upload.
+
+If that route is taken, redirect `rebellionrestaurants.com/rebellionbistro/` to
+the new home so existing links and any accumulated search equity follow.
+
+The subdirectory instructions below still stand if the client would rather keep
+everything on one host.
 
 ## Build the bundle
 

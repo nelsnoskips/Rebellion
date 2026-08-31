@@ -14,7 +14,11 @@
   #   previews.<studio>/production/rebellion-a
   # The rebase step fixes the asset URLs Next's basePath does not reach. With
   # SITE_BASE_PATH unset both are no-ops and the site serves from the root.
-  command = "npm run build && node scripts/rebase-assets.mjs out \"${SITE_BASE_PATH:-/}\""
+  # Same three steps as the Plesk bundle: build, prune the switched-off
+  # routes so they 404 for real, then fix the asset URLs Next's basePath does
+  # not reach. With SITE_BASE_PATH unset the last step is a no-op and the site
+  # serves from the domain root.
+  command = "npm run build && node scripts/prune-hidden.mjs out && node scripts/rebase-assets.mjs out \"${SITE_BASE_PATH:-/}\""
   publish = "out"
 
 [build.environment]
