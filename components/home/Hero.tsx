@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { images, site } from "@/lib/site";
 import { Reveal } from "@/components/ui/Reveal";
-import { Bloom, InkSplatter } from "@/components/ui/Artwork";
+import { Bloom } from "@/components/ui/Artwork";
 
 /**
  * Module 01 — cinematic hero (blueprint §07).
@@ -47,16 +47,7 @@ export function Hero() {
             Rebel Against
           </Reveal>
           <Reveal index={1} className="block">
-            {/* The one loud mark on the page: ink thrown at the end of the
-                line, anchored to the text so it lands there at any size. */}
-            <span className="relative inline-block">
-              The Ordinary
-              <InkSplatter
-                variant="b"
-                opacity={95}
-                className="-top-4 -right-8 h-14 w-14 text-signal md:-top-6 md:-right-14 md:h-24 md:w-24"
-              />
-            </span>
+            The Ordinary
           </Reveal>
         </h1>
 
