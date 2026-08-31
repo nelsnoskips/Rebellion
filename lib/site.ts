@@ -10,7 +10,7 @@
 import { images, type ImageName } from "./images";
 
 export const site = {
-  name: "Rebellion Beachside Bar & Bistro",
+  name: "Rebellion Beachside Bar and Bistro",
   shortName: "Rebellion Beachside",
   /* What the mark on the page actually reads. The header carries the script
      alone, so this — not the full trading name — is the accessible name for
