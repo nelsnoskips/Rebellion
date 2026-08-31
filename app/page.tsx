@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { EditorialHome } from "@/components/home/EditorialHome";
+import { flags } from "@/lib/site";
 
 export const metadata: Metadata = {
-  robots: { index: false, follow: false },
+  robots: { index: flags.indexable, follow: flags.indexable },
 };
 
 /**
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
  * export and prerenders an error page instead, which builds green and ships
  * broken.
  *
- * Still noindex until the client is ready to launch.
+ * Indexable only when flags.indexable says so — see lib/site.ts.
  */
 export default function IndexPage() {
   return <EditorialHome />;

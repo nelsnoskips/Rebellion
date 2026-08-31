@@ -1,0 +1,68 @@
+# ---------------------------------------------------------------------------
+# Rebellion Beachside — static site served from inside WordPress
+#
+# Goes in the site's own directory (e.g. /rebellionbistro/.htaccess), NOT the
+# WordPress root. Do not touch the root .htaccess; nothing here needs it
+# changed, and editing it is how you take the whole site down.
+#
+# __BASE__ is replaced by scripts/package-site.mjs with the path this build
+# was made for. If you are placing the files by hand, set it yourself.
+# ---------------------------------------------------------------------------
+
+# Apache's content negotiation also maps /menus to menus.html, but it guesses —
+# and it will happily serve menus.txt to someone asking for /menus. The rewrite
+# below does the same job predictably, so negotiation is turned off.
+Options -MultiViews
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase __BASE__/
+
+  # WordPress's root .htaccess ends with a catch-all into index.php. That is
+  # what would otherwise eat every URL here that is not a literal file on disk
+  # — which is all of them, because the export writes menus.html, not menus/.
+  # These rules resolve the request before it can get that far.
+
+  # A real file or directory always wins.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # /menus -> menus.html, with or without a trailing slash.
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+
+  # Anything left is genuinely missing. Answer it here with a real 404 rather
+  # than handing it to WordPress, which would return its own themed page from
+  # a different site.
+  RewriteRule ^ - [R=404,L]
+</IfModule>
+
+ErrorDocument 404 __BASE__/404.html
+
+# Older Apache builds do not know these, and will send them as
+# application/octet-stream — which browsers refuse to render or to use as a
+# font. Declaring them costs nothing if they are already known.
+<IfModule mod_mime.c>
+  AddType image/webp                 .webp
+  AddType font/woff2                 .woff2
+  AddType image/svg+xml              .svg
+  AddType application/json           .json
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json image/svg+xml
+</IfModule>
+
+# Content is revalidated; the fingerprinted build assets are handled by the
+# .htaccess inside _next/static, where they can be cached for a year safely.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                      "access plus 1 hour"
+  ExpiresByType text/html             "access plus 0 seconds"
+  ExpiresByType image/webp            "access plus 30 days"
+  ExpiresByType image/png             "access plus 30 days"
+  ExpiresByType image/jpeg            "access plus 30 days"
+  ExpiresByType font/woff2            "access plus 30 days"
+</IfModule>

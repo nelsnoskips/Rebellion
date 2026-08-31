@@ -124,8 +124,18 @@ const minion = localFont({
   fallback: ["Georgia", "serif"],
 });
 
+/**
+ * Where this build will actually live. Canonicals, Open Graph URLs and the
+ * structured data all hang off it, so it has to be right per deployment
+ * rather than baked in — the site is heading for a subdirectory of the
+ * client's existing WordPress, not its own domain.
+ *
+ *   NEXT_PUBLIC_SITE_URL=https://rebellionrestaurants.com/rebellionbistro
+ */
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://rebellionbeachside.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rebellionbeachside.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${site.name} — ${site.tagline}`,
     template: `%s — ${site.shortName}`,

@@ -1,0 +1,17 @@
+{
+  "_comment": [
+    "Routes to remove from the deployment bundle entirely.",
+    "",
+    "A static export cannot return a 404 status. A page that calls notFound()",
+    "still writes a file, so Apache serves it with 200 and a not-found body —",
+    "a soft 404, which search engines index and which reads to a crawler as a",
+    "real page. Deleting the file makes the 404 genuine.",
+    "",
+    "Keep this in step with `flags` in lib/site.ts: switching a section back on",
+    "means removing it from here too, or the route will 404 despite being",
+    "enabled. Two places, deliberately — the alternative was guessing which",
+    "exported pages are not-found renders by their content, and there is no",
+    "marker in the output that reliably says so."
+  ],
+  "hidden": ["/bottle-shop"]
+}

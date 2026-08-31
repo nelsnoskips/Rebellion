@@ -109,6 +109,16 @@ export const hours = [
  */
 export const flags = {
   bottleShop: false,
+
+  /**
+   * Whether search engines may index this build.
+   *
+   * Off for previews and for the merge rehearsal, so a staging copy cannot
+   * outrank the client's live pages or get indexed at the wrong URL. Turn it
+   * on — or set NEXT_PUBLIC_INDEXABLE=true — as the last step of going live,
+   * after the URL is final.
+   */
+  indexable: process.env.NEXT_PUBLIC_INDEXABLE === "true",
 } as const;
 
 /** Primary navigation — blueprint §06, ordered by intent, not department. */

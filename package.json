@@ -1,13 +1,14 @@
 {
   "name": "rebellion-beachside",
   "version": "0.1.0",
-  "description": "Rebellion Beachside Bar & Bistro — brand website.",
+  "description": "Rebellion Beachside Bar & Bistro \u2014 brand website.",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "package": "node scripts/package-site.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

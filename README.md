@@ -15,6 +15,13 @@ npm run lint
 
 ## Deploying
 
+The site is heading for a subdirectory of the client's existing WordPress host.
+`npm run package` builds a drop-in bundle with the Apache config included —
+see **docs/deploy-wordpress.md** for the runbook, the failure modes and the
+pre-launch checklist.
+
+
+
 `netlify.toml` is the source of truth and overrides whatever is configured in
 the Netlify UI:
 
