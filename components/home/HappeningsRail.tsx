@@ -89,13 +89,20 @@ export function HappeningsRail() {
           {happenings.map((event) => {
             const date = eventDate(event.date);
             const img = images[event.image];
+            // An event that sells its own tickets sends people straight to the
+            // booking page; the rest go to their entry on the calendar.
+            const Tag = event.url ? "a" : Link;
+            const off = event.url
+              ? { target: "_blank" as const, rel: "noreferrer" }
+              : {};
             return (
               <li
                 key={event.slug}
                 className="group w-[300px] shrink-0 snap-start sm:w-[340px]"
               >
-                <Link
-                  href={`/happenings#${event.slug}`}
+                <Tag
+                  href={event.url ?? `/happenings#${event.slug}`}
+                  {...off}
                   className="flex h-full items-stretch gap-4"
                 >
                   <time
@@ -137,7 +144,7 @@ export function HappeningsRail() {
                       </span>
                     )}
                   </span>
-                </Link>
+                </Tag>
               </li>
             );
           })}
