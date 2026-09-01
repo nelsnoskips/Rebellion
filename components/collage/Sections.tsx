@@ -191,7 +191,7 @@ export function DarkBand() {
             />
           </div>
           <Link
-            href="/menus#cocktails"
+            href="/menus#cocktails-menu"
             className="micro mt-6 inline-flex items-center gap-2 text-signal"
           >
             <span className="border-b border-signal/50 pb-1">View cocktails</span>

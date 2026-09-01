@@ -126,9 +126,11 @@ export function HappeningsRail() {
                     <span className="mt-1 block font-semibold">
                       {event.title}
                     </span>
-                    <span className="mt-1 block text-xs text-ink-mute">
-                      {event.time}
-                    </span>
+                    {event.time ? (
+                      <span className="mt-1 block text-xs text-ink-mute">
+                        {event.time}
+                      </span>
+                    ) : null}
                     {event.ticketed && (
                       <span className="micro accent mt-2 self-start border border-brass/70 px-2 py-1 text-brass-ink">
                         Ticketed

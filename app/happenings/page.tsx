@@ -25,6 +25,7 @@ export default function HappeningsPage() {
     startDate: e.date,
     description: e.blurb,
     eventStatus: "https://schema.org/EventScheduled",
+    ...(e.url ? { url: e.url } : {}),
     location: {
       "@type": "Place",
       name: site.name,
@@ -89,14 +90,16 @@ export default function HappeningsPage() {
                       <h2 className="display-soft mt-2 text-2xl">
                         {event.title}
                       </h2>
-                      <p className="mt-1 text-sm text-ink-mute">{event.time}</p>
+                      {event.time ? (
+                        <p className="mt-1 text-sm text-ink-mute">{event.time}</p>
+                      ) : null}
                       <p className="mt-3 max-w-[46ch] text-sm leading-relaxed">
                         {event.blurb}
                       </p>
                     </div>
 
                     <Link
-                      href={site.reserveUrl}
+                      href={event.url ?? site.reserveUrl}
                       className="micro shrink-0 self-start border border-ink/25 px-6 py-3.5 transition-colors duration-[var(--dur-micro)] hover:border-ink hover:bg-ink hover:text-bone sm:self-center"
                     >
                       {event.ticketed ? "Get tickets" : "Reserve"}
@@ -109,7 +112,6 @@ export default function HappeningsPage() {
 
           <Reveal className="mt-12">
             <p className="text-sm text-ink-mute">
-              Dates are illustrative until the calendar feed is connected.
               Private bookings and buyouts run alongside the public calendar —{" "}
               <Link
                 href="/private-events"

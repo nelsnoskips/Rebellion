@@ -12,7 +12,11 @@
  */
 import { writeFileSync } from "node:fs";
 
-const MENU_ID = process.env.DISHIO_MENU_ID ?? "cm8iyo4q200cum3etqzes05ku";
+// The location menu — the one the kitchen edits at
+// app.dish.io/dashboard/rebellionbeachside/menu/edit/<id>. There is also a
+// brand-level template menu with a near-identical id and a stale copy of the
+// food and cocktails in it; that one is not what the restaurant serves.
+const MENU_ID = process.env.DISHIO_MENU_ID ?? "cm8iyo4qz00cxm3etw7ravdkg";
 const ENDPOINT = "https://dish.io/api/trpc/menu.getMenuV2Public";
 
 /** Dishio hides a section, a subsection or a dish by flag rather than removing it. */
@@ -66,34 +70,37 @@ const CATEGORY_ORDER = [
   "Main Menu",
   "Brunch",
   "Cocktails Menu",
-  "Drinks Menu",
+  "Wine & Beer by the Glass",
+  "Cider",
   "Wine Menu",
   "Spirits Menu",
 ];
 
 const SUBSECTION_ORDER = {
-  // Courses, in the order they arrive at the table.
-  "Main Menu": ["Hors D\u2019Oeuvres", "Mains", "Mains with Frites", "Sides", "Desserts"],
-  Brunch: ["Brunch", "Sides"],
+  // Courses in the order they arrive; pasta is a primi, so it sits before the
+  // secondi rather than among them.
+  "Main Menu": ["Appetizers", "Pasta", "Mains", "Mains with Frites", "Sides", "Desserts"],
+  // Food, then what you drink with it.
+  Brunch: ["Brunch", "Sides", "Brunch Cocktails"],
   // House drinks first, zero-proof last.
   "Cocktails Menu": [
     "Signature Cocktails",
-    "Seasonal Cocktails",
-    "Bold and Boozy",
-    "Bitter and Botanical",
-    "Fresh and Sour",
+    "David Bowie Essentials",
+    "Rebellious Classics",
     "Mocktails",
   ],
   // By the glass, poured lightest to heaviest, then beer.
-  "Drinks Menu": ["Sparkling", "White", "Ros\u00e9", "Orange", "Red", "Beers", "Seltzer"],
-  // France by region as a wine list runs it, then the new world.
+  "Wine & Beer by the Glass": ["Sparkling", "White", "Ros\u00e9", "Orange", "Red", "Beers"],
+  Cider: ["Bottled Cider", "Canned Cider"],
+  // France by region as a wine list runs it, then Italy and the new world.
   // Two of these names are truncated in Dishio; they have to match exactly.
   "Wine Menu": [
-    "Burgundy, Champagne & Beaujola",
+    "Burgundy, Champagne&Beaujolais",
     "Bordeaux & Southwest France",
     "Rhone Valley, Provence & Langu",
     "Loire Valley",
     "Alsace, Savoy & The Jura",
+    "Italy",
     "New World Wines",
   ],
   // Back bar, in the order a bartender would walk it.
@@ -117,7 +124,7 @@ const SUBSECTION_ORDER = {
  * region names in full; the keys are the truncated strings Dishio returns.
  */
 const DISPLAY_NAME = {
-  "Burgundy, Champagne & Beaujola": "Burgundy, Champagne & Beaujolais",
+  "Burgundy, Champagne&Beaujolais": "Burgundy, Champagne & Beaujolais",
   "Rhone Valley, Provence & Langu": "Rhone Valley, Provence & Languedoc",
 };
 

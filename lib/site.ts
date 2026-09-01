@@ -216,7 +216,7 @@ export const features: {
     eyebrow: "Featured Cocktails",
     lines: ["Original pours,", "fresh ingredients,", "rebel spirit."],
     cta: "View cocktails",
-    href: "/menus#cocktails",
+    href: "/menus#cocktails-menu",
     image: "featuredCocktail",
     tone: "ink-soft",
   },
@@ -242,60 +242,36 @@ export type Happening = {
   date: string;
   kind: string;
   title: string;
-  time: string;
+  /** Omitted while the kitchen is still setting the running order. */
+  time?: string;
   blurb: string;
   image: ImageName;
   ticketed?: boolean;
+  /** The event's own booking page. Falls back to the venue's Resy link. */
+  url?: string;
 };
 
-/* PLACEHOLDER — replace with the live events calendar feed. */
 export const happenings: Happening[] = [
   {
-    slug: "live-music-the-saltbacks",
-    date: "2026-09-11",
-    kind: "Live Music",
-    title: "The Saltbacks",
-    time: "7PM – 10PM",
-    blurb: "Three pieces, no set list, one very loud opinion about Tom Petty.",
-    image: "eventLiveMusic",
-  },
-  {
-    slug: "wine-dinner-old-world-new-stories",
-    date: "2026-09-19",
+    slug: "italian-wine-dinner",
+    date: "2026-09-15",
     kind: "Wine Dinner",
-    title: "Old World, New Stories",
-    time: "6PM – 9PM",
-    blurb: "Five courses, five bottles, and the arguments that produced them.",
+    title: "Italian Wine Dinner",
+    blurb:
+      "An evening through the Italian list. Menu, pours and seating times to be announced — call the restaurant to be told first.",
     image: "eventWineDinner",
     ticketed: true,
   },
   {
-    slug: "brunch-club-vinyl-and-mimosas",
-    date: "2026-09-26",
-    kind: "Brunch Club",
-    title: "Vinyl & Mimosas",
-    time: "11AM – 2PM",
-    blurb: "Records on the turntable, citrus on the bar, nobody in a hurry.",
+    slug: "drag-brunch",
+    date: "2026-09-27",
+    kind: "Drag Brunch",
+    title: "Drag Brunch",
+    blurb:
+      "Brunch with a show. Seats are limited and booked through Resy.",
     image: "eventBrunch",
-  },
-  {
-    slug: "cocktail-class-stirred-not-taught",
-    date: "2026-10-03",
-    kind: "Cocktail Class",
-    title: "Stirred, Not Taught",
-    time: "3PM – 5PM",
-    blurb: "Build three classics with our bar team. You keep the technique.",
-    image: "eventCocktailClass",
     ticketed: true,
-  },
-  {
-    slug: "live-music-the-driftline",
-    date: "2026-10-10",
-    kind: "Live Music",
-    title: "The Driftline",
-    time: "7PM – 10PM",
-    blurb: "Beach soul with the amps turned toward the water.",
-    image: "eventBuyout",
+    url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/rebellion-beachside-drag-brunch-2026-09-27-6",
   },
 ];
 
