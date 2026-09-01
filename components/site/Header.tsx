@@ -98,10 +98,16 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
         >
           {nav.map((item) => {
             const active = pathname === item.href;
+            // The store is somebody else's site; it opens in its own tab.
+            const Tag = item.external ? "a" : Link;
+            const off = item.external
+              ? { target: "_blank" as const, rel: "noreferrer" }
+              : {};
             return (
-              <Link
+              <Tag
                 key={item.href}
                 href={item.href}
+                {...off}
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "micro group relative py-2 transition-colors duration-[var(--dur-micro)]",
@@ -115,7 +121,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
                     active ? "scale-x-100" : "scale-x-0",
                   )}
                 />
-              </Link>
+              </Tag>
             );
           })}
         </nav>
@@ -150,15 +156,27 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
         className="border-t border-rule bg-bone lg:hidden"
       >
         <nav aria-label="Primary mobile" className="flex flex-col px-6 py-4">
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="display border-b border-rule py-4 text-3xl text-ink last:border-0"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {nav.map((item) =>
+            item.external ? (
+              <a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                className="display border-b border-rule py-4 text-3xl text-ink last:border-0"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="display border-b border-rule py-4 text-3xl text-ink last:border-0"
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
           <Link
             href={site.reserveUrl}
             className="micro mt-5 bg-oxblood px-6 py-4 text-center text-bone"

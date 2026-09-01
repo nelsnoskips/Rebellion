@@ -36,6 +36,15 @@ export const site = {
   phoneHref: "tel:+13216132210",
   email: "hello@rebellionbeachside.com",
   /* Toast e-gift cards. Off-site, so every link to it opens in a new tab. */
+  /**
+   * The merch/bottle store. It lives on the client's WordPress, which is
+   * currently unreachable: rebellionrestaurants.com now serves this site from
+   * Netlify, so the old /shop/ has no hostname pointing at it. Set this to the
+   * store's URL — a restored shop.rebellionrestaurants.com, or wherever merch
+   * ends up — and the Store link appears in the nav automatically. Empty means
+   * no link, rather than a link to nowhere.
+   */
+  storeUrl: "",
   giftCardUrl:
     "https://order.toasttab.com/egiftcards/rebellion-beachside-bar-and-bistro-26-north-orlando-avenue",
   /* Where private-event inquiries land, confirmed by the client. Separate from
@@ -144,11 +153,14 @@ export const flags = {
 } as const;
 
 /** Primary navigation — blueprint §06, ordered by intent, not department. */
-export const nav = [
+export const nav: { label: string; href: string; external?: boolean }[] = [
   { label: "Menus", href: "/menus" },
   { label: "Happenings", href: "/happenings" },
   { label: "Private Events", href: "/private-events" },
   ...(flags.bottleShop ? [{ label: "Bottle Shop", href: "/bottle-shop" }] : []),
+  ...(site.storeUrl
+    ? [{ label: "Store", href: site.storeUrl, external: true }]
+    : []),
   { label: "Story", href: "/story" },
   { label: "Visit", href: "/visit" },
 ];
