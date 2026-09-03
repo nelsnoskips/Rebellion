@@ -37,14 +37,12 @@ export const site = {
   email: "hello@rebellionbeachside.com",
   /* Toast e-gift cards. Off-site, so every link to it opens in a new tab. */
   /**
-   * The merch/bottle store. It lives on the client's WordPress, which is
-   * currently unreachable: rebellionrestaurants.com now serves this site from
-   * Netlify, so the old /shop/ has no hostname pointing at it. Set this to the
-   * store's URL — a restored shop.rebellionrestaurants.com, or wherever merch
-   * ends up — and the Store link appears in the nav automatically. Empty means
-   * no link, rather than a link to nowhere.
+   * The merch store — WooCommerce, group-wide "Rebellion" apparel rather than
+   * anything wine-bar specific, which is why the bistro sells it too. Points
+   * off-site for now; it becomes "/shop" once the catalogue page lands, and the
+   * nav item follows this value either way. Empty means no link at all.
    */
-  storeUrl: "",
+  storeUrl: "https://shop.rebellionwinebar.com/",
   giftCardUrl:
     "https://order.toasttab.com/egiftcards/rebellion-beachside-bar-and-bistro-26-north-orlando-avenue",
   /* Where private-event inquiries land, confirmed by the client. Separate from
