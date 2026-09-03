@@ -37,10 +37,10 @@ export const site = {
   email: "hello@rebellionbeachside.com",
   /* Toast e-gift cards. Off-site, so every link to it opens in a new tab. */
   /**
-   * The merch store — WooCommerce, group-wide "Rebellion" apparel rather than
-   * anything wine-bar specific, which is why the bistro sells it too. Points
-   * off-site for now; it becomes "/shop" once the catalogue page lands, and the
-   * nav item follows this value either way. Empty means no link at all.
+   * Where the merch is actually sold — a separate WooCommerce install holding
+   * group-wide "Rebellion" apparel, which is why the bistro sells it too. The
+   * catalogue is rendered on /shop in our own design; this is the checkout it
+   * hands off to, and the origin scripts/fetch-shop.mjs reads from.
    */
   storeUrl: "https://shop.rebellionwinebar.com/",
   giftCardUrl:
@@ -156,9 +156,7 @@ export const nav: { label: string; href: string; external?: boolean }[] = [
   { label: "Happenings", href: "/happenings" },
   { label: "Private Events", href: "/private-events" },
   ...(flags.bottleShop ? [{ label: "Bottle Shop", href: "/bottle-shop" }] : []),
-  ...(site.storeUrl
-    ? [{ label: "Store", href: site.storeUrl, external: true }]
-    : []),
+  { label: "Shop", href: "/shop" },
   { label: "Story", href: "/story" },
   { label: "Visit", href: "/visit" },
 ];

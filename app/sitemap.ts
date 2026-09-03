@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/private-events", priority: 0.8, changeFrequency: "monthly" },
     { path: "/reserve", priority: 0.7, changeFrequency: "monthly" },
     { path: "/visit", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/shop", priority: 0.6, changeFrequency: "weekly" },
     { path: "/story", priority: 0.5, changeFrequency: "monthly" },
     { path: "/privacy", priority: 0.2, changeFrequency: "monthly" },
     ...(flags.bottleShop
