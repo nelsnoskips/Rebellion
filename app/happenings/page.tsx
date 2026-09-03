@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/ui/Reveal";
 import { Bloom } from "@/components/ui/Artwork";
-import { happenings, images, site } from "@/lib/site";
+import { happenings, images, reservations, site, type Happening } from "@/lib/site";
 import { eventDate } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -12,6 +12,38 @@ export const metadata: Metadata = {
   description:
     "Live music, wine dinners, brunch club and classes at Rebellion Beachside Bar & Bistro in Cocoa Beach.",
 };
+
+/**
+ * "Get tickets" goes to the tickets, in one click.
+ *
+ * An event with its own booking page links straight there; everything else
+ * links straight to the venue on Resy. Neither routes through /reserve first —
+ * that page exists to mount the booking widget, and putting it in the middle of
+ * a ticket link just adds two clicks between wanting a seat and picking one.
+ */
+function EventLink({
+  event,
+  className,
+  children,
+}: {
+  event: Happening;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  const href =
+    event.url ?? reservations.bookings.diningRoom.deepLink ?? site.reserveUrl;
+  const offSite = href.startsWith("http");
+
+  return offSite ? (
+    <a href={href} target="_blank" rel="noreferrer" className={className}>
+      {children}
+    </a>
+  ) : (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  );
+}
 
 /**
  * One event source (lib/site.happenings) powers this page, the homepage rail
@@ -98,12 +130,12 @@ export default function HappeningsPage() {
                       </p>
                     </div>
 
-                    <Link
-                      href={event.url ?? site.reserveUrl}
+                    <EventLink
+                      event={event}
                       className="micro shrink-0 self-start border border-ink/25 px-6 py-3.5 transition-colors duration-[var(--dur-micro)] hover:border-ink hover:bg-ink hover:text-bone sm:self-center"
                     >
                       {event.ticketed ? "Get tickets" : "Reserve"}
-                    </Link>
+                    </EventLink>
                   </div>
                 </Reveal>
               );
