@@ -107,10 +107,12 @@ export type BookingKey = keyof typeof reservations.bookings;
  * are not claimed anywhere on the site.
  */
 export const hours = [
-  { days: "Mon – Thu", time: "3:30PM – 9PM" },
-  { days: "Fri", time: "3:30PM – 10PM" },
-  { days: "Sat", time: "3:30PM – 12AM" },
-  { days: "Sun", time: "3:30PM – 9PM" },
+  // `on` is the weekday numbers the row covers, Sunday 0 — it lets the
+  // "Tonight" strip pick the row that actually applies without parsing "Mon – Thu".
+  { days: "Mon – Thu", time: "3:30PM – 9PM", on: [1, 2, 3, 4] },
+  { days: "Fri", time: "3:30PM – 10PM", on: [5] },
+  { days: "Sat", time: "3:30PM – 12AM", on: [6] },
+  { days: "Sun", time: "5PM – 9PM", on: [0] },
 ];
 
 /**
@@ -123,7 +125,8 @@ export const hours = [
  * saying the day ends rather than that it never opens.
  */
 export const openingHours = [
-  { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"], opens: "15:30", closes: "21:00" },
+  { days: ["Monday", "Tuesday", "Wednesday", "Thursday"], opens: "15:30", closes: "21:00" },
+  { days: ["Sunday"], opens: "17:00", closes: "21:00" },
   { days: ["Friday"], opens: "15:30", closes: "22:00" },
   { days: ["Saturday"], opens: "15:30", closes: "00:00" },
 ];

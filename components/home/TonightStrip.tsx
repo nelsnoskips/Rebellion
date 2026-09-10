@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { happenings, hours, site } from "@/lib/site";
+import { happenings, site } from "@/lib/site";
 import { eventDate } from "@/lib/utils";
 import { Deckle } from "@/components/ui/Artwork";
+import { TodayHours } from "@/components/home/TodayHours";
 
 /**
  * "Tonight at Rebellion" (blueprint §08, live status): a slim utility strip for
@@ -14,7 +15,6 @@ import { Deckle } from "@/components/ui/Artwork";
 export function TonightStrip() {
   const next = happenings[0];
   const date = eventDate(next.date);
-  const today = hours[0];
 
   return (
     <div className="relative border-b border-rule-dark bg-ink-soft text-bone">
@@ -28,7 +28,7 @@ export function TonightStrip() {
           Tonight at Rebellion
         </p>
         <p className="text-bone/75">
-          <span className="text-bone">{today.days}</span> {today.time}
+          <TodayHours />
         </p>
         <p className="text-bone/75">
           Next up:{" "}
