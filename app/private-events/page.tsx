@@ -9,18 +9,19 @@ import { eventProof, images, occasions, site, venueFacts } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Private Events",
   description:
-    "The Annex at Rebellion — a bookable private-events room in Cocoa Beach for rehearsal dinners, celebrations, corporate gatherings and full buyouts.",
+    "The Wine Room at Rebellion — a bookable private-events room in Cocoa Beach for rehearsal dinners, celebrations, corporate gatherings and full buyouts.",
 };
 
-/* PLACEHOLDER — "The Annex at Rebellion" is a strategic working name only
-   (blueprint §08). Domain, corporate, social and trademark clearance must be
-   completed before public use. */
+/* "The Wine Room" is the client's name for the private room, replacing the
+   working name "The Annex at Rebellion". Deliberately not "Rebellion Wine Bar":
+   that is the group's separate venue in Cocoa Village, and reusing it for a room
+   inside the Cocoa Beach bistro would point guests at the wrong address. */
 
 
 export default function PrivateEventsPage() {
   return (
     <PageShell
-      eyebrow="The Annex at Rebellion"
+      eyebrow="The Wine Room"
       title="Gather differently"
       intro="A room of its own, attached to the bistro. Same kitchen, same cellar, nobody else in the room."
       image="privateEvents"

@@ -34,7 +34,7 @@ export const site = {
   },
   phone: "321.613.2210",
   phoneHref: "tel:+13216132210",
-  email: "hello@rebellionbeachside.com",
+  email: "michelle@rebellionwinebar.com",
   /* Toast e-gift cards. Off-site, so every link to it opens in a new tab. */
   /**
    * Where the merch is actually sold — a separate WooCommerce install holding
@@ -415,7 +415,7 @@ export const faqs: {
   },
   {
     q: "Where do I park?",
-    a: "There is an on-site lot, plus street parking on the surrounding blocks. Ride-share drop-off is at the front entrance.",
+    a: "There is an on-site lot, street parking on the surrounding blocks, and a parking garage one block south. Ride-share drop-off is at the front entrance.",
   },
   {
     q: "Is the restaurant accessible?",
@@ -423,11 +423,11 @@ export const faqs: {
   },
   {
     q: "Are children welcome?",
-    a: "Yes, before 8pm. We have a short menu for younger guests.",
+    a: "Yes, right through dinner service, and we have a short menu for younger guests. The one exception is late night on Saturday, between 10pm and midnight.",
   },
   {
     q: "Can I bring my own wine?",
-    a: "Corkage is available for bottles we do not carry. Ask when you book.",
+    a: "Yes — corkage is $25 a bottle, for wines we do not already pour. Ask when you book.",
   },
   {
     q: "Do you sell gift cards?",
@@ -435,12 +435,12 @@ export const faqs: {
     link: {
       href: "https://order.toasttab.com/egiftcards/rebellion-beachside-bar-and-bistro-26-north-orlando-avenue",
       text: "buy an e-gift card",
-      after: ". It arrives by email and can be used on anything, any day.",
+      after: ". It arrives by email and can be used on anything, any day. We keep physical cards at the restaurant too, if you would rather hand someone something.",
     },
   },
   {
     q: "Do you host private events?",
-    a: "The Annex at Rebellion handles groups from a dozen to a full buyout. Email ",
+    a: "The Wine Room handles groups from a dozen to a full buyout. Email ",
     link: {
       href: "mailto:michelle@rebellionwinebar.com?subject=Private%20event%20enquiry",
       text: "michelle@rebellionwinebar.com",

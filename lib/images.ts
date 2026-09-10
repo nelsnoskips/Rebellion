@@ -81,7 +81,7 @@ export const images = {
     alt: "A coupe of espresso martini on the bar, the red Rebel neon burning behind it",
   },
   privateEvents: {
-    brief: "Shoot day 02 — the Annex set for a long-table dinner, candles lit. This is a two-top rather than the long table; a set-room frame is still to come.",
+    brief: "Shoot day 02 — the Wine Room set for a long-table dinner, candles lit. This is a two-top rather than the long table; a set-room frame is still to come.",
     src: "/images/table-brick-candle-feature.webp",
     alt: "A candlelit table laid against exposed brick",
   },
@@ -108,7 +108,7 @@ export const images = {
     alt: "The dining room with the Rebellion mural painted across the back wall",
   },
   annexRoom: {
-    brief: "Shoot day 02 — the Annex, second configuration, guests present.",
+    brief: "Shoot day 02 — the Wine Room, second configuration, guests present.",
     src: "/images/mirror-diners-feature.webp",
     alt: "Guests at dinner, caught in the reflection of a wall mirror",
   },
