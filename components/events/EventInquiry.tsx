@@ -19,6 +19,29 @@ function today() {
   return new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" });
 }
 
+/** The enquiry as a pre-written email, for when the POST does not land. */
+function mailtoFrom(data: FormData) {
+  const get = (k: string) => String(data.get(k) ?? "").trim();
+  const lines = [
+    ["Format", get("format")],
+    ["Date", get("date")],
+    ["Guests", get("guests")],
+    ["Occasion", get("occasion")],
+    ["Name", get("name")],
+    ["Email", get("email")],
+    ["Phone", get("phone")],
+    ["Notes", get("notes")],
+  ]
+    .filter(([, v]) => v)
+    .map(([k, v]) => `${k}: ${v}`)
+    .join("\n");
+  return (
+    `mailto:${site.eventsEmail}` +
+    `?subject=${encodeURIComponent("Private event enquiry")}` +
+    `&body=${encodeURIComponent(lines)}`
+  );
+}
+
 /**
  * The private-event enquiry.
  *
@@ -40,6 +63,8 @@ export function EventInquiry() {
   const [minDate, setMinDate] = useState("");
   useEffect(() => setMinDate(today()), []);
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  /** Built when a POST fails, so a guest's typing survives the failure. */
+  const [rescue, setRescue] = useState("");
   const formId = useId();
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -59,7 +84,11 @@ export function EventInquiry() {
       form.reset();
     } catch {
       // Never swallow it: a dropped enquiry the guest thinks was sent is worse
-      // than no form, which is the mistake this page already made once.
+      // than no form, which is the mistake this page already made once. The
+      // fallback hands them the same details as a pre-written email rather than
+      // an apology and an empty box — it is also what keeps this form useful if
+      // form capture is ever switched off at the host.
+      setRescue(mailtoFrom(data));
       setState("error");
     }
   }
@@ -217,16 +246,31 @@ export function EventInquiry() {
         </button>
 
         {state === "error" ? (
-          <p className="mt-4 text-sm text-oxblood" role="alert">
-            That did not send. Email{" "}
+          <div className="mt-5 border border-oxblood/40 bg-oxblood/5 p-5" role="alert">
+            <p className="text-sm font-semibold text-oxblood">
+              That did not send — please do not assume we got it.
+            </p>
+            <p className="mt-2 text-sm text-ink-soft">
+              Nothing you typed is lost. This opens the same details as an email,
+              ready to send.
+            </p>
             <a
-              href={`mailto:${site.eventsEmail}?subject=Private%20event%20enquiry`}
-              className="font-semibold underline underline-offset-4"
+              href={rescue}
+              className="micro mt-4 inline-block bg-oxblood px-6 py-3 text-bone"
+              onClick={() =>
+                track("Lead", "private_event_inquiry", { form: "mailto-fallback" })
+              }
             >
-              {site.eventsEmail}
-            </a>{" "}
-            or call {site.phone} — do not assume we got this.
-          </p>
+              Send it as an email
+            </a>
+            <p className="mt-3 text-sm text-ink-mute">
+              Or call{" "}
+              <a href={site.phoneHref} className="font-semibold text-oxblood underline underline-offset-4">
+                {site.phone}
+              </a>
+              .
+            </p>
+          </div>
         ) : null}
 
         <p className="mt-5 text-xs leading-relaxed text-ink-mute">
