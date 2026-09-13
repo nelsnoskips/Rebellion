@@ -289,6 +289,78 @@ export const happenings: Happening[] = [
 /* PLACEHOLDER — menus are illustrative. Real menus must be indexable HTML,
    never PDFs (blueprint §11, SEO/AEO). */
 
+/**
+ * The three ways a private party is served, as the restaurant offers them.
+ *
+ * The menus here are examples, not a fixed carte — the wording is Michelle's,
+ * from the proposals she sends, and every one of them is finalised with the
+ * guest against whatever the kitchen is cooking that month. Only the
+ * family-style price is quoted because it is the only one she quotes: the
+ * other two are priced on the selections.
+ */
+export const eventPackages: {
+  id: string;
+  name: string;
+  price: string;
+  priceNote?: string;
+  line: string;
+  best: string;
+  courses: { heading: string; items: string[] }[];
+}[] = [
+  {
+    id: "limited-menu",
+    name: "Limited Menu",
+    price: "Priced on the menu",
+    line: "A smaller, curated menu where each guest chooses their own appetizer and entrée.",
+    best: "Best when people want their own plate.",
+    courses: [
+      {
+        heading: "Appetizers",
+        items: ["Caesar Salad", "Burrata Caprese", "Arancini"],
+      },
+      {
+        heading: "Entrées",
+        items: ["Hanger Steak", "Roasted Chicken", "Fresh Catch", "Vegetarian Entrée"],
+      },
+    ],
+  },
+  {
+    id: "family-style",
+    name: "Family-Style Dinner",
+    price: "$65",
+    priceNote: "per person, typically — it moves with the selections",
+    line: "Everything served to the table to share, one course after another.",
+    best: "Best when the table should feel like one conversation.",
+    courses: [
+      {
+        heading: "First Course",
+        items: ["Fresh Baked Bread & Butter", "Caesar Salad", "Arancini"],
+      },
+      {
+        heading: "Main Course",
+        items: ["Hanger Steak", "Roasted Chicken", "Broccolini", "Tuscan Potatoes"],
+      },
+    ],
+  },
+  {
+    id: "cocktail-hour",
+    name: "Cocktail Hour",
+    price: "Priced on the menu",
+    line: "Passed hors d\u2019oeuvres and small plates, with a drinks package to match.",
+    best: "Best when nobody should be sitting down.",
+    courses: [
+      {
+        heading: "How it runs",
+        items: [
+          "A selection of bites and small plates, passed",
+          "Beverage options built around the room",
+          "No seated service — people move",
+        ],
+      },
+    ],
+  },
+];
+
 /** Blueprint §08 — private-events occasions. */
 export const occasions = [
   {

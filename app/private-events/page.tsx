@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { EventsContactLink } from "@/components/events/EventsContactLink";
+import { EventInquiry } from "@/components/events/EventInquiry";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/ui/Reveal";
 import { Bloom } from "@/components/ui/Artwork";
-import { eventProof, images, occasions, site, venueFacts } from "@/lib/site";
+import { eventPackages, eventProof, images, occasions, site, venueFacts } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Private Events",
@@ -104,45 +105,86 @@ export default function PrivateEventsPage() {
         })}
       </section>
 
+
+      <section className="paper-grain relative overflow-hidden bg-bone">
+        <div className="relative mx-auto max-w-[1200px] px-6 py-16 md:px-10 lg:py-24">
+          <Reveal>
+            <h2 className="display text-[clamp(1.8rem,3.2vw,2.6rem)]">
+              Three ways to do it
+            </h2>
+            <p className="mt-4 max-w-[56ch] text-[15px] leading-relaxed text-ink-mute">
+              Every menu below is an example. We finalise the selections with you
+              before the date, against whatever the kitchen is cooking that month.
+            </p>
+          </Reveal>
+
+          <ul className="mt-12 grid gap-8 lg:grid-cols-3">
+            {eventPackages.map((pkg, i) => (
+              <Reveal as="li" key={pkg.id} index={i} className="flex">
+                <div className="flex w-full flex-col border border-ink/15 bg-paper p-8">
+                  <h3 className="display-soft text-2xl">{pkg.name}</h3>
+                  <p className="micro figure mt-3 text-oxblood">{pkg.price}</p>
+                  {pkg.priceNote ? (
+                    <p className="mt-1 text-xs text-ink-mute">{pkg.priceNote}</p>
+                  ) : null}
+
+                  <p className="mt-5 text-[15px] leading-relaxed text-ink-soft">
+                    {pkg.line}
+                  </p>
+                  <p className="mt-2 text-sm text-ink-mute">{pkg.best}</p>
+
+                  <div className="mt-7 space-y-5 border-t border-rule pt-6">
+                    {pkg.courses.map((course) => (
+                      <div key={course.heading}>
+                        <h4 className="micro-wide text-ink-mute">{course.heading}</h4>
+                        <ul className="mt-2 space-y-1 text-sm">
+                          {course.items.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                  <a
+                    href="#enquire"
+                    className="micro accent mt-auto inline-flex items-center gap-2 self-start pt-8 text-oxblood"
+                  >
+                    <span className="border-b border-oxblood/50 pb-1">
+                      Enquire about this
+                    </span>
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
       <section className="paper-grain relative overflow-hidden bg-paper">
         <Bloom variant="c" opacity={45} className="-right-32 -bottom-32 h-[460px] w-[500px] text-wash-tan" />
-        <div className="relative mx-auto grid max-w-[1200px] gap-12 px-6 py-16 md:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-24">
+        <div id="enquire" className="relative mx-auto grid max-w-[1200px] gap-12 scroll-mt-28 px-6 py-16 md:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:py-24">
           <Reveal>
             <h2 className="display text-[clamp(2rem,3.6vw,3rem)]">
               Plan your event
             </h2>
             <p className="mt-5 max-w-[40ch] text-[15px] leading-relaxed text-ink-mute">
-              Tell us the date, the headcount and the occasion. We&apos;ll come
-              back with availability, formats and pricing — from one person, not
+              Pick a format, tell us the date and the headcount, and Michelle
+              comes back with availability and a proposal — from one person, not
               a form letter.
             </p>
           </Reveal>
 
-          {/* An email address rather than a form, deliberately. The form had no
-              backend: it showed a confirmation and dropped what you typed. A
-              mailto reaches a person, and the prompts below do the same job the
-              form's fields did — they tell you what to say so the first reply
-              can be useful. */}
           <Reveal index={1}>
-            <div className="border border-ink/15 bg-paper p-8 md:p-10">
-              <p className="micro text-oxblood">Events enquiries</p>
-              <EventsContactLink className="display-soft mt-4 block text-[clamp(1.35rem,2.6vw,1.9rem)] break-words text-oxblood underline decoration-oxblood/30 underline-offset-[6px] transition-colors hover:decoration-oxblood" />
-              <p className="mt-6 text-[15px] leading-relaxed text-ink-soft">
-                Include your date, how many people, and roughly what kind of
-                evening you have in mind. If the date is tight, say so — it
-                changes what we can offer.
-              </p>
-              <p className="mt-6 border-t border-ink/10 pt-6 text-sm text-ink-mute">
-                Or call{" "}
-                <a
-                  href={site.phoneHref}
-                  className="font-semibold text-oxblood underline underline-offset-4"
-                >
-                  {site.phone}
-                </a>
-                . We reply by the end of the next business day.
-              </p>
-            </div>
+            <EventInquiry />
+            <p className="mt-5 text-sm text-ink-mute">
+              Would rather just write to us? <EventsContactLink className="font-semibold text-oxblood underline underline-offset-4" />
+              {" "}or call{" "}
+              <a href={site.phoneHref} className="font-semibold text-oxblood underline underline-offset-4">
+                {site.phone}
+              </a>
+              . We reply by the end of the next business day.
+            </p>
           </Reveal>
         </div>
       </section>

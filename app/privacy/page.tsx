@@ -19,7 +19,7 @@ export const metadata: Metadata = {
  *
  *   - the Meta pixel and its events         lib/analytics.ts
  *   - the reservation hand-off              lib/site.ts, reservations
- *   - the private-event form                components/events/EventInquiryForm
+ *   - the private-event form                components/events/EventInquiry
  *   - no accounts, no payments, no shop     flags in lib/site.ts
  *
  * That accuracy is the part a template cannot give you, and it is the part
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
  * it, and anyone changing what the site collects should change it here too.
  */
 
-const updated = "August 2026";
+const updated = "September 2026";
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -77,18 +77,25 @@ export default function PrivacyPage() {
         <Reveal>
           <Section title="What you give us on purpose">
             <p>
-              There is no contact form on this site. Planning a private event
-              means emailing{" "}
+              The private-events page has an enquiry form. It asks for your
+              name, email, phone if you give it, the date and size of your
+              party, the occasion, and whatever else you decide to tell us.
+              Submissions are captured by Netlify, the company that hosts this
+              site, and emailed to us; they are stored in our account there
+              until we delete them.
+            </p>
+            <p>
+              We use it to answer you about your event, and for nothing else. We
+              do not add you to a mailing list from it, and we do not sell it.
+              You can skip the form entirely and email{" "}
               <a href={`mailto:${site.eventsEmail}`} className={link}>
                 {site.eventsEmail}
               </a>{" "}
-              or calling{" "}
+              or call{" "}
               <a href={site.phoneHref} className={link}>
                 {site.phone}
               </a>
-              , so whatever you choose to put in that email is what we have. We
-              use it to answer you about your event. We do not add you to a
-              mailing list from it, and we do not sell it.
+              .
             </p>
             <p>
               The newsletter sign-up in the footer is separate, and only ever
