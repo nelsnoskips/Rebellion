@@ -17,7 +17,7 @@ export const metadata: Metadata = {
  * This describes what the site actually does today — it was written against
  * the code, not from a template, and every claim in it is checkable:
  *
- *   - the Meta pixel and its events         lib/analytics.ts
+ *   - the Meta pixel, GA4 and their events   lib/analytics.ts
  *   - the reservation hand-off              lib/site.ts, reservations
  *   - the private-event form                components/events/EventInquiry
  *   - no accounts, no payments, no shop     flags in lib/site.ts
@@ -131,6 +131,24 @@ export default function PrivacyPage() {
                 Meta&rsquo;s privacy policy
               </a>
               , not this one.
+            </p>
+            <p>
+              The site also loads Google Analytics, which records which pages
+              are visited, roughly where in the world from, and which site or
+              search sent you. It sets its own cookies and receives your IP
+              address, though we have it configured to report page views and the
+              same three actions above rather than to build advertising
+              audiences. Google&rsquo;s handling is governed by{" "}
+              <a
+                href="https://policies.google.com/privacy"
+                className={link}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Google&rsquo;s privacy policy
+              </a>
+              . We use it to see which pages people actually read, so we can
+              write better ones.
             </p>
             <p>
               Our web host keeps ordinary server logs — the address requested,

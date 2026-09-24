@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond } from "next/font/google";
 import localFont from "next/font/local";
 import { MetaPixel } from "@/components/site/MetaPixel";
+import { GoogleAnalytics } from "@/components/site/GoogleAnalytics";
 import { openingHours, site } from "@/lib/site";
 import "./globals.css";
 
@@ -195,6 +196,7 @@ export default function RootLayout({
         </a>
         {children}
         <MetaPixel />
+        <GoogleAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantSchema) }}
