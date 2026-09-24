@@ -61,9 +61,16 @@ function decode(s) {
     .trim();
 }
 
-const attr = (product, name) =>
+/**
+ * Printify labels these attributes however the blueprint's supplier does, so
+ * across one catalogue the size axis arrives as "Size", "Sizes" or "Clothing
+ * sizes", and the colour axis as "Color", "Colors", "Gildan Colors" or
+ * "Comfort Colors\u00ae Colors". Matching an exact name silently drops the sizes
+ * off most of the shop, so match on the word appearing anywhere in the label.
+ */
+const attr = (product, word) =>
   (product.attributes ?? [])
-    .find((a) => a.name?.toLowerCase() === name)
+    .find((a) => (a.name ?? "").toLowerCase().includes(word))
     ?.terms?.map((t) => decode(t.name)) ?? [];
 
 /**
@@ -72,8 +79,11 @@ const attr = (product, name) =>
  * than alphabetically, and anything unrecognised keeps its place at the end.
  */
 const SIZE_RANK = [
-  "XX-Small", "X-Small", "XS/S", "Small", "M/L", "Medium", "Large",
-  "X-Large", "2X-Large", "3X-Large", "4X-Large", "5X-Large",
+  "XX-Small", "XXS", "X-Small", "XS", "XS/S", "Small", "S", "M/L", "Medium", "M",
+  "Large", "L", "X-Large", "XL", "2X-Large", "2XL", "3X-Large", "3XL",
+  "4X-Large", "4XL", "5X-Large", "5XL",
+  // One-size items sit on their own and never need ordering.
+  "One size", "OS", "Regular Can", "11oz", "15oz",
 ];
 const bySize = (a, b) => {
   const ia = SIZE_RANK.indexOf(a);

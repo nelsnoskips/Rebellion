@@ -2,7 +2,7 @@
 // Source: the live WooCommerce store at https://shop.rebellionwinebar.com.
 // Re-run `node scripts/fetch-shop.mjs` when stock or pricing changes.
 //
-// 13 products, pulled 2026-09-03.
+// 35 products, pulled 2026-09-24.
 
 export type Product = {
   name: string;
@@ -20,6 +20,428 @@ export type Product = {
 };
 
 export const products: Product[] = [
+  {
+    "name": "Can Cooler",
+    "slug": "can-cooler",
+    "design": "Made to keep your drinks crispy-fresh and cool-looking, these can insulators are the best ",
+    "price": "$6.33",
+    "href": "https://shop.rebellionwinebar.com/shop/can-cooler/",
+    "image": "/shop/can-cooler.webp",
+    "alt": "Can Cooler — Rebellion merch",
+    "colors": [],
+    "sizes": [
+      "Regular Can"
+    ]
+  },
+  {
+    "name": "Tote Bag (AOP)",
+    "slug": "tote-bag-aop",
+    "design": "Available in 3 sizes to add both functionality and style, these custom-printed tote bags c",
+    "price": "$18.48",
+    "href": "https://shop.rebellionwinebar.com/shop/tote-bag-aop/",
+    "image": "/shop/tote-bag-aop.webp",
+    "alt": "Tote Bag (AOP) — Rebellion merch",
+    "colors": [
+      "White",
+      "Beige",
+      "Navy",
+      "Black",
+      "Red"
+    ],
+    "sizes": [
+      "13\" × 13''"
+    ]
+  },
+  {
+    "name": "Black Mug (11oz, 15oz)",
+    "slug": "black-mug-11oz-15oz",
+    "design": "Warm your soul with a nice cuppa out of this black ceramic mug",
+    "price": "$11.07",
+    "href": "https://shop.rebellionwinebar.com/shop/black-mug-11oz-15oz/",
+    "image": "/shop/black-mug-11oz-15oz.webp",
+    "alt": "Black Mug (11oz, 15oz) — Rebellion merch",
+    "colors": [],
+    "sizes": [
+      "11oz"
+    ]
+  },
+  {
+    "name": "Unisex Garment-Dyed T-shirt",
+    "slug": "unisex-garment-dyed-t-shirt-2",
+    "design": "Comfort Colors introduces the “Comfort Colors 1717” garment-dyed t-shirt; a fully customiz",
+    "price": "From $34.95",
+    "href": "https://shop.rebellionwinebar.com/shop/unisex-garment-dyed-t-shirt-2/",
+    "image": "/shop/unisex-garment-dyed-t-shirt-2.webp",
+    "alt": "Unisex Garment-Dyed T-shirt — Rebellion merch",
+    "colors": [
+      "White",
+      "Chambray"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ]
+  },
+  {
+    "name": "Champion Women’s Heritage Cropped T-Shirt",
+    "slug": "champion-womens-heritage-cropped-t-shirt-2",
+    "design": "Champion is back with another addition – the Champion Heritage t-shirt for women",
+    "price": "From $33.65",
+    "href": "https://shop.rebellionwinebar.com/shop/champion-womens-heritage-cropped-t-shirt-2/",
+    "image": "/shop/champion-womens-heritage-cropped-t-shirt-2.webp",
+    "alt": "Champion Women’s Heritage Cropped T-Shirt — Rebellion merch",
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
+  },
+  {
+    "name": "Champion Women’s Heritage Cropped T-Shirt",
+    "slug": "champion-womens-heritage-cropped-t-shirt",
+    "design": "Champion is back with another addition – the Champion Heritage t-shirt for women",
+    "price": "From $33.65",
+    "href": "https://shop.rebellionwinebar.com/shop/champion-womens-heritage-cropped-t-shirt/",
+    "image": "/shop/champion-womens-heritage-cropped-t-shirt.webp",
+    "alt": "Champion Women’s Heritage Cropped T-Shirt — Rebellion merch",
+    "colors": [
+      "White"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
+  },
+  {
+    "name": "Women’s Ideal Racerback Tank",
+    "slug": "womens-ideal-racerback-tank",
+    "design": "A high-quality print of this slim fit tank-top will turn heads",
+    "price": "From $18.82",
+    "href": "https://shop.rebellionwinebar.com/shop/womens-ideal-racerback-tank/",
+    "image": "/shop/womens-ideal-racerback-tank.webp",
+    "alt": "Women’s Ideal Racerback Tank — Rebellion merch",
+    "colors": [
+      "Solid White"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
+  },
+  {
+    "name": "Women’s Spaghetti Strap Tank Top",
+    "slug": "womens-spaghetti-strap-tank-top",
+    "design": "Upgrade your summer wardrobe with our women’s spaghetti string tank tops, made from a luxu",
+    "price": "From $35.55",
+    "href": "https://shop.rebellionwinebar.com/shop/womens-spaghetti-strap-tank-top/",
+    "image": "/shop/womens-spaghetti-strap-tank-top.webp",
+    "alt": "Women’s Spaghetti Strap Tank Top — Rebellion merch",
+    "colors": [
+      "Solid Black Blend"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
+  },
+  {
+    "name": "Unisex Softstyle T-Shirt",
+    "slug": "unisex-softstyle-t-shirt",
+    "design": "The unisex soft-style t-shirt puts a new spin on casual comfort",
+    "price": "From $16.13",
+    "href": "https://shop.rebellionwinebar.com/shop/unisex-softstyle-t-shirt/",
+    "image": "/shop/unisex-softstyle-t-shirt.webp",
+    "alt": "Unisex Softstyle T-Shirt — Rebellion merch",
+    "colors": [
+      "White",
+      "Sand",
+      "Sport Grey",
+      "Light Blue",
+      "Heather Indigo"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ]
+  },
+  {
+    "name": "Men’s Sport Polo Shirt",
+    "slug": "mens-sport-polo-shirt",
+    "design": "Few items are as iconic as the polo shirt and these ones come to add style when peak perfo",
+    "price": "From $47.53",
+    "href": "https://shop.rebellionwinebar.com/shop/mens-sport-polo-shirt/",
+    "image": "/shop/mens-sport-polo-shirt.webp",
+    "alt": "Men’s Sport Polo Shirt — Rebellion merch",
+    "colors": [
+      "Iron Grey",
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
+  },
+  {
+    "name": "Unisex Jersey Short Sleeve Tee",
+    "slug": "unisex-jersey-short-sleeve-tee",
+    "design": "This classic unisex jersey short sleeve tee fits like a well-loved favorite",
+    "price": "From $28.20",
+    "href": "https://shop.rebellionwinebar.com/shop/unisex-jersey-short-sleeve-tee/",
+    "image": "/shop/unisex-jersey-short-sleeve-tee.webp",
+    "alt": "Unisex Jersey Short Sleeve Tee — Rebellion merch",
+    "colors": [
+      "White"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ]
+  },
+  {
+    "name": "Unisex Hooded Zip Sweatshirt",
+    "slug": "unisex-hooded-zip-sweatshirt",
+    "design": "There’s nothing like a soft hooded sweatshirt to layer for cold winters",
+    "price": "$55.50",
+    "href": "https://shop.rebellionwinebar.com/shop/unisex-hooded-zip-sweatshirt/",
+    "image": "/shop/unisex-hooded-zip-sweatshirt.webp",
+    "alt": "Unisex Hooded Zip Sweatshirt — Rebellion merch",
+    "colors": [
+      "Heather Grey",
+      "Anthracite"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
+  },
+  {
+    "name": "Unisex Garment-Dyed T-shirt",
+    "slug": "unisex-garment-dyed-t-shirt",
+    "design": "Comfort Colors introduces the “Comfort Colors 1717” garment-dyed t-shirt; a fully customiz",
+    "price": "From $24.38",
+    "href": "https://shop.rebellionwinebar.com/shop/unisex-garment-dyed-t-shirt/",
+    "image": "/shop/unisex-garment-dyed-t-shirt.webp",
+    "alt": "Unisex Garment-Dyed T-shirt — Rebellion merch",
+    "colors": [
+      "White",
+      "Graphite",
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+      "4XL"
+    ]
+  },
+  {
+    "name": "Classic Dad Cap",
+    "slug": "classic-dad-cap-2",
+    "design": "Introducing the classic dad cap, a timeless accessory crafted for both style and comfort",
+    "price": "$32.55",
+    "href": "https://shop.rebellionwinebar.com/shop/classic-dad-cap-2/",
+    "image": "/shop/classic-dad-cap-2.webp",
+    "alt": "Classic Dad Cap — Rebellion merch",
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "sizes": [
+      "One size"
+    ]
+  },
+  {
+    "name": "Rebellion Skeleton Crewneck Sweatshirt – Casual Unisex Fleece for Halloween & Party Vibes",
+    "slug": "rebellion-skeleton-crewneck-sweatshirt-casual-unisex-fleece-for-halloween-party-vibes",
+    "design": "Introducing a stylish and cozy crewneck sweatshirt designed for those who embrace a unique",
+    "price": "$42.18",
+    "href": "https://shop.rebellionwinebar.com/shop/rebellion-skeleton-crewneck-sweatshirt-casual-unisex-fleece-for-halloween-party-vibes/",
+    "image": "/shop/rebellion-skeleton-crewneck-sweatshirt-casual-unisex-fleece-for-halloween-party-vibes.webp",
+    "alt": "Rebellion Skeleton Crewneck Sweatshirt – Casual Unisex Fleece for Halloween & Party Vibes — Rebellion merch",
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "sizes": [
+      "L",
+      "XL"
+    ]
+  },
+  {
+    "name": "Unisex Lightweight Crewneck Sweatshirt – Cozy Essential for All Occasions",
+    "slug": "unisex-lightweight-crewneck-sweatshirt-cozy-essential-for-all-occasions",
+    "design": "Introducing a cozy and stylish unisex lightweight crewneck sweatshirt, perfect for layerin",
+    "price": "From $55.32",
+    "href": "https://shop.rebellionwinebar.com/shop/unisex-lightweight-crewneck-sweatshirt-cozy-essential-for-all-occasions/",
+    "image": "/shop/unisex-lightweight-crewneck-sweatshirt-cozy-essential-for-all-occasions.webp",
+    "alt": "Unisex Lightweight Crewneck Sweatshirt – Cozy Essential for All Occasions — Rebellion merch",
+    "colors": [
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
+  },
+  {
+    "name": "Religion Beachside Bar & Bistro Zip Hoodie — Skeleton Logo Full‑Zip Sweatshirt",
+    "slug": "religion-beachside-bar-bistro-zip-hoodie-skeleton-logo-full-zip-sweatshirt",
+    "design": "A midweight, zip-up hoodie that wears like an old favorite the moment you pull it on",
+    "price": "From $58.70",
+    "href": "https://shop.rebellionwinebar.com/shop/religion-beachside-bar-bistro-zip-hoodie-skeleton-logo-full-zip-sweatshirt/",
+    "image": "/shop/religion-beachside-bar-bistro-zip-hoodie-skeleton-logo-full-zip-sweatshirt.webp",
+    "alt": "Religion Beachside Bar & Bistro Zip Hoodie — Skeleton Logo Full‑Zip Sweatshirt — Rebellion merch",
+    "colors": [
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
+  },
+  {
+    "name": "Black & White Botanical Windbreaker Jacket – Monstera Leaf Pattern AOP",
+    "slug": "black-white-botanical-windbreaker-jacket-monstera-leaf-pattern-aop",
+    "design": "This lightweight windbreaker brings a quiet, hand-drawn mood to breezy mornings and late-n",
+    "price": "$104.03",
+    "href": "https://shop.rebellionwinebar.com/shop/black-white-botanical-windbreaker-jacket-monstera-leaf-pattern-aop/",
+    "image": "/shop/black-white-botanical-windbreaker-jacket-monstera-leaf-pattern-aop.webp",
+    "alt": "Black & White Botanical Windbreaker Jacket – Monstera Leaf Pattern AOP — Rebellion merch",
+    "colors": [],
+    "sizes": [
+      "L"
+    ]
+  },
+  {
+    "name": "Classic Dad Cap",
+    "slug": "classic-dad-cap",
+    "design": "Introducing the classic dad cap, a timeless accessory crafted for both style and comfort",
+    "price": "$32.55",
+    "href": "https://shop.rebellionwinebar.com/shop/classic-dad-cap/",
+    "image": "/shop/classic-dad-cap.webp",
+    "alt": "Classic Dad Cap — Rebellion merch",
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "sizes": [
+      "One size"
+    ]
+  },
+  {
+    "name": "Snapback Trucker Cap",
+    "slug": "snapback-trucker-cap",
+    "design": "Add a sleek yet casual appeal to any outfit with the snapback trucker cap",
+    "price": "$29.82",
+    "href": "https://shop.rebellionwinebar.com/shop/snapback-trucker-cap/",
+    "image": "/shop/snapback-trucker-cap.webp",
+    "alt": "Snapback Trucker Cap — Rebellion merch",
+    "colors": [
+      "Black",
+      "Heather Grey / White"
+    ],
+    "sizes": [
+      "One size"
+    ]
+  },
+  {
+    "name": "Relax Fishing Performance T-Shirt — “Relax” Angler Graphic",
+    "slug": "relax-fishing-performance-t-shirt-relax-angler-graphic",
+    "design": "A lightweight performance tee built to move with you and stay comfortable all day",
+    "price": "From $25.27",
+    "href": "https://shop.rebellionwinebar.com/shop/relax-fishing-performance-t-shirt-relax-angler-graphic/",
+    "image": "/shop/relax-fishing-performance-t-shirt-relax-angler-graphic.webp",
+    "alt": "Relax Fishing Performance T-Shirt — “Relax” Angler Graphic — Rebellion merch",
+    "colors": [
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
+  },
+  {
+    "name": "Performance T-Shirt — ‘Religion’ Graphic Athletic Tee",
+    "slug": "performance-t-shirt-religion-graphic-athletic-tee",
+    "design": "Light, breathable, and built to move — this performance tee carries a faded, lived-in band",
+    "price": "From $29.55",
+    "href": "https://shop.rebellionwinebar.com/shop/performance-t-shirt-religion-graphic-athletic-tee/",
+    "image": "/shop/performance-t-shirt-religion-graphic-athletic-tee.webp",
+    "alt": "Performance T-Shirt — ‘Religion’ Graphic Athletic Tee — Rebellion merch",
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ]
+  },
   {
     "name": "Jersey Crop",
     "slug": "jersey-crop",
