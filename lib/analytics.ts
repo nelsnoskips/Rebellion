@@ -17,13 +17,15 @@ export const META_PIXEL_ID =
   process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "634504209468076";
 
 /**
- * GA4 measurement ID, "G-" followed by ten characters.
+ * GA4 measurement ID for the Rebellion Beachside property.
  *
- * No default on purpose. An analytics tag pointed at the wrong property is
- * worse than none — it quietly pollutes somebody else's reporting — so with
- * this unset the tag simply does not render and nothing is collected.
+ * Not a secret — it ships in the page source of every site running GA4, which
+ * is why it sits here rather than in the environment. It is, however, a pointer
+ * at somebody's real reporting, so set NEXT_PUBLIC_GA_MEASUREMENT_ID to an
+ * empty string on any build that should stay out of this property.
  */
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "";
+export const GA_MEASUREMENT_ID =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-BSWEHT5KJM";
 
 declare global {
   interface Window {
