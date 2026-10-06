@@ -1,6 +1,6 @@
 {
   "site": "https://www.rebellionrestaurants.com",
-  "ranAt": "2026-10-06T14:20:01.478Z",
+  "ranAt": "2026-10-06T14:33:54.671Z",
   "month": "2026-10",
   "pages": [
     {
@@ -149,7 +149,11 @@
       "/rebellion-b": 404,
       "/rebellion-brand": 404
     },
-    "gscVerified": false,
+    "gscVerified": true,
+    "gscFile": {
+      "path": "/google4429c12e5c554e53.html",
+      "status": 200
+    },
     "ga": false,
     "metaPixel": true
   },
@@ -157,10 +161,6 @@
     {
       "severity": "low",
       "message": "/ title is 64 chars — Google truncates past ~60"
-    },
-    {
-      "severity": "medium",
-      "message": "no Search Console verification found — nothing is reporting search performance"
     },
     {
       "severity": "medium",

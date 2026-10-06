@@ -26,6 +26,14 @@ const PAGES = [
   "/private-events", "/reserve", "/visit", "/story", "/privacy",
 ];
 
+/**
+ * Google's HTML-file verification for Search Console. It verifies by being
+ * fetchable at this exact path, so deleting it silently un-verifies the
+ * property and search reporting stops — with no warning anywhere. Checked here
+ * so that failure surfaces in a report rather than months later.
+ */
+const GSC_FILE = "/google4429c12e5c554e53.html";
+
 /** Routes that are switched off and must stay switched off. */
 const MUST_404 = ["/bottle-shop", "/rebellion-a", "/rebellion-b", "/rebellion-brand"];
 
@@ -97,7 +105,10 @@ function findings(pages, extras) {
   if (extras.robotsTxt.sitemapHost && !SITE.includes(extras.robotsTxt.sitemapHost))
     add("high", `robots.txt points at a sitemap on ${extras.robotsTxt.sitemapHost}`);
   for (const r of extras.leaks) add("high", `${r} should 404 but returns ${extras.leakStatus[r]}`);
-  if (!extras.gscVerified) add("medium", "no Search Console verification found — nothing is reporting search performance");
+  if (!extras.gscVerified)
+    add("high", "Search Console verification is gone — search performance has stopped reporting");
+  else if (extras.gscFile.status !== 200)
+    add("high", `${extras.gscFile.path} returns ${extras.gscFile.status} — Search Console will un-verify`);
   if (!extras.ga) add("medium", "no analytics tag found on the live site");
 
   const hasFaq = pages.some((p) => p.schema.includes("FAQPage"));
@@ -122,6 +133,7 @@ async function main() {
     if (status !== 404) leaks.push(r);
   }
 
+  const gsc = await get(SITE + GSC_FILE);
   const sm = await get(`${SITE}/sitemap.xml`);
   const rb = await get(`${SITE}/robots.txt`);
   const home = await get(SITE + "/");
@@ -134,7 +146,10 @@ async function main() {
     },
     leaks,
     leakStatus,
-    gscVerified: /google-site-verification/.test(home.body),
+    gscVerified:
+      /google-site-verification/.test(home.body) ||
+      (gsc.status === 200 && /google-site-verification/.test(gsc.body)),
+    gscFile: { path: GSC_FILE, status: gsc.status },
     ga: /googletagmanager\.com\/gtag|google-analytics\.com/.test(home.body),
     metaPixel: /facebook\.com\/tr|connect\.facebook\.net/.test(home.body),
   };
