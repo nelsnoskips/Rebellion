@@ -1,0 +1,178 @@
+{
+  "site": "https://www.rebellionrestaurants.com",
+  "ranAt": "2026-10-06T14:20:01.478Z",
+  "month": "2026-10",
+  "pages": [
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Rebellion Beachside Bar and Bistro — Rebel against the ordinary.",
+      "description": "A chef-driven beachside bistro, private gathering place, and bottle shop for people who would rather not do the expected.",
+      "canonical": "https://www.rebellionrestaurants.com",
+      "ogImage": "https://www.rebellionrestaurants.com/og.jpg",
+      "robots": "index, follow",
+      "h1Count": 1,
+      "schema": [
+        "Restaurant"
+      ],
+      "bytes": 165598
+    },
+    {
+      "route": "/menus",
+      "status": 200,
+      "title": "Menus — Rebellion Beachside",
+      "description": "Brunch, dinner, cocktails, spirits and wine at Rebellion Beachside Bar &amp; Bistro — the full menu, exactly as it is served.",
+      "canonical": "https://www.rebellionrestaurants.com/menus",
+      "ogImage": "https://www.rebellionrestaurants.com/og.jpg",
+      "robots": null,
+      "h1Count": 1,
+      "schema": [
+        "Restaurant"
+      ],
+      "bytes": 264273
+    },
+    {
+      "route": "/happenings",
+      "status": 200,
+      "title": "Happenings — Rebellion Beachside",
+      "description": "Live music, wine dinners, brunch club and classes at Rebellion Beachside Bar &amp; Bistro in Cocoa Beach.",
+      "canonical": "https://www.rebellionrestaurants.com/happenings",
+      "ogImage": "https://www.rebellionrestaurants.com/og.jpg",
+      "robots": null,
+      "h1Count": 1,
+      "schema": [
+        "Event",
+        "Event",
+        "Restaurant"
+      ],
+      "bytes": 66679
+    },
+    {
+      "route": "/shop",
+      "status": 200,
+      "title": "Shop — Rebellion Beachside",
+      "description": "Rebellion merch — tees, tanks, hats and the mug. Wear the rebellion home from Cocoa Beach.",
+      "canonical": "https://www.rebellionrestaurants.com/shop",
+      "ogImage": "https://www.rebellionrestaurants.com/og.jpg",
+      "robots": null,
+      "h1Count": 1,
+      "schema": [
+        "Restaurant"
+      ],
+      "bytes": 164368
+    },
+    {
+      "route": "/private-events",
+      "status": 200,
+      "title": "Private Events — Rebellion Beachside",
+      "description": "The Wine Room at Rebellion — a bookable private-events room in Cocoa Beach for rehearsal dinners, celebrations, corporate gatherings and full buyouts.",
+      "canonical": "https://www.rebellionrestaurants.com/private-events",
+      "ogImage": "https://www.rebellionrestaurants.com/og.jpg",
+      "robots": null,
+      "h1Count": 1,
+      "schema": [
+        "Restaurant"
+      ],
+      "bytes": 86276
+    },
+    {
+      "route": "/reserve",
+      "status": 200,
+      "title": "Reserve — Rebellion Beachside",
+      "description": "Reserve a table at Rebellion Beachside Bar and Bistro in Cocoa Beach.",
+      "canonical": "https://www.rebellionrestaurants.com/reserve",
+      "ogImage": "https://www.rebellionrestaurants.com/og.jpg",
+      "robots": null,
+      "h1Count": 1,
+      "schema": [
+        "Restaurant"
+      ],
+      "bytes": 60083
+    },
+    {
+      "route": "/visit",
+      "status": 200,
+      "title": "Visit — Rebellion Beachside",
+      "description": "Hours, parking, accessibility and directions for Rebellion Beachside Bar &amp; Bistro in Cocoa Beach, Florida.",
+      "canonical": "https://www.rebellionrestaurants.com/visit",
+      "ogImage": "https://www.rebellionrestaurants.com/og.jpg",
+      "robots": null,
+      "h1Count": 1,
+      "schema": [
+        "FAQPage",
+        "Restaurant"
+      ],
+      "bytes": 71944
+    },
+    {
+      "route": "/story",
+      "status": 200,
+      "title": "Story — Rebellion Beachside",
+      "description": "Cultured defiance in Cocoa Beach — the people, the point of view, and why Rebellion Beachside Bar &amp; Bistro cooks the way it does.",
+      "canonical": "https://www.rebellionrestaurants.com/story",
+      "ogImage": "https://www.rebellionrestaurants.com/og.jpg",
+      "robots": null,
+      "h1Count": 1,
+      "schema": [
+        "Restaurant"
+      ],
+      "bytes": 66892
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "title": "Privacy — Rebellion Beachside",
+      "description": "What Rebellion Beachside Bar &amp; Bistro collects on this website, who receives it, and how to opt out.",
+      "canonical": "https://www.rebellionrestaurants.com/privacy",
+      "ogImage": "https://www.rebellionrestaurants.com/og.jpg",
+      "robots": null,
+      "h1Count": 1,
+      "schema": [
+        "Restaurant"
+      ],
+      "bytes": 74054
+    }
+  ],
+  "extras": {
+    "sitemap": {
+      "ok": true,
+      "urls": 9
+    },
+    "robotsTxt": {
+      "allows": true,
+      "sitemapHost": "www.rebellionrestaurants.com"
+    },
+    "leaks": [],
+    "leakStatus": {
+      "/bottle-shop": 404,
+      "/rebellion-a": 404,
+      "/rebellion-b": 404,
+      "/rebellion-brand": 404
+    },
+    "gscVerified": false,
+    "ga": false,
+    "metaPixel": true
+  },
+  "findings": [
+    {
+      "severity": "low",
+      "message": "/ title is 64 chars — Google truncates past ~60"
+    },
+    {
+      "severity": "medium",
+      "message": "no Search Console verification found — nothing is reporting search performance"
+    },
+    {
+      "severity": "medium",
+      "message": "no analytics tag found on the live site"
+    },
+    {
+      "severity": "low",
+      "message": "menu is not marked up as Menu/MenuItem — individual dishes are not answerable"
+    },
+    {
+      "severity": "low",
+      "message": "shop products are not marked up as Product"
+    }
+  ]
+}
