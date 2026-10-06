@@ -11,12 +11,45 @@ export const metadata: Metadata = {
     "Hours, parking, accessibility and directions for Rebellion Beachside Bar & Bistro in Cocoa Beach, Florida.",
 };
 
-/* PLACEHOLDER — every fact on this page needs client confirmation before
-   launch (blueprint §15 source caution). */
+/**
+ * The questions, marked up as questions.
+ *
+ * These seven answers are the ones guests actually ask, and they are exactly
+ * what an assistant is asked in turn — whether there is parking, whether kids
+ * are welcome, what corkage costs. As plain prose a model has to infer that the
+ * page is a Q&A; as FAQPage it can quote an answer and attribute it here.
+ *
+ * Built from the same `faqs` array the page renders, so the markup cannot drift
+ * away from what a visitor reads. Link text is folded back into the answer
+ * because schema takes plain text, not markup.
+ */
+function faqSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: [f.a, f.link?.text, f.link?.after]
+          .filter(Boolean)
+          .join("")
+          .replace(/\s+/g, " ")
+          .trim(),
+      },
+    })),
+  };
+}
 
 
 export default function VisitPage() {
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema()) }}
+      />
     <PageShell
       eyebrow="Visit"
       title="Two blocks from the water"
@@ -112,5 +145,6 @@ export default function VisitPage() {
         </div>
       </section>
     </PageShell>
+    </>
   );
 }

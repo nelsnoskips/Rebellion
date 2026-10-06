@@ -143,26 +143,64 @@ export const metadata: Metadata = {
     template: `%s — ${site.shortName}`,
   },
   description: site.description,
+  /* "./" resolves per route against metadataBase, so every page states its own
+     canonical rather than all of them claiming the homepage. */
+  alternates: { canonical: "./" },
   openGraph: {
     title: site.name,
     description: site.description,
     type: "website",
     locale: "en_US",
+    siteName: site.name,
+    url: siteUrl,
+    /* Without this the site shares as a bare grey link everywhere it is
+       pasted — Messages, Slack, Facebook. 1200x630 is the size they all crop
+       toward. */
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "A braised short rib in a candlelit booth, with red wine and charcuterie alongside",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.name,
+    description: site.description,
+    images: ["/og.jpg"],
   },
 };
 
 /**
- * Restaurant structured data (blueprint §11, SEO/AEO). Kept minimal and
- * truthful; extend with menu, geo and aggregate rating once the NAP and hours
- * are verified with the client.
+ * Restaurant structured data (blueprint §11, SEO/AEO).
+ *
+ * Everything here is checkable against the site itself. The fields that were
+ * missing are the ones an assistant needs to treat this website, the Instagram
+ * account and the Google listing as one restaurant, and to answer "can I book",
+ * "what does it cost", "what do they serve" without reading the page.
+ *
+ * Still absent and deliberately so: `geo`, because nobody has given us verified
+ * coordinates and a wrong pin is worse than none; `aggregateRating`, which must
+ * come from real reviews; and the Facebook URL in lib/site.ts, which is still a
+ * placeholder pointing at facebook.com rather than a page.
  */
 const restaurantSchema = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
+  "@id": `${siteUrl}/#restaurant`,
   name: site.name,
   description: site.description,
+  url: siteUrl,
+  image: `${siteUrl}/og.jpg`,
   telephone: site.phone,
-  servesCuisine: "American",
+  servesCuisine: ["French", "American"],
+  /* Derived from the live menu: main courses run $25–$59. */
+  priceRange: "$$$",
+  acceptsReservations: true,
+  hasMenu: `${siteUrl}/menus`,
+  sameAs: [site.social.instagram],
   openingHoursSpecification: openingHours.map((h) => ({
     "@type": "OpeningHoursSpecification",
     dayOfWeek: h.days,
