@@ -182,9 +182,8 @@ export const metadata: Metadata = {
  * "what does it cost", "what do they serve" without reading the page.
  *
  * Still absent and deliberately so: `geo`, because nobody has given us verified
- * coordinates and a wrong pin is worse than none; `aggregateRating`, which must
- * come from real reviews; and the Facebook URL in lib/site.ts, which is still a
- * placeholder pointing at facebook.com rather than a page.
+ * coordinates and a wrong pin is worse than none, and `aggregateRating`, which
+ * has to come from real reviews rather than from us.
  */
 const restaurantSchema = {
   "@context": "https://schema.org",
@@ -200,7 +199,7 @@ const restaurantSchema = {
   priceRange: "$$$",
   acceptsReservations: true,
   hasMenu: `${siteUrl}/menus`,
-  sameAs: [site.social.instagram],
+  sameAs: [site.social.instagram, site.social.facebook],
   openingHoursSpecification: openingHours.map((h) => ({
     "@type": "OpeningHoursSpecification",
     dayOfWeek: h.days,

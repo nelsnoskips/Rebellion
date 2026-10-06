@@ -56,7 +56,8 @@ export const site = {
   mapUrl: "https://maps.google.com/?q=26+N+Orlando+Ave+Cocoa+Beach+FL+32931",
   social: {
     instagram: "https://www.instagram.com/rebellionbeachside/",
-    facebook: "https://www.facebook.com/",
+    facebook:
+      "https://www.facebook.com/people/Rebellion-Beachside-Bar-Bistro/61563434782165/",
   },
 } as const;
 
