@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { happenings, images } from "@/lib/site";
+import { upcoming, images } from "@/lib/site";
 import { ArrowLink } from "@/components/ui/Button";
 import { Bloom } from "@/components/ui/Artwork";
 import { Logotype } from "@/components/ui/Brand";
@@ -86,7 +86,7 @@ export function HappeningsRail() {
           aria-label="Upcoming happenings"
           className="no-scrollbar flex flex-1 snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2"
         >
-          {happenings.map((event) => {
+          {upcoming.map((event) => {
             const date = eventDate(event.date);
             const img = images[event.image];
             // An event that sells its own tickets sends people straight to the

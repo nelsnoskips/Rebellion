@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, ShoppingBag, UtensilsCrossed, Wine } from "lucide-react";
-import { experiences, happenings, images, site } from "@/lib/site";
+import { experiences, upcoming, images, site } from "@/lib/site";
 import { ArrowLink } from "@/components/ui/Button";
 import { Bloom, BrushRule, InkSplatter } from "@/components/ui/Artwork";
 import { Reveal } from "@/components/ui/Reveal";
@@ -327,7 +327,7 @@ export function HappeningsStrip() {
               ::after, which would replace the lower row of perforations. */}
           <div className="filmstrip min-w-0 flex-1 bg-ink py-8">
             <ul className="no-scrollbar relative flex snap-x snap-mandatory gap-4 overflow-x-auto px-4">
-              {happenings.map((event, i) => {
+              {upcoming.map((event, i) => {
                 const date = eventDate(event.date);
                 return (
                   <Reveal

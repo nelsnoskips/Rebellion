@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PageShell } from "@/components/site/PageShell";
 import { Reveal } from "@/components/ui/Reveal";
 import { Bloom } from "@/components/ui/Artwork";
-import { happenings, images, reservations, site, type Happening } from "@/lib/site";
+import { upcoming, images, reservations, site, type Happening } from "@/lib/site";
 import { eventDate } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ function EventLink({
  * and the structured data below — blueprint §11, "single event data source".
  */
 export default function HappeningsPage() {
-  const eventSchema = happenings.map((e) => ({
+  const eventSchema = upcoming.map((e) => ({
     "@context": "https://schema.org",
     "@type": "Event",
     name: e.title,
@@ -82,7 +82,7 @@ export default function HappeningsPage() {
         <Bloom variant="b" opacity={50} className="-top-36 -right-28 h-[500px] w-[540px] text-wash-violet" />
         <div className="relative mx-auto max-w-[1100px] px-6 py-16 md:px-10 lg:py-24">
           <ul className="divide-y divide-rule border-y border-rule">
-            {happenings.map((event, i) => {
+            {upcoming.map((event, i) => {
               const date = eventDate(event.date);
               const img = images[event.image];
               return (

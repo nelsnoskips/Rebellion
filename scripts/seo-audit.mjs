@@ -73,6 +73,7 @@ async function auditPage(route) {
     h1Count: (head.match(/<h1[\s>]/g) ?? []).length,
     schema,
     bytes: body.length,
+    raw: body,
   };
 }
 
@@ -110,6 +111,11 @@ function findings(pages, extras) {
   else if (extras.gscFile.status !== 200)
     add("high", `${extras.gscFile.path} returns ${extras.gscFile.status} — Search Console will un-verify`);
   if (!extras.ga) add("medium", "no analytics tag found on the live site");
+
+  if (extras.staleEvents.length)
+    add("medium", `events already past are still listed: ${extras.staleEvents.join(", ")} — the site needs a redeploy to drop them`);
+  if (!extras.eventCount)
+    add("medium", "no upcoming events on the calendar");
 
   const hasFaq = pages.some((p) => p.schema.includes("FAQPage"));
   if (!hasFaq) add("medium", "no FAQPage markup — the Q&A content cannot be quoted as answers");
@@ -152,7 +158,17 @@ async function main() {
     gscFile: { path: GSC_FILE, status: gsc.status },
     ga: /googletagmanager\.com\/gtag|google-analytics\.com/.test(home.body),
     metaPixel: /facebook\.com\/tr|connect\.facebook\.net/.test(home.body),
+    ...(() => {
+      /* Event dates are baked at build time, so a calendar can go stale between
+         deploys. Read them back off the live page rather than the source. */
+      const happenings = pages.find((p) => p.route === "/happenings");
+      const dates = [...(happenings?.raw ?? "").matchAll(/"startDate":"(\d{4}-\d{2}-\d{2})/g)].map((m) => m[1]);
+      const today = new Date().toISOString().slice(0, 10);
+      return { eventCount: dates.length, staleEvents: dates.filter((d) => d < today) };
+    })(),
   };
+
+  for (const p of pages) delete p.raw;
 
   const report = {
     site: SITE,

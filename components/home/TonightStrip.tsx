@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { happenings, site } from "@/lib/site";
+import { upcoming, site } from "@/lib/site";
 import { eventDate } from "@/lib/utils";
 import { Deckle } from "@/components/ui/Artwork";
 import { TodayHours } from "@/components/home/TodayHours";
@@ -13,8 +13,10 @@ import { TodayHours } from "@/components/home/TodayHours";
  * needs to change.
  */
 export function TonightStrip() {
-  const next = happenings[0];
-  const date = eventDate(next.date);
+  // Can be empty: every event has a date, and dates pass. Without this the
+  // homepage build dies on `next.date` the day after the last one.
+  const next = upcoming[0];
+  const date = next ? eventDate(next.date) : null;
 
   return (
     <div className="relative border-b border-rule-dark bg-ink-soft text-bone">
@@ -30,16 +32,18 @@ export function TonightStrip() {
         <p className="text-bone/75">
           <TodayHours />
         </p>
-        <p className="text-bone/75">
-          Next up:{" "}
-          <Link
-            href={`/happenings#${next.slug}`}
-            className="text-bone underline decoration-signal/60 underline-offset-4 hover:decoration-signal"
-          >
-            {next.title}
-          </Link>{" "}
-          · {date.full}
-        </p>
+        {next && date ? (
+          <p className="text-bone/75">
+            Next up:{" "}
+            <Link
+              href={`/happenings#${next.slug}`}
+              className="text-bone underline decoration-signal/60 underline-offset-4 hover:decoration-signal"
+            >
+              {next.title}
+            </Link>{" "}
+            · {date.full}
+          </p>
+        ) : null}
         <div className="ml-auto flex items-center gap-6">
           <a href={site.phoneHref} className="text-bone/75 hover:text-bone">
             {site.phone}

@@ -275,6 +275,30 @@ export const happenings: Happening[] = [
     ticketed: true,
   },
   {
+    slug: "wine-education-class-oct-13",
+    date: "2026-10-13",
+    kind: "Wine Class",
+    title: "Wine Education Class",
+    time: "6:30PM",
+    blurb:
+      "An evening through the list with the people who chose it. Seats are limited and booked through Resy.",
+    image: "eventWineDinner",
+    ticketed: true,
+    url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/wine-education-class-2026-10-13-6",
+  },
+  {
+    slug: "wine-education-class-oct-15",
+    date: "2026-10-15",
+    kind: "Wine Class",
+    title: "Wine Education Class",
+    time: "6:30PM",
+    blurb:
+      "The same class, two nights later, if Tuesday does not suit. Seats are limited and booked through Resy.",
+    image: "eventCocktailClass",
+    ticketed: true,
+    url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/wine-education-class-2026-10-15-6",
+  },
+  {
     slug: "drag-brunch",
     date: "2026-09-27",
     kind: "Drag Brunch",
@@ -286,6 +310,24 @@ export const happenings: Happening[] = [
     url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/rebellion-beachside-drag-brunch-2026-09-27-6",
   },
 ];
+
+/**
+ * The happenings worth showing: the ones that have not happened yet, earliest
+ * first.
+ *
+ * The raw array is kept in whatever order events were added, which is not an
+ * order anyone wants to read, and it keeps events after their date — the site
+ * spent three weeks advertising a wine dinner and a drag brunch that were
+ * already over.
+ *
+ * "Today" here is build time, because this is a static export. That is fine as
+ * long as the site is deployed when events change, which is how events get
+ * added in the first place; the monthly SEO audit also flags any past event
+ * still listed, so a long gap between deploys cannot hide one.
+ */
+export const upcoming: Happening[] = [...happenings]
+  .filter((e) => e.date >= new Date().toISOString().slice(0, 10))
+  .sort((a, b) => a.date.localeCompare(b.date));
 
 /* PLACEHOLDER — menus are illustrative. Real menus must be indexable HTML,
    never PDFs (blueprint §11, SEO/AEO). */
