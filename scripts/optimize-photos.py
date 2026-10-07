@@ -109,7 +109,10 @@ PLAN = {
     "skillet-cornbread": ["card"],          # eventBrunch
     "shared-board": ["feature"],            # board
     "dining-room-full": ["feature"],        # diningRoom
-    "mural-wall-room": ["feature"],         # beachside
+    # "mural-wall-room" was withdrawn in Oct 2026 at the request of a guest
+    # whose relative was recognisable at the near table. Do not re-add it:
+    # /images/rebellion-wall-feature.webp is a crop of the same frame that
+    # keeps the room and contains nobody.
     "mirror-diners": ["feature"],           # annexRoom
     "table-brick-candle": ["feature"],      # privateEvents
     "bar-pour-guests": ["feature"],         # bottleShop

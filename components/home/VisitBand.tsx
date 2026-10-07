@@ -19,8 +19,8 @@ export function VisitBand() {
       />
       <Reveal className="art-frame relative min-h-[300px] lg:min-h-[440px]">
         <Image
-          src={images.beachside.src}
-          alt={images.beachside.alt}
+          src={images.barCoupe.src}
+          alt={images.barCoupe.alt}
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover"

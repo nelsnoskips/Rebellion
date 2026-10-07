@@ -103,10 +103,28 @@ export const images = {
     alt: "Guests at the bar while a bartender pours",
   },
   beachside: {
-    brief: "Shoot day 01 — exterior and terrace at golden hour. No exterior frame exists yet; the painted wall does the work of saying where you are.",
-    src: "/images/mural-wall-room-feature.webp",
-    alt: "The dining room with the Rebellion mural painted across the back wall",
+    brief:
+      "Shoot day 02 — the room, wide. A crop of the original frame: the full " +
+      "shot showed guests at the near table and was withdrawn in October 2026 " +
+      "when one of them asked us to take it down. Any replacement wide shot " +
+      "needs an empty room, or consent from everyone recognisable in it.",
+    src: "/images/rebellion-wall-feature.webp",
+    alt: "The Rebellion wordmark sprayed across the lit brick wall of the dining room, punk flyers papering the wall above",
   },
+
+  /**
+   * Sent by the client in October 2026 to replace the withdrawn frame. Shot on
+   * a phone rather than at the lookbook shoot, which is why it is here and not
+   * in scripts/optimize-photos.py — there is no 3000px original to re-size
+   * from. Nobody is in it.
+   */
+  barCoupe: {
+    brief: "The bar, looking down the counter. A drink in the foreground, the collage wall behind, no guests in frame.",
+    src: "/images/bar-coupe-feature.webp",
+    alt: "A coupe of pale pink cocktail on the bar counter, the back bar and collage wall behind it",
+  },
+
+
   annexRoom: {
     brief: "Shoot day 02 — the Wine Room, second configuration, guests present.",
     src: "/images/mirror-diners-feature.webp",
