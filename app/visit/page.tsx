@@ -106,6 +106,7 @@ export default function VisitPage() {
               </p>
               <Link
                 href={site.reserveUrl}
+                data-reserve-location="visit"
                 className="micro mt-5 inline-flex bg-oxblood px-7 py-3.5 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"
               >
                 Reserve a table

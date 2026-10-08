@@ -98,6 +98,7 @@ export function Masthead() {
               </ul>
               <Link
                 href={site.reserveUrl}
+                data-reserve-location="collage"
                 className="micro bg-oxblood px-8 py-4 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"
               >
                 Reserve
@@ -140,6 +141,7 @@ export function Masthead() {
             <div className="cine-cta mt-10 flex flex-wrap gap-3">
               <Link
                 href={site.reserveUrl}
+                data-reserve-location="collage"
                 className="micro bg-oxblood px-9 py-5 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"
               >
                 Reserve a table

@@ -27,6 +27,24 @@ export const META_PIXEL_ID =
 export const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-BSWEHT5KJM";
 
+/* ------------------------------------------------------------------ *
+ *  GOOGLE ADS — PLACEHOLDERS. Both must be filled in before any Ads
+ *  conversion is recorded; until then the conversion event is skipped
+ *  rather than sent to a made-up destination, which would either error
+ *  or, worse, land in somebody else's account.
+ *
+ *    GOOGLE_ADS_ID            the account tag,  "AW-XXXXXXXXX"
+ *    RESERVE_CONVERSION_LABEL the action,       "AW-XXXXXXXXX/XXXXXXXXXXX"
+ *
+ *  Found in Google Ads → Goals → Conversions → the action → Tag setup →
+ *  "Use Google Tag Manager": the Conversion ID is the first, the
+ *  Conversion Label completes the second.
+ * ------------------------------------------------------------------ */
+export const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? "";
+
+export const RESERVE_CONVERSION_LABEL =
+  process.env.NEXT_PUBLIC_GOOGLE_ADS_RESERVE_LABEL ?? "";
+
 declare global {
   interface Window {
     dataLayer?: unknown[];
@@ -72,6 +90,76 @@ export function track(
   } catch {
     // Deliberately swallowed. A blocked or broken tracker is not a reason for
     // the visitor's next click to fail.
+  }
+}
+
+/**
+ * Where a booking click came from, for the `button_location` dimension.
+ * Anything not in this list is reported as "unknown" rather than dropped —
+ * a mislabelled conversion still beats a missing one.
+ */
+export type ReserveLocation =
+  | "nav"
+  | "nav-mobile"
+  | "hero"
+  | "floating"
+  | "footer"
+  | "menus"
+  | "visit"
+  | "reserve-widget"
+  | "reserve-deeplink"
+  | "collage"
+  | "unknown";
+
+/**
+ * One booking click, reported to GA4, Google Ads and Meta.
+ *
+ * Debounced, because a single tap can reach us more than once: the click
+ * bubbles through our own delegated listener while Resy's embed runs its own
+ * handlers on the same event, and React may see it again. The window is short
+ * — long enough to collapse one physical click, short enough that a visitor
+ * who genuinely clicks Reserve twice a minute apart is counted twice.
+ *
+ * Note what this measures: the visitor opened the booking path. Whether they
+ * finished happens on Resy, which we never see. Reading these as covers booked
+ * will overstate them.
+ */
+const DEBOUNCE_MS = 1500;
+let lastSentAt = 0;
+let lastLocation: ReserveLocation | null = null;
+
+export function trackResyClick(location: ReserveLocation = "unknown") {
+  if (typeof window === "undefined") return;
+
+  const now = Date.now();
+  if (location === lastLocation && now - lastSentAt < DEBOUNCE_MS) return;
+  lastSentAt = now;
+  lastLocation = location;
+
+  try {
+    window.dataLayer?.push({
+      event: "resy_click",
+      button_location: location,
+    });
+
+    window.gtag?.("event", "resy_click", {
+      page_location: window.location.href,
+      button_location: location,
+    });
+
+    // Only with both halves of the destination present — see the placeholder
+    // note above.
+    if (GOOGLE_ADS_ID && RESERVE_CONVERSION_LABEL) {
+      window.gtag?.("event", "conversion", {
+        send_to: RESERVE_CONVERSION_LABEL,
+      });
+    }
+
+    // Meta's standard event for starting a booking. Standard rather than
+    // custom so it can be optimised against in Ads Manager.
+    window.fbq?.("track", "Schedule", { button_location: location });
+  } catch {
+    // A blocked tracker must never cost the visitor the click that follows.
   }
 }
 

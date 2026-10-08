@@ -108,6 +108,7 @@ export function FooterCollage() {
         <div className="flex flex-col items-start gap-4 lg:pt-8">
           <Link
             href={site.reserveUrl}
+            data-reserve-location="collage"
             className="micro inline-flex w-full items-center justify-center border border-oxblood px-10 py-5 text-oxblood transition-colors duration-[var(--dur-micro)] hover:bg-oxblood hover:text-bone lg:w-auto"
           >
             Reserve a table

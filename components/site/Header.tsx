@@ -129,6 +129,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
         <div className="flex items-center gap-3">
           <Link
             href={site.reserveUrl}
+            data-reserve-location="nav"
             className="micro hidden bg-oxblood px-8 py-4 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d] sm:inline-flex"
           >
             Reserve
@@ -179,6 +180,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
           )}
           <Link
             href={site.reserveUrl}
+            data-reserve-location="nav-mobile"
             className="micro mt-5 bg-oxblood px-6 py-4 text-center text-bone"
           >
             Reserve a table

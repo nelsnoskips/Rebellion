@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { track } from "@/lib/analytics";
+import { track, trackResyClick } from "@/lib/analytics";
 import { reservations, site, type BookingKey } from "@/lib/site";
 
 /**
@@ -88,11 +88,31 @@ function trackReservationStart(booking: BookingKey) {
   });
 }
 
+/**
+ * Clicks inside the mounted widget.
+ *
+ * Every click in there lands here — picking a date, changing the party size,
+ * scrolling the times — because Resy's internal markup is theirs and may
+ * change. Reporting each one would turn a single booking attempt into twenty
+ * conversions, so the first interaction per mount is the one that counts.
+ * That matches what the event claims: the visitor started booking.
+ */
+function useWidgetInteraction(booking: BookingKey) {
+  const reported = useRef(false);
+  return () => {
+    if (reported.current) return;
+    reported.current = true;
+    trackReservationStart(booking);
+    trackResyClick("reserve-widget");
+  };
+}
+
 export function ResyWidget({ booking }: { booking: BookingKey }) {
   const config = reservations.bookings[booking];
   const mountRef = useRef<HTMLDivElement>(null);
   const [failed, setFailed] = useState(false);
   const search = useSearchString();
+  const onWidgetInteraction = useWidgetInteraction(booking);
 
   const canEmbed = config.venueId !== null && config.apiKey !== null;
   // Resolved during render rather than rewritten inside the click handler,
@@ -152,7 +172,15 @@ export function ResyWidget({ booking }: { booking: BookingKey }) {
     return (
       <div
         ref={mountRef}
-        onClick={() => trackReservationStart(booking)}
+        /* Resy's embed renders into this element and opens its pop-up over our
+           own page, so nothing here is an outbound navigation and GA4's
+           automatic outbound-click tracking never sees it — which is why the
+           property showed zero Resy clicks. Catching the click here is the
+           only signal available. It fires on any click inside the widget, not
+           only the final Book press, because Resy's internal markup is theirs
+           to change; de-duplication in trackResyClick keeps one interaction to
+           one event. */
+        onClick={onWidgetInteraction}
         className="min-h-[420px] w-full"
       />
     );
@@ -171,7 +199,10 @@ export function ResyWidget({ booking }: { booking: BookingKey }) {
           href={href}
           target="_blank"
           rel="noreferrer"
-          onClick={() => trackReservationStart(booking)}
+          onClick={() => {
+            trackReservationStart(booking);
+            trackResyClick("reserve-deeplink");
+          }}
           className="micro mt-8 bg-oxblood px-9 py-4 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"
         >
           Book on Resy

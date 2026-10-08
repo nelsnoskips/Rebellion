@@ -133,6 +133,7 @@ export default function MenusPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href={site.reserveUrl}
+                data-reserve-location="menus"
                 className="micro bg-oxblood px-8 py-4 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"
               >
                 Reserve a table

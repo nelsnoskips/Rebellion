@@ -39,6 +39,7 @@ export function FloatingReserve({
     >
       <Link
         href={site.reserveUrl}
+        data-reserve-location="floating"
         tabIndex={visible ? undefined : -1}
         aria-hidden={!visible}
         className="micro flex items-center justify-center bg-oxblood px-8 py-4 text-bone shadow-[0_8px_30px_rgb(24_24_23/0.35)] transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"

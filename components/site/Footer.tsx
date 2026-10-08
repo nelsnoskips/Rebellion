@@ -99,6 +99,7 @@ export function Footer() {
         <div className="flex flex-col gap-3 lg:pt-8">
           <Link
             href={site.reserveUrl}
+            data-reserve-location="footer"
             className="micro inline-flex w-full items-center justify-center border border-bone/50 px-10 py-5 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-bone hover:text-ink lg:w-auto"
           >
             Reserve a table

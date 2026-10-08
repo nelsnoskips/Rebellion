@@ -3,7 +3,7 @@
 import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { GA_MEASUREMENT_ID, trackPageView } from "@/lib/analytics";
+import { GA_MEASUREMENT_ID, GOOGLE_ADS_ID, trackPageView } from "@/lib/analytics";
 
 /**
  * Google Analytics 4.
@@ -18,6 +18,10 @@ import { GA_MEASUREMENT_ID, trackPageView } from "@/lib/analytics";
  * the effect rather than twice: once by gtag and once by us.
  *
  * `afterInteractive` keeps a third-party script out of the page's first paint.
+ *
+ * The Google Ads account tag rides the same gtag.js this already loads — a
+ * second copy of the library would double-count every page view. One script,
+ * two config calls, which is how Google documents running both.
  *
  * With NEXT_PUBLIC_GA_MEASUREMENT_ID unset this renders nothing at all, so
  * preview and local builds stay out of the property.
@@ -55,7 +59,9 @@ export function GoogleAnalytics() {
 function gtag(){dataLayer.push(arguments);}
 window.gtag = gtag;
 gtag('js', new Date());
-gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });`}
+gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });${
+          GOOGLE_ADS_ID ? `\ngtag('config', '${GOOGLE_ADS_ID}');` : ""
+        }`}
       </Script>
     </>
   );

@@ -54,6 +54,7 @@ export function Hero() {
         <Reveal index={2} className="relative mt-8 flex flex-wrap gap-3">
           <Link
             href={site.reserveUrl}
+            data-reserve-location="hero"
             className="micro bg-oxblood px-9 py-5 text-bone transition-colors duration-[var(--dur-micro)] hover:bg-[#8d343d]"
           >
             Reserve a table
