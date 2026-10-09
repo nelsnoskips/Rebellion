@@ -54,10 +54,12 @@ export const images = {
 
   /* --- Choose your Rebellion (blueprint §07 module 02) ------------------- */
   dine: {
-    brief: "Shoot day 01 — one finished plate, close, dark ground.",
-    src: "/images/squid-ink-pasta-card.webp",
-    alt: "Squid ink pasta with mussels and a whole prawn in a shallow bowl",
+    brief:
+      "Shoot day 03 — a plate that looks like the kitchen it came from, shot on the pass rather than styled.",
+    src: "/images/peach-burrata-card.webp",
+    alt: "Prosciutto, burrata and peach with rocket and crushed pistachio in a wide bowl",
   },
+
   gather: {
     brief: "Shoot day 01 — guests mid-toast, real celebration energy.",
     src: "/images/long-table-dinner-card.webp",
@@ -81,10 +83,15 @@ export const images = {
     alt: "A coupe of espresso martini on the bar, the red Rebel neon burning behind it",
   },
   privateEvents: {
-    brief: "Shoot day 02 — the Wine Room set for a long-table dinner, candles lit. This is a two-top rather than the long table; a set-room frame is still to come.",
-    src: "/images/table-brick-candle-feature.webp",
-    alt: "A candlelit table laid against exposed brick",
+    brief:
+      "Shoot day 03 — the private room laid and lit, before guests arrive. Set " +
+      "rather than full on purpose: someone planning a party needs to picture " +
+      "their own people in it, not somebody else's. Cropped from a wider frame " +
+      "to drop a mirror that reflected two guests' faces.",
+    src: "/images/wine-room-set-feature.webp",
+    alt: "The private room laid for dinner — green banquette, candlelit tables, the Rebellion mark on the wall under a pressed-tin ceiling",
   },
+
 
   /* --- Rooms + retail ---------------------------------------------------- */
   diningRoom: {
@@ -136,10 +143,12 @@ export const images = {
     alt: "Pappardelle in ragù under a blanket of shaved cheese and thyme",
   },
   board: {
-    brief: "Shoot day 01 — the board, dark ground, built for the middle of the table.",
-    src: "/images/shared-board-feature.webp",
-    alt: "A shared board of dips, fries, cured meat and pickles spread across the table",
+    brief:
+      "Shoot day 03 — several plates waiting on the pass, which says kitchen rather than table.",
+    src: "/images/pass-bowls-feature.webp",
+    alt: "Three bowls of a seafood course lined up on the stainless pass, ready to go out",
   },
+
 
   /* --- Happenings (blueprint §07 module 03) ------------------------------ */
   eventLiveMusic: {
