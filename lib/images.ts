@@ -61,10 +61,14 @@ export const images = {
   },
 
   gather: {
-    brief: "Shoot day 01 — guests mid-toast, real celebration energy.",
-    src: "/images/long-table-dinner-card.webp",
-    alt: "A long table of guests sharing charcuterie and wine while a server pours",
+    brief:
+      "Shoot day 03 — a standing reception in the private room, cocktail tables " +
+      "and the wine wall. Used with the client's confirmation; guests are " +
+      "recognisable.",
+    src: "/images/wine-room-reception-card.webp",
+    alt: "Guests standing at cocktail tables by the wine wall, string lights across the pressed-tin ceiling above",
   },
+
   takeItHome: {
     brief: "Shoot day 02 — bottle pour or wrapped bottles ready for pickup.",
     src: "/images/bourgogne-radicchio-card.webp",
@@ -133,10 +137,14 @@ export const images = {
 
 
   annexRoom: {
-    brief: "Shoot day 02 — the Wine Room, second configuration, guests present.",
-    src: "/images/mirror-diners-feature.webp",
-    alt: "Guests at dinner, caught in the reflection of a wall mirror",
+    brief:
+      "Shoot day 03 — the private room with a party in it, which is the other " +
+      "half of what someone booking needs to see. Used with the client's " +
+      "confirmation: the guests in it are recognisable.",
+    src: "/images/wine-room-party-feature.webp",
+    alt: "The private room full for a celebration — guests along the banquette and at the bar under string lights and a pressed-tin ceiling",
   },
+
   table: {
     brief: "Shoot day 01 — shared table, several dishes, hands reaching.",
     src: "/images/pappardelle-ragu-hero.webp",
