@@ -16,6 +16,8 @@ export function PageShell({
   /** Colour of the paper tearing up into the masthead — match whatever
       surface follows it. */
   deckleTone = "text-bone",
+  /** Drop the thrown-ink mark where it fights the photograph underneath. */
+  splatter = true,
 }: {
   eyebrow: string;
   title: string;
@@ -23,6 +25,7 @@ export function PageShell({
   image: ImageName;
   children: React.ReactNode;
   deckleTone?: string;
+  splatter?: boolean;
 }) {
   const img = images[image];
 
@@ -43,11 +46,13 @@ export function PageShell({
             aria-hidden
             className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/55 to-ink/40"
           />
-          <InkSplatter
-            variant="b"
-            opacity={70}
-            className="bottom-[18%] -left-20 h-[300px] w-[300px] text-oxblood md:h-[380px] md:w-[380px]"
-          />
+          {splatter ? (
+            <InkSplatter
+              variant="b"
+              opacity={70}
+              className="bottom-[18%] -left-20 h-[300px] w-[300px] text-oxblood md:h-[380px] md:w-[380px]"
+            />
+          ) : null}
           <Deckle edge="bottom" variant={0} className={deckleTone} />
 
           <div className="relative w-full px-6 pt-36 pb-16 md:px-10 md:pb-20">

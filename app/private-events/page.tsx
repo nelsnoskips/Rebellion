@@ -26,6 +26,7 @@ export default function PrivateEventsPage() {
       title="Gather differently"
       intro="A room of its own, attached to the bistro. Same kitchen, same cellar, nobody else in the room."
       image="privateEvents"
+      splatter={false}
     >
       <section className="paper-grain relative overflow-hidden bg-bone">
         <Bloom variant="a" opacity={50} className="-top-36 -left-28 h-[500px] w-[540px] text-wash-coral" />
