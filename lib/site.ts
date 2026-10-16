@@ -323,6 +323,30 @@ export const happenings: Happening[] = [
     url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/wine-education-class-2026-10-22-6",
   },
   {
+    slug: "wine-education-class-oct-27",
+    date: "2026-10-27",
+    kind: "Wine Class",
+    title: "Wine Education Class",
+    time: "6:30PM",
+    blurb:
+      "An evening through the list with the people who chose it. Seats are limited and booked through Resy.",
+    image: "eventWineDinner",
+    ticketed: true,
+    url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/wine-education-class-2026-10-27-6",
+  },
+  {
+    slug: "wine-education-class-oct-29",
+    date: "2026-10-29",
+    kind: "Wine Class",
+    title: "Wine Education Class",
+    time: "6:30PM",
+    blurb:
+      "The same class later in the week, if Tuesday does not suit. Seats are limited and booked through Resy.",
+    image: "eventCocktailClass",
+    ticketed: true,
+    url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/wine-education-class-2026-10-29-6",
+  },
+  {
     slug: "drag-brunch",
     date: "2026-09-27",
     kind: "Drag Brunch",
