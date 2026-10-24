@@ -2,7 +2,7 @@
 // Source: the client's live Dishio menu (cm8iyo4qz00cxm3etw7ravdkg).
 // Re-run `node scripts/fetch-menu.mjs` after they change it.
 //
-// 7 sections, 233 dishes, pulled 2026-09-01.
+// 7 sections, 227 dishes, pulled 2026-10-24.
 
 export type MenuItem = {
   name: string;
@@ -28,19 +28,19 @@ export const menuCategories: MenuCategory[] = [
         "name": "Appetizers",
         "items": [
           {
-            "name": "Arancini",
-            "desc": "Fried Saffron Risotto Stuffed with Fontina and served with Saffron Aioli",
-            "price": "14"
+            "name": "Croquettes Pork Rillette",
+            "desc": "Shredded Pork with Mustard & Cornichons",
+            "price": "18"
           },
           {
-            "name": "Beef Carpaccio",
-            "desc": "Capers, Shallots, Soy-Mustard Vinaigrette",
-            "price": "16"
+            "name": "Beef Tartare*",
+            "desc": "Minced Sirloin, Capers, Whole Grain Mustard & Shallots",
+            "price": "26"
           },
           {
-            "name": "Peach Caprese",
-            "desc": "Prosciutto and Burrata served with Roasted Peaches and Pistachios",
-            "price": "21"
+            "name": "Orchard Salad",
+            "desc": "Red Apples, Danish Blue Cheese, Candied Walnuts, Bittered Greens & Pickled Onions",
+            "price": "23"
           },
           {
             "name": "Bread & Butter",
@@ -83,8 +83,8 @@ export const menuCategories: MenuCategory[] = [
             "price": "27"
           },
           {
-            "name": "Fra Diavolo",
-            "desc": "Head-On Shrimp & Mussels served in a Spicy Marinara with Squid Ink Linguine Fini",
+            "name": "Beef Stroganoff",
+            "desc": "Sautéed Beef Tips, House made Egg Noodles & Oyster Mushrooms",
             "price": "39"
           }
         ]
@@ -93,9 +93,9 @@ export const menuCategories: MenuCategory[] = [
         "name": "Mains",
         "items": [
           {
-            "name": "Bistecca Fiorentina",
-            "desc": "T-bone Steak with Roasted Garlic and Tuscan Potatoes",
-            "price": "116"
+            "name": "Côte de Boeuf",
+            "desc": "Bone-In Ribeye Steak with Truffle Butter",
+            "price": "185"
           },
           {
             "name": "Fresh Catch",
@@ -103,9 +103,9 @@ export const menuCategories: MenuCategory[] = [
             "price": "MP"
           },
           {
-            "name": "Eggplant Amatriciana",
-            "desc": "Fried Eggplant with Broccolini, Amatriciana Sauce and Parmesan Foam",
-            "price": "29"
+            "name": "Shrimp & Grits",
+            "desc": "Blackened Shrimp with Grits, Leeks and Bloody Mary Broth",
+            "price": "38"
           },
           {
             "name": "Roasted Chicken",
@@ -148,9 +148,9 @@ export const menuCategories: MenuCategory[] = [
         "name": "Sides",
         "items": [
           {
-            "name": "Tuscan Potatoes",
-            "desc": "Fried Red Bliss Potatoes with Garlic Butter and Tonnato Sauce",
-            "price": "14"
+            "name": "Cauliflower Gratin",
+            "desc": "Cauliflower and Black Truffle Puree covered in Gruyere and Garlic Breadcrumbs",
+            "price": "18"
           },
           {
             "name": "Broccolini",
@@ -244,7 +244,7 @@ export const menuCategories: MenuCategory[] = [
           },
           {
             "name": "Shrimp & Grits",
-            "desc": "Blackend Shrimp with Grits, Confit Leeks and Bloody Mary Broth",
+            "desc": "Blackened Shrimp with Grits, Confit Leeks and Bloody Mary Broth",
             "price": "26"
           },
           {
@@ -379,7 +379,7 @@ export const menuCategories: MenuCategory[] = [
           {
             "name": "Ziggy Stardust",
             "desc": "Citadelle Summer Garden Gin, Giffard Apricot, Coconut Cream, Butterfly Pea Tea and Coconut water Cube.",
-            "price": "19.99"
+            "price": "20"
           },
           {
             "name": "Rebel Rebel",
@@ -407,6 +407,16 @@ export const menuCategories: MenuCategory[] = [
             "price": "15"
           },
           {
+            "name": "French 75",
+            "desc": "Sipsmith Sloe Gin, Giffard Creme de Violette, Lemon, Bubbles",
+            "price": "16"
+          },
+          {
+            "name": "Tom Collins",
+            "desc": "44 North Nectarine Vodka, Lemon, Q Club Soda.",
+            "price": "13"
+          },
+          {
             "name": "Daiquiri",
             "desc": "Hamilton’s Demerara 86 Rum, Vanilla Demerara Syrup, Lime, Tempus Fugit Creme de Banane",
             "price": "16"
@@ -424,7 +434,7 @@ export const menuCategories: MenuCategory[] = [
           {
             "name": "Tamarindo",
             "desc": "Coriander & Tamarind Syrup, Pineapple, Q Club Soda",
-            "price": "13"
+            "price": "12"
           },
           {
             "name": "Americola",
@@ -443,15 +453,20 @@ export const menuCategories: MenuCategory[] = [
         "name": "Sparkling",
         "items": [
           {
-            "name": "N.V. Caneva da Nani",
-            "desc": "Col Fondo Glera Veneto, Italy",
-            "price": "16"
+            "name": "2024 Ruge",
+            "desc": "Prosecco Turbo Organico DOC Veneto, Italy Glera",
+            "price": "15"
           }
         ]
       },
       {
         "name": "White",
         "items": [
+          {
+            "name": "2024 Poderi del Leone",
+            "desc": "Pinot Grigo Veneto, Italy",
+            "price": "16"
+          },
           {
             "name": "2024 Cultivar",
             "desc": "Sauvignon Blanc Napa Valley, California",
@@ -473,9 +488,9 @@ export const menuCategories: MenuCategory[] = [
         "name": "Rosé",
         "items": [
           {
-            "name": "2024 Bixigu Txakolina Rose",
-            "desc": "Basque, Spain Hondarrabi Zuri Hondarrabi Beltza",
-            "price": "16"
+            "name": "2024 Le Ferme Rouge",
+            "desc": "Le Gris Rosé Zaer, Morrocco Cinsault",
+            "price": "14"
           }
         ]
       },
@@ -483,8 +498,8 @@ export const menuCategories: MenuCategory[] = [
         "name": "Orange",
         "items": [
           {
-            "name": "2024 Azimut Brisat",
-            "desc": "Catalonia, Spain Parellada Sumoll Blanc Garnatxa Blanca Moscatell",
+            "name": "Pur Jus",
+            "desc": "Pur Jus; Blanc de Maceration Muscat d’Alexandrie, Ugni Blanc, Gros Manseng, Colombard, Sauvignon Blanc",
             "price": "16"
           }
         ]
@@ -528,16 +543,6 @@ export const menuCategories: MenuCategory[] = [
             "price": "10"
           },
           {
-            "name": "Kronenbourg 1664 (can)",
-            "desc": "Canned Kronenbourg 1664",
-            "price": "7"
-          },
-          {
-            "name": "Civil Society Fresh IPA draft",
-            "desc": "Hazy India Pale Ale Jupiter, FL",
-            "price": "10"
-          },
-          {
             "name": "Buenaveza Salt & Lime Lager",
             "desc": "Stone Brewing Draft",
             "price": "8"
@@ -564,8 +569,9 @@ export const menuCategories: MenuCategory[] = [
         "name": "Canned Cider",
         "items": [
           {
-            "name": "Cider Creek Cider",
-            "price": "7"
+            "name": "AVAL Cider Blanc",
+            "desc": "French Cider",
+            "price": "8"
           }
         ]
       }
@@ -855,6 +861,11 @@ export const menuCategories: MenuCategory[] = [
         "name": "Vodka",
         "items": [
           {
+            "name": "Haku Vodka",
+            "desc": "(Japan)",
+            "price": "MP"
+          },
+          {
             "name": "44 North Potato Vodk",
             "desc": "(Idaho)",
             "price": "MP"
@@ -879,7 +890,7 @@ export const menuCategories: MenuCategory[] = [
             "price": "MP"
           },
           {
-            "name": "Belvedere Single Estate",
+            "name": "Belvedere",
             "price": "MP"
           },
           {
@@ -887,7 +898,8 @@ export const menuCategories: MenuCategory[] = [
             "price": "MP"
           },
           {
-            "name": "Titos (Texas)",
+            "name": "Titos",
+            "desc": "(Texas)",
             "price": "MP"
           }
         ]
@@ -896,7 +908,8 @@ export const menuCategories: MenuCategory[] = [
         "name": "Gin",
         "items": [
           {
-            "name": "Martin Millers 9 Moons",
+            "name": "Barr Hill Tom Cat",
+            "desc": "(Vermont)",
             "price": "MP"
           },
           {
@@ -933,10 +946,6 @@ export const menuCategories: MenuCategory[] = [
           {
             "name": "Citadelle",
             "price": "MP"
-          },
-          {
-            "name": "Komasa Gin",
-            "price": "MP"
           }
         ]
       },
@@ -944,12 +953,13 @@ export const menuCategories: MenuCategory[] = [
         "name": "Rum",
         "items": [
           {
-            "name": "Homere Clement",
+            "name": "Chairmans Reserve Spiced Rum",
+            "desc": "(St. Lucia)",
             "price": "MP"
           },
           {
-            "name": "Rhum J.M. Terroir Volcanique",
-            "desc": "Rhum J.M. Terroire Volcanique (Caribbean)",
+            "name": "Ron Barralito",
+            "desc": "(Puerto Rico)",
             "price": "MP"
           },
           {
@@ -973,10 +983,6 @@ export const menuCategories: MenuCategory[] = [
           {
             "name": "Planteray Original Dark",
             "desc": "Planteray Original Dark (Caribbean)",
-            "price": "MP"
-          },
-          {
-            "name": "Planteray Cut And Dry",
             "price": "MP"
           },
           {
@@ -1007,11 +1013,18 @@ export const menuCategories: MenuCategory[] = [
         "name": "Tequila",
         "items": [
           {
-            "name": "Fortaleza (Jalisco)",
+            "name": "Pezuna Anejo",
+            "desc": "(Jalisco)",
             "price": "MP"
           },
           {
-            "name": "Fosoforo Mezcal (Puebla)",
+            "name": "Pezuna Reposado",
+            "desc": "(Jalisco)",
+            "price": "MP"
+          },
+          {
+            "name": "Pezuna Blanco",
+            "desc": "(Jalisco)",
             "price": "MP"
           },
           {
@@ -1027,7 +1040,8 @@ export const menuCategories: MenuCategory[] = [
             "price": "MP"
           },
           {
-            "name": "Teramana Blanco (Jalisco)",
+            "name": "Tequila Ocho Reposado",
+            "desc": "(Jalisco)",
             "price": "MP"
           },
           {
@@ -1035,38 +1049,26 @@ export const menuCategories: MenuCategory[] = [
             "price": "MP"
           },
           {
-            "name": "Codigo Rosa (Amatitán)",
+            "name": "The Lost Explorer Reposado",
+            "desc": "(Jalisco)",
             "price": "MP"
           },
           {
-            "name": "The Lost Explorer 12yr",
-            "desc": "The Lost Explorer 12yr Salmiana (Oaxaca)",
+            "name": "The Lost Explorer Blanco",
+            "desc": "(Jalisco)",
             "price": "MP"
           },
           {
-            "name": "The Lost Explorer 10yr Tobala",
+            "name": "The Lost Explorer 8yr Mezcal Espadin",
             "desc": "(Oaxaca)",
             "price": "MP"
           },
           {
-            "name": "The Lost Explorer 8yr Espadin",
-            "desc": "(Oaxaca)",
+            "name": "Arette Artisinal Fuerte",
             "price": "MP"
           },
           {
-            "name": "La Gritona Reposado (Jalisco)",
-            "price": "MP"
-          },
-          {
-            "name": "Arette Artisinal",
-            "price": "MP"
-          },
-          {
-            "name": "Arette Reposado (Jalisco)",
-            "price": "MP"
-          },
-          {
-            "name": "Arette Blanco (Jalisco)",
+            "name": "Arette Artisinal Anejo",
             "price": "MP"
           }
         ]
@@ -1075,16 +1077,20 @@ export const menuCategories: MenuCategory[] = [
         "name": "Bourbon/Whiskey",
         "items": [
           {
+            "name": "Old Forester 86",
+            "price": "MP"
+          },
+          {
+            "name": "Basil Hayden Toasted",
+            "price": "MP"
+          },
+          {
             "name": "Short Barell Cigar Batch",
             "desc": "(Georgia)",
             "price": "MP"
           },
           {
             "name": "Baby Jane (Kentucky)",
-            "price": "MP"
-          },
-          {
-            "name": "Bourbon (Vermont)",
             "price": "MP"
           },
           {
@@ -1110,15 +1116,7 @@ export const menuCategories: MenuCategory[] = [
             "price": "MP"
           },
           {
-            "name": "Widow Jane 10yr (New York)",
-            "price": "MP"
-          },
-          {
             "name": "Tullamore Dew (Ireland)",
-            "price": "MP"
-          },
-          {
-            "name": "Larceny Bourbon (Kentucky)",
             "price": "MP"
           },
           {
@@ -1135,10 +1133,6 @@ export const menuCategories: MenuCategory[] = [
           },
           {
             "name": "Elijah Craig (Kentucky)",
-            "price": "MP"
-          },
-          {
-            "name": "Doc Swinsons 5yr (Washington)",
             "price": "MP"
           }
         ]
@@ -1241,16 +1235,7 @@ export const menuCategories: MenuCategory[] = [
             "price": "MP"
           },
           {
-            "name": "Naud V.S Fine Cognac (France)",
-            "price": "MP"
-          },
-          {
-            "name": "Pierre Ferrand 1940 Champagne",
-            "desc": "Pierre Ferrand 1940 Champagne Cognac (France)",
-            "price": "MP"
-          },
-          {
-            "name": "Meukow V.S.O.P. (France)",
+            "name": "Hardys VSOP Cognac (France)",
             "price": "MP"
           }
         ]

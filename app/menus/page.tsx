@@ -130,6 +130,16 @@ export default function MenusPage() {
               . Wine by the glass and bottle is priced glass / bottle. Dishes
               marked MP are priced at market — ask your server.
             </p>
+            {/*
+              The kitchen marks dishes served raw or undercooked with an
+              asterisk, so the asterisk needs the notice that goes with it —
+              Florida food code expects it on the menu, and an unexplained
+              asterisk next to a tartare reads as a missing footnote.
+            */}
+            <p className="mt-4 text-xs text-ink-mute/80">
+              *Consuming raw or undercooked meats, poultry, seafood, shellfish
+              or eggs may increase your risk of foodborne illness.
+            </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href={site.reserveUrl}
