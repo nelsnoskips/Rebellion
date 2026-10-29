@@ -10,7 +10,7 @@ import { eventDate } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Happenings",
   description:
-    "Live music, wine dinners, brunch club and classes at Rebellion Beachside Bar & Bistro in Cocoa Beach.",
+    "Live music, wine dinners, tastings and wine education classes at Rebellion Beachside Bar & Bistro in Cocoa Beach.",
 };
 
 /**
@@ -75,7 +75,7 @@ export default function HappeningsPage() {
     <PageShell
       eyebrow="Happenings"
       title="Something is always about to start"
-      intro="Live music, wine dinners, brunch club, and classes. Some are ticketed, most are not, and all of them are worth rearranging a Tuesday for."
+      intro="Live music, wine dinners, tastings, and wine education classes. Some are ticketed, most are not, and all of them are worth rearranging a Tuesday for."
       image="eventLiveMusic"
     >
       <div className="paper-grain relative overflow-hidden bg-bone">

@@ -129,6 +129,22 @@ const DISPLAY_NAME = {
 };
 
 /**
+ * Sections Dishio still carries that the restaurant does not serve.
+ *
+ * Brunch is retired. Dishio holds a full 21-dish brunch service with its own
+ * sides and cocktails, and the restaurant confirmed on 29 October 2026 that
+ * there is no brunch. A menu for a service nobody can order is worse than a
+ * missing one: people book for it and arrive to a closed kitchen.
+ *
+ * This hides it on the website only. The same Dishio menu is what the QR codes
+ * on the tables read, so it is still being shown to anyone who scans one until
+ * the section is hidden there too. The ordering entries below keep Brunch in
+ * them deliberately — if the service comes back, deleting the name from here
+ * is the only change needed.
+ */
+const RETIRED_SECTIONS = new Set(["Brunch"]);
+
+/**
  * Menu changes the kitchen has made that Dishio has not caught up with.
  *
  * Dishio stays the source of truth and this is not a second menu — it is a
@@ -142,50 +158,14 @@ const DISPLAY_NAME = {
  * way out. That is the signal to delete the entry, not to leave it: a stale
  * override is how this file quietly becomes the real menu.
  *
- * From the menu revision of 24 October 2026.
+ * Nothing is pending right now. Add an entry when the kitchen changes a dish
+ * and the website has to be right before Dishio is; delete it the moment the
+ * script reports it as no longer matching.
  */
 const PENDING_EDITS = {
-  "Main Menu / Appetizers / Peach Caprese": {
-    name: "Orchard Salad",
-    price: "23",
-    desc: "Red Apples, Danish Blue Cheese, Candied Walnuts, Bittered Greens & Pickled Onions",
-  },
-  "Main Menu / Appetizers / Beef Carpaccio": {
-    name: "Beef Tartare*",
-    price: "26",
-    desc: "Minced Sirloin, Capers, Whole Grain Mustard & Shallots",
-  },
-  "Main Menu / Appetizers / Arancini": {
-    name: "Croquettes Pork Rillette",
-    price: "18",
-    desc: "Shredded Pork with Mustard & Cornichons",
-  },
-  "Main Menu / Mains / Eggplant Amatriciana": {
-    name: "Shrimp & Grits",
-    price: "38",
-    desc: "Blackened Shrimp with Grits, Leeks and Bloody Mary Broth",
-  },
-  "Main Menu / Mains / Bistecca Fiorentina": {
-    name: "C\u00f4te de Boeuf",
-    price: "185",
-    desc: "Bone-In Ribeye Steak with Truffle Butter",
-  },
-  "Main Menu / Pasta / Fra Diavolo": {
-    name: "Beef Stroganoff",
-    price: "39",
-    desc: "Saut\u00e9ed Beef Tips, House made Egg Noodles & Oyster Mushrooms",
-  },
-  "Main Menu / Sides / Tuscan Potatoes": {
-    name: "Cauliflower Gratin",
-    price: "18",
-    desc: "Cauliflower and Black Truffle Puree covered in Gruyere and Garlic Breadcrumbs",
-  },
-  // Not part of the revision: Dishio has "Blackend" on the brunch version, and
-  // it now sits one section away from a dinner dish of the same name spelled
-  // correctly. Fix it in Dishio and delete this.
-  "Brunch / Brunch / Shrimp & Grits": {
-    desc: "Blackened Shrimp with Grits, Confit Leeks and Bloody Mary Broth",
-  },
+  // Empty, and that is the point. The October revision sat here from the 24th
+  // until Dishio caught up on the 29th, at which point every key stopped
+  // matching and the script said so. They were deleted the same day.
 };
 
 /** Which overrides actually matched, so the unused ones can be reported. */
@@ -223,6 +203,7 @@ async function main() {
 
   const categories = menu.categories
     .filter(live)
+    .filter((c) => !RETIRED_SECTIONS.has(clean(c.sectionName)))
     .sort(byNamedOrder(CATEGORY_ORDER, (c) => clean(c.sectionName)))
     .map((category) => ({
       id: slug(category.sectionName),

@@ -2,7 +2,7 @@
 // Source: the client's live Dishio menu (cm8iyo4qz00cxm3etw7ravdkg).
 // Re-run `node scripts/fetch-menu.mjs` after they change it.
 //
-// 7 sections, 227 dishes, pulled 2026-10-24.
+// 6 sections, 206 dishes, pulled 2026-10-29.
 
 export type MenuItem = {
   name: string;
@@ -39,8 +39,8 @@ export const menuCategories: MenuCategory[] = [
           },
           {
             "name": "Orchard Salad",
-            "desc": "Red Apples, Danish Blue Cheese, Candied Walnuts, Bittered Greens & Pickled Onions",
-            "price": "23"
+            "desc": "Red Apples, Danish Blue Cheese, Candied Walnuts, Bittered Greens& Pickled Onions",
+            "price": "15"
           },
           {
             "name": "Bread & Butter",
@@ -73,6 +73,11 @@ export const menuCategories: MenuCategory[] = [
         "name": "Pasta",
         "items": [
           {
+            "name": "Beef Stroganoff",
+            "desc": "Sauteed Beef Tips, House-made Egg Noodles & Oyster Mushrooms",
+            "price": "39"
+          },
+          {
             "name": "Eggplant Ravioli",
             "desc": "Grilled Eggplant Stuffed Pasta with Smoked Ricotta Salata and Arugula",
             "price": "34"
@@ -81,11 +86,6 @@ export const menuCategories: MenuCategory[] = [
             "name": "Spaghetti & Meatball",
             "desc": "Like Your Nonna Made it",
             "price": "27"
-          },
-          {
-            "name": "Beef Stroganoff",
-            "desc": "Sautéed Beef Tips, House made Egg Noodles & Oyster Mushrooms",
-            "price": "39"
           }
         ]
       },
@@ -93,19 +93,19 @@ export const menuCategories: MenuCategory[] = [
         "name": "Mains",
         "items": [
           {
-            "name": "Côte de Boeuf",
+            "name": "Cote de Boeuf",
             "desc": "Bone-In Ribeye Steak with Truffle Butter",
             "price": "185"
-          },
-          {
-            "name": "Fresh Catch",
-            "desc": "Rotating Selection prepared with Seasonal Ingredients",
-            "price": "MP"
           },
           {
             "name": "Shrimp & Grits",
             "desc": "Blackened Shrimp with Grits, Leeks and Bloody Mary Broth",
             "price": "38"
+          },
+          {
+            "name": "Fresh Catch",
+            "desc": "Rotating Selection prepared with Seasonal Ingredients",
+            "price": "MP"
           },
           {
             "name": "Roasted Chicken",
@@ -185,130 +185,6 @@ export const menuCategories: MenuCategory[] = [
             "name": "Pot de Creme",
             "desc": "Cayenne spiced chocolate mousse with whipped cream and chocolate granola",
             "price": "13"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "brunch",
-    "name": "Brunch",
-    "subsections": [
-      {
-        "name": "Brunch",
-        "items": [
-          {
-            "name": "Avocado Toast",
-            "desc": "Toasted Sourdough with Fresh Avocado Tahini, Pickled Red Onion, Radish and Poached Egg",
-            "price": "21"
-          },
-          {
-            "name": "Rebel Breakfast",
-            "desc": "Two Eggs Cooked Any Style, Smoked bacon and Fried Red Potatoes",
-            "price": "18"
-          },
-          {
-            "name": "French Omelette",
-            "desc": "Soft Cooked Omelette gently folded and filled with Fine Herbs, Parmesan and a touch of Butter",
-            "price": "14"
-          },
-          {
-            "name": "Proscuitto Benedict",
-            "desc": "Homemade English Muffin, Hollandaise Sauce, Poached Egg and Fried Red Potatoes",
-            "price": "18"
-          },
-          {
-            "name": "Shrimp Benedict",
-            "desc": "Homemade English Muffin, Hollandaise Sauce, Poached Egg and Fried Red Potatoes",
-            "price": "22"
-          },
-          {
-            "name": "Steak Frites",
-            "desc": "Bistro Cut served with Sauce Au Poivre",
-            "price": "31"
-          },
-          {
-            "name": "Ham & Eggs",
-            "desc": "Sliced Prosciutto Ham with Two Eggs Sunny Side Up, Toasted Sourdough and Burrata",
-            "price": "23"
-          },
-          {
-            "name": "French Toast",
-            "desc": "Dulche de Leche, Roasted Apples, Pickled Fennel and Maple Syrup",
-            "price": "20"
-          },
-          {
-            "name": "Baked Eggs",
-            "desc": "Chicken and Bacon with Sauteed Kale, Roasted Potato, Tomato, and Arugula Salad and Ricotta Salata",
-            "price": "22"
-          },
-          {
-            "name": "Shrimp & Grits",
-            "desc": "Blackened Shrimp with Grits, Confit Leeks and Bloody Mary Broth",
-            "price": "26"
-          },
-          {
-            "name": "Rebellion Burger",
-            "desc": "Allan Bentons Bacon, Onion Jam, Sauerkraut, Truffle Aioli and Brillat Savarin",
-            "price": "29"
-          }
-        ]
-      },
-      {
-        "name": "Sides",
-        "items": [
-          {
-            "name": "Bread and Butter",
-            "price": "6"
-          },
-          {
-            "name": "Grits",
-            "desc": "Marsh Hen Hill Stone Grits with Cheese & Butter",
-            "price": "10"
-          },
-          {
-            "name": "Two Eggs",
-            "desc": "Cooked any style",
-            "price": "6"
-          },
-          {
-            "name": "Bacon",
-            "price": "13"
-          },
-          {
-            "name": "Yogurt Parfait",
-            "desc": "Honey Infused Yogurt with Fresh Fruit",
-            "price": "11"
-          }
-        ]
-      },
-      {
-        "name": "Brunch Cocktails",
-        "items": [
-          {
-            "name": "Bottomless Mimosas",
-            "desc": "*with purchase of an entree",
-            "price": "20"
-          },
-          {
-            "name": "The Guillotine",
-            "desc": "The Lost Explorer 8-year Mezcal, Smoked Altered Melon Liqueur, Cointreau, Agave, Black Lava Salt and Pepper Rim",
-            "price": "17"
-          },
-          {
-            "name": "Bloody Marie",
-            "desc": "Charleston Bloody Mary Mix, Allan Benton's Bacon-Washed Bourbon, Rosemary Stock, Accoutrements",
-            "price": "16"
-          },
-          {
-            "name": "Wake N' Bake espresso Martini",
-            "desc": "Citrus-Zested Prairie Organice Vodka, Mr. Black Coffee Liqueur, Tempus Fugit Creme de Cacao, Giffard Vanilla, Faretti Biscotti, Barrel-Aged Maple Syrup",
-            "price": "17"
-          },
-          {
-            "name": "Versailles Garden",
-            "desc": "Citadelle Viva La Cornichon Gin, Massenez Creme de Cassis, Lavender Sage Honey, Coconut Water, Fruit Caviar",
-            "price": "17"
           }
         ]
       }
@@ -543,6 +419,11 @@ export const menuCategories: MenuCategory[] = [
             "price": "10"
           },
           {
+            "name": "Civil Society Fresh IPA draft",
+            "desc": "Hazy India Pale Ale Jupiter, FL",
+            "price": "10"
+          },
+          {
             "name": "Buenaveza Salt & Lime Lager",
             "desc": "Stone Brewing Draft",
             "price": "8"
@@ -768,11 +649,6 @@ export const menuCategories: MenuCategory[] = [
             "name": "2024 Bruno Verdi",
             "desc": "Oltrepo Pavese Pinot Grigio Piedmont, Italy",
             "price": "71"
-          },
-          {
-            "name": "2023 Folicello IL Bianco",
-            "desc": "Ancestral Bianco Montuni, Pinot Blanc, Trebbiano Emilia-Romagna, Italy Sparkling Wine",
-            "price": "55"
           },
           {
             "name": "2024 Orsola",

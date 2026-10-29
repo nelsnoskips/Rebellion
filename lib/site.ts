@@ -122,7 +122,7 @@ export type BookingKey = keyof typeof reservations.bookings;
 /**
  * Confirmed by the client, August 2026.
  *
- * Happy hour, kitchen close and any brunch window are still unconfirmed and
+ * Happy hour and kitchen close are still unconfirmed and
  * are not claimed anywhere on the site.
  */
 export const hours = [

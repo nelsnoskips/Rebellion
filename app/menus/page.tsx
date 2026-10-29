@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     absolute: "Menu — Rebellion Beachside Bar and Bistro, Cocoa Beach",
   },
   description:
-    "Brunch, dinner, cocktails, spirits and wine at Rebellion Beachside Bar & Bistro — the full menu, exactly as it is served.",
+    "Dinner, cocktails, spirits and wine at Rebellion Beachside Bar & Bistro in Cocoa Beach — the full menu, exactly as it is served.",
 };
 
 /**
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
  * Built from the same `menuCategories` the page renders, so the markup cannot
  * claim a dish the kitchen has taken off.
  */
-const DESCRIBED_SECTIONS = new Set(["Main Menu", "Brunch", "Cocktails Menu"]);
+const DESCRIBED_SECTIONS = new Set(["Main Menu", "Cocktails Menu"]);
 
 /** A glass/bottle pair or an MP dish has no single price to offer. */
 function offerFor(price?: string) {
