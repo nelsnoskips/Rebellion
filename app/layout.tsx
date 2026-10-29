@@ -204,7 +204,12 @@ const restaurantSchema = {
   priceRange: "$$$",
   acceptsReservations: true,
   hasMenu: `${siteUrl}/menus`,
-  sameAs: [site.social.instagram, site.social.facebook],
+  sameAs: [
+    site.social.instagram,
+    site.social.facebook,
+    site.listings.resy,
+    site.listings.openTable,
+  ],
   openingHoursSpecification: openingHours.map((h) => ({
     "@type": "OpeningHoursSpecification",
     dayOfWeek: h.days,

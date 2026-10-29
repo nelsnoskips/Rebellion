@@ -6,11 +6,69 @@ import { BrushRule } from "@/components/ui/Artwork";
 import { menuCategories, type MenuSubsection } from "@/lib/menu-data";
 import { site } from "@/lib/site";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://rebellionbeachside.com";
+
 export const metadata: Metadata = {
   title: "Menus",
   description:
     "Brunch, dinner, cocktails, spirits and wine at Rebellion Beachside Bar & Bistro — the full menu, exactly as it is served.",
 };
+
+/**
+ * Menu structured data (blueprint §11, SEO/AEO).
+ *
+ * This page is the most-read on the site and "rebellion beachside bar and
+ * bistro menu" is the single most-clicked search term, so what a crawler can
+ * see here is worth more than anywhere else. Unmarked, the menu is one page;
+ * marked up, it is a list of dishes an assistant can answer a question about.
+ *
+ * Only the sections whose dishes carry a description are listed item by item.
+ * The wine, spirits, beer and cider lists are named but not enumerated: a
+ * MenuItem of "2024 Ruge" with no description answers nothing, and 150 of them
+ * would add tens of kilobytes to a page that four visitors in five open on a
+ * phone. The section names still appear, so the shape of the list is complete.
+ *
+ * Built from the same `menuCategories` the page renders, so the markup cannot
+ * claim a dish the kitchen has taken off.
+ */
+const DESCRIBED_SECTIONS = new Set(["Main Menu", "Brunch", "Cocktails Menu"]);
+
+/** A glass/bottle pair or an MP dish has no single price to offer. */
+function offerFor(price?: string) {
+  if (!price || price === "MP" || price.includes("/")) return {};
+  return {
+    offers: { "@type": "Offer", price, priceCurrency: "USD" },
+  };
+}
+
+function menuSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Menu",
+    "@id": `${siteUrl}/menus#menu`,
+    name: `${site.name} — menus`,
+    url: `${siteUrl}/menus`,
+    inLanguage: "en-US",
+    hasMenuSection: menuCategories.map((category) => ({
+      "@type": "MenuSection",
+      name: category.name,
+      ...(DESCRIBED_SECTIONS.has(category.name)
+        ? {
+            hasMenuSection: category.subsections.map((subsection) => ({
+              "@type": "MenuSection",
+              name: subsection.name,
+              hasMenuItem: subsection.items.map((item) => ({
+                "@type": "MenuItem",
+                name: item.name,
+                ...(item.desc ? { description: item.desc } : {}),
+                ...offerFor(item.price),
+              })),
+            })),
+          }
+        : {}),
+    })),
+  };
+}
 
 /**
  * A bottle list is not a dinner menu: the spirits and wine sections are name
@@ -41,6 +99,11 @@ function Price({ value }: { value?: string }) {
  */
 export default function MenusPage() {
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(menuSchema()) }}
+      />
     <PageShell
       eyebrow="Eat & Drink"
       title="Dinner without the usual script"
@@ -158,5 +221,6 @@ export default function MenusPage() {
         </div>
       </div>
     </PageShell>
+    </>
   );
 }

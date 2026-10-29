@@ -59,6 +59,21 @@ export const site = {
     facebook:
       "https://www.facebook.com/people/Rebellion-Beachside-Bar-Bistro/61563434782165/",
   },
+  /**
+   * Third-party pages that are this restaurant, declared so search engines
+   * treat them and this site as one entity rather than several.
+   *
+   * It matters more here than it usually would. In October the site ranked at
+   * an average position of 6.5 for its own name, because OpenTable's listing
+   * pages sit above it; naming them here is how we say they are the same
+   * business. Only pages confirmed to resolve belong in this list — a wrong
+   * one teaches the opposite lesson.
+   */
+  listings: {
+    resy: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro",
+    openTable:
+      "https://www.opentable.com/r/rebellion-beachside-bar-and-bistro-cocoa-beach",
+  },
 } as const;
 
 /**
