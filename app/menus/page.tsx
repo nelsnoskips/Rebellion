@@ -9,7 +9,14 @@ import { site } from "@/lib/site";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://rebellionbeachside.com";
 
 export const metadata: Metadata = {
-  title: "Menus",
+  /* "rebellion beachside bar and bistro menu" is the biggest brand search
+     after the name itself — 312 impressions in 90 days — and the templated
+     title ("Menus — Rebellion Beachside") carried neither "menu" in the
+     singular nor "Bar and Bistro". Absolute, so the template does not append
+     the short name on top of a title that already names the restaurant. */
+  title: {
+    absolute: "Menu — Rebellion Beachside Bar and Bistro, Cocoa Beach",
+  },
   description:
     "Brunch, dinner, cocktails, spirits and wine at Rebellion Beachside Bar & Bistro — the full menu, exactly as it is served.",
 };

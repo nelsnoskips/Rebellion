@@ -20,8 +20,11 @@ export const site = {
   markName: "Rebellion",
   parent: "Rebellion Restaurants",
   tagline: "Rebel against the ordinary.",
+  /* The description is the one place the plain words belong: "wine bar" and
+     "seafood" are searched heavily in Cocoa Beach and appeared nowhere in the
+     site's own copy. The voice survives it; the title stays clean. */
   description:
-    "A chef-driven beachside bistro, private gathering place, and bottle shop for people who would rather not do the expected.",
+    "A chef-driven French-American bistro and wine bar in Cocoa Beach \u2014 steak frites, seafood off this coast, and a cellar worth sitting at. Two blocks from the water.",
   /* Address and phone taken from rebellionrestaurants.com, which corrects the
      values in the design comp (200 N Orlando Ave / 321.784.9463 — comp dummy
      text). Still worth a final check against the Google Business Profile, since
@@ -582,47 +585,83 @@ export const storyPillars = [
  * Keeping it as data is the point: every word on the site should be editable
  * without opening a component.
  */
+/**
+ * The questions, phrased the way people type them.
+ *
+ * Driven by the 90-day search-terms data rather than by what we assumed people
+ * wanted to know: cuisine, hours, wine and group size are all things Cocoa
+ * Beach searches for by the thousand, and none of them had an answer here. The
+ * wording matters as much as the facts — "what kind of food is it" is a query,
+ * "Our cuisine" is not — because this array is also the FAQPage markup, and an
+ * assistant answering a question matches a question.
+ *
+ * Every answer is checkable against the live menu or the hours above. Two
+ * obvious ones are deliberately missing: happy hour and brunch. Both are
+ * searched for heavily, and nobody has yet confirmed whether the restaurant
+ * serves either. An FAQ that guesses sends people to a closed door.
+ */
 export const faqs: {
   q: string;
   a: string;
   link?: { href: string; text: string; after?: string };
 }[] = [
   {
+    q: "What kind of food is it?",
+    a: "A French-American bistro. Steak frites, moules frites, a c\u00f4te de boeuf big enough for the table \u2014 and seafood off this coast, from blackened shrimp to hamachi tartare to whatever the fresh catch is that night.",
+  },
+  {
     q: "Do you take reservations?",
     a: "Yes, and we recommend them Thursday through Saturday. Walk-ins are always welcome at the bar.",
+  },
+  {
+    q: "What time do you open?",
+    a: "Half past three Monday through Saturday, five on Sunday. We close at nine Sunday through Thursday, ten on Friday, and midnight on Saturday.",
+  },
+  {
+    q: "Is there a wine bar?",
+    a: "The whole place is built round one. Fourteen wines by the glass, a cellar list of close to fifty bottles, and the Wine Room next door for private tastings and classes.",
+    link: {
+      href: "/happenings",
+      text: "See what is coming up",
+      after: ".",
+    },
   },
   {
     q: "Where do I park?",
     a: "There is an on-site lot, street parking on the surrounding blocks, and a parking garage one block south. Ride-share drop-off is at the front entrance.",
   },
   {
-    q: "Is the restaurant accessible?",
-    a: "Step-free entry, accessible restrooms, and space between tables for wheelchair access. Tell us what you need when you book and we will set the room accordingly.",
+    q: "Can you host a party of 30?",
+    a: "Comfortably. The Wine Room takes everything from a small group to a full buyout, with three set formats to choose from. Email ",
+    link: {
+      href: "mailto:michelle@rebellionwinebar.com?subject=Private%20event%20enquiry",
+      text: "michelle@rebellionwinebar.com",
+      after: " and we will reply by the end of the next business day.",
+    },
+  },
+  {
+    q: "Can I bring my own wine?",
+    a: "Yes \u2014 corkage is $25 a bottle, for wines we do not already pour. Ask when you book.",
+  },
+  {
+    q: "Is there anything for a vegetarian?",
+    a: "Eggplant ravioli with smoked ricotta salata and arugula, and the sides run to broccolini and a black-truffle cauliflower gratin. Tell us when you book and the kitchen will work round most things.",
   },
   {
     q: "Are children welcome?",
     a: "Yes, right through dinner service, and we have a short menu for younger guests. The one exception is late night on Saturday, between 10pm and midnight.",
   },
   {
-    q: "Can I bring my own wine?",
-    a: "Yes — corkage is $25 a bottle, for wines we do not already pour. Ask when you book.",
+    q: "Is the restaurant accessible?",
+    a: "Step-free entry, accessible restrooms, and space between tables for wheelchair access. Tell us what you need when you book and we will set the room accordingly.",
   },
   {
     q: "Do you sell gift cards?",
-    a: "Yes — ",
+    a: "Yes \u2014 ",
     link: {
       href: "https://order.toasttab.com/egiftcards/rebellion-beachside-bar-and-bistro-26-north-orlando-avenue",
       text: "buy an e-gift card",
       after: ". It arrives by email and can be used on anything, any day. We keep physical cards at the restaurant too, if you would rather hand someone something.",
-    },
-  },
-  {
-    q: "Do you host private events?",
-    a: "The Wine Room handles groups from a dozen to a full buyout. Email ",
-    link: {
-      href: "mailto:michelle@rebellionwinebar.com?subject=Private%20event%20enquiry",
-      text: "michelle@rebellionwinebar.com",
-      after: " and we will reply by the end of the next business day.",
     },
   },
 ];
