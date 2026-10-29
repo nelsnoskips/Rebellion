@@ -40,6 +40,30 @@
 # on the client's own server; at a domain root both it and the rebase step are
 # no-ops.
 
+# The site was once deployed under /rebellionbistro on the client's own server,
+# and something is still sending people to those addresses — 644 visits in the
+# three weeks to 28 October 2026, every one of them landing on the 404 page and
+# leaving within a second. That was the third most-visited address on the site.
+#
+# The old deploy mounted the whole project under that prefix, so the mapping is
+# one for one: /rebellionbistro/menus is this site's /menus. Splat first, then
+# the bare prefix, since the splat does not match a path with nothing after it.
+#
+# This is a patch over an unknown source, not a fix for it. Whatever is linking
+# there — an old profile link, a printed code, a retired ad destination — still
+# needs finding and correcting at the source.
+[[redirects]]
+  from = "/rebellionbistro/*"
+  to = "/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/rebellionbistro"
+  to = "/"
+  status = 301
+  force = true
+
 # Long-cache the fingerprinted build assets; everything else stays revalidated
 # so content edits appear immediately.
 [[headers]]

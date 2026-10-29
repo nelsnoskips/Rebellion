@@ -138,8 +138,13 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://rebellionbeachside.
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  /* The home page title carries the locality rather than the tagline. At 64
+     characters the tagline version was being truncated in results, and the
+     October search data showed the site ranking for its own name and nothing
+     else — "Cocoa Beach" is the term it needs to be seen for, and the tagline
+     still leads the description and the page itself. */
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: `${site.name} — ${site.address.city}`,
     template: `%s — ${site.shortName}`,
   },
   description: site.description,
