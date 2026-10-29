@@ -1,6 +1,6 @@
 {
   "site": "https://www.rebellionrestaurants.com",
-  "ranAt": "2026-10-06T14:33:54.671Z",
+  "ranAt": "2026-10-29T14:31:19.390Z",
   "month": "2026-10",
   "pages": [
     {
@@ -15,7 +15,7 @@
       "schema": [
         "Restaurant"
       ],
-      "bytes": 165598
+      "bytes": 166704
     },
     {
       "route": "/menus",
@@ -29,7 +29,7 @@
       "schema": [
         "Restaurant"
       ],
-      "bytes": 264273
+      "bytes": 265040
     },
     {
       "route": "/happenings",
@@ -45,7 +45,7 @@
         "Event",
         "Restaurant"
       ],
-      "bytes": 66679
+      "bytes": 67871
     },
     {
       "route": "/shop",
@@ -59,7 +59,7 @@
       "schema": [
         "Restaurant"
       ],
-      "bytes": 164368
+      "bytes": 164788
     },
     {
       "route": "/private-events",
@@ -73,7 +73,7 @@
       "schema": [
         "Restaurant"
       ],
-      "bytes": 86276
+      "bytes": 86606
     },
     {
       "route": "/reserve",
@@ -87,7 +87,7 @@
       "schema": [
         "Restaurant"
       ],
-      "bytes": 60083
+      "bytes": 60571
     },
     {
       "route": "/visit",
@@ -102,7 +102,7 @@
         "FAQPage",
         "Restaurant"
       ],
-      "bytes": 71944
+      "bytes": 72447
     },
     {
       "route": "/story",
@@ -116,7 +116,7 @@
       "schema": [
         "Restaurant"
       ],
-      "bytes": 66892
+      "bytes": 67312
     },
     {
       "route": "/privacy",
@@ -130,7 +130,7 @@
       "schema": [
         "Restaurant"
       ],
-      "bytes": 74054
+      "bytes": 74474
     }
   ],
   "extras": {
@@ -154,8 +154,12 @@
       "path": "/google4429c12e5c554e53.html",
       "status": 200
     },
-    "ga": false,
-    "metaPixel": true
+    "ga": true,
+    "metaPixel": true,
+    "eventCount": 2,
+    "staleEvents": [
+      "2026-10-27"
+    ]
   },
   "findings": [
     {
@@ -164,7 +168,7 @@
     },
     {
       "severity": "medium",
-      "message": "no analytics tag found on the live site"
+      "message": "events already past are still listed: 2026-10-27 — the site needs a redeploy to drop them"
     },
     {
       "severity": "low",
