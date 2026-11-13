@@ -283,54 +283,6 @@ export type Happening = {
 
 export const happenings: Happening[] = [
   {
-    slug: "wine-education-class-nov-03",
-    date: "2026-11-03",
-    kind: "Wine Class",
-    title: "Wine Education Class",
-    time: "6:30PM",
-    blurb:
-      "An evening through the list with the people who chose it. Seats are limited and booked through Resy.",
-    image: "eventWineDinner",
-    ticketed: true,
-    url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/wine-education-class-2026-11-03-6",
-  },
-  {
-    slug: "wine-education-class-nov-05",
-    date: "2026-11-05",
-    kind: "Wine Class",
-    title: "Wine Education Class",
-    time: "6:30PM",
-    blurb:
-      "An evening through the list with the people who chose it. Seats are limited and booked through Resy.",
-    image: "eventCocktailClass",
-    ticketed: true,
-    url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/wine-education-class-2026-11-05-6",
-  },
-  {
-    slug: "wine-education-class-nov-10",
-    date: "2026-11-10",
-    kind: "Wine Class",
-    title: "Wine Education Class",
-    time: "6:30PM",
-    blurb:
-      "An evening through the list with the people who chose it. Seats are limited and booked through Resy.",
-    image: "eventWineDinner",
-    ticketed: true,
-    url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/wine-education-class-2026-11-10-6",
-  },
-  {
-    slug: "wine-education-class-nov-12",
-    date: "2026-11-12",
-    kind: "Wine Class",
-    title: "Wine Education Class",
-    time: "6:30PM",
-    blurb:
-      "An evening through the list with the people who chose it. Seats are limited and booked through Resy.",
-    image: "eventCocktailClass",
-    ticketed: true,
-    url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/wine-education-class-2026-11-12-6",
-  },
-  {
     slug: "wine-education-class-nov-17",
     date: "2026-11-17",
     kind: "Wine Class",
@@ -365,13 +317,28 @@ export const happenings: Happening[] = [
  * spent three weeks advertising a wine dinner and a drag brunch that were
  * already over.
  *
- * "Today" here is build time, because this is a static export. That is fine as
- * long as the site is deployed when events change, which is how events get
- * added in the first place; the monthly SEO audit also flags any past event
- * still listed, so a long gap between deploys cannot hide one.
+ * "Today" here is build time, because this is a static export — the filter
+ * cannot run again until something rebuilds. That assumption broke three
+ * times: a class on the 27th was still listed on the 29th, and four November
+ * classes were still listed on the 13th, each time because nothing had
+ * deployed since the dates went in. .github/workflows/rebuild.yml now rebuilds
+ * the site every morning, which is what makes this filter true rather than
+ * true-at-the-last-deploy.
  */
+/**
+ * Today in Cocoa Beach, not in UTC.
+ *
+ * The UTC date rolls over at 7pm local in winter, so a 6:30 class on a
+ * Thursday was dropping off the calendar half an hour before it started.
+ */
+function todayHere() {
+  return new Date().toLocaleDateString("en-CA", {
+    timeZone: "America/New_York",
+  });
+}
+
 export const upcoming: Happening[] = [...happenings]
-  .filter((e) => e.date >= new Date().toISOString().slice(0, 10))
+  .filter((e) => e.date >= todayHere())
   .sort((a, b) => a.date.localeCompare(b.date));
 
 /* PLACEHOLDER — menus are illustrative. Real menus must be indexable HTML,

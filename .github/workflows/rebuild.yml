@@ -1,0 +1,51 @@
+# Rebuild the site every morning so the events calendar is never stale.
+#
+# The site is a static export, so the "is this event in the past" filter runs
+# at build time and not a moment after. Between deploys the calendar freezes:
+# a class on 27 October was still being advertised on the 29th, and four
+# November classes were still listed on the 13th. Each time the data was
+# right and the deployed HTML was old.
+#
+# Netlify builds on push, and its GitHub app sees a push made by Actions, so
+# the empty commit below is enough to republish. If a NETLIFY_BUILD_HOOK
+# secret is set (Netlify -> Site configuration -> Build & deploy -> Build
+# hooks), this calls that instead and leaves no commits behind, which is the
+# tidier of the two.
+
+name: Daily rebuild
+
+on:
+  schedule:
+    # 09:20 UTC is about 4:20am in Cocoa Beach: the calendar is correct before
+    # anyone looks at it, and a build never lands during service.
+    - cron: "20 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-rebuild
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Republish
+        env:
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          set -euo pipefail
+          if [ -n "${NETLIFY_BUILD_HOOK:-}" ]; then
+            curl -fsS -X POST -d '{}' "$NETLIFY_BUILD_HOOK" > /dev/null
+            echo "Asked Netlify to rebuild."
+            exit 0
+          fi
+          echo "No NETLIFY_BUILD_HOOK secret set - pushing an empty commit."
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "Daily rebuild: keep the events calendar current"
+          git push
