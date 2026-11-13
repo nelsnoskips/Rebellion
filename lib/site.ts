@@ -24,7 +24,7 @@ export const site = {
      "seafood" are searched heavily in Cocoa Beach and appeared nowhere in the
      site's own copy. The voice survives it; the title stays clean. */
   description:
-    "A chef-driven French-American bistro and wine bar in Cocoa Beach \u2014 steak frites, seafood off this coast, and a cellar worth sitting at. Two blocks from the water.",
+    "French-American bistro and wine bar in Cocoa Beach, two blocks from the water \u2014 steak frites, seafood off this coast, and a cellar worth sitting at.",
   /* Address and phone taken from rebellionrestaurants.com, which corrects the
      values in the design comp (200 N Orlando Ave / 321.784.9463 — comp dummy
      text). Still worth a final check against the Google Business Profile, since
