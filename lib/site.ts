@@ -306,6 +306,21 @@ export const happenings: Happening[] = [
     ticketed: true,
     url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/wine-education-class-2026-11-24-6",
   },
+  {
+    slug: "bordeaux-wine-class-dec-01",
+    date: "2026-12-01",
+    kind: "Wine Class",
+    /* Named rather than called "Wine Education Class" like the rest: it is a
+       one-off with a guest and a region, and "Bordeaux" is the word anyone
+       looking for this would search. */
+    title: "Bordeaux Wine Education Class",
+    time: "6:30PM",
+    blurb:
+      "A guided evening through Bordeaux with Sylvain Boulet. A one-off, and seats are limited — booked through Resy.",
+    image: "eventWineDinner",
+    ticketed: true,
+    url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/wine-education-class-2026-12-01-6",
+  },
 ];
 
 /**
