@@ -310,13 +310,15 @@ export const happenings: Happening[] = [
     slug: "bordeaux-wine-class-dec-01",
     date: "2026-12-01",
     kind: "Wine Class",
-    /* Named rather than called "Wine Education Class" like the rest: it is a
-       one-off with a guest and a region, and "Bordeaux" is the word anyone
-       looking for this would search. */
-    title: "Bordeaux Wine Education Class",
+    /* The restaurant's own title for it. Named rather than filed as another
+       "Wine Education Class": it is a one-off with a guest and a region, and
+       "Bordeaux" is the word anyone looking for this would search. The series
+       line — "an evening of wine, knowledge and a little rebellion" — is
+       theirs too, and reads better as the blurb than as part of the title. */
+    title: "Exploring Bordeaux with Sylvain Boulet",
     time: "6:30PM",
     blurb:
-      "A guided evening through Bordeaux with Sylvain Boulet. A one-off, and seats are limited — booked through Resy.",
+      "An evening of wine, knowledge and a little rebellion. Seats are limited and booked through Resy.",
     image: "eventWineDinner",
     ticketed: true,
     url: "https://resy.com/cities/cocoa-beach-fl/venues/rebellion-beachside-bar-and-bistro/events/wine-education-class-2026-12-01-6",
