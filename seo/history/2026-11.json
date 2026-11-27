@@ -1,6 +1,6 @@
 {
   "site": "https://www.rebellionrestaurants.com",
-  "ranAt": "2026-11-13T05:27:25.517Z",
+  "ranAt": "2026-11-27T16:17:14.432Z",
   "month": "2026-11",
   "pages": [
     {
@@ -15,7 +15,7 @@
       "schema": [
         "Restaurant"
       ],
-      "bytes": 167367
+      "bytes": 166075
     },
     {
       "route": "/menus",
@@ -43,10 +43,9 @@
       "h1Count": 1,
       "schema": [
         "Event",
-        "Event",
         "Restaurant"
       ],
-      "bytes": 68483
+      "bytes": 63764
     },
     {
       "route": "/shop",
@@ -157,7 +156,7 @@
     },
     "ga": true,
     "metaPixel": true,
-    "eventCount": 2,
+    "eventCount": 1,
     "staleEvents": []
   },
   "findings": [
